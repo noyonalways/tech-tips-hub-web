@@ -10,7 +10,7 @@ import {
   NavbarMenuToggle,
   Navbar as NextUINavbar,
 } from "@nextui-org/navbar";
-import { link as linkStyles } from "@nextui-org/theme";
+import { button as buttonStyles, link as linkStyles } from "@nextui-org/theme";
 import clsx from "clsx";
 import NextLink from "next/link";
 
@@ -21,10 +21,10 @@ import { siteConfig } from "@/config/site";
 export const Navbar = () => {
   const searchInput = (
     <Input
+      variant="bordered"
       aria-label="Search"
       classNames={{
-        inputWrapper: "bg-default-100",
-        input: "text-sm",
+        input: "text-sm ",
       }}
       endContent={
         <Kbd className="hidden lg:inline-block" keys={["command"]}>
@@ -41,17 +41,21 @@ export const Navbar = () => {
   );
 
   return (
-    <NextUINavbar maxWidth="xl" position="sticky">
+    <NextUINavbar
+      maxWidth="full"
+      position="sticky"
+      className="border border-default/50"
+    >
       <NavbarContent className="basis-1/5 sm:basis-full" justify="start">
         <NavbarBrand as="li" className="gap-3 max-w-fit">
           <NextLink className="flex justify-start items-center gap-1" href="/">
-            <Logo />
+            <Logo /> <span className="font-extrabold">TTH</span>
           </NextLink>
           <div className="size-10 flex justify-center lg:hidden">
             <NavbarMenuToggle />
           </div>
         </NavbarBrand>
-        <ul className="hidden lg:flex gap-4 justify-start ml-2">
+        <ul className="hidden lg:flex gap-10 justify-start ml-2">
           {siteConfig.navItems.map((item) => (
             <NavbarItem key={item.href}>
               <NextLink
@@ -73,10 +77,26 @@ export const Navbar = () => {
         className="hidden sm:flex basis-1/5 sm:basis-full"
         justify="end"
       >
+        <NavbarItem className="hidden lg:flex">{searchInput}</NavbarItem>
         <NavbarItem className="hidden sm:flex gap-2">
           <ThemeSwitch className="hidden lg:inline-block" />
         </NavbarItem>
-        <NavbarItem className="hidden lg:flex">{searchInput}</NavbarItem>
+        <Link
+          className={buttonStyles({ variant: "light", radius: "full" })}
+          href={`/login`}
+        >
+          Log In
+        </Link>
+        <Link
+          className={buttonStyles({
+            color: "primary",
+            radius: "full",
+            variant: "solid",
+          })}
+          href={`/signup`}
+        >
+          Sign Up
+        </Link>
       </NavbarContent>
 
       <NavbarContent className="lg:hidden basis-1 pl-4" justify="end">
@@ -90,10 +110,8 @@ export const Navbar = () => {
             <NavbarMenuItem key={`${item}-${index}`}>
               <Link
                 color={
-                  index === 2
+                  index === siteConfig.navMenuItems.length - 1
                     ? "primary"
-                    : index === siteConfig.navMenuItems.length - 1
-                    ? "danger"
                     : "foreground"
                 }
                 href="#"
