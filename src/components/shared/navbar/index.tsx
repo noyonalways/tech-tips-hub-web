@@ -99,22 +99,27 @@ export const Navbar = () => {
         <NavbarItem>
           <NavarDropdown />
         </NavbarItem>
-        <Link
-          className={buttonStyles({ variant: "light", radius: "full" })}
-          href={`/login`}
-        >
-          Log In
-        </Link>
-        <Link
-          className={buttonStyles({
-            color: "primary",
-            radius: "full",
-            variant: "solid",
-          })}
-          href={`/signup`}
-        >
-          Sign Up
-        </Link>
+        <div className="hidden">
+          <NextLink
+            className={buttonStyles({
+              radius: "full",
+              variant: "light",
+            })}
+            href={`/login`}
+          >
+            Log In
+          </NextLink>
+          <NextLink
+            className={buttonStyles({
+              color: "primary",
+              radius: "full",
+              variant: "solid",
+            })}
+            href={`/signup`}
+          >
+            Sign Up
+          </NextLink>
+        </div>
       </NavbarContent>
 
       <NavbarContent className="lg:hidden basis-1 pl-4" justify="end">
@@ -132,7 +137,7 @@ export const Navbar = () => {
                     ? "primary"
                     : "foreground"
                 }
-                href="#"
+                href={item.href}
                 size="lg"
               >
                 {item.label}

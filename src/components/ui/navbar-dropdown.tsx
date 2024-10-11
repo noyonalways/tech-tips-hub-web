@@ -7,6 +7,7 @@ import {
   DropdownMenu,
   DropdownTrigger,
 } from "@nextui-org/dropdown";
+import NextLink from "next/link";
 
 interface IProps {}
 
@@ -27,11 +28,15 @@ const NavarDropdown: React.FC<IProps> = () => {
           <p className="font-semibold">Signed in as</p>
           <p className="font-semibold">noyonrahman2003@gmail.com</p>
         </DropdownItem>
-        <DropdownItem key="profile" href={`/profile/${"username"}`}>
-          My Profile
+        <DropdownItem key="profile">
+          <NextLink className="w-full block" href={`/profile/${"username"}`}>
+            My Profile
+          </NextLink>
         </DropdownItem>
-        <DropdownItem key="subscription" href="/my-subscription">
-          Subscription
+        <DropdownItem key="subscription">
+          <NextLink className="w-full block" href="/my-subscription">
+            Subscription
+          </NextLink>
         </DropdownItem>
         <DropdownItem key="logout" color="danger">
           Log Out
