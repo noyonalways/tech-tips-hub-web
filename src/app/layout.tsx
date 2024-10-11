@@ -1,11 +1,16 @@
 import "@/styles/globals.css";
 import clsx from "clsx";
 import { Metadata, Viewport } from "next";
+import { Inter } from "next/font/google";
 
 import { Providers } from "../providers";
 
-import { fontSans } from "@/config/fonts";
 import { siteConfig } from "@/config/site";
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+});
 
 export const metadata: Metadata = {
   title: {
@@ -33,12 +38,7 @@ export default function RootLayout({
   return (
     <html suppressHydrationWarning lang="en">
       <head />
-      <body
-        className={clsx(
-          "min-h-screen bg-background font-sans antialiased",
-          fontSans.variable
-        )}
-      >
+      <body className={clsx(`bg-background antialiased ${inter.className}`)}>
         <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
           {children}
         </Providers>

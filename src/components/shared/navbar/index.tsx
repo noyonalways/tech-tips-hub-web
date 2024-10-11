@@ -16,11 +16,15 @@ import NextLink from "next/link";
 
 import { Logo, SearchIcon } from "@/components/icons";
 import { ThemeSwitch } from "@/components/theme-switch";
+import NavarDropdown from "@/components/ui/navbar-dropdown";
 import { siteConfig } from "@/config/site";
+import { Button } from "@nextui-org/button";
+import { GoPencil } from "react-icons/go";
 
 export const Navbar = () => {
   const searchInput = (
     <Input
+      radius="full"
       variant="bordered"
       aria-label="Search"
       classNames={{
@@ -78,8 +82,22 @@ export const Navbar = () => {
         justify="end"
       >
         <NavbarItem className="hidden lg:flex">{searchInput}</NavbarItem>
+        <NavbarItem className="hidden lg:flex">
+          <Button
+            isIconOnly
+            size="sm"
+            radius="full"
+            variant="solid"
+            color="primary"
+          >
+            <GoPencil className="text-lg" />
+          </Button>
+        </NavbarItem>
         <NavbarItem className="hidden sm:flex gap-2">
           <ThemeSwitch className="hidden lg:inline-block" />
+        </NavbarItem>
+        <NavbarItem>
+          <NavarDropdown />
         </NavbarItem>
         <Link
           className={buttonStyles({ variant: "light", radius: "full" })}

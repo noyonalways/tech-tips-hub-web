@@ -8,7 +8,7 @@ interface IProps {}
 
 const BlogCard: React.FC<IProps> = () => {
   return (
-    <div className="border border-default/50 p-6 rounded-xl space-y-4">
+    <div className="border border-default/50 p-6 rounded-xl space-y-4 w-full">
       <div className="flex justify-between items-end">
         <div className="flex space-x-4">
           <Image
@@ -46,7 +46,7 @@ const BlogCard: React.FC<IProps> = () => {
         </div>
       </div>
       <div>
-        <div className="flex items-center space-x-4">
+        <div className="flex items-center space-x-1 lg:space-x-4">
           <div className="flex space-x-2 items-center">
             <Button
               className="px-0 min-w-8"
