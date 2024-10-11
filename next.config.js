@@ -8,15 +8,6 @@ const nextConfig = {
       },
     ],
   },
-  redirects() {
-    return [
-      {
-        source: "/",
-        destination: "/feed",
-        permanent: true,
-      },
-    ];
-  },
 };
 
 module.exports = nextConfig;

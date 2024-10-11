@@ -1,4 +1,5 @@
 import BlogCard from "@/components/blog-card";
+import MiniFooter from "@/components/shared/mini-footer";
 import Container from "@/components/ui/container";
 import { Button } from "@nextui-org/button";
 import { PiMagicWandLight, PiUsers } from "react-icons/pi";
@@ -33,7 +34,7 @@ export default function Home() {
             Following
           </Button>
         </div>
-        <div className="flex flex-col lg:flex-row lg:justify-between lg:space-x-8 items-start mt-8 w-full">
+        <div className="flex flex-col lg:flex-row lg:justify-between lg:space-x-6 items-start mt-8 w-full">
           <div className="space-y-6 flex-1 w-full">
             <BlogCard />
             <BlogCard />
@@ -57,15 +58,19 @@ export default function Home() {
             <BlogCard />
           </div>
 
-          <div className="hidden lg:inline-block basis-[25%] border border-default/50 p-6 rounded-xl space-y-2 sticky top-20">
-            <h2 className="font-semibold text-lg">Topics</h2>
-            <div className="gap-2 flex flex-wrap">
-              {topics.map((topic, index) => (
-                <Button key={index} variant="flat" radius="full" size="sm">
-                  {topic}
-                </Button>
-              ))}
+          <div className="hidden lg:inline-block basis-[25%] space-y-6  sticky top-20">
+            <div className="border border-default/50 p-6 rounded-xl space-y-2">
+              <h2 className="font-semibold text-lg">Topics</h2>
+              <div className="gap-2 flex flex-wrap">
+                {topics.map((topic, index) => (
+                  <Button key={index} variant="flat" radius="full" size="sm">
+                    {topic}
+                  </Button>
+                ))}
+              </div>
             </div>
+
+            <MiniFooter />
           </div>
         </div>
       </Container>

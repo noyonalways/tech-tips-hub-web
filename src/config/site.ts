@@ -6,7 +6,7 @@ export const siteConfig = {
   navItems: [
     {
       label: "Feed",
-      href: "/feed",
+      href: "/",
     },
     {
       label: "Subscription",
@@ -20,7 +20,7 @@ export const siteConfig = {
   navMenuItems: [
     {
       label: "Feed",
-      href: "/feed",
+      href: "/",
     },
     {
       label: "Subscription",
