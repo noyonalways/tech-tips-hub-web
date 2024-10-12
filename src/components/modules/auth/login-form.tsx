@@ -10,6 +10,7 @@ import { TLogin } from "@/types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@nextui-org/button";
 import { useRouter, useSearchParams } from "next/navigation";
+import { Suspense } from "react";
 import { FieldValues, SubmitHandler } from "react-hook-form";
 
 interface IProps {}
@@ -66,4 +67,10 @@ const LoginForm: React.FC<IProps> = () => {
   );
 };
 
-export default LoginForm;
+const SuspendedLoginForm: React.FC = () => (
+  <Suspense fallback={<Loading />}>
+    <LoginForm />
+  </Suspense>
+);
+
+export default SuspendedLoginForm;

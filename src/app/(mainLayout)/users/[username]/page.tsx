@@ -25,7 +25,11 @@ interface IProps {
   };
 }
 
-const GetUserByIdPage: React.FC<IProps> = async ({ params }) => {
+const GetUserByIdPage = async ({
+  params,
+}: {
+  params: { username: string };
+}) => {
   const data = await getUserByUsername(params.username.split("40")[1]);
   const {
     _id,

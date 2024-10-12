@@ -84,9 +84,7 @@ export const Navbar = () => {
           <ThemeSwitch className="hidden lg:inline-block" />
         </NavbarItem>
 
-        <NavbarItem className="hidden lg:flex">
-          <WritePostButton />
-        </NavbarItem>
+        <WritePostButton />
 
         <LoginLogoutSwitch />
       </NavbarContent>

@@ -2,6 +2,7 @@
 
 import { useUser } from "@/context/user.provider";
 import { Button } from "@nextui-org/button";
+import { NavbarItem } from "@nextui-org/navbar";
 import { GoPencil } from "react-icons/go";
 
 interface IProps {}
@@ -9,7 +10,7 @@ interface IProps {}
 const WritePostButton: React.FC<IProps> = () => {
   const { user } = useUser();
   return (
-    <>
+    <NavbarItem className={`${user ? "inline" : "hidden"}`}>
       {user && (
         <Button
           isIconOnly
@@ -21,7 +22,7 @@ const WritePostButton: React.FC<IProps> = () => {
           <GoPencil className="text-lg" />
         </Button>
       )}
-    </>
+    </NavbarItem>
   );
 };
 

@@ -13,9 +13,11 @@ const THInput: React.FC<IProps> = ({ name, ...props }) => {
     formState: { errors },
   } = useFormContext();
 
+  const errorMessage = errors[name]?.message as string | undefined;
+
   return (
     <Input
-      errorMessage={errors[name] ? (errors[name].message as string) : ""}
+      errorMessage={errorMessage || ""}
       isInvalid={!!errors[name]}
       {...register(name)}
       {...props}

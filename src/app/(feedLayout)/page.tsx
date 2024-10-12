@@ -7,18 +7,8 @@ import { ICategory, IPost } from "@/types";
 import { Button } from "@nextui-org/button";
 import { PiMagicWandLight, PiUsers } from "react-icons/pi";
 
-const topics = [
-  "Programming",
-  "Development",
-  "Python",
-  "NodeJS",
-  "PHP",
-  "TypeScript",
-];
-
 export default async function Home() {
   const data = await getAllPosts();
-
   const posts = data?.data as IPost[];
 
   const categoryData = await getAllCategories();

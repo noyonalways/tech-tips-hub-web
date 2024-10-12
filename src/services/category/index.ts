@@ -1,12 +1,16 @@
 "use server";
 
-import axiosInstance from "@/lib/AxiosInstance";
+import envConfig from "@/config/env.config";
 
 export const getAllCategories = async () => {
   try {
-    const res = await axiosInstance.get("/categories");
+    const res = await fetch(`${envConfig.baseApi}/categories`, {
+      next: {
+        tags: ["posts"],
+      },
+    });
 
-    return res?.data;
+    return res.json();
   } catch (err: any) {
     throw new Error(err?.message);
   }

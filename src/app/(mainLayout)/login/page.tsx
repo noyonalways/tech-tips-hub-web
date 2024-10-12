@@ -1,4 +1,4 @@
-import LoginForm from "@/components/modules/auth/login-form";
+import SuspendedLoginForm from "@/components/modules/auth/login-form";
 import Container from "@/components/ui/container";
 import { Image } from "@nextui-org/image";
 import Link from "next/link";
@@ -22,7 +22,7 @@ const LoginPage: React.FC<IProps> = () => {
             <span className="font-bold text-xl">TTH</span>
           </Link>
 
-          <LoginForm />
+          <SuspendedLoginForm />
           <div className="flex items-center justify-center mt-2 text-sm space-x-1 text-center">
             <span>Don't have an account?</span>
             <Link className="text-primary" href="/signup">
