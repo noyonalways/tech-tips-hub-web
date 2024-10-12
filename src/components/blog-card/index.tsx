@@ -1,51 +1,66 @@
+import { IPost } from "@/types";
 import { Button } from "@nextui-org/button";
 import { Image } from "@nextui-org/image";
+import Link from "next/link";
 import { AiOutlineComment } from "react-icons/ai";
 import { BiDownvote, BiUpvote } from "react-icons/bi";
 import { HiOutlineEye } from "react-icons/hi2";
 
-interface IProps {}
+interface IProps extends IPost {}
 
-const BlogCard: React.FC<IProps> = () => {
+const BlogCard: React.FC<IProps> = ({
+  author,
+  title,
+  content,
+  totalViews,
+  totalComments,
+  coverImage,
+  createdAt,
+  isPremium,
+  downVotes,
+  upVotes,
+  category,
+}) => {
   return (
     <div className="border border-default/50 p-6 rounded-xl space-y-4 w-full">
       <div className="flex justify-between items-end">
-        <div className="flex space-x-4">
+        <Link href={`/users/@${author.username}`} className="flex space-x-4">
           <Image
             width={48}
             height={48}
             radius="full"
-            src="https://cdn.hashnode.com/res/hashnode/image/upload/v1700995925084/zr_JJq4Wl.jpg?w=240&h=240&fit=crop&crop=faces&auto=compress,format&format=webp"
+            src={author.profilePicture}
           />
           <div>
-            <h3 className="text-sm font-medium">Noyon Rahman</h3>
-            <span className="text-xs">@noyonalways - Oct 10, 2024</span>
+            <h3 className="text-base font-medium">
+              {author.fullName}{" "}
+              {author.isPremiumUser && (
+                <span className="ml-1 inline-block bg-slate-200 px-2 rounded-md text-sm  dark:text-white dark:bg-primary/60">
+                  Pro
+                </span>
+              )}{" "}
+            </h3>
+            <span className="text-xs">
+              @{author.username} - {new Date(createdAt)?.toDateString()}
+            </span>
           </div>
-        </div>
-        <span className="bg-primary-100 text-xs px-3 py-1 rounded-full text-primary">
-          Featured
-        </span>
+        </Link>
+        {isPremium && (
+          <span className="bg-primary-100 text-xs px-3 py-1 rounded-full text-primary dark:text-white">
+            Premium
+          </span>
+        )}
       </div>
       <div className="flex flex-col-reverse lg:flex-row lg:items-start lg:space-x-4">
         <div className="lg:flex-1 space-y-1">
-          <h1 className="text-2xl font-bold">
-            Type vs Interface in TypeScript
-          </h1>
-          <p>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sequi
-            ipsam molestias est dolorem debitis placeat ipsum illo, deserunt
-            consequatur sit impedit repudiandae omnis. Sunt, quidem incidunt in
-            ut ex provident?
-          </p>
+          <h1 className="text-2xl font-bold">{title}</h1>
+          <p>{content.slice(0, 130)}</p>
         </div>
         <div className="basis-full lg:basis-[28%] mb-3 lg:mb-0 rounded-xl">
-          <Image
-            className="w-full"
-            src="https://cdn.hashnode.com/res/hashnode/image/upload/v1715090845019/d893cf0f-fe29-4b2d-88cd-f750df18c4fe.png?w=800&h=420&fit=crop&crop=entropy&auto=compress,format&format=webp"
-          />
+          <Image className="w-full" src={coverImage} />
         </div>
       </div>
-      <div>
+      <div className="flex flex-col items-end lg:flex-row lg:items-center justify-between space-y-2 lg:space-y-0">
         <div className="flex items-center space-x-1 lg:space-x-4">
           <div className="flex space-x-2 items-center">
             <Button
@@ -56,7 +71,7 @@ const BlogCard: React.FC<IProps> = () => {
             >
               <BiDownvote className="text-lg" />
             </Button>
-            <span className="text-base">123</span>
+            <span className="text-base">{upVotes - downVotes}</span>
             <Button
               className="px-0 min-w-8"
               size="sm"
@@ -72,17 +87,19 @@ const BlogCard: React.FC<IProps> = () => {
             variant="light"
             startContent={<AiOutlineComment className="text-lg" />}
           >
-            Comments
+            {totalComments} Comments
           </Button>
           <Button
             size="sm"
             variant="light"
             startContent={<HiOutlineEye className="text-lg" />}
           >
-            30 Views
+            {totalViews} Views
           </Button>
         </div>
-        <div></div>
+        <span className="px-3 py-1 rounded-full text-sm bg-slate-100 dark:bg-slate-900">
+          {category.name}
+        </span>
       </div>
     </div>
   );

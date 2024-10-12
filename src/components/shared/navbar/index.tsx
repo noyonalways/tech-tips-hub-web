@@ -1,8 +1,8 @@
 import { Logo, SearchIcon } from "@/components/icons";
 import LoginLogoutSwitch from "@/components/ui/login-logout-switch";
 import { ThemeSwitch } from "@/components/ui/theme-switch";
+import WritePostButton from "@/components/ui/write-post-button";
 import { siteConfig } from "@/config/site";
-import { Button } from "@nextui-org/button";
 import { Input } from "@nextui-org/input";
 import { Kbd } from "@nextui-org/kbd";
 import {
@@ -17,7 +17,6 @@ import {
 import { link as linkStyles } from "@nextui-org/theme";
 import clsx from "clsx";
 import NextLink from "next/link";
-import { GoPencil } from "react-icons/go";
 
 export const Navbar = () => {
   const searchInput = (
@@ -86,15 +85,7 @@ export const Navbar = () => {
         </NavbarItem>
 
         <NavbarItem className="hidden lg:flex">
-          <Button
-            isIconOnly
-            size="sm"
-            radius="full"
-            variant="solid"
-            color="primary"
-          >
-            <GoPencil className="text-lg" />
-          </Button>
+          <WritePostButton />
         </NavbarItem>
 
         <LoginLogoutSwitch />
@@ -102,6 +93,10 @@ export const Navbar = () => {
 
       <NavbarContent className="lg:hidden basis-1 pl-4" justify="end">
         <ThemeSwitch />
+        <>
+          <WritePostButton />
+        </>
+        <LoginLogoutSwitch />
       </NavbarContent>
 
       <NavbarMenu>

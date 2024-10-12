@@ -1,5 +1,6 @@
 import Container from "@/components/ui/container";
-import { getProfileInfo } from "@/services/auth";
+import FollowButton from "@/components/ui/follow-button";
+import { getUserByUsername } from "@/services/user";
 import { IUser } from "@/types";
 import { Button } from "@nextui-org/button";
 import { Image } from "@nextui-org/image";
@@ -18,9 +19,16 @@ import { IoDiamondOutline, IoShareOutline } from "react-icons/io5";
 import { MdVerified } from "react-icons/md";
 import { PiCalendarDotsLight } from "react-icons/pi";
 
-const DynamicProfilePage = async () => {
-  const profileData = await getProfileInfo();
+interface IProps {
+  params: {
+    username: string;
+  };
+}
+
+const GetUserByIdPage: React.FC<IProps> = async ({ params }) => {
+  const data = await getUserByUsername(params.username.split("40")[1]);
   const {
+    _id,
     profilePicture,
     fullName,
     isVerified,
@@ -31,7 +39,7 @@ const DynamicProfilePage = async () => {
     bio,
     designation,
     createdAt,
-  } = (profileData.data as IUser) ?? {};
+  } = (data.data as IUser) ?? {};
 
   return (
     <section className="py-10">
@@ -80,15 +88,7 @@ const DynamicProfilePage = async () => {
               <Button size="sm" isIconOnly radius="full" variant="bordered">
                 <IoShareOutline className="text-lg" />
               </Button>
-              <Button
-                size="sm"
-                radius="full"
-                variant="solid"
-                color="primary"
-                startContent={<GoPencil className="text-lg" />}
-              >
-                Edit
-              </Button>
+              <FollowButton id={_id} />
             </div>
           </div>
 
@@ -173,4 +173,4 @@ const DynamicProfilePage = async () => {
   );
 };
 
-export default DynamicProfilePage;
+export default GetUserByIdPage;

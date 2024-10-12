@@ -1,4 +1,6 @@
 export * from "./auth.type";
+export * from "./category.type";
+export * from "./post.type";
 export * from "./user.type";
 
 import { SVGProps } from "react";

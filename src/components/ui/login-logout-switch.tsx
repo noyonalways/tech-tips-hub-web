@@ -17,7 +17,7 @@ const LoginLogoutSwitch: React.FC<IProps> = () => {
           <NavarDropdown />
         </NavbarItem>
       ) : (
-        <div>
+        <div className="hidden lg:flex">
           <NextLink
             className={buttonStyles({
               radius: "full",

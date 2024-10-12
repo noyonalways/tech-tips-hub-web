@@ -16,7 +16,7 @@ export const loginUser = async (payload: TLogin) => {
 
     return res.data;
   } catch (err: any) {
-    throw new Error(err);
+    throw new Error(err.message);
   }
 };
 
@@ -34,4 +34,14 @@ export const getCurrentUser = async () => {
   }
 
   return decodedToken;
+};
+
+export const getProfileInfo = async () => {
+  try {
+    const res = await axiosInstance.get("/auth/me");
+
+    return res?.data;
+  } catch (err: any) {
+    throw new Error(err?.message);
+  }
 };
