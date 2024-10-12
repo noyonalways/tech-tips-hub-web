@@ -1,16 +1,14 @@
 import Container from "@/components/ui/container";
-import GenderDropdown from "@/components/ui/form/gender-dropdown";
-import { Button } from "@nextui-org/button";
-import { DatePicker } from "@nextui-org/date-picker";
 import { Image } from "@nextui-org/image";
-import { Input } from "@nextui-org/input";
 import Link from "next/link";
+
+import SignUpForm from "@/components/modules/auth/signup-form";
 
 const SignUpPage = () => {
   return (
     <section className="py-10 relative w-full overflow-hidden h-[calc(100vh-85px)]">
       <Container>
-        <div className="space-y-8 w-full max-w-xl mx-auto mt-10">
+        <div className="w-full max-w-lg mx-auto mt-10">
           <Link className="flex items-center space-x-2 justify-center" href="/">
             <Image
               radius="full"
@@ -19,28 +17,13 @@ const SignUpPage = () => {
             />
             <span className="font-bold text-xl">TTH</span>
           </Link>
-          <div>
-            <form className="space-y-2" action="">
-              <Input radius="full" size="sm" label="Full Name" type="text" />
-              <Input
-                radius="full"
-                size="sm"
-                label="Email Address"
-                type="email"
-              />
-              <Input radius="full" size="sm" label="Username" type="text" />
-              <Input radius="full" size="sm" label="Password" type="password" />
-              <GenderDropdown />
-              <DatePicker className="w-full" label="Date of Birth" />
-              <Button
-                color="primary"
-                variant="solid"
-                radius="full"
-                className="w-full"
-              >
-                Sign Up
-              </Button>
-            </form>
+
+          <SignUpForm />
+          <div className="flex items-center justify-center mt-2 text-sm space-x-1 text-center">
+            <span>Already have an account?</span>
+            <Link className="text-primary" href="/login">
+              Login
+            </Link>
           </div>
         </div>
 
