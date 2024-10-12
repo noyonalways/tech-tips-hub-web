@@ -32,6 +32,7 @@ export const signUpValidationSchema = z.object({
   gender: z.string({
     required_error: "Gender is required",
   }),
+  image: z.any().optional(),
 });
 
 export const signInValidationSchema = z.object({

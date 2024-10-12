@@ -15,12 +15,19 @@ const SignUpForm: React.FC<IProps> = () => {
     console.log(data);
   };
   return (
-    <>
+    <div className="mt-16">
       <THForm
         onSubmit={onSubmit}
         resolver={zodResolver(signUpValidationSchema)}
       >
         <div className="space-y-2">
+          <THInput
+            radius="sm"
+            name="image"
+            label="Profile Image"
+            type="file"
+            accept="image/jpeg, image/png, image/jpg"
+          />
           <THInput radius="sm" name="fullName" placeholder="Full Name" />
           <THInput radius="sm" name="email" placeholder="Email Address" />
           <THInput radius="sm" name="username" placeholder="Username" />
@@ -44,7 +51,7 @@ const SignUpForm: React.FC<IProps> = () => {
           </Button>
         </div>
       </THForm>
-    </>
+    </div>
   );
 };
 

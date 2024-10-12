@@ -9,8 +9,11 @@ const LoginPage: React.FC<IProps> = () => {
   return (
     <section className="py-10 relative w-full overflow-hidden h-[calc(100vh-85px)]">
       <Container>
-        <div className="space-y-8 w-full max-w-lg mx-auto mt-10">
-          <Link className="flex items-center space-x-2 justify-center" href="/">
+        <div className="w-full max-w-lg mx-auto mt-10">
+          <Link
+            className="flex items-center space-x-2 justify-center mb-16"
+            href="/"
+          >
             <Image
               radius="full"
               className="size-14"
@@ -20,6 +23,12 @@ const LoginPage: React.FC<IProps> = () => {
           </Link>
 
           <LoginForm />
+          <div className="flex items-center justify-center mt-2 text-sm space-x-1 text-center">
+            <span>Don't have an account?</span>
+            <Link className="text-primary" href="/signup">
+              Sign Up
+            </Link>
+          </div>
         </div>
 
         <div className="absolute h-14 w-[600px] rotate-[45deg] rounded-3xl bg-purple-600 opacity-30  filter -bottom-5 lg:bottom-20 lg:-right-28 lg:block lg:h-10 lg:w-[600px] lg:opacity-20 xl:-right-40 xl:h-2 xl:w-[800px] xl:opacity-100 blur-2xl"></div>

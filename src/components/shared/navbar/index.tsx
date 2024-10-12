@@ -1,6 +1,10 @@
+import { Logo, SearchIcon } from "@/components/icons";
+import LoginLogoutSwitch from "@/components/ui/login-logout-switch";
+import { ThemeSwitch } from "@/components/ui/theme-switch";
+import { siteConfig } from "@/config/site";
+import { Button } from "@nextui-org/button";
 import { Input } from "@nextui-org/input";
 import { Kbd } from "@nextui-org/kbd";
-import { Link } from "@nextui-org/link";
 import {
   NavbarBrand,
   NavbarContent,
@@ -10,15 +14,9 @@ import {
   NavbarMenuToggle,
   Navbar as NextUINavbar,
 } from "@nextui-org/navbar";
-import { button as buttonStyles, link as linkStyles } from "@nextui-org/theme";
+import { link as linkStyles } from "@nextui-org/theme";
 import clsx from "clsx";
 import NextLink from "next/link";
-
-import { Logo, SearchIcon } from "@/components/icons";
-import { ThemeSwitch } from "@/components/theme-switch";
-import NavarDropdown from "@/components/ui/navbar-dropdown";
-import { siteConfig } from "@/config/site";
-import { Button } from "@nextui-org/button";
 import { GoPencil } from "react-icons/go";
 
 export const Navbar = () => {
@@ -82,6 +80,11 @@ export const Navbar = () => {
         justify="end"
       >
         <NavbarItem className="hidden lg:flex">{searchInput}</NavbarItem>
+
+        <NavbarItem className="hidden sm:flex gap-2">
+          <ThemeSwitch className="hidden lg:inline-block" />
+        </NavbarItem>
+
         <NavbarItem className="hidden lg:flex">
           <Button
             isIconOnly
@@ -93,33 +96,8 @@ export const Navbar = () => {
             <GoPencil className="text-lg" />
           </Button>
         </NavbarItem>
-        <NavbarItem className="hidden sm:flex gap-2">
-          <ThemeSwitch className="hidden lg:inline-block" />
-        </NavbarItem>
-        <NavbarItem>
-          <NavarDropdown />
-        </NavbarItem>
-        <div className="hidden">
-          <NextLink
-            className={buttonStyles({
-              radius: "full",
-              variant: "light",
-            })}
-            href={`/login`}
-          >
-            Log In
-          </NextLink>
-          <NextLink
-            className={buttonStyles({
-              color: "primary",
-              radius: "full",
-              variant: "solid",
-            })}
-            href={`/signup`}
-          >
-            Sign Up
-          </NextLink>
-        </div>
+
+        <LoginLogoutSwitch />
       </NavbarContent>
 
       <NavbarContent className="lg:hidden basis-1 pl-4" justify="end">
@@ -131,17 +109,7 @@ export const Navbar = () => {
         <div className="mx-4 mt-2 flex flex-col gap-2">
           {siteConfig.navMenuItems.map((item, index) => (
             <NavbarMenuItem key={`${item}-${index}`}>
-              <Link
-                color={
-                  index === siteConfig.navMenuItems.length - 1
-                    ? "primary"
-                    : "foreground"
-                }
-                href={item.href}
-                size="lg"
-              >
-                {item.label}
-              </Link>
+              <NextLink href={item.href}>{item.label}</NextLink>
             </NavbarMenuItem>
           ))}
         </div>

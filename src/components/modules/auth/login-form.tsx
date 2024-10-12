@@ -2,21 +2,47 @@
 
 import THForm from "@/components/form/th-from";
 import THInput from "@/components/form/th-input";
+import Loading from "@/components/loading";
+import { useUser } from "@/context/user.provider";
+import { useUserLogin } from "@/hooks/auth.hook";
 import { signInValidationSchema } from "@/schemas";
+import { TLogin } from "@/types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@nextui-org/button";
+import { useRouter, useSearchParams } from "next/navigation";
 import { FieldValues, SubmitHandler } from "react-hook-form";
 
 interface IProps {}
 
 const LoginForm: React.FC<IProps> = () => {
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  const { setIsLoading: setUserLoading } = useUser();
+
+  const { mutate: handleLogin, isPending, isSuccess } = useUserLogin();
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
-    console.log(data);
+    handleLogin(data as TLogin);
+    setUserLoading(true);
   };
+
+  const redirect = searchParams.get("redirect");
+
+  if (!isPending && isSuccess) {
+    if (redirect) {
+      router.push(redirect);
+    } else {
+      router.push("/");
+    }
+  }
 
   return (
     <>
+      {isPending && <Loading />}
       <THForm
+        defaultValues={{
+          email: "codernoyon@gmail.com",
+          password: "pass123",
+        }}
         onSubmit={onSubmit}
         resolver={zodResolver(signInValidationSchema)}
       >
