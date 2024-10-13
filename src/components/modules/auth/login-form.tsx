@@ -41,10 +41,6 @@ const LoginForm: React.FC<IProps> = () => {
     <>
       {isPending && <Loading />}
       <THForm
-        defaultValues={{
-          email: "codernoyon@gmail.com",
-          password: "pass123",
-        }}
         onSubmit={onSubmit}
         resolver={zodResolver(signInValidationSchema)}
       >

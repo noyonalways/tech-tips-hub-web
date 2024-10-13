@@ -33,14 +33,16 @@ const NavarDropdown: React.FC<IProps> = () => {
       <DropdownTrigger>
         {user?.profilePicture ? (
           <Avatar
+            color="primary"
             size="sm"
             isBordered
             as="button"
-            className="transition-transform"
+            className="transition-transform object-cover"
             src={user.profilePicture}
           />
         ) : (
           <Avatar
+            color="primary"
             name={user?.name}
             size="sm"
             isBordered

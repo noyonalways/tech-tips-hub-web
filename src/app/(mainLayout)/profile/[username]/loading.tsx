@@ -8,13 +8,10 @@ const DynamicProfileLoading: React.FC<IProps> = () => {
     <section className="py-10">
       <Container>
         <div className="lg:border border-default/50 lg:py-8 lg:px-14 rounded-xl space-y-8 w-full">
-          {/* Profile Image and Info */}
           <div className="w-full flex items-start justify-between">
             <div className="flex flex-col space-y-4 lg:space-y-0 lg:flex-row items-start lg:space-x-6">
-              {/* Profile Image */}
               <Skeleton className="size-32 lg:size-40 rounded-full" />
               <div className="space-y-4">
-                {/* Name and Occupation */}
                 <div className="space-y-2">
                   <Skeleton className="w-[200px] h-[32px] rounded" />
                   <Skeleton className="w-[150px] h-[24px] rounded" />
@@ -30,18 +27,19 @@ const DynamicProfileLoading: React.FC<IProps> = () => {
                   </div>
                 </div>
 
-                {/* Following and Followers */}
-                <div className="flex items-center space-x-4">
-                  <Skeleton className="w-[100px] h-[36px] rounded" />
-                  <Skeleton className="w-[100px] h-[36px] rounded" />
+                {/* Following , Followers  total blog posts */}
+                <div className="flex items-center space-x-4 ">
+                  <Skeleton className="w-[100px] h-[36px] rounded-full" />
+                  <Skeleton className="w-[100px] h-[36px] rounded-full" />
+                  <Skeleton className="w-[100px] h-[36px] rounded-full" />
                 </div>
               </div>
             </div>
 
             {/* Right Side Action Buttons */}
-            <div className="flex items-center space-x-4">
-              <Skeleton className="w-[40px] h-[40px] rounded-full" />
-              <Skeleton className="w-[100px] h-[40px] rounded-full" />
+            <div className="flex items-center space-x-4 absolute right-2 lg:static">
+              <Skeleton className="w-[40px] h-[30px] rounded-full" />
+              <Skeleton className="w-[60px] h-[30px] rounded-full" />
             </div>
           </div>
 
@@ -57,10 +55,10 @@ const DynamicProfileLoading: React.FC<IProps> = () => {
             </div>
 
             {/* Location */}
-            <Skeleton className="w-[150px] h-[24px] rounded" />
+            <Skeleton className="w-full h-[20px] rounded" />
 
             {/* Member Since */}
-            <Skeleton className="w-[150px] h-[24px] rounded" />
+            <Skeleton className="w-full h-[20px] rounded" />
           </div>
 
           {/* About Me Section */}
@@ -74,7 +72,7 @@ const DynamicProfileLoading: React.FC<IProps> = () => {
             <Skeleton className="w-[200px] h-[24px] rounded" />
             {Array.from({ length: 3 }).map((_, idx) => (
               <div key={idx} className="flex space-x-2 lg:space-x-10">
-                <Skeleton className="w-[60px] h-[24px] rounded" />
+                <Skeleton className="w-[80px] h-[24px] rounded" />
                 <Skeleton className="flex-1 h-[24px] rounded" />
               </div>
             ))}

@@ -1,8 +1,10 @@
 import Container from "@/components/ui/container";
 import { getProfileInfo } from "@/services/auth";
-import { IUser } from "@/types";
+import { getLoggedInUserPosts } from "@/services/post";
+import { IPost, IUser } from "@/types";
+import { Avatar } from "@nextui-org/avatar";
 import { Button } from "@nextui-org/button";
-import { Image } from "@nextui-org/image";
+import Link from "next/link";
 import { AiOutlineSmallDash } from "react-icons/ai";
 import { BsTwitterX } from "react-icons/bs";
 import {
@@ -17,6 +19,7 @@ import { GoPencil } from "react-icons/go";
 import { IoDiamondOutline, IoShareOutline } from "react-icons/io5";
 import { MdVerified } from "react-icons/md";
 import { PiCalendarDotsLight } from "react-icons/pi";
+import { TbArrowBadgeDown } from "react-icons/tb";
 
 const DynamicProfilePage = async () => {
   const profileData = await getProfileInfo();
@@ -27,11 +30,15 @@ const DynamicProfilePage = async () => {
     isPremiumUser,
     totalFollowers,
     totalFollowing,
+    totalPosts,
     location,
     bio,
     designation,
     createdAt,
   } = (profileData.data as IUser) ?? {};
+
+  const postsData = await getLoggedInUserPosts();
+  const posts = postsData?.data as IPost[];
 
   return (
     <section className="py-10">
@@ -39,33 +46,40 @@ const DynamicProfilePage = async () => {
         <div className="lg:border border-default/50 lg:py-8 lg:px-14 rounded-xl space-y-8 w-full">
           <div className="w-full flex items-start justify-between">
             <div className="flex flex-col space-y-4 lg:space-y-0 lg:flex-row items-start lg:space-x-6">
-              <Image
-                className="size-32 lg:size-40"
+              <Avatar
+                color="primary"
+                className="w-28 h-28 lg:size-40 object-cover"
                 radius="full"
                 src={profilePicture}
+                name={fullName}
+                isBordered
               />
               <div className="space-y-4">
                 <div className="space-y-2">
                   <h1 className="text-3xl font-bold">{fullName}</h1>
                   {designation && <p>{designation}</p>}
                 </div>
-                {isVerified ||
-                  (isPremiumUser && (
-                    <div className="flex items-center space-x-4">
-                      {isVerified && (
-                        <div className="flex space-x-2 items-center">
-                          <MdVerified className="text-lg text-primary" />
-                          <span>Verified</span>
-                        </div>
-                      )}
-                      {isPremiumUser && (
-                        <div className="flex space-x-2 items-center">
-                          <IoDiamondOutline className="text-lg text-primary" />
-                          <span>Premium User</span>
-                        </div>
-                      )}
+
+                <div className="flex items-center space-x-4">
+                  {isVerified && (
+                    <div className="flex space-x-2 items-center">
+                      <MdVerified className="text-lg text-primary" />
+                      <span>Verified</span>
                     </div>
-                  ))}
+                  )}
+                  {isPremiumUser ? (
+                    <div className="flex space-x-2 items-center">
+                      <IoDiamondOutline className="text-lg text-primary" />
+                      <span>Premium User</span>
+                    </div>
+                  ) : (
+                    <div className="flex space-x-2 items-center">
+                      <TbArrowBadgeDown className="text-2xl text-primary" />
+                      <span>Basic User</span>
+                    </div>
+                  )}
+                </div>
+
                 <div className="flex items-center space-x-4">
                   <Button size="sm" variant="flat" radius="full">
                     {totalFollowing} Following
@@ -73,10 +87,13 @@ const DynamicProfilePage = async () => {
                   <Button size="sm" variant="flat" radius="full">
                     {totalFollowers} Followers
                   </Button>
+                  <Button size="sm" variant="flat" radius="full">
+                    {totalPosts} Blog Posts
+                  </Button>
                 </div>
               </div>
             </div>
-            <div className="flex items-center space-x-4">
+            <div className="flex items-center space-x-4 absolute right-2 lg:static">
               <Button size="sm" isIconOnly radius="full" variant="bordered">
                 <IoShareOutline className="text-lg" />
               </Button>
@@ -150,21 +167,40 @@ const DynamicProfilePage = async () => {
             <h2 className="text-xl font-bold">Recent Activity</h2>
 
             <div>
-              <div className="flex space-x-2 lg:space-x-10">
-                <div className="flex flex-col items-center space-y-1 basis-[25%] lg:basis-auto">
-                  <span>May 7</span>
-                  <AiOutlineSmallDash className="rotate-90 text-primary text-lg" />
-                </div>
-                <div className="space-y-1 flex-1 lg:flex-auto border-b border-default/50 pb-2">
-                  <div className="text-default-500 space-x-2 flex items-center">
-                    <GoPencil />
-                    <span>Wrote an article</span>
-                  </div>
-                  <h3 className="text-lg font-semibold ">
-                    Type vs Interface in TypeScript
-                  </h3>
-                </div>
-              </div>
+              {posts &&
+                posts?.map((post) => (
+                  <Link
+                    href={`/blogs/${post.slug}`}
+                    key={post._id}
+                    className="flex space-x-2 lg:space-x-10 mt-2"
+                  >
+                    <div className="flex flex-col items-center space-y-1 basis-[25%] lg:basis-auto">
+                      <span className="text-sm text-center lg:text-base lg:text-start">
+                        {new Date(post.createdAt).toDateString()}
+                      </span>
+                      <AiOutlineSmallDash className="rotate-90 text-primary text-lg" />
+                    </div>
+                    <div className="space-y-1 flex-1 lg:flex-auto border-b border-default/50 pb-2">
+                      <div className="text-default-500 flex items-center space-x-4">
+                        <div className="space-x-2 flex items-center">
+                          <GoPencil />
+                          <span>Wrote an article</span>
+                        </div>
+                        {post.isPremium && (
+                          <Button
+                            radius="full"
+                            size="sm"
+                            color="secondary"
+                            variant="flat"
+                          >
+                            Premium
+                          </Button>
+                        )}
+                      </div>
+                      <h3 className="text-lg font-semibold ">{post.title}</h3>
+                    </div>
+                  </Link>
+                ))}
             </div>
           </div>
         </div>

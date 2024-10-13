@@ -1,4 +1,5 @@
 import { IPost } from "@/types";
+import { Avatar } from "@nextui-org/avatar";
 import { Button } from "@nextui-org/button";
 import { Image } from "@nextui-org/image";
 import Link from "next/link";
@@ -20,22 +21,30 @@ const BlogCard: React.FC<IProps> = ({
   downVotes,
   upVotes,
   category,
+  slug,
 }) => {
   return (
     <div className="border border-default/50 p-6 rounded-xl space-y-4 w-full">
       <div className="flex justify-between items-end">
-        <Link href={`/users/@${author.username}`} className="flex space-x-4">
-          <Image
-            width={48}
-            height={48}
+        <Link
+          href={`/users/@${author?.username}`}
+          className="flex space-x-4 items-center"
+        >
+          <Avatar
+            className="size-12 object-cover"
             radius="full"
-            src={author.profilePicture}
+            src={author?.profilePicture}
+            name={author.fullName}
+            isBordered
           />
           <div>
             <h3 className="text-base font-medium">
-              {author.fullName}{" "}
-              {author.isPremiumUser && (
-                <span className="ml-1 inline-block bg-slate-200 px-2 rounded-md text-sm  dark:text-white dark:bg-primary/60">
+              {author?.fullName}{" "}
+              {author?.isPremiumUser && (
+                <span
+                  title="Premium User"
+                  className="ml-1 hover:text-purple-600 inline-block bg-slate-200 px-2 rounded-md text-sm  dark:text-white dark:bg-primary/60"
+                >
                   Pro
                 </span>
               )}{" "}
@@ -51,15 +60,20 @@ const BlogCard: React.FC<IProps> = ({
           </span>
         )}
       </div>
-      <div className="flex flex-col-reverse lg:flex-row lg:items-start lg:space-x-4">
+      <Link
+        href={`/blogs/${slug}`}
+        className="flex flex-col-reverse lg:flex-row lg:items-start lg:space-x-4"
+      >
         <div className="lg:flex-1 space-y-1">
           <h1 className="text-2xl font-bold">{title}</h1>
-          <p>{content.slice(0, 130)}</p>
+          <p className="text-default-500">
+            {content.length > 120 ? content.slice(0, 130) + "..." : content}
+          </p>
         </div>
         <div className="basis-full lg:basis-[28%] mb-3 lg:mb-0 rounded-xl">
           <Image className="w-full" src={coverImage} />
         </div>
-      </div>
+      </Link>
       <div className="flex flex-col items-end lg:flex-row lg:items-center justify-between space-y-2 lg:space-y-0">
         <div className="flex items-center space-x-1 lg:space-x-4">
           <div className="flex space-x-2 items-center">
