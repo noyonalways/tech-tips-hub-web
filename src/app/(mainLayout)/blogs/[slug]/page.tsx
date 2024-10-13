@@ -5,12 +5,26 @@ import { IPost } from "@/types";
 import { Avatar } from "@nextui-org/avatar";
 import { Button } from "@nextui-org/button";
 import { Image } from "@nextui-org/image";
+import type { Metadata } from "next";
 import Link from "next/link";
 import { AiOutlineComment } from "react-icons/ai";
 import { BiBookmark, BiDownvote, BiUpvote } from "react-icons/bi";
 import { IoDiamondOutline } from "react-icons/io5";
 import { MdOutlineDownload } from "react-icons/md";
 import { PiShareNetwork } from "react-icons/pi";
+
+type Props = {
+  params: { slug: string };
+};
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const data = await getPostBySlug(params.slug);
+  const { title } = (data?.data as IPost) ?? {};
+
+  return {
+    title: title,
+  };
+}
 
 const DynamicBlogPage = async ({ params }: { params: { slug: string } }) => {
   const data = await getPostBySlug(params.slug);

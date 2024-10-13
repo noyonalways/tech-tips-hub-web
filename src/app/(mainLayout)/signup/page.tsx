@@ -3,6 +3,22 @@ import { Image } from "@nextui-org/image";
 import Link from "next/link";
 
 import SignUpForm from "@/components/modules/auth/signup-form";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Sign Up",
+  description:
+    "Join Tech Tips Hub to access the latest tips, insights, and tutorials. Sign up now to explore both free and premium content, stay updated with cutting-edge tech knowledge, and personalize your reading experience.",
+  keywords:
+    "Tech Tips Hub, sign up, register, create account, tech tips, tutorials, premium content, tech insights, tech community",
+  openGraph: {
+    title: "Sign Up",
+    description:
+      "Create an account at Tech Tips Hub to access exclusive tech tips, tutorials, and personalized content. Sign up for free or choose our premium plan for an enhanced experience.",
+    url: "https://techtipshub.noyonrahman.xyz/signup",
+  },
+};
+
 
 const SignUpPage = () => {
   return (

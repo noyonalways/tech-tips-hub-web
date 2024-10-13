@@ -1,7 +1,21 @@
 import SuspendedLoginForm from "@/components/modules/auth/login-form";
 import Container from "@/components/ui/container";
 import { Image } from "@nextui-org/image";
+import { Metadata } from "next";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "Login",
+  description:
+    "Log in to Tech Tips Hub to access personalized content and manage your account. Stay updated with the latest tech insights.",
+  openGraph: {
+    url: "https://techtipshub.noyonrahman.xyz/login",
+    title: "Login",
+    description:
+      "Access your Tech Tips Hub account for personalized content and latest updates.",
+  },
+};
+
 
 interface IProps {}
 

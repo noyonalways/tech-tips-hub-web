@@ -7,15 +7,16 @@ import { FaCheckCircle } from "react-icons/fa";
 import { MdRocketLaunch } from "react-icons/md";
 
 export const metadata: Metadata = {
-  title: "Subscription Plans - Tech Tips Hub Pro",
+  title: "Subscription Plans",
   description:
-    "Explore our subscription plans at Tech Tips Hub Pro. Choose between free and premium options to unlock advanced features, analytics, and premium content for an enhanced reading and writing experience.",
+    "Explore our subscription plans at Tech Tips Hub. Choose between free and premium options to unlock advanced features, analytics, and premium content for an enhanced tech reading experience.",
   keywords:
-    "Tech Tips Hub, subscription, premium, free, blog plans, analytics, features, premium content",
+    "Tech Tips Hub, subscription plans, premium, free plan, blog subscription, analytics, advanced features, premium content",
   openGraph: {
-    title: "Subscription Plans - Tech Tips Hub Pro",
+    title: "Subscription Plans",
     description:
-      "Unlock premium features, analytics, and content with our Pro plan. Explore the free and premium subscription options at Tech Tips Hub.",
+      "Unlock premium features, detailed analytics, and exclusive content with our subscription plans. Explore both free and premium options at Tech Tips Hub.",
+    url: "https://techtipshub.noyonrahman.xyz/subscription",
   },
 };
 

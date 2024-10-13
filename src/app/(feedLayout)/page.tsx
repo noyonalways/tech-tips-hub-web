@@ -9,13 +9,13 @@ import { Metadata } from "next";
 import { PiMagicWandLight, PiUsers } from "react-icons/pi";
 
 export const metadata: Metadata = {
-  title: "Tech Tips Hub - Feed",
+  title: "Feed",
   description:
     "Stay updated with the latest tech tips, tutorials, and articles. Explore our feed to discover trending posts and expert insights across various technology topics.",
   keywords:
     "Tech Tips Hub, tech feed, latest articles, tutorials, technology, programming, web development, software, gadgets",
   openGraph: {
-    title: "Tech Tips Hub - Feed",
+    title: "Feed",
     description:
       "Discover the latest tech tips, tutorials, and trends on the Tech Tips Hub feed. Stay informed with expert insights and curated content.",
   },
