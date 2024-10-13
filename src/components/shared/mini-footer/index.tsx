@@ -9,20 +9,28 @@ const MiniFooter: React.FC<IProps> = () => {
     <div className="border border-default/50 p-6 rounded-xl space-y-6 w-full">
       <div className="space-y-4">
         <h3 className="text-lg font-semibold">Links</h3>
-        <div className="grid grid-cols-2 gap-2 text-sm">
-          <Link className="hover:underline" href="/feed">
-            Feed
-          </Link>
-          <Link className="hover:underline" href="/feed">
-            About
-          </Link>
-          <Link className="hover:underline" href="/feed">
-            Subscription
-          </Link>
-          <Link className="hover:underline" href="/feed">
-            Support
-          </Link>
-        </div>
+        <ul className="grid grid-cols-2 gap-2 text-sm">
+          <li>
+            <Link className="hover:underline" href="/">
+              Feed
+            </Link>
+          </li>
+          <li>
+            <Link className="hover:underline" href="/about-us">
+              About
+            </Link>
+          </li>
+          <li>
+            <Link className="hover:underline" href="/subscription">
+              Subscription
+            </Link>
+          </li>
+          <li>
+            <Link className="hover:underline" href="/">
+              Support
+            </Link>
+          </li>
+        </ul>
       </div>
 
       <div className="space-y-4">

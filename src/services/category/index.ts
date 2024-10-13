@@ -6,7 +6,7 @@ export const getAllCategories = async () => {
   try {
     const res = await fetch(`${envConfig.baseApi}/categories`, {
       next: {
-        tags: ["posts"],
+        tags: ["categories"],
       },
     });
 
