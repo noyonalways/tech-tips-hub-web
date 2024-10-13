@@ -5,7 +5,21 @@ import { getAllCategories } from "@/services/category";
 import { getAllPosts } from "@/services/post";
 import { ICategory, IPost } from "@/types";
 import { Button } from "@nextui-org/button";
+import { Metadata } from "next";
 import { PiMagicWandLight, PiUsers } from "react-icons/pi";
+
+export const metadata: Metadata = {
+  title: "Tech Tips Hub - Feed",
+  description:
+    "Stay updated with the latest tech tips, tutorials, and articles. Explore our feed to discover trending posts and expert insights across various technology topics.",
+  keywords:
+    "Tech Tips Hub, tech feed, latest articles, tutorials, technology, programming, web development, software, gadgets",
+  openGraph: {
+    title: "Tech Tips Hub - Feed",
+    description:
+      "Discover the latest tech tips, tutorials, and trends on the Tech Tips Hub feed. Stay informed with expert insights and curated content.",
+  },
+};
 
 export default async function Home() {
   const data = await getAllPosts();

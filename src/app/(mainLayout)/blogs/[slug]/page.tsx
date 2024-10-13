@@ -33,7 +33,7 @@ const DynamicBlogPage = async ({ params }: { params: { slug: string } }) => {
             <Image className="w-full" src={coverImage} />
           </div>
           <div className="space-y-14">
-            <div className="space-y-4">
+            <div className="space-y-6">
               <h1 className="text-3xl lg:text-4xl font-bold text-center">
                 {title}
               </h1>
