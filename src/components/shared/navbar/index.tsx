@@ -1,8 +1,9 @@
-import { Logo, SearchIcon } from "@/components/icons";
+import { SearchIcon } from "@/components/icons";
 import LoginLogoutSwitch from "@/components/ui/login-logout-switch";
 import { ThemeSwitch } from "@/components/ui/theme-switch";
 import WritePostButton from "@/components/ui/write-post-button";
 import { siteConfig } from "@/config/site";
+import { Image } from "@nextui-org/image";
 import { Input } from "@nextui-org/input";
 import { Kbd } from "@nextui-org/kbd";
 import {
@@ -49,8 +50,8 @@ export const Navbar = () => {
     >
       <NavbarContent className="basis-1/5 sm:basis-full" justify="start">
         <NavbarBrand as="li" className="gap-3 max-w-fit">
-          <NextLink className="flex justify-start items-center gap-1" href="/">
-            <Logo /> <span className="font-extrabold">TTH</span>
+          <NextLink href="/">
+            <Image className="size-10" src="/tech-tips-hub-logo.png" />
           </NextLink>
           <div className="size-10 flex justify-center lg:hidden">
             <NavbarMenuToggle />

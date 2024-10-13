@@ -10,14 +10,17 @@ import { TLogin } from "@/types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@nextui-org/button";
 import { useRouter, useSearchParams } from "next/navigation";
-import { Suspense } from "react";
+import { Suspense, useState } from "react";
 import { FieldValues, SubmitHandler } from "react-hook-form";
+import { PiEyeLight, PiEyeSlashLight } from "react-icons/pi";
 
 interface IProps {}
 
 const LoginForm: React.FC<IProps> = () => {
   const searchParams = useSearchParams();
   const router = useRouter();
+  const [isPassword, setIsPassword] = useState(true);
+
   const { setIsLoading: setUserLoading } = useUser();
 
   const { mutate: handleLogin, isPending, isSuccess } = useUserLogin();
@@ -46,7 +49,21 @@ const LoginForm: React.FC<IProps> = () => {
       >
         <div className="space-y-2">
           <THInput radius="sm" name="email" placeholder="Email Address" />
-          <THInput radius="sm" name="password" placeholder="Password" />
+          <div className="relative">
+            <THInput
+              radius="sm"
+              name="password"
+              placeholder="Password"
+              type={isPassword ? "password" : "text"}
+            />
+            <button
+              onClick={() => setIsPassword(!isPassword)}
+              type="button"
+              className="absolute top-3 right-2 text-lg"
+            >
+              {isPassword ? <PiEyeLight /> : <PiEyeSlashLight />}
+            </button>
+          </div>
 
           <Button
             type="submit"

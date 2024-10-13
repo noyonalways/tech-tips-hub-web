@@ -12,10 +12,7 @@ const Footer: React.FC<IProps> = () => {
         <div className="grid gird-cols-1 lg:grid-cols-4 gap-4">
           <div className="space-y-4">
             <Link className="flex space-x-4 items-center" href={`/`}>
-              <Image
-                className="size-10"
-                src="https://i.ibb.co.com/c64q254/noyon-logo-dark.png"
-              />
+              <Image className="size-12" src="/tech-tips-hub-logo.png" />
               <h2 className="text-lg font-bold">Tech Tips Hub</h2>
             </Link>
             <p className="text-default-500">
