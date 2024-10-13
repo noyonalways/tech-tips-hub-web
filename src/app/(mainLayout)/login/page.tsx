@@ -26,7 +26,7 @@ const LoginPage: React.FC<IProps> = () => {
         <div className="w-full max-w-lg mx-auto mb-40 mt-10 lg:mb-40 lg:mt-10">
           <div className="space-y-4 flex flex-col items-center mb-8">
             <Link href="/">
-              <Image className="size-14" src="/tech-tips-hub-logo.png" />
+              <Image className="size-14" src="/tech-tips-hub-logo.png" alt="tech-tips-hub-logo" />
             </Link>
             <div>
               <h2 className="text-center text-3xl font-bold">User Login</h2>

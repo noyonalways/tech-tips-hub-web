@@ -1,24 +1,69 @@
 "use client";
 
-import GenderDropdown from "@/components/form/gender-dropdown";
+import THDatePicker from "@/components/form/th-date-picker";
 import THForm from "@/components/form/th-from";
 import THInput from "@/components/form/th-input";
+import THSelect from "@/components/form/th-select";
+import Loading from "@/components/loading";
+import { useUserRegister } from "@/hooks/auth.hook";
 import { signUpValidationSchema } from "@/schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@nextui-org/button";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { FieldValues, SubmitHandler } from "react-hook-form";
 import { PiEyeLight, PiEyeSlashLight } from "react-icons/pi";
 
+const options = [
+  {
+    key: "Male",
+    label: "Male",
+  },
+  {
+    key: "Female",
+    label: "Female",
+  },
+  {
+    key: "Other",
+    label: "Other",
+  },
+];
+
 interface IProps {}
 
 const SignUpForm: React.FC<IProps> = () => {
-  const [isPassword, setIsPassword] = useState(true)
+  const [isPassword, setIsPassword] = useState(true);
+  const router = useRouter();
+  const { mutate: registerUser, isPending, isSuccess } = useUserRegister();
+
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
-    console.log(data);
+    const formData = new FormData();
+
+    const registerData = {
+      fullName: data.fullName,
+      username: data.username,
+      email: data.email,
+      password: data.password,
+      gender: data.gender,
+      dateOfBirth: data.dateOfBirth,
+    };
+
+    formData.append("data", JSON.stringify(registerData));
+
+    if (data.image.length > 0) {
+      formData.append("image", data.image[0]);
+    }
+
+    registerUser(formData);
   };
+
+  if (!isPending && isSuccess) {
+    router.push("/login");
+  }
+
   return (
     <>
+      {isPending && <Loading />}
       <THForm
         onSubmit={onSubmit}
         resolver={zodResolver(signUpValidationSchema)}
@@ -49,14 +94,22 @@ const SignUpForm: React.FC<IProps> = () => {
               {isPassword ? <PiEyeLight /> : <PiEyeSlashLight />}
             </button>
           </div>
-          <GenderDropdown name="gender" />
-          <THInput
+          <THSelect
+            label="Select Gender"
+            radius="sm"
+            size="md"
+            variant="flat"
+            name="gender"
+            options={options}
+          />
+          <THDatePicker name="dateOfBirth" label="Date of Birth" />
+          {/* <THInput
             label="Date of Birth"
             radius="sm"
             name="dateOfBirth"
             placeholder="Date of Birth"
             type="date"
-          />
+          /> */}
           <Button
             type="submit"
             color="primary"

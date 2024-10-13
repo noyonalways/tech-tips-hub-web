@@ -9,7 +9,7 @@ import { HiOutlineEye } from "react-icons/hi2";
 
 interface IProps extends IPost {}
 
-const BlogCard: React.FC<IProps> = ({
+const BlogCard: React.FC<IProps> = async ({
   author,
   title,
   content,
@@ -23,6 +23,9 @@ const BlogCard: React.FC<IProps> = ({
   category,
   slug,
 }) => {
+
+  
+
   return (
     <div className="border border-default/50 p-6 rounded-xl space-y-4 w-full">
       <div className="flex justify-between items-end">
@@ -43,7 +46,7 @@ const BlogCard: React.FC<IProps> = ({
               {author?.isPremiumUser && (
                 <span
                   title="Premium User"
-                  className="ml-1 hover:text-purple-600 inline-block bg-slate-200 px-2 rounded-md text-sm  dark:text-white dark:bg-primary/60"
+                  className="ml-1 hover:bg-purple-200 inline-block bg-slate-200 px-2 rounded-md text-sm  dark:text-white dark:bg-primary/60"
                 >
                   Pro
                 </span>
@@ -67,11 +70,13 @@ const BlogCard: React.FC<IProps> = ({
         <div className="lg:flex-1 space-y-1">
           <h1 className="text-2xl font-bold">{title}</h1>
           <p className="text-default-500">
-            {content.length > 120 ? content.slice(0, 130) + "..." : content}
+            {content.length > 120
+              ? content?.substring(0, 120) + "..."
+              : content}
           </p>
         </div>
         <div className="basis-full lg:basis-[28%] mb-3 lg:mb-0 rounded-xl">
-          <Image className="w-full" src={coverImage} />
+          <Image className="w-full" src={coverImage} alt={`${title}-cover-image`} />
         </div>
       </Link>
       <div className="flex flex-col items-end lg:flex-row lg:items-center justify-between space-y-2 lg:space-y-0">

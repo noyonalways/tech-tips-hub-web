@@ -1,10 +1,13 @@
 import Container from "@/components/ui/container";
 import SubscribeButton from "@/components/ui/subscribe-button";
+import { poppins } from "@/config/fonts";
 import { button as buttonStyles } from "@nextui-org/theme";
 import { Metadata } from "next";
 import Link from "next/link";
 import { FaCheckCircle } from "react-icons/fa";
 import { MdRocketLaunch } from "react-icons/md";
+
+
 
 export const metadata: Metadata = {
   title: "Subscription Plans",
@@ -30,7 +33,9 @@ const SubscriptionPage: React.FC<IProps> = () => {
       <Container>
         <div className="space-y-10">
           <div className="text-center space-y-6">
-            <h1 className="text-3xl lg:text-6xl text-center font-bold w-full max-w-5xl mx-auto lg:leading-snug">
+            <h1
+              className={`${poppins.className} text-3xl lg:text-6xl text-center font-bold w-full max-w-5xl mx-auto lg:leading-snug`}
+            >
               Enhance Your Content Creation with{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#e097ff] to-secondary dark:bg-clip-text dark:bg-gradient-to-r dark:from-primary dark:to-secondary dark:text-transparent">
                 Tech Tips Hub Pro

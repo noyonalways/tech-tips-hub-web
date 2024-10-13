@@ -1,3 +1,4 @@
+import { poppins } from "@/config/fonts";
 import { Image } from "@nextui-org/image";
 import Link from "next/link";
 import { FaDiscord, FaFacebook, FaLinkedin, FaYoutube } from "react-icons/fa";
@@ -12,8 +13,8 @@ const Footer: React.FC<IProps> = () => {
         <div className="grid gird-cols-1 lg:grid-cols-4 gap-4">
           <div className="space-y-4">
             <Link className="flex space-x-4 items-center" href={`/`}>
-              <Image className="size-12" src="/tech-tips-hub-logo.png" />
-              <h2 className="text-lg font-bold">Tech Tips Hub</h2>
+              <Image className="size-12" src="/tech-tips-hub-logo.png" alt="tech-tips-hub-logo" />
+              <h2 className={`${poppins.className} text-lg font-bold`}>Tech Tips Hub</h2>
             </Link>
             <p className="text-default-500">
               Hassle-free blogging platform that developers and teams love.
