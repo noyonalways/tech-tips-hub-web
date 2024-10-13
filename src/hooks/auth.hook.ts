@@ -1,6 +1,6 @@
-import { getProfileInfo, loginUser } from "@/services/auth";
+import { loginUser } from "@/services/auth";
 import { TLogin } from "@/types";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 import { toast } from "sonner";
 
 export const useUserLogin = () => {
@@ -17,12 +17,5 @@ export const useUserLogin = () => {
         id: "user-login-error",
       });
     },
-  });
-};
-
-export const useGetProfileInfo = () => {
-  return useQuery({
-    queryKey: ["GET_PROFILE_INFO"],
-    queryFn: async () => await getProfileInfo(),
   });
 };

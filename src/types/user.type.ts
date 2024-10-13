@@ -4,6 +4,7 @@ export type TLoggedInUser = {
   name: string;
   username: string;
   profilePicture: string;
+  isPremiumUser: boolean;
   role: string;
   iat: number;
   exp: number;
