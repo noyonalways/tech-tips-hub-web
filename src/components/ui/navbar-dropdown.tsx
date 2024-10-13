@@ -19,12 +19,15 @@ const NavarDropdown: React.FC<IProps> = () => {
   const router = useRouter();
   const pathname = usePathname();
   const { setIsLoading: setUserLoading, user } = useUser();
+
+
   const handleLogoutUser = () => {
     logOutUser();
     setUserLoading(true);
 
     if (protectedRoutes.some((route) => pathname.match(route))) {
       router.push("/");
+      return;
     }
   };
 

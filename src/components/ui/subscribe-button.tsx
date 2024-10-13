@@ -1,8 +1,10 @@
 "use client";
+import { useUser } from "@/context/user.provider";
 import { useSubscribePremiumMonthly } from "@/hooks/subscripiton.hook";
 import { getProfileInfo } from "@/services/auth";
 import { IUser } from "@/types";
 import { Button, ButtonProps } from "@nextui-org/button";
+import { useRouter } from "next/navigation";
 import { ReactNode, useEffect, useState } from "react";
 import Loading from "../loading";
 
@@ -12,6 +14,8 @@ interface IProps extends ButtonProps {
 
 const SubscribeButton = ({ children, ...props }: IProps) => {
   const [isPremium, setIsPremium] = useState(false);
+  const { user } = useUser();
+  const router = useRouter();
 
   const getUser = async () => {
     const profileData = await getProfileInfo();
@@ -20,7 +24,9 @@ const SubscribeButton = ({ children, ...props }: IProps) => {
   };
 
   useEffect(() => {
-    getUser()
+    if (user) {
+      getUser();
+    }
   }, []);
 
   const {
@@ -31,6 +37,11 @@ const SubscribeButton = ({ children, ...props }: IProps) => {
   } = useSubscribePremiumMonthly();
 
   const handleSubscribe = () => {
+    if (!user) {
+      router.push("/login");
+      return;
+    }
+
     subscribe({
       price: 20,
       currency: "USD",
