@@ -19,8 +19,8 @@ const SubscribeButton = ({ children, ...props }: IProps) => {
 
   const getUser = async () => {
     const profileData = await getProfileInfo();
-    const user = (profileData.data as IUser) ?? {};
-    setIsPremium(user?.isPremiumUser);
+    const currentUser = (profileData.data as IUser) ?? {};
+    setIsPremium(currentUser?.isPremiumUser);
   };
 
   useEffect(() => {

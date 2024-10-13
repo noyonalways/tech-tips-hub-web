@@ -25,13 +25,20 @@ export const signUpValidationSchema = z.object({
     })
     .min(1, "Password is required"),
   dateOfBirth: z
+    .object(
+      { day: z.number(), month: z.number(), year: z.number() },
+      { required_error: "Date of birth is required" }
+    )
+    .transform(({ day, month, year }) => {
+      return `${year}-${month <= 9 ? "0" + month : month}-${
+        day <= 9 ? "0" + day : day
+      }`;
+    }),
+  gender: z
     .string({
-      required_error: "Date of Birth is required",
+      required_error: "Gender is required",
     })
-    .min(1, "Date of Birth is required"),
-  gender: z.string({
-    required_error: "Gender is required",
-  }),
+    .min(1, "Gender is required"),
   image: z.any().optional(),
 });
 

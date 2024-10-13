@@ -5,6 +5,7 @@ import { getUserByUsername } from "@/services/user";
 import { IPost, IUser } from "@/types";
 import { Avatar } from "@nextui-org/avatar";
 import { Button } from "@nextui-org/button";
+import { Metadata } from "next";
 import Link from "next/link";
 import { AiOutlineSmallDash } from "react-icons/ai";
 import { BsTwitterX } from "react-icons/bs";
@@ -22,11 +23,29 @@ import { MdVerified } from "react-icons/md";
 import { PiCalendarDotsLight } from "react-icons/pi";
 import { TbArrowBadgeDown } from "react-icons/tb";
 
-interface IProps {
-  params: {
-    username: string;
+type Props = {
+  params: { username: string };
+};
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const actualUsername = params.username.split("40")[1];
+  const data = await getUserByUsername(actualUsername);
+  const {
+    fullName,
+  } = (data.data as IUser) ?? {};
+
+  return {
+    title: `${fullName}'s Profile`,
+    description: `Explore ${fullName}'s profile on Tech Tips Hub. Discover their shared insights, tutorials, and contributions to the tech community.`,
+    keywords: `${fullName}, Tech Tips Hub, user profile, tech community, articles, tutorials`,
+    openGraph: {
+      title: `${fullName}'s Profile`,
+      description: `Check out ${fullName}'s profile on Tech Tips Hub. See their latest articles, contributions, and interests in the tech world.`,
+      url: `https://techtipshub.noyonrahman.xyz/users/@${actualUsername}`,
+    },
   };
 }
+
 
 const GetUserByIdPage = async ({
   params,
@@ -46,7 +65,7 @@ const GetUserByIdPage = async ({
     bio,
     designation,
     createdAt,
-    totalPosts
+    totalPosts,
   } = (data.data as IUser) ?? {};
 
   const postsData = await getPostsByUserId(_id);

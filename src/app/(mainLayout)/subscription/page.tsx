@@ -1,21 +1,25 @@
 import Container from "@/components/ui/container";
 import SubscribeButton from "@/components/ui/subscribe-button";
+import { poppins } from "@/config/fonts";
 import { button as buttonStyles } from "@nextui-org/theme";
 import { Metadata } from "next";
 import Link from "next/link";
 import { FaCheckCircle } from "react-icons/fa";
 import { MdRocketLaunch } from "react-icons/md";
 
+
+
 export const metadata: Metadata = {
-  title: "Subscription Plans - Tech Tips Hub Pro",
+  title: "Subscription Plans",
   description:
-    "Explore our subscription plans at Tech Tips Hub Pro. Choose between free and premium options to unlock advanced features, analytics, and premium content for an enhanced reading and writing experience.",
+    "Explore our subscription plans at Tech Tips Hub. Choose between free and premium options to unlock advanced features, analytics, and premium content for an enhanced tech reading experience.",
   keywords:
-    "Tech Tips Hub, subscription, premium, free, blog plans, analytics, features, premium content",
+    "Tech Tips Hub, subscription plans, premium, free plan, blog subscription, analytics, advanced features, premium content",
   openGraph: {
-    title: "Subscription Plans - Tech Tips Hub Pro",
+    title: "Subscription Plans",
     description:
-      "Unlock premium features, analytics, and content with our Pro plan. Explore the free and premium subscription options at Tech Tips Hub.",
+      "Unlock premium features, detailed analytics, and exclusive content with our subscription plans. Explore both free and premium options at Tech Tips Hub.",
+    url: "https://techtipshub.noyonrahman.xyz/subscription",
   },
 };
 
@@ -29,7 +33,9 @@ const SubscriptionPage: React.FC<IProps> = () => {
       <Container>
         <div className="space-y-10">
           <div className="text-center space-y-6">
-            <h1 className="text-3xl lg:text-6xl text-center font-bold w-full max-w-5xl mx-auto lg:leading-snug">
+            <h1
+              className={`${poppins.className} text-3xl lg:text-6xl text-center font-bold w-full max-w-5xl mx-auto lg:leading-snug`}
+            >
               Enhance Your Content Creation with{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#e097ff] to-secondary dark:bg-clip-text dark:bg-gradient-to-r dark:from-primary dark:to-secondary dark:text-transparent">
                 Tech Tips Hub Pro

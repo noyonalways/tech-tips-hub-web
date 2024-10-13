@@ -3,6 +3,22 @@ import { Image } from "@nextui-org/image";
 import Link from "next/link";
 
 import SignUpForm from "@/components/modules/auth/signup-form";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Sign Up",
+  description:
+    "Join Tech Tips Hub to access the latest tips, insights, and tutorials. Sign up now to explore both free and premium content, stay updated with cutting-edge tech knowledge, and personalize your reading experience.",
+  keywords:
+    "Tech Tips Hub, sign up, register, create account, tech tips, tutorials, premium content, tech insights, tech community",
+  openGraph: {
+    title: "Sign Up",
+    description:
+      "Create an account at Tech Tips Hub to access exclusive tech tips, tutorials, and personalized content. Sign up for free or choose our premium plan for an enhanced experience.",
+    url: "https://techtipshub.noyonrahman.xyz/signup",
+  },
+};
+
 
 const SignUpPage = () => {
   return (
@@ -11,7 +27,7 @@ const SignUpPage = () => {
         <div className="w-full max-w-lg mx-auto mb-40 mt-6 lg:mb-40 lg:mt-10">
           <div className="space-y-4 flex flex-col items-center mb-8">
             <Link href="/">
-              <Image className="size-14" src="/tech-tips-hub-logo.png" />
+              <Image className="size-14" src="/tech-tips-hub-logo.png" alt="tech-tips-hub-logo" />
             </Link>
             <div>
               <h2 className="text-center text-3xl font-bold">User Sign Up</h2>

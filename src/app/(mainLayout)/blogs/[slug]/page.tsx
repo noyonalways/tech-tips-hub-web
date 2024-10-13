@@ -1,16 +1,43 @@
 import Container from "@/components/ui/container";
 import FollowButton from "@/components/ui/follow-button";
+import { poppins } from "@/config/fonts";
 import { getPostBySlug } from "@/services/post";
 import { IPost } from "@/types";
 import { Avatar } from "@nextui-org/avatar";
 import { Button } from "@nextui-org/button";
 import { Image } from "@nextui-org/image";
+import type { Metadata } from "next";
 import Link from "next/link";
 import { AiOutlineComment } from "react-icons/ai";
 import { BiBookmark, BiDownvote, BiUpvote } from "react-icons/bi";
 import { IoDiamondOutline } from "react-icons/io5";
 import { MdOutlineDownload } from "react-icons/md";
 import { PiShareNetwork } from "react-icons/pi";
+
+type Props = {
+  params: { slug: string };
+};
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const data = await getPostBySlug(params.slug);
+  const { title, content } = (data?.data as IPost) ?? {};
+
+  const description = content?.substring(0, 150) + "...";
+
+  const blogUrl = `https://techtipshub.noyonrahman.xyz/blog/${params.slug}`;
+
+  return {
+    title: title,
+    description: description,
+    keywords: `${title}, Tech Tips Hub, blog post, technology, tutorial`,
+    openGraph: {
+      title: title,
+      description: description,
+      url: blogUrl,
+    },
+  };
+}
+
 
 const DynamicBlogPage = async ({ params }: { params: { slug: string } }) => {
   const data = await getPostBySlug(params.slug);
@@ -30,11 +57,11 @@ const DynamicBlogPage = async ({ params }: { params: { slug: string } }) => {
       <Container>
         <div className="space-y-4">
           <div className="flex justify-center mt-4 w-full">
-            <Image className="w-full" src={coverImage} />
+            <Image className="w-full" src={coverImage} alt={`${title}-cover-image`} />
           </div>
           <div className="space-y-14">
             <div className="space-y-6">
-              <h1 className="text-3xl lg:text-4xl font-bold text-center">
+              <h1 className={`${poppins.className} text-3xl lg:text-4xl font-bold text-center`}>
                 {title}
               </h1>
               <div className="flex justify-center items-center space-x-2 lg:space-x-4 mx-auto w-full max-w-xl">
@@ -89,7 +116,6 @@ const DynamicBlogPage = async ({ params }: { params: { slug: string } }) => {
                 <div className="border-r border-default/30 ">
                   <Button
                     className="text-3xl mr-2"
-                    size="lg"
                     radius="full"
                     variant="light"
                     isIconOnly
@@ -101,7 +127,6 @@ const DynamicBlogPage = async ({ params }: { params: { slug: string } }) => {
                 <div className="border-r border-default/30 ">
                   <Button
                     className="text-3xl mx-2"
-                    size="lg"
                     radius="full"
                     variant="light"
                     isIconOnly
@@ -116,7 +141,6 @@ const DynamicBlogPage = async ({ params }: { params: { slug: string } }) => {
                     variant="light"
                     isIconOnly
                     radius="full"
-                    size="lg"
                   >
                     <AiOutlineComment />
                   </Button>
@@ -128,7 +152,6 @@ const DynamicBlogPage = async ({ params }: { params: { slug: string } }) => {
                     variant="light"
                     isIconOnly
                     radius="full"
-                    size="lg"
                   >
                     <BiBookmark />
                   </Button>
@@ -140,7 +163,6 @@ const DynamicBlogPage = async ({ params }: { params: { slug: string } }) => {
                     variant="light"
                     isIconOnly
                     radius="full"
-                    size="lg"
                   >
                     <PiShareNetwork />
                   </Button>
@@ -152,7 +174,6 @@ const DynamicBlogPage = async ({ params }: { params: { slug: string } }) => {
                     variant="light"
                     isIconOnly
                     radius="full"
-                    size="lg"
                   >
                     <MdOutlineDownload />
                   </Button>

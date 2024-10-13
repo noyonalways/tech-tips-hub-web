@@ -5,6 +5,18 @@ import { TLogin } from "@/types";
 import { jwtDecode } from "jwt-decode";
 import { cookies } from "next/headers";
 
+
+export const registerUser = async (payload: FormData) => {
+  try {
+    const res = await axiosInstance.post("/auth/register", payload);
+
+    return res.data;
+  } catch (err: any) {
+    // console.log(err?.data);
+    throw new Error(err.message);
+  }
+};
+
 export const loginUser = async (payload: TLogin) => {
   try {
     const res = await axiosInstance.post("/auth/login", payload);
@@ -19,6 +31,7 @@ export const loginUser = async (payload: TLogin) => {
     throw new Error(err.message);
   }
 };
+
 
 export const logOutUser = () => {
   cookies().delete("tth-access-token");
