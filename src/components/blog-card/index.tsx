@@ -9,7 +9,7 @@ import { HiOutlineEye } from "react-icons/hi2";
 
 interface IProps extends IPost {}
 
-const BlogCard: React.FC<IProps> = async ({
+const BlogCard = ({
   author,
   title,
   content,
@@ -22,10 +22,7 @@ const BlogCard: React.FC<IProps> = async ({
   upVotes,
   category,
   slug,
-}) => {
-
-  
-
+}: IProps) => {
   return (
     <div className="border border-default/50 p-6 rounded-xl space-y-4 w-full">
       <div className="flex justify-between items-end">
@@ -76,7 +73,11 @@ const BlogCard: React.FC<IProps> = async ({
           </p>
         </div>
         <div className="basis-full lg:basis-[28%] mb-3 lg:mb-0 rounded-xl">
-          <Image className="w-full" src={coverImage} alt={`${title}-cover-image`} />
+          <Image
+            className="w-full"
+            src={coverImage}
+            alt={`${title}-cover-image`}
+          />
         </div>
       </Link>
       <div className="flex flex-col items-end lg:flex-row lg:items-center justify-between space-y-2 lg:space-y-0">

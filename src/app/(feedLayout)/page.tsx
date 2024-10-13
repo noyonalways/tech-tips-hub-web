@@ -51,7 +51,7 @@ export default async function Home() {
         <div className="flex flex-col lg:flex-row lg:justify-between lg:space-x-6 items-start mt-8 w-full">
           <div className="space-y-6 flex-1 w-full">
             {posts?.map((post) => (
-              <BlogCard key={post._id} {...post} />
+              <BlogCard key={post?._id} {...post} />
             ))}
           </div>
 
