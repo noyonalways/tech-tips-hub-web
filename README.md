@@ -1,53 +1,84 @@
-# Next.js & NextUI Template
+[![Youtube][youtube-shield]][youtube-url]
+[![Facebook][facebook-shield]][facebook-url]
+[![Facebook Page][facebook-shield]][facebook-group-url]
+[![Instagram][instagram-shield]][instagram-url]
+[![LinkedIn][linkedin-shield]][linkedin-url]
+[![VS Code Theme][vscode-shield]][vscode-theme-url]
 
-This is a template for creating applications using Next.js 14 (app directory) and NextUI (v2).
+<!-- PROJECT LOGO -->
+<br />
+<p align="center">
+    <img src="https://i.ibb.co.com/8dwgWQk/tech-tips-hub-logo.png" alt="Logo" width="80" height="80" />
+    <h3 align="center">
+        <a href="https://techtipshub.noyonrahman.xyz" target="_blank" >
+            Tech Tips Hub Web
+        </a>
+    </h3>
+</p>
 
-[Try it on CodeSandbox](https://githubbox.com/nextui-org/next-app-template)
+## Description:
 
-## Technologies Used
+**Tech Tips Hub** is an advanced blogging platform tailored for tech enthusiasts to read and write blogs. Users can access both free and premium blogs, with a monthly subscription offering exclusive content. The platform supports features like user registration, email verification, JWT-based authentication, upvoting/downvoting blogs, commenting with replies, and following/unfollowing users. It tracks important user interactions such as views, followers, and following, enhancing the social experience.
 
-- [Next.js 14](https://nextjs.org/docs/getting-started)
-- [NextUI v2](https://nextui.org/)
-- [Tailwind CSS](https://tailwindcss.com/)
-- [Tailwind Variants](https://tailwind-variants.org)
-- [TypeScript](https://www.typescriptlang.org/)
-- [Framer Motion](https://www.framer.com/motion/)
-- [next-themes](https://github.com/pacocoursey/next-themes)
+### **User Features:**
 
-## How to Use
+- **User Registration & Login:** Secure registration and login using JWT-based authentication.
+- **Email Verification:** Users must verify their email after registration to access full platform features.
+- **Read & Write Blogs:** Users can publish their own blogs or read both free and premium content.
+- **Upvote/Downvote Blogs:** Users can upvote or downvote blogs to show their preference.
+- **Commenting & Replies:** Users can comment on blogs and reply to comments, fostering engagement.
+- **Follow/Unfollow Users:** Users can follow or unfollow others, with tracking of followers and following counts.
+- **Premium Content Subscription:** Access premium blogs with a monthly subscription.
+- **View Tracking:** Track unique blog views while excluding the author’s views.
 
-### Use the template with create-next-app
+---
 
-To create a new project based on this template using `create-next-app`, run the following command:
+### **Admin Features:**
 
-```bash
-npx create-next-app -e https://github.com/nextui-org/next-app-template
-```
+- **User Management:** Admins can manage user accounts, including viewing, editing, or suspending users.
+- **Content Moderation:** Admins can monitor, approve, or delete blogs and comments to ensure community guidelines are followed.
+- **Subscription Management:** Admins can manage user subscriptions, view active and expired subscriptions, and handle billing issues.
+- **Analytics & Reporting:** Track platform engagement metrics like total views, user growth, upvotes/downvotes, and content performance.
 
-### Install dependencies
+---
 
-You can use one of them `npm`, `yarn`, `pnpm`, `bun`, Example using `npm`:
+Here’s the updated list with TanStack Query (formerly React Query):
 
-```bash
-npm install
-```
+### Tools and Packages
 
-### Run the development server
+<div align="center">
 
-```bash
-npm run dev
-```
+![Next.js](https://img.shields.io/static/v1?label=&message=Next.js&color=black&logo=next.js&logoColor=white)
+![React](https://img.shields.io/static/v1?label=&message=React&color=61DAFB&logo=react&logoColor=black)
+![TypeScript](https://img.shields.io/static/v1?label=&message=TypeScript&color=007ACC&logo=typescript&logoColor=white)
+![Axios](https://img.shields.io/static/v1?label=&message=Axios&color=5A29E3&logo=axios&logoColor=white)
+![React Hook Form](https://img.shields.io/static/v1?label=&message=React%20Hook%20Form&color=E3342F&logo=react-hook-form&logoColor=white)
+![Zod](https://img.shields.io/static/v1?label=&message=Zod&color=F27E03&logo=typescript&logoColor=black)
+![Framer Motion](https://img.shields.io/static/v1?label=&message=Framer%20Motion&color=00B3FF&logo=framer&logoColor=white)
+![Tailwind CSS](https://img.shields.io/static/v1?label=&message=Tailwind%20CSS&color=06B6D4&logo=tailwind-css&logoColor=white)
+![TanStack Query](https://img.shields.io/static/v1?label=&message=TanStack%20Query&color=FF4154&logo=react-query&logoColor=white)
+![NextUI](https://img.shields.io/static/v1?label=&message=NextUI&color=000000&logo=nextui&logoColor=white)
 
-### Setup pnpm (optional)
+</div>
 
-If you are using `pnpm`, you need to add the following code to your `.npmrc` file:
+Let me know if you need any further modifications!
 
-```bash
-public-hoist-pattern[]=*@nextui-org/*
-```
+<!-- MARKDOWN LINKS & IMAGES -->
 
-After modifying the `.npmrc` file, you need to run `pnpm install` again to ensure that the dependencies are installed correctly.
+[youtube-shield]: https://img.shields.io/badge/-Youtube-black.svg?style=round-square&logo=youtube&color=555&logoColor=white
+[youtube-url]: https://youtube.com/@deskofnoyon
+[facebook-shield]: https://img.shields.io/badge/-Facebook-black.svg?style=round-square&logo=facebook&color=555&logoColor=white
+[facebook-url]: https://facebook.com/noyonalways
+[facebook-group-url]: https://facebook.com/webbronoyon
+[instagram-shield]: https://img.shields.io/badge/-Instagram-black.svg?style=round-square&logo=instagram&color=555&logoColor=white
+[instagram-url]: https://instagram.com/noyonalways
+[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=round-square&logo=linkedin&colorB=555
+[linkedin-url]: https://linkedin.com/in/noyonalways
+[vscode-shield]: https://img.shields.io/badge/-VS%20Code%20Theme-black.svg?style=round-square&logo=visualstudiocode&colorB=555
+[vscode-theme-url]: https://marketplace.visualstudio.com/items?itemName=noyonalways.codevibe-themes
 
-## License
 
-Licensed under the [MIT license](https://github.com/nextui-org/next-app-template/blob/main/LICENSE).
+## Contact
+
+- Email: [noyonrahman2003@gmail.com](mailto:noyonrahman2003@gmail.com)
+- LinkedIn: [Noyon Rahman](https://linkedin.com/in/noyonalways)
