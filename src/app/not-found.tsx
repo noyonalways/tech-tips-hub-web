@@ -42,6 +42,7 @@ const NotFoundPage: React.FC<IProps> = () => {
           >
             Go Back to Homepage
           </Link>
+          
         </div>
       </Container>
     </section>
