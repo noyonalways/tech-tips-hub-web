@@ -24,6 +24,26 @@ export const Logo: React.FC<IconSvgProps> = ({
   </svg>
 );
 
+export const BlogIcon: React.FC<IconSvgProps> = ({ size = 20, height, width, ...props }) => {
+  return (
+    <svg
+      fill="none"
+      viewBox="0 0 20 20"
+      width={size || width}
+      height={size || height}
+      {...props}
+    >
+      <path
+        stroke="currentColor"
+        d="M15.875 10V7.358c0-.241-.052-.476-.15-.691M10.042 17.5H6.708a2.5 2.5 0 0 1-2.5-2.5V5a2.5 2.5 0 0 1 2.5-2.5h4.304c.24 0 .475.052.69.15m0 0v3.183a.834.834 0 0 0 .833.834h3.19m-4.023-4.018c.18.082.345.196.488.338l3.196 3.191c.143.143.257.309.339.489M7.54 10h4.405M7.542 6.667h1.666m6.667 6.666v5m-2.5-2.5h5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="1.25"
+      ></path>
+    </svg>
+  );
+};
+
 export const DiscordIcon: React.FC<IconSvgProps> = ({
   size = 24,
   width,

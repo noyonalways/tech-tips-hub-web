@@ -19,20 +19,20 @@ const LoginLogoutSwitch: React.FC<IProps> = () => {
       ) : (
         <div className="hidden lg:flex">
           <NextLink
-            className={buttonStyles({
+            className={`${buttonStyles({
               radius: "full",
               variant: "light",
-            })}
+            })} hover:bg-default-100 duration-200 active:scale-95`}
             href={`/login`}
           >
             Log In
           </NextLink>
           <NextLink
-            className={buttonStyles({
+            className={`${buttonStyles({
               color: "primary",
               radius: "full",
               variant: "solid",
-            })}
+            })} duration-200 active:scale-95`}
             href={`/signup`}
           >
             Sign Up
