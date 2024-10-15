@@ -9,12 +9,18 @@ interface IProps {}
 const Footer: React.FC<IProps> = () => {
   return (
     <footer className="pt-10 border-t border-default/50">
-      <div className="w-full max-w-[1440px] mx-auto px-2 lg:px-0 pb-10">
+      <div className="w-full max-w-[1440px] mx-auto px-2 lg:px-6 2xl:px-0 pb-10">
         <div className="grid gird-cols-1 lg:grid-cols-4 gap-4">
           <div className="space-y-4">
             <Link className="flex space-x-4 items-center" href={`/`}>
-              <Image className="size-12" src="/tech-tips-hub-logo.png" alt="tech-tips-hub-logo" />
-              <h2 className={`${poppins.className} text-lg font-bold`}>Tech Tips Hub</h2>
+              <Image
+                className="size-12"
+                src="/tech-tips-hub-logo.png"
+                alt="tech-tips-hub-logo"
+              />
+              <h2 className={`${poppins.className} text-lg font-bold`}>
+                Tech Tips Hub
+              </h2>
             </Link>
             <p className="text-default-500">
               Hassle-free blogging platform that developers and teams love.
@@ -116,7 +122,7 @@ const Footer: React.FC<IProps> = () => {
         </div>
       </div>
       <div className="border-t border-default/50 py-5 bg-default-50">
-        <div className="w-full max-w-[1440px] mx-auto px-2 lg:px-0">
+        <div className="w-full max-w-[1440px] mx-auto px-2 lg:px-6 2xl:px-0">
           <div className="flex items-center justify-between ">
             <div className="flex space-x-2 text-xs">
               <Link className="hover:underline" href="/">
