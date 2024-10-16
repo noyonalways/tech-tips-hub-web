@@ -1,3 +1,36 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+.ql-container {
+  @apply bg-default-50 dark:bg-default-100 rounded;
+}
+
+.ql-snow {
+  @apply dark:text-white border-none;
+}
+
+.ql-toolbar {
+  @apply dark:bg-transparent border-none;
+}
+
+.ql-toolbar.ql-snow {
+  @apply !border-default/50 rounded !border-b-0;
+}
+
+.ql-container.ql-snow {
+  @apply !border-none;
+}
+
+.ql-snow .ql-picker {
+  @apply dark:!text-white;
+}
+
+.ql-snow .ql-picker-options {
+  @apply dark:!bg-default-50;
+}
+
+.ql-snow.ql-toolbar button {
+  @apply dark:text-white;
+}
