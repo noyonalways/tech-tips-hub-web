@@ -1,6 +1,8 @@
 "use server";
 
 import envConfig from "@/config/env.config";
+import axiosInstance from "@/lib/AxiosInstance";
+import { revalidateTag } from "next/cache";
 import { cookies } from "next/headers";
 
 export const getAllPosts = async () => {
@@ -14,6 +16,19 @@ export const getAllPosts = async () => {
     return res.json();
   } catch (err: any) {
     throw new Error(err?.message);
+  }
+};
+
+export const createPost = async (payload: FormData) => {
+  try {
+    const res = await axiosInstance.post("/posts", payload);
+
+    revalidateTag("posts");
+
+    return res.data;
+  } catch (err: any) {
+    console.log(err);
+    throw new Error(err.message);
   }
 };
 

@@ -1,3 +1,4 @@
+import ShowHTMLFormat from "@/components/modules/post/show-html-format";
 import Container from "@/components/ui/container";
 import FollowButton from "@/components/ui/follow-button";
 import { poppins } from "@/config/fonts";
@@ -13,6 +14,8 @@ import { BiBookmark, BiDownvote, BiUpvote } from "react-icons/bi";
 import { IoDiamondOutline } from "react-icons/io5";
 import { MdOutlineDownload } from "react-icons/md";
 import { PiShareNetwork } from "react-icons/pi";
+
+
 
 type Props = {
   params: { slug: string };
@@ -45,6 +48,7 @@ const DynamicBlogPage = async ({ params }: { params: { slug: string } }) => {
     coverImage,
     title,
     author,
+    contentType,
     createdAt,
     isPremium,
     content,
@@ -57,11 +61,17 @@ const DynamicBlogPage = async ({ params }: { params: { slug: string } }) => {
       <Container>
         <div className="space-y-4">
           <div className="flex justify-center mt-4 w-full">
-            <Image className="w-full" src={coverImage} alt={`${title}-cover-image`} />
+            <Image
+              className="w-full"
+              src={coverImage}
+              alt={`${title}-cover-image`}
+            />
           </div>
           <div className="space-y-14">
             <div className="space-y-6">
-              <h1 className={`${poppins.className} text-3xl lg:text-4xl font-bold text-center`}>
+              <h1
+                className={`${poppins.className} text-3xl lg:text-4xl font-bold text-center`}
+              >
                 {title}
               </h1>
               <div className="flex justify-center items-center space-x-2 lg:space-x-4 mx-auto w-full max-w-xl">
@@ -109,7 +119,16 @@ const DynamicBlogPage = async ({ params }: { params: { slug: string } }) => {
               }
             </div>
 
-            <p className="text-default-600 text-base lg:text-lg">{content}</p>
+            {(contentType === "html" && (
+              <ShowHTMLFormat
+                content={content}
+              />
+            )) ||
+              (contentType === "text" && (
+                <p className="text-default-600 text-base lg:text-lg">
+                  {content}
+                </p>
+              ))}
 
             <div className="space-y-10">
               <div className="border border-default/50 py-2 px-2 rounded-full w-full max-w-fit mx-auto flex justify-center items-center">
