@@ -2,7 +2,7 @@
 import { Button } from "@nextui-org/button";
 import { Input } from "@nextui-org/input";
 import dynamic from "next/dynamic";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import {
   Modal,
   ModalBody,
@@ -16,16 +16,35 @@ import { Select, SelectItem } from "@nextui-org/select";
 import { Checkbox } from "@nextui-org/checkbox";
 import { GoImage } from "react-icons/go";
 import { RiCloseLargeFill } from "react-icons/ri";
+import { getAllCategories } from "@/services/category";
+import { ICategory } from "@/types";
 
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false }) as any;
 
 const QuillEditor = () => {
   const [value, setValue] = useState("");
   const [title, setTitle] = useState("");
-  const [coverImage, setCoverImage] = useState<string | null>(null);
-  const [tags, setTags] = useState<string[]>([]);
+  const [coverImageFile, setCoverImageFile] = useState<File | null>(null); // Store actual file
+  const [tags, setTags] = useState<string>("");
   const [premium, setPremium] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState<string>(""); // Store selected category ID
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const [categories, setCategories] = useState<ICategory[]>([]); // Store fetched categories
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const categoryData = await getAllCategories();
+        const data = categoryData?.data as ICategory[];
+        console.log(data);
+        setCategories(data);
+      } catch (error) {
+        console.error("Error fetching categories:", error);
+      }
+    };
+
+    fetchCategories();
+  }, []);
 
   const { isOpen, onOpen, onOpenChange } = useDisclosure(); // Modal control
 
@@ -33,9 +52,7 @@ const QuillEditor = () => {
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files && e.target.files[0];
     if (file) {
-      const reader = new FileReader();
-      reader.onload = () => setCoverImage(reader.result as string);
-      reader.readAsDataURL(file);
+      setCoverImageFile(file); // Store the file itself
     }
   };
 
@@ -48,7 +65,7 @@ const QuillEditor = () => {
 
   // Handle Remove Image button click
   const handleRemoveImage = () => {
-    setCoverImage(null);
+    setCoverImageFile(null);
   };
 
   // Handle Preview and Publish
@@ -56,16 +73,22 @@ const QuillEditor = () => {
     if (action === "Preview") {
       onOpen(); // Open the modal
     } else {
-      const blogData = {
+      const formData = new FormData();
+
+      if (coverImageFile) {
+        formData.append("coverImage", coverImageFile); // Append actual image file
+      }
+
+      const postData = {
         title,
         content: value,
-        coverImage,
-        tags,
+        tags: tags.split(",").map((tag) => tag.trim()),
         premium,
-        action, // 'Preview' or 'Publish'
+        category: selectedCategory, // Include selected category ID
       };
-      console.log(blogData);
-      // Handle submission logic (e.g., send to backend or preview)
+      console.log({...postData, image: coverImageFile});
+
+      // Send postData to the API here, if needed.
     }
   };
 
@@ -88,9 +111,9 @@ const QuillEditor = () => {
                 Blog Preview
               </ModalHeader>
               <ModalBody className="w-full">
-                {coverImage && (
+                {coverImageFile && (
                   <img
-                    src={coverImage}
+                    src={URL.createObjectURL(coverImageFile)}
                     alt="Cover Preview"
                     className="w-full mb-4 object-cover"
                   />
@@ -106,12 +129,16 @@ const QuillEditor = () => {
                   theme="snow"
                   value={value}
                 />
-                {tags.length > 0 && (
-                  <div className="tags mb-2">
-                    <strong>Tags: </strong>
-                    {tags.join(", ")}
-                  </div>
-                )}
+                <div className="flex space-x-2">
+                  {tags.split(",").map((tag) => (
+                    <span
+                      key={tag}
+                      className="bg-default-200 rounded-sm text-xs px-2 py-1"
+                    >
+                      #{tag}
+                    </span>
+                  ))}
+                </div>
                 {premium && (
                   <p className="premium-label">This is a premium post.</p>
                 )}
@@ -147,7 +174,7 @@ const QuillEditor = () => {
       </div>
 
       <div className="flex justify-start mb-4 relative">
-        {!coverImage ? (
+        {!coverImageFile ? (
           <Button
             radius="sm"
             variant="light"
@@ -160,7 +187,7 @@ const QuillEditor = () => {
         ) : (
           <>
             <img
-              src={coverImage}
+              src={URL.createObjectURL(coverImageFile)}
               alt="Cover Preview"
               className="w-full object-cover"
             />
@@ -217,12 +244,23 @@ const QuillEditor = () => {
       />
 
       <Select
+        label="Category"
+        className="mb-4"
+        onChange={(e) => setSelectedCategory(e.target.value)} // Track selected category
+      >
+        {categories.map((category) => (
+          <SelectItem key={category._id} value={category._id}>
+            {category.name}
+          </SelectItem>
+        ))}
+      </Select>
+
+      <Select
         label="Tags"
         placeholder="Select tags"
         selectionMode="multiple"
         className="mb-4"
         radius="sm"
-        value={tags}
         onChange={(selectedTags: any) => setTags(selectedTags.target.value)}
       >
         {["NodeJs", "PHP"].map((tag) => (
@@ -232,10 +270,7 @@ const QuillEditor = () => {
         ))}
       </Select>
 
-      <Checkbox
-        isSelected={premium}
-        onChange={(checked) => setPremium(!checked)}
-      >
+      <Checkbox isSelected={premium} onChange={() => setPremium(!premium)}>
         Premium
       </Checkbox>
     </>
