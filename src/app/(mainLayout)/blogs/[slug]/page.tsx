@@ -1,6 +1,6 @@
 import ShowHTMLFormat from "@/components/modules/post/show-html-format";
 import Container from "@/components/ui/container";
-import FollowButton from "@/components/ui/follow-button";
+import FollowButton from "@/components/ui/follow-unfollow-button";
 import { poppins } from "@/config/fonts";
 import { getPostBySlug } from "@/services/post";
 import { IPost } from "@/types";
