@@ -19,11 +19,36 @@ export const getUserByUsername = async (username: string) => {
   }
 };
 
+// get user following status
+export const getUserFollowingStatus = async (userId: string) => {
+  try {
+    const res = await axiosInstance.get(`/users/${userId}/follow-status`);
+
+    return res.data;
+  } catch (err: any) {
+    throw new Error(err.message);
+  }
+};
+
 
 // follow a user
 export const followUser = async (userId: string) => {
   try {
     const res = await axiosInstance.put(`/users/${userId}/follow`);
+
+    revalidateTag("singleUser")
+
+    return res.data;
+  } catch (err: any) {
+    throw new Error(err.message);
+  }
+};
+
+// unfollow a user
+
+export const unfollowUser = async (userId: string) => {
+  try {
+    const res = await axiosInstance.delete(`/users/${userId}/unfollow`);
 
     revalidateTag("singleUser")
 

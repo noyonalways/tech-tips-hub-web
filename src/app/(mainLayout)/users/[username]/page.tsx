@@ -1,5 +1,5 @@
 import Container from "@/components/ui/container";
-import FollowButton from "@/components/ui/follow-button";
+import FollowButton from "@/components/ui/follow-unfollow-button";
 import { getPostsByUserId } from "@/services/post";
 import { getUserByUsername } from "@/services/user";
 import { IPost, IUser } from "@/types";
