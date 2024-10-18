@@ -53,6 +53,7 @@ const GetUserByIdPage = async ({
   params: { username: string };
 }) => {
   const data = await getUserByUsername(params.username.split("40")[1]);
+
   const {
     _id,
     profilePicture,
