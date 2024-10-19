@@ -47,6 +47,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 const DynamicProfilePage = async () => {
   const profileData = await getProfileInfo();
   const {
+    username,
     profilePicture,
     fullName,
     isVerified,
@@ -104,10 +105,22 @@ const DynamicProfilePage = async () => {
                 </div>
 
                 <div className="flex items-center space-x-4">
-                  <Button size="sm" variant="flat" radius="full">
+                  <Button
+                    as={Link}
+                    href={`/@${username}/following`}
+                    size="sm"
+                    variant="flat"
+                    radius="full"
+                  >
                     {totalFollowing} Following
                   </Button>
-                  <Button size="sm" variant="flat" radius="full">
+                  <Button
+                    as={Link}
+                    href={`/@${username}/followers`}
+                    size="sm"
+                    variant="flat"
+                    radius="full"
+                  >
                     {totalFollowers} Followers
                   </Button>
                   <Button size="sm" variant="flat" radius="full">

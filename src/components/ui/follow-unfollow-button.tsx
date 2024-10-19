@@ -13,7 +13,7 @@ interface IProps {
   id: string;
 }
 
-const FollowButton: React.FC<IProps> = ({ id }) => {
+const FollowUnFollowButton: React.FC<IProps> = ({ id }) => {
   const router = useRouter();
   const [isFollowing, setIsFollowing] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -100,4 +100,4 @@ const FollowButton: React.FC<IProps> = ({ id }) => {
   );
 };
 
-export default FollowButton;
+export default FollowUnFollowButton;

@@ -1,6 +1,6 @@
 import ShowHTMLFormat from "@/components/modules/post/show-html-format";
 import Container from "@/components/ui/container";
-import FollowButton from "@/components/ui/follow-unfollow-button";
+import FollowUnFollowButton from "@/components/ui/follow-unfollow-button";
 import { poppins } from "@/config/fonts";
 import { getPostBySlug } from "@/services/post";
 import { IPost } from "@/types";
@@ -95,7 +95,7 @@ const DynamicBlogPage = async ({ params }: { params: { slug: string } }) => {
                   {new Date(createdAt)?.toDateString()}
                 </div>
 
-                <FollowButton id={author._id} />
+                <FollowUnFollowButton id={author._id} />
               </div>
 
               {
