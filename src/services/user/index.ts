@@ -4,7 +4,7 @@ import envConfig from "@/config/env.config";
 import axiosInstance from "@/lib/AxiosInstance";
 import { revalidateTag } from "next/cache";
 
-
+// get user by username
 export const getUserByUsername = async (username: string) => {
   try {
     const res = await fetch(`${envConfig.baseApi}/users/${username}`, {
@@ -69,7 +69,6 @@ export const getFollowersByUserId = async (userId: string) => {
 };
 
 // get all following by user id
-
 export const getFollowingByUserId = async (userId: string) => {
   try {
     const res = await fetch(`${envConfig.baseApi}/users/${userId}/following`);
@@ -77,5 +76,17 @@ export const getFollowingByUserId = async (userId: string) => {
     return await res?.json();
   } catch (error: any) {
     throw new Error(error?.message);
+  }
+};
+
+// get all users (admin only)
+
+export const getAllUsers = async () => {
+  try {
+    const res = await axiosInstance.get("/users");
+
+    return res.data;
+  } catch (err: any) {
+    throw new Error(err.message);
   }
 };

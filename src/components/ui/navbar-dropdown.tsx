@@ -67,11 +67,19 @@ const NavarDropdown: React.FC<IProps> = () => {
             My Profile
           </NextLink>
         </DropdownItem>
+
+        <DropdownItem key="adminDashboard">
+          <NextLink className="w-full block" href="/admin/dashboard">
+            Dashboard
+          </NextLink>
+        </DropdownItem>
+
         <DropdownItem key="subscription">
           <NextLink className="w-full block" href="/my-subscription">
             Subscription
           </NextLink>
         </DropdownItem>
+
         <DropdownItem key="logout" color="danger" onClick={handleLogoutUser}>
           Log Out
         </DropdownItem>
