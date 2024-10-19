@@ -33,6 +33,7 @@ const LoginForm: React.FC<IProps> = () => {
   const redirect = searchParams.get("redirect");
 
   if (!isPending && isSuccess) {
+    setUserLoading(false);
     if (redirect) {
       router.push(redirect);
     } else {

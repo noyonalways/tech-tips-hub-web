@@ -1,4 +1,4 @@
-"use client";
+"use client"
 
 import { useUser } from "@/context/user.provider";
 import { useFollowUser, useUnfollowUser } from "@/hooks/user.hook";
@@ -23,6 +23,10 @@ const FollowButton: React.FC<IProps> = ({ id }) => {
     useUnfollowUser();
 
   const handleGetUserFollowingStatus = async () => {
+    if (!loggedInUser) {
+      setIsFollowing(false); // No user, not following
+      return;
+    }
     setIsLoading(true);
     const response = await getUserFollowingStatus(id);
     if (response?.data?.isFollowing) {
@@ -34,16 +38,14 @@ const FollowButton: React.FC<IProps> = ({ id }) => {
   };
 
   useEffect(() => {
-    handleGetUserFollowingStatus();
-  }, [isFollowPending, isUnFollowPending]);
+    handleGetUserFollowingStatus(); // Call when user changes or after follow/unfollow
+  }, [loggedInUser, isFollowPending, isUnFollowPending]);
 
   const handleFollow = () => {
     if (!loggedInUser) {
-      router.push("/login");
+      router.push(`/login?redirect=${window.location.pathname}`);
       return;
     }
-    // follow the user
-    console.log("following... user");
     followUser(id);
   };
 
@@ -52,8 +54,6 @@ const FollowButton: React.FC<IProps> = ({ id }) => {
       router.push("/login");
       return;
     }
-    // follow the user
-    console.log("unfollowing... user");
     unFollowUser(id);
   };
 
@@ -71,21 +71,18 @@ const FollowButton: React.FC<IProps> = ({ id }) => {
         <>
           {isFollowing ? (
             <Button
-              // isLoading={isUnFollowPending}
               onClick={handleUnFollow}
               isDisabled={loggedInUser?._id === id}
               size="sm"
               radius="full"
               variant="solid"
               color="primary"
-              startContent={<HiMinus className="text-lg" />
-              }
+              startContent={<HiMinus className="text-lg" />}
             >
               Unfollow
             </Button>
           ) : (
             <Button
-              // isLoading={isFollowPending}
               onClick={handleFollow}
               isDisabled={loggedInUser?._id === id}
               size="sm"
