@@ -111,6 +111,8 @@ const QuillEditor = () => {
     <>
       {/* Preview Modal */}
       <Modal
+        scrollBehavior="inside"
+        size="3xl"
         backdrop="opaque"
         isOpen={isOpen}
         onOpenChange={onOpenChange}
@@ -142,7 +144,7 @@ const QuillEditor = () => {
                   theme="snow"
                   value={watch("content")}
                 />
-                <div className="flex space-x-2 flex-wrap">
+                <div className="flex gap-2 flex-wrap">
                   {watch("tags")
                     ?.split(",")
                     .map((tag: string) => (
@@ -170,11 +172,7 @@ const QuillEditor = () => {
 
       <div className="sticky top-20 lg:top-16 bg-transparent backdrop-blur-lg py-4 px-0 z-40 rounded">
         <div className="flex items-center justify-end space-x-2">
-          <Button
-            radius="sm"
-            variant="ghost"
-            onClick={handleSubmit(() => onOpen())}
-          >
+          <Button type="button" radius="sm" variant="ghost" onClick={onOpen}>
             Preview
           </Button>
           <Button
