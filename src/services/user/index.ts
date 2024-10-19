@@ -45,7 +45,6 @@ export const followUser = async (userId: string) => {
 };
 
 // unfollow a user
-
 export const unfollowUser = async (userId: string) => {
   try {
     const res = await axiosInstance.delete(`/users/${userId}/unfollow`);
@@ -55,5 +54,28 @@ export const unfollowUser = async (userId: string) => {
     return res.data;
   } catch (err: any) {
     throw new Error(err.message);
+  }
+};
+
+// get all followers by user id
+export const getFollowersByUserId = async (userId: string) => {
+  try {
+    const res = await fetch(`${envConfig.baseApi}/users/${userId}/followers`);
+
+    return await res?.json();
+  } catch (error: any) {
+    throw new Error(error?.message);
+  }
+};
+
+// get all following by user id
+
+export const getFollowingByUserId = async (userId: string) => {
+  try {
+    const res = await fetch(`${envConfig.baseApi}/users/${userId}/following`);
+
+    return await res?.json();
+  } catch (error: any) {
+    throw new Error(error?.message);
   }
 };

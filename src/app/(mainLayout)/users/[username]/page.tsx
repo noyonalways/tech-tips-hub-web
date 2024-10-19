@@ -1,5 +1,5 @@
 import Container from "@/components/ui/container";
-import FollowButton from "@/components/ui/follow-unfollow-button";
+import FollowUnFollowButton from "@/components/ui/follow-unfollow-button";
 import { getPostsByUserId } from "@/services/post";
 import { getUserByUsername } from "@/services/user";
 import { IPost, IUser } from "@/types";
@@ -22,6 +22,7 @@ import { IoDiamondOutline, IoShareOutline } from "react-icons/io5";
 import { MdVerified } from "react-icons/md";
 import { PiCalendarDotsLight } from "react-icons/pi";
 import { TbArrowBadgeDown } from "react-icons/tb";
+import { HeartFilledIcon } from './../../../../components/icons';
 
 type Props = {
   params: { username: string };
@@ -55,6 +56,7 @@ const GetUserByIdPage = async ({
   const data = await getUserByUsername(params.username.split("40")[1]);
 
   const {
+    username,
     _id,
     profilePicture,
     fullName,
@@ -113,10 +115,22 @@ const GetUserByIdPage = async ({
                 </div>
 
                 <div className="flex items-center space-x-4">
-                  <Button size="sm" variant="flat" radius="full">
+                  <Button
+                    as={Link}
+                    href={`/@${username}/following`}
+                    size="sm"
+                    variant="flat"
+                    radius="full"
+                  >
                     {totalFollowing} Following
                   </Button>
-                  <Button size="sm" variant="flat" radius="full">
+                  <Button
+                    as={Link}
+                    href={`/@${username}/followers`}
+                    size="sm"
+                    variant="flat"
+                    radius="full"
+                  >
                     {totalFollowers} Followers
                   </Button>
                   <Button size="sm" variant="flat" radius="full">
@@ -129,7 +143,7 @@ const GetUserByIdPage = async ({
               <Button size="sm" isIconOnly radius="full" variant="bordered">
                 <IoShareOutline className="text-lg" />
               </Button>
-              <FollowButton id={_id} />
+              <FollowUnFollowButton id={_id} />
             </div>
           </div>
 
