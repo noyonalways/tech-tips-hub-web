@@ -80,7 +80,6 @@ export const getFollowingByUserId = async (userId: string) => {
 };
 
 // get all users (admin only)
-
 export const getAllUsers = async () => {
   try {
     const res = await axiosInstance.get("/users");

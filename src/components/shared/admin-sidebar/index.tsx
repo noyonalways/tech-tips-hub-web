@@ -5,6 +5,7 @@ import Link from "next/link";
 import { HiOutlineCreditCard, HiOutlineHome } from "react-icons/hi2";
 import { MdOutlineDashboard } from "react-icons/md";
 import { PiUsers } from "react-icons/pi";
+import { TbUserStar } from "react-icons/tb";
 
 interface IProps {}
 
@@ -59,10 +60,20 @@ const AdminSidebar = ({}: IProps) => {
           variant="flat"
           className="w-full justify-start"
           as={Link}
-          href="/admin/all-payments"
+          href="/admin/subscribers"
+          startContent={<TbUserStar size={18} />}
+        >
+          Subscribers
+        </Button>
+        <Button
+          radius="sm"
+          variant="flat"
+          className="w-full justify-start"
+          as={Link}
+          href="/admin/payments"
           startContent={<HiOutlineCreditCard size={18} />}
         >
-          All Payments
+          Payments
         </Button>
       </div>
     </div>

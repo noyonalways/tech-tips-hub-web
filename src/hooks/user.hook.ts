@@ -1,5 +1,5 @@
-import { followUser, unfollowUser } from "@/services/user";
-import { useMutation } from "@tanstack/react-query";
+import { followUser, getAllUsers, unfollowUser } from "@/services/user";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { toast } from "sonner";
 
 // follow a user
@@ -37,3 +37,12 @@ export const useUnfollowUser = () => {
     },
   });
 };
+
+
+// get all users
+export const useGetAllUsers = () => {
+  return useQuery({
+    queryKey: ["GET_ALL_USERS"],
+    queryFn: async () => await getAllUsers(),
+  })
+}

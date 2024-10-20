@@ -1,5 +1,5 @@
-import { subscribePremiumMonthly, TSubscriptionPayload } from "@/services/subscription";
-import { useMutation } from "@tanstack/react-query";
+import { getAllSubscriptions, subscribePremiumMonthly, TSubscriptionPayload } from "@/services/subscription";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { toast } from "sonner";
 
 export const useSubscribePremiumMonthly = () => {
@@ -16,5 +16,15 @@ export const useSubscribePremiumMonthly = () => {
         id: "subscription-monthly-error",
       });
     },
+  });
+};
+
+
+
+// get all payments (admin only)
+export const useGetAllSubscriptions = () => {
+  return useQuery({
+    queryKey: ["GET_ALL_SUBSCRIPTIONS"],
+    queryFn: async () => await getAllSubscriptions(),
   });
 };

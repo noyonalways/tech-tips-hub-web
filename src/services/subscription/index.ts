@@ -19,3 +19,15 @@ export const subscribePremiumMonthly = async (payload: TSubscriptionPayload) => 
     throw new Error(err.message);
   }
 };
+
+
+// get all subscriptions
+export const getAllSubscriptions = async () => {
+  try {
+    const res = await axiosInstance.get("/subscriptions")
+
+    return res.data;
+  } catch (err: any) {
+    throw new Error(err);
+  }
+}
