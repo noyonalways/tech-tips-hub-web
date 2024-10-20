@@ -1,10 +1,14 @@
+import { IUser } from "./user.type";
+
+export type TSubscriptionStatus = "Pending" | "Active" | "Expired" | "Canceled";
+
 export interface ISubscription {
   _id: string;
-  user: string;
+  user: IUser;
   type: string;
   startDate: string;
   endDate: string;
-  status: string;
+  status: TSubscriptionStatus;
   price: number;
   currency: string;
   transactionId: string;

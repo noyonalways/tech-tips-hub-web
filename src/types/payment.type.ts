@@ -1,6 +1,8 @@
 import { ISubscription } from "./subscription.type";
 import { IUser } from "./user.type";
 
+export type TPaymentStatus = "Pending" | "Paid" | "Failed" | "Canceled";
+
 export interface IPayment {
   _id: string;
   transactionId: string;
@@ -9,7 +11,7 @@ export interface IPayment {
   paymentMethod: string;
   amount: number;
   currency: string;
-  status: string;
+  status: TPaymentStatus;
   paidAt: string;
   createdAt: string;
   updatedAt: string;

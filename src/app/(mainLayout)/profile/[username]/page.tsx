@@ -22,7 +22,6 @@ import { MdVerified } from "react-icons/md";
 import { PiCalendarDotsLight } from "react-icons/pi";
 import { TbArrowBadgeDown } from "react-icons/tb";
 
-
 type Props = {
   params: { username: string };
 };
@@ -59,9 +58,14 @@ const DynamicProfilePage = async () => {
     bio,
     designation,
     createdAt,
+    role,
   } = (profileData.data as IUser) ?? {};
 
-  const postsData = await getLoggedInUserPosts();
+  let postsData;
+  if (role !== "Admin"){
+    postsData = await getLoggedInUserPosts();
+  } 
+
   const posts = postsData?.data as IPost[];
 
   return (

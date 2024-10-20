@@ -1,6 +1,6 @@
 "use client";
 import { useUser } from "@/context/user.provider";
-import { useSubscribePremiumMonthly } from "@/hooks/subscripiton.hook";
+import { useSubscribePremiumMonthly } from "@/hooks/subscription.hook";
 import { getProfileInfo } from "@/services/auth";
 import { IUser } from "@/types";
 import { Button, ButtonProps } from "@nextui-org/button";
