@@ -56,7 +56,9 @@ const Following = async ({ params }: IProps) => {
             <div className="space-y-2">
               <h1 className="font-medium">{current.following.fullName}</h1>
               {current?.following?.designation && (
-                <p>{current?.following?.designation}</p>
+                <small className="text-default-500">
+                  {current?.following?.designation}
+                </small>
               )}
             </div>
           </Link>

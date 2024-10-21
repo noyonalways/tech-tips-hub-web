@@ -1,8 +1,7 @@
-"use client"
+"use client";
 
 import { useUser } from "@/context/user.provider";
 import { useFollowUser, useUnfollowUser } from "@/hooks/user.hook";
-import { logOutUser } from "@/services/auth";
 import { getUserFollowingStatus } from "@/services/user";
 import { Button } from "@nextui-org/button";
 import { useRouter } from "next/navigation";
@@ -27,16 +26,16 @@ const FollowUnFollowButton: React.FC<IProps> = ({ id }) => {
     setIsLoading(true);
     if (!loggedInUser) {
       setIsFollowing(false); // No user, not following
+      setIsLoading(false);
       return;
     }
 
-    if (loggedInUser.role === "Admin"){
-      setIsFollowing(false); 
+    if (loggedInUser.role === "Admin") {
+      setIsFollowing(false);
       setIsLoading(false);
       return;
-    } 
-    
-    
+    }
+
     const response = await getUserFollowingStatus(id);
     if (response?.data?.isFollowing) {
       setIsFollowing(true);
@@ -81,7 +80,7 @@ const FollowUnFollowButton: React.FC<IProps> = ({ id }) => {
           {isFollowing ? (
             <Button
               onClick={handleUnFollow}
-              isDisabled={loggedInUser?._id === id }
+              isDisabled={loggedInUser?._id === id}
               size="sm"
               radius="full"
               variant="solid"
@@ -93,7 +92,9 @@ const FollowUnFollowButton: React.FC<IProps> = ({ id }) => {
           ) : (
             <Button
               onClick={handleFollow}
-              isDisabled={loggedInUser?._id === id || loggedInUser?.role === "Admin"}
+              isDisabled={
+                loggedInUser?._id === id || loggedInUser?.role === "Admin"
+              }
               size="sm"
               radius="full"
               variant="solid"
