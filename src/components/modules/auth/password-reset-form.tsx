@@ -11,9 +11,7 @@ import { useRouter } from "next/navigation";
 import { Suspense } from "react";
 import { FieldValues, SubmitHandler } from "react-hook-form";
 
-interface IProps {}
-
-const PasswordResetForm: React.FC<IProps> = () => {
+const PasswordResetForm = () => {
   const router = useRouter();
 
   const {
@@ -28,7 +26,6 @@ const PasswordResetForm: React.FC<IProps> = () => {
 
   if (!isPending && isSuccess) {
     router.push("/");
-    return;
   }
 
   return (
