@@ -3,6 +3,7 @@ import { Avatar } from "@nextui-org/avatar";
 import { Button } from "@nextui-org/button";
 import { Card, CardBody, CardHeader } from "@nextui-org/card";
 import { Metadata } from "next";
+import Link from "next/link";
 import {
   BiBookOpen,
   BiChevronRight,
@@ -98,10 +99,12 @@ const AboutUs: React.FC<IProps> = () => {
               Tech Tips Hub: Where Innovation Meets Community
             </p>
             <Button
+              href="/login"
+              as={Link}
               radius="sm"
               color="primary"
               size="lg"
-              endContent={<BiChevronRight className="ml-2" />}
+              endContent={<BiChevronRight />}
               className="font-semibold bg-white text-blue-600 hover:bg-blue-50"
             >
               Join Our Community
@@ -114,7 +117,7 @@ const AboutUs: React.FC<IProps> = () => {
         <Container>
           <div className="mb-20">
             <h2 className="text-3xl font-bold mb-6 text-center">Who We Are</h2>
-            <p className="text-lg text-default-500 mb-12 leading-relaxed max-w-4xl mx-auto text-center">
+            <p className="text-base lg:text-lg text-default-500 mb-12 leading-relaxed max-w-4xl mx-auto text-center">
               Tech Tips Hub is the premier destination for tech enthusiasts to
               explore, learn, and contribute to the ever-evolving world of
               technology. Our platform combines cutting-edge blogging
@@ -189,7 +192,7 @@ const AboutUs: React.FC<IProps> = () => {
                     <h3 className="text-xl font-semibold mb-2">
                       {feature.title}
                     </h3>
-                    <p className="">{feature.description}</p>
+                    <p>{feature.description}</p>
                   </CardBody>
                 </Card>
               ))}
@@ -204,7 +207,7 @@ const AboutUs: React.FC<IProps> = () => {
             </h2>
             <div className="grid md:grid-cols-2 gap-8">
               {testimonials.map((testimonial, index) => (
-                <Card key={index} className="">
+                <Card key={index}>
                   <CardBody className="p-6">
                     <p className="mb-4 italic">"{testimonial.content}"</p>
                     <div className="flex items-center">
@@ -228,26 +231,28 @@ const AboutUs: React.FC<IProps> = () => {
         <Container>
           <div className="text-center mb-20 bg-gradient-to-r from-blue-500 to-indigo-600 py-16 px-4 rounded-2xl text-white">
             <h2 className="text-3xl font-bold mb-6">Join Our Tech Community</h2>
-            <p className="text-xl mb-8 max-w-2xl mx-auto">
+            <p className="text-lg lg:text-xl mb-8 max-w-2xl mx-auto">
               Be part of a thriving ecosystem of tech enthusiasts. Share your
               knowledge, learn from experts, and stay at the forefront of
               technological advancements.
             </p>
             <div className="flex justify-center gap-4">
               <Button
+                href="/signup"
+                as={Link}
                 radius="sm"
                 color="primary"
-                size="lg"
-                endContent={<FiZap className="ml-2" />}
+                endContent={<FiZap />}
                 className="font-semibold bg-white text-blue-600 hover:bg-blue-50"
               >
                 Sign Up Now
               </Button>
               <Button
+                href="/contact-us"
+                as={Link}
                 radius="sm"
-                size="lg"
                 variant="bordered"
-                endContent={<BiMailSend className="ml-2" />}
+                endContent={<BiMailSend />}
                 className="font-semibold text-white border-white hover:bg-blue-700"
               >
                 Contact Us
