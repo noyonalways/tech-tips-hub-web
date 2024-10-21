@@ -21,7 +21,6 @@ const SubscribersTable = ({}: IProps) => {
   const { data, isLoading } = useGetAllSubscriptions();
   const subscriptions = data?.data as ISubscription[];
 
-
   return (
     <Table radius="sm" aria-label="Example table with custom cells">
       <TableHeader>
@@ -51,15 +50,11 @@ const SubscribersTable = ({}: IProps) => {
                 </div>
               </div>
             </TableCell>
-
             <TableCell>{subscription.transactionId}</TableCell>
-
             <TableCell>
               {subscription.price} {subscription.currency}
             </TableCell>
-
             <TableCell>{subscription.type}</TableCell>
-
             <TableCell>
               {subscription.startDate
                 ? format(
@@ -68,7 +63,6 @@ const SubscribersTable = ({}: IProps) => {
                   )
                 : "N/A"}
             </TableCell>
-
             <TableCell>
               {subscription.endDate
                 ? format(
@@ -77,7 +71,6 @@ const SubscribersTable = ({}: IProps) => {
                   )
                 : "N/A"}
             </TableCell>
-
             <TableCell>
               {(subscription.status === "Pending" && (
                 <span className="px-3 py-1 bg-blue-500 text-white rounded-full text-xs">

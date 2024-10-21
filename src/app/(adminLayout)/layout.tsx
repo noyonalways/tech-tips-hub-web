@@ -8,11 +8,12 @@ interface IProps {
 const AdminLayout: React.FC<IProps> = ({ children }) => {
   return (
     <main>
-      <div className="flex">
-        <div className="basis-[20%] p-6 border-r border-default/50 h-screen">
+      <div className="flex flex-col lg:flex-row">
+        <>
           <AdminSidebar />
-        </div>
-        <div className="p-6 flex-1">
+        </>
+
+        <div className="pt-20 p-2 lg:p-6 flex-1">
           <div className="hidden lg:justify-end lg:flex">
             <NavarDropdown />
           </div>

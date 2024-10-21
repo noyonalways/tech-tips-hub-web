@@ -1,18 +1,23 @@
+"use client"
+
 import { ThemeSwitch } from "@/components/ui/theme-switch";
 import { Button } from "@nextui-org/button";
 import { Image } from "@nextui-org/image";
 import Link from "next/link";
-import { HiOutlineCreditCard, HiOutlineHome } from "react-icons/hi2";
+import { useState } from "react";
+import { HiBars2, HiOutlineCreditCard, HiOutlineHome, HiXMark } from "react-icons/hi2";
 import { MdOutlineDashboard } from "react-icons/md";
 import { PiUsers } from "react-icons/pi";
 import { TbUserStar } from "react-icons/tb";
+import { IoShareOutline } from 'react-icons/io5';
 
 interface IProps {}
 
 const AdminSidebar = ({}: IProps) => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   return (
-    <div className="space-y-4">
-      <div className="flex items-center justify-between">
+    <div className="lg:basis-[20%] border-b lg:border-r border-default/50 lg:h-screen fixed top-0 lg:sticky w-full z-10 bg-background">
+      <div className="flex items-center justify-between p-4">
         <Link className="flex items-center space-x-2" href="/">
           <Image
             className="size-10"
@@ -21,61 +26,87 @@ const AdminSidebar = ({}: IProps) => {
           />
           <span className="text-lg font-semibold">Tech Tips Hub</span>
         </Link>
-        <ThemeSwitch />
+        <div className="flex space-x-4 items-center">
+          <ThemeSwitch />
+          <Button 
+            isIconOnly
+            variant="flat"
+            className="lg:hidden active:scale-95 transition duration-150"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+          >
+            {isMenuOpen ? <HiXMark size={24} /> : <HiBars2 size={24} />}
+          </Button>
+        </div>
       </div>
 
-      <div className="space-y-2">
-        <Button
-          radius="sm"
-          variant="flat"
-          className="w-full justify-start"
-          as={Link}
-          href="/"
-          startContent={<HiOutlineHome size={18} />}
-        >
-          Home
-        </Button>
-        <Button
-          radius="sm"
-          variant="flat"
-          className="w-full justify-start"
-          as={Link}
-          href="/admin/dashboard"
-          startContent={<MdOutlineDashboard size={18} />}
-        >
-          Dashboard
-        </Button>
-        <Button
-          radius="sm"
-          variant="flat"
-          className="w-full justify-start"
-          as={Link}
-          href="/admin/manage-users"
-          startContent={<PiUsers size={18} />}
-        >
-          Manage Users
-        </Button>
-        <Button
-          radius="sm"
-          variant="flat"
-          className="w-full justify-start"
-          as={Link}
-          href="/admin/subscribers"
-          startContent={<TbUserStar size={18} />}
-        >
-          Subscribers
-        </Button>
-        <Button
-          radius="sm"
-          variant="flat"
-          className="w-full justify-start"
-          as={Link}
-          href="/admin/payments"
-          startContent={<HiOutlineCreditCard size={18} />}
-        >
-          Payments
-        </Button>
-      </div>
+      <nav
+        className={`lg:block transition-all duration-300 ease-in-out px-2 lg:px-4 py-2 ${
+          isMenuOpen ? "right-0" : "right-full"
+        } absolute lg:static top-20  w-full bg-background lg:bg-transparent h-screen lg:h-auto`}
+      >
+        <ul className="space-y-2">
+          <li>
+            <Button
+              radius="sm"
+              variant="flat"
+              className="w-full justify-start"
+              as={Link}
+              href="/"
+              startContent={<HiOutlineHome size={18} />}
+            >
+              Home
+            </Button>
+          </li>
+          <li>
+            <Button
+              radius="sm"
+              variant="flat"
+              className="w-full justify-start"
+              as={Link}
+              href="/admin/dashboard"
+              startContent={<MdOutlineDashboard size={18} />}
+            >
+              Dashboard
+            </Button>
+          </li>
+          <li>
+            <Button
+              radius="sm"
+              variant="flat"
+              className="w-full justify-start"
+              as={Link}
+              href="/admin/manage-users"
+              startContent={<PiUsers size={18} />}
+            >
+              Manage Users
+            </Button>
+          </li>
+          <li>
+            <Button
+              radius="sm"
+              variant="flat"
+              className="w-full justify-start"
+              as={Link}
+              href="/admin/subscribers"
+              startContent={<TbUserStar size={18} />}
+            >
+              Subscribers
+            </Button>
+          </li>
+          <li>
+            <Button
+              radius="sm"
+              variant="flat"
+              className="w-full justify-start"
+              as={Link}
+              href="/admin/payments"
+              startContent={<HiOutlineCreditCard size={18} />}
+            >
+              Payments
+            </Button>
+          </li>
+        </ul>
+      </nav>
     </div>
   );
 };
