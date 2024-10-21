@@ -12,8 +12,8 @@ import {
   TableHeader,
   TableRow,
 } from "@nextui-org/table";
-import { CgSpinner } from "react-icons/cg";
 import Link from "next/link";
+import { CgSpinner } from "react-icons/cg";
 
 interface IProps {}
 
