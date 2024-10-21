@@ -42,9 +42,12 @@ export const useForgetPassword = () => {
     mutationKey: ["FORGOT_PASSWORD"],
     mutationFn: async (payload) => await forgetPassword(payload),
     onSuccess: () => {
-      toast.success("Password reset link sent to your email address successfully!", {
-        id: "password-reset",
-      });
+      toast.success(
+        "Password reset link sent to your email address successfully!",
+        {
+          id: "password-reset",
+        }
+      );
     },
     onError: (error) => {
       toast.error(error?.message || "Something went wrong!", {
