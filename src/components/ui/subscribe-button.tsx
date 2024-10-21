@@ -38,7 +38,7 @@ const SubscribeButton = ({ children, ...props }: IProps) => {
 
   const handleSubscribe = () => {
     if (!user) {
-      router.push("/login");
+      router.push("/login?redirect=subscriptions");
       return;
     }
 

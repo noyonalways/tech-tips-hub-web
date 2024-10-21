@@ -1,4 +1,4 @@
-import { loginUser, registerUser } from "@/services/auth";
+import { forgetPassword, loginUser, registerUser } from "@/services/auth";
 import { TLogin } from "@/types";
 import { useMutation } from "@tanstack/react-query";
 import { toast } from "sonner";
@@ -32,6 +32,26 @@ export const useUserLogin = () => {
     onError: (error) => {
       toast.error(error?.message || "Something went wrong!", {
         id: "user-login-error",
+      });
+    },
+  });
+};
+
+export const useForgetPassword = () => {
+  return useMutation<any, Error, { email: string }>({
+    mutationKey: ["FORGOT_PASSWORD"],
+    mutationFn: async (payload) => await forgetPassword(payload),
+    onSuccess: () => {
+      toast.success(
+        "Password reset link sent to your email address successfully!",
+        {
+          id: "password-reset",
+        }
+      );
+    },
+    onError: (error) => {
+      toast.error(error?.message || "Something went wrong!", {
+        id: "password-reset-error",
       });
     },
   });

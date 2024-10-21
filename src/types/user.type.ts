@@ -10,6 +10,10 @@ export type TLoggedInUser = {
   exp: number;
 };
 
+export type TUserRole = "User" | "Admin";
+export type TUserStatus = "Active" | "Blocked";
+export type TUserGender = "Male" | "Female" | "Other";
+
 export interface IUser {
   _id: string;
   fullName: string;
@@ -20,9 +24,9 @@ export interface IUser {
   phone: string;
   location: string;
   profilePicture: string;
-  gender: string;
-  role: string;
-  status: string;
+  gender: TUserGender;
+  role: TUserRole;
+  status: TUserStatus;
   totalFollowers: number;
   totalFollowing: number;
   dateOfBirth: string;

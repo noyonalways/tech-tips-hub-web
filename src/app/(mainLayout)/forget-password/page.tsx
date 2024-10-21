@@ -1,4 +1,4 @@
-import SuspendedLoginForm from "@/components/modules/auth/login-form";
+import SuspendedPasswordResetForm from "@/components/modules/auth/password-reset-form";
 import Container from "@/components/ui/container";
 import { Divider } from "@nextui-org/divider";
 import { Image } from "@nextui-org/image";
@@ -6,11 +6,10 @@ import { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Login",
-  description:
-    "Log in to Tech Tips Hub to access personalized content and manage your account. Stay updated with the latest tech insights.",
+  title: "Forget Password",
+  description: "Recover your password",
   openGraph: {
-    url: "https://techtipshub.noyonrahman.xyz/login",
+    url: "https://techtipshub.noyonrahman.xyz/forget-password",
     title: "Login",
     description:
       "Access your Tech Tips Hub account for personalized content and latest updates.",
@@ -19,7 +18,7 @@ export const metadata: Metadata = {
 
 interface IProps {}
 
-const LoginPage: React.FC<IProps> = () => {
+const ForgetPasswordPage: React.FC<IProps> = () => {
   return (
     <section className="py-10 relative w-full overflow-hidden">
       <Container>
@@ -33,24 +32,16 @@ const LoginPage: React.FC<IProps> = () => {
               />
             </Link>
             <div>
-              <h2 className="text-center text-3xl font-bold">User Login</h2>
+              <h2 className="text-center text-3xl font-bold">Reset Password</h2>
             </div>
           </div>
 
-          <SuspendedLoginForm />
-          <div className="text-center mt-2 pb-4">
-            <Link
-              href="/forget-password"
-              className="text-primary hover:underline"
-            >
-              Forgotten Password?
-            </Link>
-          </div>
+          <SuspendedPasswordResetForm />
           <Divider className="bg-default/50" />
           <div className="flex items-center justify-center mt-4 text-sm space-x-1 text-center">
-            <span>Don't have an account?</span>
-            <Link className="text-primary hover:underline" href="/signup">
-              Sign Up
+            <span>Already have an account?</span>
+            <Link className="text-primary hover:underline" href="/login">
+              Login
             </Link>
           </div>
         </div>
@@ -64,4 +55,4 @@ const LoginPage: React.FC<IProps> = () => {
   );
 };
 
-export default LoginPage;
+export default ForgetPasswordPage;

@@ -1,6 +1,10 @@
 "use client";
 
-import { useGetAllUsers } from "@/hooks/user.hook";
+import {
+  useBlockUser,
+  useGetAllUsers,
+  useUnblockUser,
+} from "@/hooks/user.hook";
 import { IUser } from "@/types";
 import { Avatar } from "@nextui-org/avatar";
 import { Button } from "@nextui-org/button";
@@ -18,10 +22,28 @@ import { CgSpinner } from "react-icons/cg";
 interface IProps {}
 
 const UsersTable = ({}: IProps) => {
-  const { data, isLoading } = useGetAllUsers();
+  const { data, isLoading, refetch } = useGetAllUsers();
   const users = data?.data as IUser[];
 
-  // console.log(isLoading);
+  const { mutate: blockUser, isPending: isBlockUserPending } = useBlockUser();
+  const { mutate: unblockUser, isPending: isUnBlockUserPending } =
+    useUnblockUser();
+
+  const handleBlockUser = (id: string) => {
+    blockUser(id, {
+      onSuccess: () => {
+        refetch();
+      },
+    });
+  };
+
+  const handleUnblockUser = (id: string) => {
+    unblockUser(id, {
+      onSuccess: () => {
+        refetch();
+      },
+    });
+  };
 
   return (
     <Table radius="sm" aria-label="Example table with custom cells">
@@ -57,16 +79,50 @@ const UsersTable = ({}: IProps) => {
             <TableCell>{user.status}</TableCell>
             <TableCell>
               {user?.isPremiumUser ? (
-                <Button size="sm" radius="full" variant="flat" color="secondary">Premium</Button>
+                <Button
+                  size="sm"
+                  radius="full"
+                  variant="flat"
+                  color="secondary"
+                >
+                  Premium
+                </Button>
               ) : (
-                <Button size="sm" radius="full" variant="flat" color="primary">Basic</Button>
+                <Button size="sm" radius="full" variant="flat" color="primary">
+                  Basic
+                </Button>
               )}
             </TableCell>
             <TableCell className="flex items-center space-x-2">
-              <Button size="sm" radius="sm" variant="flat" color="danger">
-                Block
-              </Button>
-              <Button size="sm" radius="sm" variant="flat">
+              {user.status === "Active" ? (
+                <Button
+                  isDisabled={user.role === "Admin" || isBlockUserPending}
+                  onClick={() => handleBlockUser(user._id)}
+                  size="sm"
+                  radius="sm"
+                  variant="flat"
+                  color="danger"
+                >
+                  Block
+                </Button>
+              ) : (
+                <Button
+                  isDisabled={user.role === "Admin" || isUnBlockUserPending}
+                  onClick={() => handleUnblockUser(user._id)}
+                  size="sm"
+                  radius="sm"
+                  variant="flat"
+                  color="success"
+                >
+                  Unblock
+                </Button>
+              )}
+              <Button
+                isDisabled={user.role === "Admin"}
+                size="sm"
+                radius="sm"
+                variant="flat"
+              >
                 Make Admin
               </Button>
             </TableCell>

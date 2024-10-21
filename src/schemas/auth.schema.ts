@@ -56,3 +56,13 @@ export const signInValidationSchema = z.object({
     })
     .min(1, "Password is required"),
 });
+
+export const passwordResetValidationSchema = z.object({
+  email: z
+    .string({
+      required_error: "Email is required",
+    })
+    .min(1, "Email is required")
+    .email("Please provide a valid email")
+    .trim(),
+});

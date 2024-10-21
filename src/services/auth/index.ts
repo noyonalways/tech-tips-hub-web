@@ -5,7 +5,7 @@ import { TLogin } from "@/types";
 import { jwtDecode } from "jwt-decode";
 import { cookies } from "next/headers";
 
-
+// register a new user
 export const registerUser = async (payload: FormData) => {
   try {
     const res = await axiosInstance.post("/auth/register", payload);
@@ -17,6 +17,7 @@ export const registerUser = async (payload: FormData) => {
   }
 };
 
+// login existing user
 export const loginUser = async (payload: TLogin) => {
   try {
     const res = await axiosInstance.post("/auth/login", payload);
@@ -32,12 +33,13 @@ export const loginUser = async (payload: TLogin) => {
   }
 };
 
-
+// logout user
 export const logOutUser = () => {
   cookies().delete("tth-access-token");
   cookies().delete("tth-refresh-token");
 };
 
+// get current logged in user details
 export const getCurrentUser = async () => {
   const accessToken = cookies().get("tth-access-token")?.value;
   let decodedToken = null;
@@ -49,6 +51,7 @@ export const getCurrentUser = async () => {
   return decodedToken;
 };
 
+// get user profile info
 export const getProfileInfo = async () => {
   try {
     const res = await axiosInstance.get("/auth/me");
@@ -56,5 +59,16 @@ export const getProfileInfo = async () => {
     return res?.data;
   } catch (err: any) {
     throw new Error(err?.message);
+  }
+};
+
+// forget password
+export const forgetPassword = async (payload: { email: string }) => {
+  try {
+    const res = await axiosInstance.post("/auth/forget-password", payload);
+
+    return res.data;
+  } catch (err: any) {
+    throw new Error(err.message);
   }
 };

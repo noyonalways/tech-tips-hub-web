@@ -10,7 +10,7 @@ export const getUserByUsername = async (username: string) => {
     const res = await fetch(`${envConfig.baseApi}/users/${username}`, {
       next: {
         tags: ["singleUser"],
-      }
+      },
     });
 
     return await res?.json();
@@ -30,13 +30,12 @@ export const getUserFollowingStatus = async (userId: string) => {
   }
 };
 
-
 // follow a user
 export const followUser = async (userId: string) => {
   try {
     const res = await axiosInstance.put(`/users/${userId}/follow`);
 
-    revalidateTag("singleUser")
+    revalidateTag("singleUser");
 
     return res.data;
   } catch (err: any) {
@@ -49,7 +48,7 @@ export const unfollowUser = async (userId: string) => {
   try {
     const res = await axiosInstance.delete(`/users/${userId}/unfollow`);
 
-    revalidateTag("singleUser")
+    revalidateTag("singleUser");
 
     return res.data;
   } catch (err: any) {
@@ -83,6 +82,28 @@ export const getFollowingByUserId = async (userId: string) => {
 export const getAllUsers = async () => {
   try {
     const res = await axiosInstance.get("/users");
+
+    return res.data;
+  } catch (err: any) {
+    throw new Error(err.message);
+  }
+};
+
+// block a user by user id
+export const blockUser = async (userId: string) => {
+  try {
+    const res = await axiosInstance.patch(`/users/${userId}/block`);
+
+    return res.data;
+  } catch (err: any) {
+    throw new Error(err.message);
+  }
+};
+
+// unblock a user by user id
+export const unblockUser = async (userId: string) => {
+  try {
+    const res = await axiosInstance.patch(`/users/${userId}/unblock`);
 
     return res.data;
   } catch (err: any) {
