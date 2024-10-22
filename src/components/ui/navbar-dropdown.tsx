@@ -20,7 +20,6 @@ const NavarDropdown: React.FC<IProps> = () => {
   const pathname = usePathname();
   const { setIsLoading: setUserLoading, user } = useUser();
 
-
   const handleLogoutUser = () => {
     logOutUser();
     setUserLoading(true);
@@ -30,6 +29,23 @@ const NavarDropdown: React.FC<IProps> = () => {
       return;
     }
   };
+
+  const adminLinks = [
+    {
+      label: "Dashboard",
+      href: "/admin/dashboard",
+    },
+  ];
+  const userLinks = [
+    {
+      label: "Dashboard",
+      href: "/dashboard",
+    },
+    {
+      label: "My Subscriptions",
+      href: "/my-subscriptions",
+    },
+  ];
 
   return (
     <Dropdown placement="bottom-end">
@@ -68,17 +84,25 @@ const NavarDropdown: React.FC<IProps> = () => {
           </NextLink>
         </DropdownItem>
 
-        <DropdownItem key="adminDashboard">
-          <NextLink className="w-full block" href="/admin/dashboard">
-            Dashboard
-          </NextLink>
-        </DropdownItem>
-
-        <DropdownItem key="subscription">
-          <NextLink className="w-full block" href="/my-subscription">
-            Subscription
-          </NextLink>
-        </DropdownItem>
+        <>
+          {(user &&
+            user?.role === "Admin" &&
+            adminLinks.map((link) => (
+              <DropdownItem key={link.href}>
+                <NextLink className="w-full block" href={link.href}>
+                  {link.label}
+                </NextLink>
+              </DropdownItem>
+            ))) ||
+            (user?.role === "User" &&
+              userLinks.map((link) => (
+                <DropdownItem key={link.href}>
+                  <NextLink className="w-full block" href={link.href}>
+                    {link.label}
+                  </NextLink>
+                </DropdownItem>
+              )))}
+        </>
 
         <DropdownItem key="logout" color="danger" onClick={handleLogoutUser}>
           Log Out

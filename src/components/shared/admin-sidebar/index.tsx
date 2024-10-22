@@ -42,7 +42,7 @@ const AdminSidebar = ({}: IProps) => {
       <nav
         className={`lg:block transition-all duration-300 ease-in-out px-2 lg:px-4 py-2 ${
           isMenuOpen ? "right-0" : "right-full"
-        } absolute lg:static top-20  w-full bg-background lg:bg-transparent h-screen lg:h-auto`}
+        } absolute lg:static top-18  w-full bg-background/30 lg:bg-transparent h-screen lg:h-auto backdrop-blur-lg`}
       >
         <ul className="space-y-2">
           <li>

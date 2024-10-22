@@ -51,9 +51,13 @@ const PaymentsTable = ({}: IProps) => {
                 </div>
               </div>
             </TableCell>
-            <TableCell>{payment.transactionId}</TableCell>
             <TableCell>
-              {payment.amount} {payment.currency}
+              <div className="lg:w-auto w-40">{payment.transactionId}</div>
+              </TableCell>
+            <TableCell>
+              <div className="lg:w-auto w-20"> 
+                {payment.amount} {payment.currency}
+              </div>
             </TableCell>
             <TableCell>{payment.subscription.type}</TableCell>
             <TableCell>
@@ -79,12 +83,14 @@ const PaymentsTable = ({}: IProps) => {
                 ))}
             </TableCell>
             <TableCell>
-              {payment.paidAt
-                ? format(
+              <div className="lg:w-auto w-44">
+                {payment.paidAt
+                  ? format(
                     toZonedTime(new Date(payment.paidAt), "Asia/Dhaka"),
                     "dd-MM-yyyy hh:mm:ss a"
                   )
-                : "N/A"}
+                  : "N/A"}
+                </div>
             </TableCell>
 
             <TableCell>{payment.paymentMethod}</TableCell>
