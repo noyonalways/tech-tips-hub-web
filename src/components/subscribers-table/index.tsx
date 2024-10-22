@@ -50,26 +50,34 @@ const SubscribersTable = ({}: IProps) => {
                 </div>
               </div>
             </TableCell>
-            <TableCell>{subscription.transactionId}</TableCell>
             <TableCell>
-              {subscription.price} {subscription.currency}
+              <div className="lg:w-auto w-40">{subscription.transactionId}</div>
+            </TableCell>
+            <TableCell>
+              <div className="lg:w-auto w-20"> 
+                {subscription.price} {subscription.currency}
+              </div>
             </TableCell>
             <TableCell>{subscription.type}</TableCell>
             <TableCell>
-              {subscription.startDate
-                ? format(
+              <div className="lg:w-auto w-44">
+                {subscription.startDate
+                  ? format(
                     toZonedTime(new Date(subscription.startDate), "Asia/Dhaka"),
                     "dd-MM-yyyy hh:mm:ss a"
                   )
-                : "N/A"}
+                  : "N/A"}
+              </div>
             </TableCell>
             <TableCell>
-              {subscription.endDate
-                ? format(
+              <div className="lg:w-auto w-44">
+                {subscription.endDate
+                  ? format(
                     toZonedTime(new Date(subscription.endDate), "Asia/Dhaka"),
                     "dd-MM-yyyy hh:mm:ss a"
                   )
-                : "N/A"}
+                  : "N/A"}
+              </div>
             </TableCell>
             <TableCell>
               {(subscription.status === "Pending" && (
