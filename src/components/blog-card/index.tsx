@@ -6,6 +6,7 @@ import Link from "next/link";
 import { AiOutlineComment } from "react-icons/ai";
 import { BiDownvote, BiUpvote } from "react-icons/bi";
 import { HiOutlineEye } from "react-icons/hi2";
+import { parseHtmlContent } from "@/utils";
 
 interface IProps extends IPost {}
 
@@ -23,6 +24,9 @@ const BlogCard = ({
   category,
   slug,
 }: IProps) => {
+
+  const parsedContent = parseHtmlContent(content)
+
   return (
     <div className="border border-default/50 p-6 rounded-xl space-y-4 w-full">
       <div className="flex justify-between items-end">
@@ -66,11 +70,9 @@ const BlogCard = ({
       >
         <div className="lg:flex-1 space-y-1">
           <h1 className="text-2xl font-bold">{title}</h1>
-          <p className="text-default-500">
-            {content.length > 120
-              ? content?.substring(0, 120) + "..."
-              : content}
-          </p>
+          {parsedContent.length > 120
+            ? parsedContent.substring(0, 120) + "..."
+            : parsedContent}
         </div>
         <div className="basis-full lg:basis-[28%] mb-3 lg:mb-0 rounded-xl">
           <Image
