@@ -70,9 +70,11 @@ const BlogCard = ({
       >
         <div className="lg:flex-1 space-y-1">
           <h1 className="text-2xl font-bold">{title}</h1>
-          {parsedContent.length > 120
+          <p>
+            {parsedContent.length > 120
             ? parsedContent.substring(0, 120) + "..."
             : parsedContent}
+          </p>
         </div>
         <div className="basis-full lg:basis-[28%] mb-3 lg:mb-0 rounded-xl">
           <Image

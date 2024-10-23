@@ -7,7 +7,7 @@ import { cookies } from "next/headers";
 
 export const getAllPosts = async () => {
   try {
-    const res = await fetch(`${envConfig.baseApi}/posts`, {
+    const res = await fetch(`${envConfig.baseApi}/posts?limit=20`, {
       next: {
         tags: ["posts"],
       },

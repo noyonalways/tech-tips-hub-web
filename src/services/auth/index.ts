@@ -2,6 +2,7 @@
 
 import axiosInstance from "@/lib/AxiosInstance";
 import { TLogin } from "@/types";
+import { AxiosError } from "axios";
 import { jwtDecode } from "jwt-decode";
 import { cookies } from "next/headers";
 
@@ -12,8 +13,13 @@ export const registerUser = async (payload: FormData) => {
 
     return res.data;
   } catch (err: any) {
-    // console.log(err?.data);
-    throw new Error(err.message);
+    if (err.response && err.response.data) {
+      throw new Error(
+        err.response.data?.message || "An error occurred during login."
+      );
+    }
+
+    throw new Error(err.message || "An unexpected error occurred.");
   }
 };
 
@@ -29,9 +35,15 @@ export const loginUser = async (payload: TLogin) => {
 
     return res.data;
   } catch (err: any) {
-    throw new Error(err.message);
+    // If it's an Axios error and there is a response, throw the actual server error
+    if (err.response && err.response.data) {
+      throw new Error(err.response.data?.message || "An error occurred during login.");
+    }
+    // Otherwise, throw a generic error message
+    throw new Error(err.message || "An unexpected error occurred.");
   }
 };
+
 
 // logout user
 export const logOutUser = () => {
@@ -69,6 +81,12 @@ export const forgetPassword = async (payload: { email: string }) => {
 
     return res.data;
   } catch (err: any) {
-    throw new Error(err.message);
+    if (err.response && err.response.data) {
+      throw new Error(
+        err.response.data?.message || "An error occurred during login."
+      );
+    }
+
+    throw new Error(err.message || "An unexpected error occurred.");
   }
 };
