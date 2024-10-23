@@ -8,7 +8,7 @@ import { cookies } from "next/headers";
 export const getAllPosts = async () => {
   try {
     const res = await fetch(`${envConfig.baseApi}/posts?limit=20`, {
-      cache: "no-store",
+      cache: "no-cache",
       next: {
         tags: ["posts"],
       },
@@ -23,10 +23,17 @@ export const getAllPosts = async () => {
 
 // get following users posts
 export const getFollowingUsersPosts = async () => {
+  const cookieStore = cookies();
+  const accessToken = cookieStore.get("tth-access-token")?.value;
   try {
-    const res = await axiosInstance.get(`/posts/following-users`);
+    const res = await fetch(`${envConfig.baseApi}/posts/following-users`, {
+      cache: "no-cache",
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
 
-    return res.data;
+    return res.json();
   } catch (err: any) {
     throw new Error(err?.message);
   }
