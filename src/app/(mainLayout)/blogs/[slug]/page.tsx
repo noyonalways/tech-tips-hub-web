@@ -1,6 +1,8 @@
 import ShowHTMLFormat from "@/components/modules/post/show-html-format";
 import Container from "@/components/ui/container";
+import DownVoteButton from "@/components/ui/downvote-button";
 import FollowUnFollowButton from "@/components/ui/follow-unfollow-button";
+import UpVoteButton from "@/components/ui/upvote-button";
 import { poppins } from "@/config/fonts";
 import { getPostBySlug } from "@/services/post";
 import { IPost } from "@/types";
@@ -45,6 +47,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 const DynamicBlogPage = async ({ params }: { params: { slug: string } }) => {
   const data = await getPostBySlug(params.slug);
   const {
+    _id,
     coverImage,
     title,
     author,
@@ -54,6 +57,8 @@ const DynamicBlogPage = async ({ params }: { params: { slug: string } }) => {
     content,
     tags,
     totalViews,
+    upVotes, 
+    downVotes
   } = (data?.data as IPost) ?? {};
 
   return (
@@ -98,32 +103,55 @@ const DynamicBlogPage = async ({ params }: { params: { slug: string } }) => {
                 <FollowUnFollowButton id={author._id} />
               </div>
 
-              {
-                <div className={`flex justify-center items-center space-x-4`}>
-                  {isPremium && (
-                    <Button
-                      color="secondary"
-                      variant="flat"
-                      radius="full"
-                      startContent={<IoDiamondOutline className="text-lg" />}
-                    >
-                      Premium Content
-                    </Button>
-                  )}
-                  {totalViews > 0 && (
-                    <Button size="md" variant="flat" radius="full">
-                      {totalViews} Views
-                    </Button>
-                  )}
+                <div
+                  className={`flex flex-col lg:flex-row justify-center items-center gap-4`}
+                >
+                  <div className="flex items-center space-x-2">
+                    {isPremium && (
+                      <Button
+                        color="secondary"
+                        variant="flat"
+                        radius="full"
+                        startContent={<IoDiamondOutline className="text-lg" />}
+                      >
+                        Premium Content
+                      </Button>
+                    )}
+
+                    {totalViews > 0 && (
+                      <Button size="md" variant="flat" radius="full">
+                        {totalViews} Views
+                      </Button>
+                    )}
+                  </div>
+
+                  <div className="flex items-center space-x-2">
+                    {
+                      <Button
+                        size="md"
+                        variant="light"
+                        radius="full"
+                        startContent={<BiDownvote />}
+                      >
+                        {downVotes} votes
+                      </Button>
+                    }
+                    {
+                      <Button
+                        size="md"
+                        variant="light"
+                        radius="full"
+                        startContent={<BiUpvote />}
+                      >
+                        {upVotes} votes
+                      </Button>
+                    }
+                  </div>
                 </div>
-              }
+              
             </div>
 
-            {(contentType === "html" && (
-              <ShowHTMLFormat
-                content={content}
-              />
-            )) ||
+            {(contentType === "html" && <ShowHTMLFormat content={content} />) ||
               (contentType === "text" && (
                 <p className="text-default-600 text-base lg:text-lg">
                   {content}
@@ -133,25 +161,27 @@ const DynamicBlogPage = async ({ params }: { params: { slug: string } }) => {
             <div className="space-y-10">
               <div className="border border-default/50 py-2 px-2 rounded-full w-full max-w-fit mx-auto flex justify-center items-center">
                 <div className="border-r border-default/30 ">
-                  <Button
+                  <DownVoteButton
+                    postId={_id}
                     className="text-3xl mr-2"
                     radius="full"
                     variant="light"
                     isIconOnly
                   >
                     <BiDownvote className="text-lg" />
-                  </Button>
+                  </DownVoteButton>
                 </div>
 
                 <div className="border-r border-default/30 ">
-                  <Button
+                  <UpVoteButton
+                    postId={_id}
                     className="text-3xl mx-2"
                     radius="full"
                     variant="light"
                     isIconOnly
                   >
                     <BiUpvote className="text-lg" />
-                  </Button>
+                  </UpVoteButton>
                 </div>
 
                 <div className="border-r border-default/30 ">

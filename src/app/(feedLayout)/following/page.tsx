@@ -2,7 +2,7 @@ import BlogCard from "@/components/blog-card";
 import MiniFooter from "@/components/shared/mini-footer";
 import Container from "@/components/ui/container";
 import { getAllCategories } from "@/services/category";
-import { getAllPosts } from "@/services/post";
+import { getAllPosts, getFollowingUsersPosts } from "@/services/post";
 import { ICategory, IPost } from "@/types";
 import { Button } from "@nextui-org/button";
 import { Metadata } from "next";
@@ -10,7 +10,7 @@ import Link from "next/link";
 import { PiMagicWandLight, PiUsers } from "react-icons/pi";
 
 export const metadata: Metadata = {
-  title: "Feed",
+  title: "Following Feed",
   description:
     "Stay updated with the latest tech tips, tutorials, and articles. Explore our feed to discover trending posts and expert insights across various technology topics.",
   keywords:
@@ -22,8 +22,8 @@ export const metadata: Metadata = {
   },
 };
 
-export default async function Home() {
-  const data = await getAllPosts();
+export default async function FollowingUsersPosts() {
+  const data = await getFollowingUsersPosts();
   const posts = data?.data as IPost[];
 
   const categoryData = await getAllCategories();
