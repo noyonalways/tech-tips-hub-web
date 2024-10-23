@@ -6,6 +6,10 @@ import Link from "next/link";
 import { AiOutlineComment } from "react-icons/ai";
 import { BiDownvote, BiUpvote } from "react-icons/bi";
 import { HiOutlineEye } from "react-icons/hi2";
+import { parseHtmlContent } from "@/utils";
+import UpVoteButton from "../ui/upvote-button";
+import DownVoteButton from "../ui/downvote-button";
+import { RiCloseLargeFill } from 'react-icons/ri';
 
 interface IProps extends IPost {}
 
@@ -22,7 +26,11 @@ const BlogCard = ({
   upVotes,
   category,
   slug,
+  _id
 }: IProps) => {
+
+  const parsedContent = parseHtmlContent(content)
+
   return (
     <div className="border border-default/50 p-6 rounded-xl space-y-4 w-full">
       <div className="flex justify-between items-end">
@@ -66,10 +74,10 @@ const BlogCard = ({
       >
         <div className="lg:flex-1 space-y-1">
           <h1 className="text-2xl font-bold">{title}</h1>
-          <p className="text-default-500">
-            {content.length > 120
-              ? content?.substring(0, 120) + "..."
-              : content}
+          <p>
+            {parsedContent.length > 120
+              ? parsedContent.substring(0, 120) + "..."
+              : parsedContent}
           </p>
         </div>
         <div className="basis-full lg:basis-[28%] mb-3 lg:mb-0 rounded-xl">
@@ -82,24 +90,32 @@ const BlogCard = ({
       </Link>
       <div className="flex flex-col items-end lg:flex-row lg:items-center justify-between space-y-2 lg:space-y-0">
         <div className="flex items-center space-x-1 lg:space-x-4">
-          <div className="flex space-x-2 items-center">
-            <Button
-              className="px-0 min-w-8"
-              size="sm"
-              radius="full"
-              variant="light"
-            >
-              <BiDownvote className="text-lg" />
-            </Button>
-            <span className="text-base">{upVotes - downVotes}</span>
-            <Button
-              className="px-0 min-w-8"
-              size="sm"
-              radius="full"
-              variant="light"
-            >
-              <BiUpvote className="text-lg" />
-            </Button>
+          <div className={`flex space-x-2 items-center`}>
+            <div className="flex items-center space-x-1">
+              <DownVoteButton
+                isIconOnly
+                size="sm"
+                radius="full"
+                variant="light"
+                postId={_id}
+              >
+                <BiDownvote size={14} />
+              </DownVoteButton>
+              <span className="text-sm">{downVotes}</span>
+            </div>
+
+            <div className="flex items-center space-x-1">
+              <UpVoteButton
+                isIconOnly
+                size="sm"
+                radius="full"
+                variant="light"
+                postId={_id}
+              >
+                <BiUpvote size={14} />
+              </UpVoteButton>
+              <span className="text-sm">{upVotes}</span>
+            </div>
           </div>
 
           <Button

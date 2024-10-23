@@ -1,6 +1,7 @@
 import { forgetPassword, loginUser, registerUser } from "@/services/auth";
 import { TLogin } from "@/types";
 import { useMutation } from "@tanstack/react-query";
+import { AxiosError } from "axios";
 import { toast } from "sonner";
 
 export const useUserRegister = () => {
@@ -13,12 +14,23 @@ export const useUserRegister = () => {
       });
     },
     onError: (error) => {
-      toast.error(error?.message || "Something went wrong!", {
-        id: "user-register-error",
-      });
+      if (error instanceof Error) {
+        console.log("Error message:", error.message);
+
+        // Show the error message in a toast
+        toast.error(error.message || "Something went wrong!", {
+          id: "user-login-error",
+        });
+      } else {
+        // Generic fallback for other error types (if any)
+        toast.error("An unexpected error occurred.", {
+          id: "user-login-error",
+        });
+      }
     },
   });
 };
+;
 
 export const useUserLogin = () => {
   return useMutation<any, Error, TLogin>({
@@ -30,12 +42,24 @@ export const useUserLogin = () => {
       });
     },
     onError: (error) => {
-      toast.error(error?.message || "Something went wrong!", {
-        id: "user-login-error",
-      });
+      // Check if it's an instance of the Error object
+      if (error instanceof Error) {
+        console.log("Error message:", error.message);
+
+        // Show the error message in a toast
+        toast.error(error.message || "Something went wrong!", {
+          id: "user-login-error",
+        });
+      } else {
+        // Generic fallback for other error types (if any)
+        toast.error("An unexpected error occurred.", {
+          id: "user-login-error",
+        });
+      }
     },
   });
 };
+
 
 export const useForgetPassword = () => {
   return useMutation<any, Error, { email: string }>({
@@ -50,9 +74,19 @@ export const useForgetPassword = () => {
       );
     },
     onError: (error) => {
-      toast.error(error?.message || "Something went wrong!", {
-        id: "password-reset-error",
-      });
+      if (error instanceof Error) {
+        console.log("Error message:", error.message);
+
+        // Show the error message in a toast
+        toast.error(error.message || "Something went wrong!", {
+          id: "user-login-error",
+        });
+      } else {
+        // Generic fallback for other error types (if any)
+        toast.error("An unexpected error occurred.", {
+          id: "user-login-error",
+        });
+      }
     },
   });
 };

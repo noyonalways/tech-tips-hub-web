@@ -59,7 +59,9 @@ export const unfollowUser = async (userId: string) => {
 // get all followers by user id
 export const getFollowersByUserId = async (userId: string) => {
   try {
-    const res = await fetch(`${envConfig.baseApi}/users/${userId}/followers`);
+    const res = await fetch(`${envConfig.baseApi}/users/${userId}/followers`, {
+      cache: "no-store"
+    });
 
     return await res?.json();
   } catch (error: any) {
@@ -70,7 +72,9 @@ export const getFollowersByUserId = async (userId: string) => {
 // get all following by user id
 export const getFollowingByUserId = async (userId: string) => {
   try {
-    const res = await fetch(`${envConfig.baseApi}/users/${userId}/following`);
+    const res = await fetch(`${envConfig.baseApi}/users/${userId}/following`, {
+      cache: "no-store",
+    });
 
     return await res?.json();
   } catch (error: any) {
