@@ -69,6 +69,7 @@ const GetUserByIdPage = async ({
     designation,
     createdAt,
     totalPosts,
+    socialLinks
   } = (data.data as IUser) ?? {};
 
   const postsData = await getPostsByUserId(_id);
@@ -149,36 +150,23 @@ const GetUserByIdPage = async ({
 
           <div className="border border-default/50 p-4 py-6 lg:p-6 rounded-lg flex flex-col space-y-4 lg:space-y-0 lg:flex-row lg:items-center lg:justify-center lg:space-x-14 w-full">
             <ul className="flex items-center space-x-6 text-lg text-default-600">
-              <li>
-                <a href="#">
-                  <FaLinkedin />
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  <BsTwitterX />
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  <FaGithub />
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  <FaFacebook />
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  <FaInstagram />
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  <FaYoutube />
-                </a>
-              </li>
+              {socialLinks &&
+                socialLinks.map((social) => (
+                  <li key={social.platform}>
+                    <a
+                      href={social.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {(social.platform === "Linkedin" && <FaLinkedin />) ||
+                        (social.platform === "Twitter" && <BsTwitterX />) ||
+                        (social.platform === "GitHub" && <FaGithub />) ||
+                        (social.platform === "Facebook" && <FaFacebook />) ||
+                        (social.platform === "Instagram" && <FaInstagram />) ||
+                        (social.platform === "YouTube" && <FaYoutube />)}
+                    </a>
+                  </li>
+                ))}
             </ul>
 
             {location && (
