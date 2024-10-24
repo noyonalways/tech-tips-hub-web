@@ -1,4 +1,4 @@
-import { Select, SelectItem } from "@nextui-org/select";
+import { Select, SelectItem, SelectProps } from "@nextui-org/select";
 import { useFormContext } from "react-hook-form";
 
 interface IProps {
@@ -11,9 +11,21 @@ interface IProps {
   variant?: "flat" | "faded" | "bordered" | "underlined" | undefined;
   size?: "sm" | "md" | "lg" | undefined;
   radius?: "none" | "sm" | "md" | "lg" | "full";
+  id?: string;
+  placeholder?: string;
 }
 
-const THSelect: React.FC<IProps> = ({ name, options, ...props }) => {
+const THSelect: React.FC<IProps> = ({
+  name,
+  label,
+  variant,
+  size,
+  radius,
+  id,
+  placeholder,
+  options,
+  ...props
+}) => {
   const {
     register,
     formState: { errors },
@@ -25,8 +37,14 @@ const THSelect: React.FC<IProps> = ({ name, options, ...props }) => {
     <Select
       {...register(name)}
       errorMessage={errorMessage || ""}
-      {...props}
       isInvalid={!!errors[name]}
+      label={label}
+      variant={variant}
+      size={size}
+      radius={radius}
+      id={id}
+      placeholder={placeholder}
+      {...props}
     >
       {options?.map((option) => (
         <SelectItem key={option.key}>{option.label}</SelectItem>

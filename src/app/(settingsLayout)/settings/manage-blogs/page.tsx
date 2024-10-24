@@ -5,10 +5,11 @@ interface IProps {}
 
 const ManageBlogs = ({}: IProps) => {
   return (
-    <section className="pt-10">
-      <Container>
+    <section className="py-10">
+      <div className="max-w-3xl mx-auto px-2 lg:px-0">
         <PageTitle title="Manage Blogs" description="Manage your all blogs" />
-      </Container>
+
+      </div>
     </section>
   );
 };

@@ -5,13 +5,20 @@ type Role = keyof typeof roleBasedRoutes;
 
 const authRoutes = ["/login", "/signup", "/forget-password"];
 const roleBasedRoutes = {
-  User: ["/profile", "/blogs/write-blog"],
+  User: [
+    "/profile",
+    "/blogs/write-blog",
+    "/settings",
+    "/settings/manage-blogs",
+  ],
   Admin: [
     "/admin",
     "/profile",
     "/admin/dashboard",
     "/admin/manage-users",
     "/admin/all-payments",
+    "/settings",
+    "/settings/manage-blogs",
   ],
 };
 
@@ -58,5 +65,7 @@ export const config = {
     "/login",
     "/signup",
     "/forget-password",
+    "/settings",
+    "/settings/manage-blogs"
   ],
 };
