@@ -103,13 +103,6 @@ const SignUpForm: React.FC<IProps> = () => {
             options={options}
           />
           <THDatePicker name="dateOfBirth" label="Date of Birth" />
-          {/* <THInput
-            label="Date of Birth"
-            radius="sm"
-            name="dateOfBirth"
-            placeholder="Date of Birth"
-            type="date"
-          /> */}
           <Button
             type="submit"
             color="primary"

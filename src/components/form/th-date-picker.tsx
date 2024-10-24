@@ -1,14 +1,16 @@
-import { DatePicker } from "@nextui-org/date-picker";
+import { DatePicker, DatePickerProps } from "@nextui-org/date-picker";
 import { Controller } from "react-hook-form";
 
-interface IProps {
+interface IProps extends DatePickerProps {
   name: string;
-  label: string;
-  variant?: "flat" | "faded" | "bordered" | "underlined" | undefined;
-  className?: string;
+  label?: string;
 }
 
-export default function THDatePicker({ label, name, variant, ...props }: IProps) {
+export default function THDatePicker({
+  label,
+  name,
+  ...props
+}: IProps) {
   return (
     <Controller
       name={name}
@@ -17,7 +19,6 @@ export default function THDatePicker({ label, name, variant, ...props }: IProps)
           errorMessage={(errors[name]?.message as string | undefined) || ""}
           isInvalid={!!errors[name]}
           label={label}
-          variant={variant}
           {...fields}
           {...props}
         />

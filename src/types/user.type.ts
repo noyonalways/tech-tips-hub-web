@@ -13,6 +13,18 @@ export type TLoggedInUser = {
 export type TUserRole = "User" | "Admin";
 export type TUserStatus = "Active" | "Blocked";
 export type TUserGender = "Male" | "Female" | "Other";
+export type TSocialPlatform =
+  | "Facebook"
+  | "Instagram"
+  | "Linkedin"
+  | "Twitter"
+  | "GitHub"
+  | "YouTube";
+
+export type TSocialLink = {
+  platform: TSocialPlatform;
+  url: string;
+};
 
 export interface IUser {
   _id: string;
@@ -33,7 +45,7 @@ export interface IUser {
   isVerified: boolean;
   isPremiumUser: boolean;
   isDeleted: boolean;
-  socialLinks: any[];
+  socialLinks: TSocialLink[];
   createdAt: string;
   updatedAt: string;
   totalPosts: number;

@@ -3,7 +3,10 @@ export const protectedRoutes = [
   "/profile",
   "/profile/:path*",
   "/profile/:page*",
-  "/admin",
+  "/admin/:page*",
   "/login",
   "/signup",
+  "/forget-password",
+  "/settings",
+  "/settings/manage-blogs",
 ];
