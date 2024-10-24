@@ -1,6 +1,7 @@
 import BlogCard from "@/components/blog-card";
 import MiniFooter from "@/components/shared/mini-footer";
 import Container from "@/components/ui/container";
+import FeedButtons from "@/components/ui/feed-buttons";
 import { getAllCategories } from "@/services/category";
 import { getAllPosts } from "@/services/post";
 import { ICategory, IPost } from "@/types";
@@ -33,25 +34,7 @@ export default async function Home() {
     <section className="py-8">
       <Container>
         <div className="flex items-center space-x-4">
-          <Button
-            as={Link}
-            href={`/`}
-            variant="flat"
-            color="primary"
-            radius="full"
-            startContent={<PiMagicWandLight className="text-lg" />}
-          >
-            Personalized
-          </Button>
-          <Button
-            as={Link}
-            href={`/following`}
-            variant="light"
-            radius="full"
-            startContent={<PiUsers className="text-lg" />}
-          >
-            Following
-          </Button>
+          <FeedButtons />
         </div>
         <div className="flex flex-col lg:flex-row lg:justify-between lg:space-x-6 items-start mt-8 w-full">
           <div className="space-y-6 flex-1 w-full">
