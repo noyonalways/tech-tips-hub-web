@@ -1,8 +1,8 @@
 "use server";
 
+import envConfig from "@/config/env.config";
 import axiosInstance from "@/lib/AxiosInstance";
 import { TLogin } from "@/types";
-import { AxiosError } from "axios";
 import { jwtDecode } from "jwt-decode";
 import { cookies } from "next/headers";
 
@@ -13,13 +13,7 @@ export const registerUser = async (payload: FormData) => {
 
     return res.data;
   } catch (err: any) {
-    if (err.response && err.response.data) {
-      throw new Error(
-        err.response.data?.message || "An error occurred during login."
-      );
-    }
-
-    throw new Error(err.message || "An unexpected error occurred.");
+    return err?.response?.data;
   }
 };
 
@@ -35,15 +29,9 @@ export const loginUser = async (payload: TLogin) => {
 
     return res.data;
   } catch (err: any) {
-    // If it's an Axios error and there is a response, throw the actual server error
-    if (err.response && err.response.data) {
-      throw new Error(err.response.data?.message || "An error occurred during login.");
-    }
-    // Otherwise, throw a generic error message
-    throw new Error(err.message || "An unexpected error occurred.");
+    return err?.response?.data;
   }
 };
-
 
 // logout user
 export const logOutUser = () => {
@@ -65,12 +53,21 @@ export const getCurrentUser = async () => {
 
 // get user profile info
 export const getProfileInfo = async () => {
+  const cookieStore = cookies();
+  const accessToken = cookieStore.get("tth-access-token")?.value;
   try {
-    const res = await axiosInstance.get("/auth/me");
+    const res = await fetch(`${envConfig.baseApi}/auth/me`, {
+      next: {
+        tags: ["loggedInUserProfile"],
+      },
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
 
-    return res?.data;
+    return res.json();
   } catch (err: any) {
-    throw new Error(err?.message);
+    return err?.response?.data;
   }
 };
 
@@ -81,12 +78,6 @@ export const forgetPassword = async (payload: { email: string }) => {
 
     return res.data;
   } catch (err: any) {
-    if (err.response && err.response.data) {
-      throw new Error(
-        err.response.data?.message || "An error occurred during login."
-      );
-    }
-
-    throw new Error(err.message || "An unexpected error occurred.");
+    return err?.response?.data;
   }
 };

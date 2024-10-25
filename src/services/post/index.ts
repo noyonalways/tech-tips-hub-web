@@ -4,6 +4,7 @@ import envConfig from "@/config/env.config";
 import axiosInstance from "@/lib/AxiosInstance";
 import { revalidateTag } from "next/cache";
 import { cookies } from "next/headers";
+import { AiFillAccountBook } from "react-icons/ai";
 
 export const getAllPosts = async () => {
   try {
@@ -19,7 +20,6 @@ export const getAllPosts = async () => {
     throw new Error(err?.message);
   }
 };
-
 
 // get following users posts
 export const getFollowingUsersPosts = async () => {
@@ -53,24 +53,12 @@ export const createPost = async (payload: FormData) => {
 };
 
 export const getPostBySlug = async (slug: string) => {
-  const cookieStore = cookies();
-  const accessToken = cookieStore.get("tth-access-token")?.value;
   try {
-    const res = await fetch(`${envConfig.baseApi}/posts/${slug}`, {
-      cache: "no-store",
-      next: {
-        tags: ["singlePost"],
-      },
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
-    });
+    const res = await axiosInstance.get(`/posts/${slug}`);
 
-    revalidateTag("posts");
-
-    return res.json();
+    return res.data;
   } catch (err: any) {
-    throw new Error(err?.message);
+    return err.response.data;
   }
 };
 
@@ -121,29 +109,17 @@ export const voteOnPost = async (
 
     return res.data;
   } catch (err: any) {
-    if (err.response && err.response.data) {
-      throw new Error(
-        err.response.data?.message || "An error occurred during login."
-      );
-    }
-
-    throw new Error(err.message || "An unexpected error occurred.");
+    return err?.response?.data;
   }
 };
 
-// // get vote status
-// export const getPostVoteStatus = async (postId: string) => {
-//   try {
-//     const res = await axiosInstance.get(`/posts/${postId}/vote-status`);
+// get logged in user blogs
+export const getLoggedInUserBlogs = async () => {
+  try {
+    const res = await axiosInstance.get(`/posts/my-posts`);
 
-//     return res.data;
-//   } catch (err: any) {
-//     if (err.response && err.response.data) {
-//       throw new Error(
-//         err.response.data?.message || "An error occurred during login."
-//       );
-//     }
-
-//     throw new Error(err.message || "An unexpected error occurred.");
-//   }
-// };
+    return res?.data;
+  } catch (err: any) {
+    return err?.response?.data;
+  }
+};

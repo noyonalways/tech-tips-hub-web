@@ -1,51 +1,93 @@
 "use client";
 
+import { useState } from "react";
 import THForm from "@/components/form/th-from";
 import THInput from "@/components/form/th-input";
 import THTextarea from "@/components/form/th-textarea";
+import { IUser } from "@/types";
 import { Avatar } from "@nextui-org/avatar";
 import { Button } from "@nextui-org/button";
 import { FieldValues, SubmitHandler } from "react-hook-form";
 import { GoImage } from "react-icons/go";
+import { useUpdateProfile } from "@/hooks/user.hook";
+import Loading from "@/components/loading";
 
-interface IProps {}
+interface IProps extends IUser {}
 
-const UpdateProfileDetailsForm = ({}: IProps) => {
-  const defaultValues = {
-    fullName: "Noyon Rahman",
-    designation: "Developer",
-    location: "Gazipur, Dhaka",
-    phone: "+8801706592962",
-    bio: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed consectetur, diam id vulputate bibendum, nunc urna dignissim ipsum, ut tincidunt velit velit euismod urna. Duis consectetur, dolor id eleifend rutrum, metus enim faucibus lectus, at sagittis eros neque vel dui. Sed et tellus vel mauris scelerisque fermentum et auctor ligula.",
+const UpdateProfileDetailsForm = ({
+  fullName,
+  designation,
+  location,
+  phone,
+  bio,
+  profilePicture,
+}: IProps) => {
+  const [selectedImage, setSelectedImage] = useState<File | null>(null);
+  const [previewImage, setPreviewImage] = useState(profilePicture);
+  const { mutate: updateProfile, isPending } = useUpdateProfile();
+
+  const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      setSelectedImage(file);
+      setPreviewImage(URL.createObjectURL(file));
+    }
   };
 
-  const onSubmit: SubmitHandler<FieldValues> = (data) => {
-    console.log(data);
+  const onSubmit: SubmitHandler<FieldValues> = (values) => {
+    const formData = new FormData();
+    formData.append("data", JSON.stringify(values));
+    if (selectedImage) {
+      formData.append("image", selectedImage);
+    }
+
+    updateProfile(formData);
+
+    //! this for development purpose just for checking the data
+    // console.log(Object.fromEntries(formData));
   };
+
   return (
     <>
-      <THForm onSubmit={onSubmit} defaultValues={defaultValues}>
+      {isPending && <Loading />}
+      <THForm
+        onSubmit={onSubmit}
+        defaultValues={{ fullName, designation, location, phone, bio }}
+      >
         <div className="space-y-6">
           <div className="space-y-1">
             <label htmlFor="profilePicture" className="block font-medium">
               Profile Image
             </label>
-            <div className="border-default/50 p-4 rounded-lg border-2 flex items-center space-x-4">
+            <div className="border-default/70 p-4 rounded-xl border-2 flex items-center space-x-4">
               <Avatar
-                className="w-28 h-28 lg:size-28 object-cover"
+                className="w-28 h-28 lg:size-28 object-cover text-3xl font-bold"
                 radius="full"
-                src="tech-tips-hub-logo.png"
-                name={"fullName"}
+                src={previewImage}
+                name={fullName}
               />
-              <Button
-                radius="full"
-                variant="solid"
-                name="profilePicture"
-                color="primary"
-                startContent={<GoImage size={18} />}
-              >
-                Change Image
-              </Button>
+              <div className="flex flex-col space-y-2 items-center">
+                <Button
+                  as="label"
+                  size="sm"
+                  htmlFor="profilePicture"
+                  radius="full"
+                  variant="solid"
+                  color="primary"
+                  startContent={<GoImage size={18} />}
+                >
+                  Change Image
+                  <input
+                    type="file"
+                    id="profilePicture"
+                    name="profilePicture"
+                    accept="image/*"
+                    className="hidden"
+                    onChange={handleImageChange}
+                  />
+                </Button>
+                <p className="text-xs">PNG, JPEG: 500 x 500</p>
+              </div>
             </div>
           </div>
           <div className="space-y-1">
@@ -57,7 +99,7 @@ const UpdateProfileDetailsForm = ({}: IProps) => {
               variant="bordered"
               placeholder="Full Name"
               size="lg"
-              radius="sm"
+              radius="md"
               id="fullName"
             />
           </div>
@@ -70,7 +112,7 @@ const UpdateProfileDetailsForm = ({}: IProps) => {
               variant="bordered"
               placeholder="Designation"
               size="lg"
-              radius="sm"
+              radius="md"
               id="designation"
             />
           </div>
@@ -83,7 +125,7 @@ const UpdateProfileDetailsForm = ({}: IProps) => {
               variant="bordered"
               placeholder="Location"
               size="lg"
-              radius="sm"
+              radius="md"
               id="location"
             />
           </div>
@@ -96,7 +138,7 @@ const UpdateProfileDetailsForm = ({}: IProps) => {
               variant="bordered"
               placeholder="Phone"
               size="lg"
-              radius="sm"
+              radius="md"
               id="phone"
             />
           </div>
@@ -107,12 +149,12 @@ const UpdateProfileDetailsForm = ({}: IProps) => {
               variant="bordered"
               placeholder="Bio..."
               size="lg"
-              radius="sm"
+              radius="md"
             />
           </div>
           <div className="flex justify-end">
             <Button radius="full" color="primary" variant="solid" type="submit">
-              Update
+              Update Details
             </Button>
           </div>
         </div>

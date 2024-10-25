@@ -38,13 +38,9 @@ const NavarDropdown: React.FC<IProps> = () => {
   ];
   const userLinks = [
     {
-      label: "Dashboard",
-      href: "/dashboard",
-    },
-    {
-      label: "My Subscriptions",
-      href: "/my-subscriptions",
-    },
+      label: "Settings",
+      href: "/settings",
+    }
   ];
 
   return (

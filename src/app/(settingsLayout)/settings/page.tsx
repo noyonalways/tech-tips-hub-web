@@ -1,12 +1,14 @@
 import PageTitle from "@/components/modules/settings/page-title";
 import UpdateProfileDetailsForm from "@/components/modules/settings/update-profile-details-form";
 import UpdateSocialLinks from "@/components/modules/settings/update-social-links";
+import { getProfileInfo } from "@/services/auth";
+
 
 
 interface IProps {}
 
-const SettingsPage = ({}: IProps) => {
-
+const SettingsPage =   async ({}: IProps) => {
+const profileData = await getProfileInfo();
   
   return (
     <section className="py-10">
@@ -17,12 +19,11 @@ const SettingsPage = ({}: IProps) => {
         />
 
         <>
-          <UpdateProfileDetailsForm />
-          <UpdateSocialLinks />          
+          <UpdateProfileDetailsForm {...profileData?.data} />
+          <UpdateSocialLinks socialLinks={profileData?.data?.socialLinks} />
         </>
       </div>
     </section>
   );
 };
-
 export default SettingsPage;
