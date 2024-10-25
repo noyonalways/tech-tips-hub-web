@@ -2,12 +2,16 @@
 
 import THForm from "@/components/form/th-from";
 import THInput from "@/components/form/th-input";
+import Loading from "@/components/loading";
+import { useUpdateSocialLinks } from "@/hooks/user.hook";
+import { TSocialLink, TSocialPlatform } from "@/types";
 import { Button } from "@nextui-org/button";
 import { Divider } from "@nextui-org/divider";
 import { FieldValues, SubmitHandler } from "react-hook-form";
 
-
-interface IProps {}
+interface IProps {
+  socialLinks: TSocialLink[];
+}
 
 const allowedSocialLinks = [
   {
@@ -27,7 +31,7 @@ const allowedSocialLinks = [
   },
   {
     name: "twitter",
-    platform: "Twitter/X",
+    platform: "Twitter",
     placeholder: "https://twitter.com/username",
   },
   {
@@ -42,46 +46,76 @@ const allowedSocialLinks = [
   },
 ];
 
-const UpdateSocialLinks = ({}: IProps) => {
-  const onSubmit: SubmitHandler<FieldValues> = (data) => {
-    console.log(data);
+const UpdateSocialLinks = ({ socialLinks }: IProps) => {
+  const { mutate: updateSocialLinks, isPending } = useUpdateSocialLinks();
+
+  const defaultValues = {
+    linkedin:
+      socialLinks.find((link) => link.platform === "Linkedin")?.url || "",
+    github: socialLinks.find((link) => link.platform === "GitHub")?.url || "",
+    instagram:
+      socialLinks.find((link) => link.platform === "Instagram")?.url || "",
+    twitter: socialLinks.find((link) => link.platform === "Twitter")?.url || "",
+    facebook:
+      socialLinks.find((link) => link.platform === "Facebook")?.url || "",
+    youtube: socialLinks.find((link) => link.platform === "YouTube")?.url || "",
   };
+
+  const onSubmit: SubmitHandler<FieldValues> = (values) => {
+    const updatedSocialLinks = allowedSocialLinks
+      .map((link) => ({
+        platform: link.platform as TSocialPlatform,
+        url: values[link.name] as string,
+      }))
+      .filter((link) => link.url);
+
+    updateSocialLinks({ socialLinks: updatedSocialLinks });
+  };
+
   return (
-    <div className="py-5" id="social-links">
-      <div className="space-y-1 my-6">
-        <h1 className="text-xl font-bold">Social Profiles</h1>
-        <p className="pb-4 text-default-500">
-          The social links you add here will show up on your profile.
-        </p>
-        <Divider className="bg-default/50" />
-      </div>
-
-      <THForm onSubmit={onSubmit}>
-        <div className="space-y-6">
-          {allowedSocialLinks.map((socialLink) => (
-            <div key={socialLink.name} className="space-y-1">
-              <label htmlFor={socialLink.name} className="block font-medium">
-                {socialLink.platform}
-              </label>
-              <THInput
-                name={socialLink.name}
-                variant="bordered"
-                placeholder={socialLink.placeholder}
-                size="lg"
-                radius="sm"
-                id={socialLink.name}
-              />
-            </div>
-          ))}
-
-          <div className="flex justify-end">
-            <Button radius="full" color="primary" variant="solid" type="submit">
-              Update
-            </Button>
-          </div>
+    <>
+      {isPending && <Loading />}
+      <div className="py-5" id="social-links">
+        <div className="space-y-1 my-6">
+          <h1 className="text-xl font-bold">Social Profiles</h1>
+          <p className="pb-4 text-default-500">
+            The social links you add here will show up on your profile.
+          </p>
+          <Divider className="bg-default/50" />
         </div>
-      </THForm>
-    </div>
+
+        <THForm onSubmit={onSubmit} defaultValues={defaultValues}>
+          <div className="space-y-6">
+            {allowedSocialLinks.map((socialLink) => (
+              <div key={socialLink.name} className="space-y-1">
+                <label htmlFor={socialLink.name} className="block font-medium">
+                  {socialLink.platform}
+                </label>
+                <THInput
+                  name={socialLink.name}
+                  variant="bordered"
+                  placeholder={socialLink.placeholder}
+                  size="lg"
+                  radius="sm"
+                  id={socialLink.name}
+                />
+              </div>
+            ))}
+
+            <div className="flex justify-end">
+              <Button
+                radius="full"
+                color="primary"
+                variant="solid"
+                type="submit"
+              >
+                Update Links
+              </Button>
+            </div>
+          </div>
+        </THForm>
+      </div>
+    </>
   );
 };
 

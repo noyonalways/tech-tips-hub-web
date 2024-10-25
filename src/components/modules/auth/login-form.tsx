@@ -13,17 +13,17 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { Suspense, useState } from "react";
 import { FieldValues, SubmitHandler } from "react-hook-form";
 import { PiEyeLight, PiEyeSlashLight } from "react-icons/pi";
+import { toast } from "sonner";
 
 interface IProps {}
 
-const LoginForm: React.FC<IProps> = () => {
+const LoginForm = ({}: IProps) => {
   const searchParams = useSearchParams();
   const router = useRouter();
   const [isPassword, setIsPassword] = useState(true);
 
   const { setIsLoading: setUserLoading } = useUser();
-
-  const { mutate: handleLogin, isPending, isSuccess } = useUserLogin();
+  const { mutate: handleLogin, isPending, data } = useUserLogin();
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     handleLogin(data as TLogin);
@@ -32,7 +32,7 @@ const LoginForm: React.FC<IProps> = () => {
 
   const redirect = searchParams.get("redirect");
 
-  if (!isPending && isSuccess) {
+  if (!isPending && data?.success) {
     setUserLoading(false);
     if (redirect) {
       router.push(redirect);
@@ -40,6 +40,7 @@ const LoginForm: React.FC<IProps> = () => {
       router.push("/");
     }
   }
+
 
   return (
     <>
@@ -71,7 +72,7 @@ const LoginForm: React.FC<IProps> = () => {
             color="primary"
             variant="solid"
             radius="sm"
-            className="w-full"
+            className="w-full block"
           >
             Log In
           </Button>

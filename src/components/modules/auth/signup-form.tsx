@@ -34,7 +34,7 @@ interface IProps {}
 const SignUpForm: React.FC<IProps> = () => {
   const [isPassword, setIsPassword] = useState(true);
   const router = useRouter();
-  const { mutate: registerUser, isPending, isSuccess } = useUserRegister();
+  const { mutate: registerUser, isPending, data} = useUserRegister();
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     const formData = new FormData();
@@ -57,7 +57,7 @@ const SignUpForm: React.FC<IProps> = () => {
     registerUser(formData);
   };
 
-  if (!isPending && isSuccess) {
+  if (!isPending && data?.success) {
     router.push("/login");
   }
 

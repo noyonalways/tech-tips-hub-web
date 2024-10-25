@@ -17,15 +17,15 @@ const PasswordResetForm = () => {
   const {
     mutate: handleForgetPassword,
     isPending,
-    isSuccess,
+    data,
   } = useForgetPassword();
 
   const onSubmit: SubmitHandler<FieldValues> = (payload) => {
     handleForgetPassword({ email: payload.email });
   };
 
-  if (!isPending && isSuccess) {
-    router.push("/");
+  if (!isPending && data?.success) {
+    router.push("/login");
   }
 
   return (

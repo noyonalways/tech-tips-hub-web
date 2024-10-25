@@ -2,6 +2,7 @@
 
 import envConfig from "@/config/env.config";
 import axiosInstance from "@/lib/AxiosInstance";
+import { TSocialLink } from "@/types";
 import { revalidateTag } from "next/cache";
 
 // get user by username
@@ -112,5 +113,35 @@ export const unblockUser = async (userId: string) => {
     return res.data;
   } catch (err: any) {
     throw new Error(err.message);
+  }
+};
+
+
+// update logged in user profile
+export const updateProfile = async (payload: FormData) => {
+  try {
+    const res = await axiosInstance.patch(`/users/update-profile`, payload);
+
+
+    revalidateTag("loggedInUserProfile")
+
+    return res.data;
+  } catch (err: any) {
+    return err.response.data;
+  }
+};
+
+// update logged in user profile social links
+export const updateSocialLinks = async (payload: {
+  socialLinks: TSocialLink[]
+}) => {
+  try {
+    const res = await axiosInstance.put(`/users/profile/update-social-links`, payload);
+
+    revalidateTag("loggedInUserProfile")
+
+    return res.data;
+  } catch (err: any) {
+    return err.response.data;
   }
 };

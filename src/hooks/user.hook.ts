@@ -4,7 +4,10 @@ import {
   getAllUsers,
   unblockUser,
   unfollowUser,
+  updateProfile,
+  updateSocialLinks,
 } from "@/services/user";
+import { TSocialLink } from "@/types";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { toast } from "sonner";
 
@@ -84,6 +87,37 @@ export const useUnblockUser = () => {
       toast.error(error?.message || "Something went wrong!", {
         id: "user-unblocked-error",
       });
+    },
+  });
+};
+
+// update logged in user profile details
+export const useUpdateProfile = () => {
+  return useMutation<any, Error, FormData>({
+    mutationKey: ["UPDATE_PROFILE"],
+    mutationFn: async (payload) => await updateProfile(payload),
+    onSuccess: (data) => {
+      if (data?.success) {
+        toast.success(data?.message, {
+          id: "user-profile-updated",
+        });
+      }
+    },
+  });
+};
+
+
+// update logged in user profile social links
+export const useUpdateSocialLinks = () => {
+  return useMutation<any, Error, { socialLinks: TSocialLink[] }>({
+    mutationKey: ["UPDATE_SOCIAL_LINKS"],
+    mutationFn: async (payload) => await updateSocialLinks(payload),
+    onSuccess: (data) => {
+      if (data?.success) {
+        toast.success(data?.message, {
+          id: "user-social-links-updated",
+        });
+      }
     },
   });
 };

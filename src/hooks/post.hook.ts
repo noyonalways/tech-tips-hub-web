@@ -1,4 +1,4 @@
-import { createPost, voteOnPost } from "@/services/post";
+import { createPost, getPostBySlug, voteOnPost } from "@/services/post";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { toast } from "sonner";
 
@@ -30,22 +30,14 @@ export const useVoteOnPost = () => {
     mutationFn: async ({ postId, voteType }) =>
       await voteOnPost(postId, voteType),
     onSuccess: (data) => {
-      toast.success(data?.message, {
-        id: "vote-on-post",
-      });
-    },
-    onError: (error) => {
-      if (error instanceof Error) {
-        console.log("Error message:", error.message);
-
-        // Show the error message in a toast
-        toast.error(error.message || "Something went wrong!", {
-          id: "vote-on-post-error",
+      if (!data?.success) {
+        toast.success(data?.message, {
+          id: "vote-on-post",
         });
-      } else {
-        // Generic fallback for other error types (if any)
-        toast.error("An unexpected error occurred.", {
-          id: "vote-on-post-error",
+      }
+      if (data.success) {
+        toast.success(data?.message, {
+          id: "vote-on-post",
         });
       }
     },
