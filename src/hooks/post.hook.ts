@@ -6,16 +6,20 @@ export const useCreatePost = () => {
   return useMutation<any, Error, FormData>({
     mutationKey: ["CREATE_POST"],
     mutationFn: async (payload) => await createPost(payload),
-    onSuccess: () => {
-      toast.success("Post created successfully", {
-        id: "post-created",
-      });
+    onSuccess: (data) => {
+      if (!data?.success) {
+        console.log(data);
+        toast.success(data?.errorSources[0]?.message, {
+          id: "create-post",
+        });
+      }
+      if (data.success) {
+        toast.success(data?.message, {
+          id: "create-post",
+        });
+      }
     },
-    onError: (error) => {
-      toast.error(error?.message || "Something went wrong!", {
-        id: "post-creation-error",
-      });
-    },
+    
   });
 };
 
