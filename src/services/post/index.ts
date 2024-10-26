@@ -45,10 +45,10 @@ export const createPost = async (payload: FormData) => {
 
     revalidateTag("posts");
 
-    return res.data;
+    return res?.data;
   } catch (err: any) {
-    console.log(err);
-    throw new Error(err.message);
+    return err?.response?.data
+    
   }
 };
 
