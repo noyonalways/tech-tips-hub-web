@@ -8,7 +8,7 @@ interface IProps {}
 
 const Footer: React.FC<IProps> = () => {
   return (
-    <footer className="pt-10 border-t border-default/50">
+    <footer className="pt-10 border-t border-default/50 print:hidden">
       <div className="w-full max-w-[1440px] mx-auto px-2 lg:px-6 2xl:px-0 pb-10">
         <div className="grid gird-cols-1 lg:grid-cols-4 gap-4">
           <div className="space-y-4">

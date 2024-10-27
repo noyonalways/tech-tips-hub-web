@@ -46,7 +46,7 @@ export const Navbar = () => {
     <NextUINavbar
       maxWidth="full"
       position="sticky"
-      className="border border-default/50 z-50"
+      className="border border-default/50 z-50 print:hidden"
     >
       <NavbarContent className="basis-1/5 sm:basis-full" justify="start">
         <NavbarBrand as="li" className="gap-3 max-w-fit">

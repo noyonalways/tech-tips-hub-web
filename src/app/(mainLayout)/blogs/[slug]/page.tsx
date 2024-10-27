@@ -2,6 +2,7 @@ import ShowHTMLFormat from "@/components/modules/post/show-html-format";
 import Container from "@/components/ui/container";
 import DownVoteButton from "@/components/ui/downvote-button";
 import FollowUnFollowButton from "@/components/ui/follow-unfollow-button";
+import PrintBlogButton from "@/components/ui/print-blog-button";
 import UpVoteButton from "@/components/ui/upvote-button";
 import { poppins } from "@/config/fonts";
 import { getPostBySlug } from "@/services/post";
@@ -99,14 +100,14 @@ const DynamicBlogPage = async ({ params }: { params: { slug: string } }) => {
             </>
           ) : (
             <div className="space-y-4">
-              <div className="flex justify-center mt-4 w-full">
+              <div className="flex justify-center mt-4 w-full print:max-w-xl print:mx-auto">
                 <Image
                   className="w-full"
                   src={coverImage}
                   alt={`${title}-cover-image`}
                 />
               </div>
-              <div className="space-y-14">
+              <div className="space-y-14 print:space-y-8">
                 <div className="space-y-6">
                   <h1
                     className={`${poppins.className} text-3xl lg:text-4xl font-bold text-center`}
@@ -134,11 +135,13 @@ const DynamicBlogPage = async ({ params }: { params: { slug: string } }) => {
                       {new Date(createdAt)?.toDateString()}
                     </div>
 
-                    <FollowUnFollowButton id={author?._id} />
+                    <div className="print:hidden">
+                      <FollowUnFollowButton id={author?._id} />
+                    </div>
                   </div>
 
                   <div
-                    className={`flex flex-col lg:flex-row justify-center items-center gap-4`}
+                    className={`flex flex-col lg:flex-row justify-center items-center gap-4 print:hidden`}
                   >
                     <div className="flex items-center space-x-2">
                       {isPremium && (
@@ -161,7 +164,7 @@ const DynamicBlogPage = async ({ params }: { params: { slug: string } }) => {
                       )}
                     </div>
 
-                    <div className="flex items-center space-x-2">
+                    <div className="flex items-center space-x-2 print:hidden">
                       {
                         <Button
                           size="md"
@@ -196,7 +199,7 @@ const DynamicBlogPage = async ({ params }: { params: { slug: string } }) => {
                   ))}
 
                 <div className="space-y-10">
-                  <div className="border border-default/50 py-2 px-2 rounded-full w-full max-w-fit mx-auto flex justify-center items-center">
+                  <div className="border border-default/50 py-2 px-2 rounded-full w-full max-w-fit mx-auto flex justify-center items-center print:hidden">
                     <div className="border-r border-default/30 ">
                       <DownVoteButton
                         postId={_id}
@@ -255,14 +258,7 @@ const DynamicBlogPage = async ({ params }: { params: { slug: string } }) => {
                     </div>
 
                     <div>
-                      <Button
-                        className="text-2xl ml-2"
-                        variant="light"
-                        isIconOnly
-                        radius="full"
-                      >
-                        <MdOutlineDownload />
-                      </Button>
+                      <PrintBlogButton blog={data?.data} />
                     </div>
                   </div>
 
