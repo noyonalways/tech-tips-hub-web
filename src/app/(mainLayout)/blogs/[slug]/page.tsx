@@ -16,7 +16,6 @@ import Link from "next/link";
 import { AiOutlineComment } from "react-icons/ai";
 import { BiBookmark, BiDownvote, BiUpvote } from "react-icons/bi";
 import { IoDiamondOutline } from "react-icons/io5";
-import { PiShareNetwork } from "react-icons/pi";
 
 type Props = {
   params: { slug: string };
@@ -24,11 +23,10 @@ type Props = {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const data = await getPostBySlug(params?.slug);
-  const { title, content } = (data?.data as IPost) ?? {};
+  const { title, content, coverImage } = (data?.data as IPost) ?? {};
 
   const description = content?.substring(0, 150) + "...";
-
-  const blogUrl = `https://techtipshub.noyonrahman.xyz/blog/${params?.slug}`;
+  const blogUrl = `https://techtipshub.noyonrahman.xyz/blogs/${params?.slug}`;
 
   return {
     title: title,
@@ -38,9 +36,19 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: title,
       description: description,
       url: blogUrl,
+      images: [{ url: coverImage }],
+      siteName: "Tech Tips Hub",
+      type: "article", 
     },
+    twitter: {
+      card: "summary_large_image",
+      title: title,
+      description: description,
+      images: [coverImage],
+    }
   };
 }
+
 
 const DynamicBlogPage = async ({ params }: { params: { slug: string } }) => {
   const data = await getPostBySlug(params?.slug);
