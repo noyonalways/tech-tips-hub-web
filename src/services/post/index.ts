@@ -17,7 +17,7 @@ export const getAllPosts = async () => {
 
     return res.json();
   } catch (err: any) {
-    throw new Error(err?.message);
+    return err?.response?.data;
   }
 };
 

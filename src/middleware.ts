@@ -14,6 +14,7 @@ const roleBasedRoutes = {
   Admin: [
     "/admin",
     "/profile",
+    "/blogs/write-blog",
     "/admin/dashboard",
     "/admin/manage-users",
     "/admin/all-payments",

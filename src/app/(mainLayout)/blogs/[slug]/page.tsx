@@ -1,4 +1,5 @@
 import ShowHTMLFormat from "@/components/modules/post/show-html-format";
+import BlogShareDropdown from "@/components/ui/blog-share-dropdown";
 import Container from "@/components/ui/container";
 import DownVoteButton from "@/components/ui/downvote-button";
 import FollowUnFollowButton from "@/components/ui/follow-unfollow-button";
@@ -15,7 +16,6 @@ import Link from "next/link";
 import { AiOutlineComment } from "react-icons/ai";
 import { BiBookmark, BiDownvote, BiUpvote } from "react-icons/bi";
 import { IoDiamondOutline } from "react-icons/io5";
-import { MdOutlineDownload } from "react-icons/md";
 import { PiShareNetwork } from "react-icons/pi";
 
 type Props = {
@@ -193,7 +193,7 @@ const DynamicBlogPage = async ({ params }: { params: { slug: string } }) => {
                   <ShowHTMLFormat content={content} />
                 )) ||
                   (contentType === "text" && (
-                    <p className="text-default-600 text-base lg:text-lg">
+                    <p className="text-default-600 text-base lg:text-lg whitespace-pre-line">
                       {content}
                     </p>
                   ))}
@@ -247,14 +247,7 @@ const DynamicBlogPage = async ({ params }: { params: { slug: string } }) => {
                     </div>
 
                     <div className="border-r border-default/30">
-                      <Button
-                        className="text-2xl mx-2"
-                        variant="light"
-                        isIconOnly
-                        radius="full"
-                      >
-                        <PiShareNetwork />
-                      </Button>
+                      <BlogShareDropdown />
                     </div>
 
                     <div>

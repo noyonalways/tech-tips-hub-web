@@ -8,8 +8,8 @@ export const useCreatePost = () => {
     mutationFn: async (payload) => await createPost(payload),
     onSuccess: (data) => {
       if (!data?.success) {
-        console.log(data);
-        toast.success(data?.errorSources[0]?.message, {
+        // console.log(data);
+        toast.success(data?.message || data?.errorSources?.[0]?.message, {
           id: "create-post",
         });
       }

@@ -7,8 +7,6 @@ import { getAllPosts } from "@/services/post";
 import { ICategory, IPost } from "@/types";
 import { Button } from "@nextui-org/button";
 import { Metadata } from "next";
-import Link from "next/link";
-import { PiMagicWandLight, PiUsers } from "react-icons/pi";
 
 export const metadata: Metadata = {
   title: "Feed",

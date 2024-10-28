@@ -26,7 +26,8 @@ export const metadata: Metadata = {
     title: "About Us",
     description:
       "Get to know Tech Tips Hub and our mission to provide valuable tech tips and insights. Meet the team that helps you stay updated with the latest in technology.",
-  },
+    url: "https://techtipshub.noyonrahman.xyz/about-us",
+  }
 };
 
 interface IProps {}

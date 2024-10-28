@@ -17,6 +17,7 @@ export const metadata: Metadata = {
     title: "Contact Us",
     description:
       "Have questions or need support? Contact the Tech Tips Hub team and let us help you with your tech-related inquiries.",
+    url: "https://techtipshub.noyonrahman.xyz/contact-us"
   },
 };
 
