@@ -1,5 +1,6 @@
 import Container from "@/components/ui/container";
 import EditProfileDropdown from "@/components/ui/edit-profile-dropdown";
+import ProfileShareDropdown from "@/components/ui/profile-share-dropdown";
 import { getProfileInfo } from "@/services/auth";
 import { getLoggedInUserPosts } from "@/services/post";
 import { IPost, IUser } from "@/types";
@@ -18,7 +19,7 @@ import {
 } from "react-icons/fa";
 import { FiMapPin } from "react-icons/fi";
 import { GoPencil } from "react-icons/go";
-import { IoDiamondOutline, IoShareOutline } from "react-icons/io5";
+import { IoDiamondOutline } from "react-icons/io5";
 import { MdVerified } from "react-icons/md";
 import { PiCalendarDotsLight } from "react-icons/pi";
 import { TbArrowBadgeDown } from "react-icons/tb";
@@ -136,9 +137,7 @@ const DynamicProfilePage = async () => {
               </div>
             </div>
             <div className="flex items-center space-x-4 absolute right-2 lg:static">
-              <Button size="sm" isIconOnly radius="full" variant="bordered">
-                <IoShareOutline className="text-lg" />
-              </Button>
+              <ProfileShareDropdown />
               
               <EditProfileDropdown />
             </div>
