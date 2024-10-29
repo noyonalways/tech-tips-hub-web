@@ -18,11 +18,11 @@ import {
 } from "react-icons/fa";
 import { FiMapPin } from "react-icons/fi";
 import { GoPencil } from "react-icons/go";
-import { IoDiamondOutline, IoShareOutline } from "react-icons/io5";
+import { IoDiamondOutline } from "react-icons/io5";
 import { MdVerified } from "react-icons/md";
 import { PiCalendarDotsLight } from "react-icons/pi";
 import { TbArrowBadgeDown } from "react-icons/tb";
-import { HeartFilledIcon } from './../../../../components/icons';
+import ProfileShareDropdown from "@/components/ui/profile-share-dropdown";
 
 type Props = {
   params: { username: string };
@@ -33,6 +33,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const data = await getUserByUsername(actualUsername);
   const {
     fullName,
+    profilePicture,
   } = (data.data as IUser) ?? {};
 
   return {
@@ -43,6 +44,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: `${fullName}'s Profile`,
       description: `Check out ${fullName}'s profile on Tech Tips Hub. See their latest articles, contributions, and interests in the tech world.`,
       url: `https://techtipshub.noyonrahman.xyz/users/@${actualUsername}`,
+      images: profilePicture ? [{ url: profilePicture }] : [],
     },
   };
 }
@@ -141,9 +143,8 @@ const GetUserByIdPage = async ({
               </div>
             </div>
             <div className="flex items-center space-x-4 absolute right-2 lg:static">
-              <Button size="sm" isIconOnly radius="full" variant="bordered">
-                <IoShareOutline className="text-lg" />
-              </Button>
+              <ProfileShareDropdown />
+
               <FollowUnFollowButton id={_id} />
             </div>
           </div>
