@@ -8,6 +8,18 @@ import Link from "next/link";
 import { BiCalendar, BiCreditCard } from "react-icons/bi";
 import { BsCheckCircle } from "react-icons/bs";
 import { FaDollarSign } from "react-icons/fa";
+import { format } from "date-fns";
+import { toZonedTime } from "date-fns-tz";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Payment Successful",
+  description:
+    "Thank you for your purchase! Your payment has been processed successfully. View transaction details and subscription information on Tech Tips Hub.",
+  keywords:
+    "Payment Success, Tech Tips Hub, successful transaction, subscription details, payment processed",
+};
+
 
 interface IProps {
   searchParams: {
@@ -85,7 +97,7 @@ const PaymentSuccessPage = async ({ searchParams }: IProps) => {
                   <div>
                     <p className="text-sm font-medium text-gray-500">Paid At</p>
                     <p className="text-base">
-                      {new Date(paidAt)?.toLocaleString()}
+                      {format(toZonedTime(new Date(paidAt), "Asia/Dhaka"), "M/d/yyyy, h:mm:ss a")}
                     </p>
                   </div>
                 </div>

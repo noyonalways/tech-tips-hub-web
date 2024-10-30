@@ -9,6 +9,7 @@ import { revalidateTag } from "next/cache";
 export const getUserByUsername = async (username: string) => {
   try {
     const res = await fetch(`${envConfig.baseApi}/users/${username}`, {
+      cache: "no-store",
       next: {
         tags: ["singleUser"],
       },
@@ -25,9 +26,9 @@ export const getUserFollowingStatus = async (userId: string) => {
   try {
     const res = await axiosInstance.get(`/users/${userId}/follow-status`);
 
-    return res.data;
+    return res?.data;
   } catch (err: any) {
-    throw new Error(err.message);
+    return err?.response?.data;
   }
 };
 

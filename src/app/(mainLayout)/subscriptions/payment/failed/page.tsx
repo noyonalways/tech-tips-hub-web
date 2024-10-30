@@ -6,7 +6,17 @@ import { Card, CardBody, CardFooter, CardHeader } from "@nextui-org/card";
 import { Divider } from "@nextui-org/divider";
 import { BiXCircle } from "react-icons/bi";
 import { FiAlertTriangle, FiHelpCircle, FiRefreshCcw } from "react-icons/fi";
+import { format } from "date-fns";
+import { toZonedTime } from "date-fns-tz";
+import { Metadata } from "next";
 
+export const metadata: Metadata = {
+  title: "Payment Failed",
+  description:
+    "Unfortunately, we couldn't process your payment. Review your transaction details or contact support to resolve this issue.",
+  keywords:
+    "Payment Failed, Tech Tips Hub, transaction error, payment issue, payment declined, try again, contact support",
+};
 
 interface IProps {
   searchParams: {
@@ -25,6 +35,8 @@ const PaymentFailedPage = async ({ searchParams }: IProps) => {
     transactionId,
     currency,
   } = (paymentData?.data as IPayment) ?? {};
+
+  const attemptedAt = format(toZonedTime(new Date(), "Asia/Dhaka"), "M/d/yyyy, h:mm:ss a")
 
   return (
     <section className="py-10 lg:py-20">
@@ -87,7 +99,7 @@ const PaymentFailedPage = async ({ searchParams }: IProps) => {
                       Attempted At
                     </p>
                     <p className="text-base">
-                      {new Date().toLocaleString()}
+                      {attemptedAt}
                     </p>
                   </div>
                 </div>

@@ -30,7 +30,7 @@ type Props = {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const profileData = await getProfileInfo();
-  const { fullName } = (profileData.data as IUser) ?? {};
+  const { fullName } = (profileData?.data as IUser) ?? {};
   const actualUsername = params.username.split("40")[1];
 
   return {
@@ -62,7 +62,7 @@ const DynamicProfilePage = async () => {
     createdAt,
     role,
     socialLinks
-  } = (profileData.data as IUser) ?? {};
+  } = (profileData?.data as IUser) ?? {};
 
   let postsData;
   if (role !== "Admin"){

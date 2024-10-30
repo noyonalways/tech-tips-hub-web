@@ -4,7 +4,6 @@ import envConfig from "@/config/env.config";
 import axiosInstance from "@/lib/AxiosInstance";
 import { revalidateTag } from "next/cache";
 import { cookies } from "next/headers";
-import { AiFillAccountBook } from "react-icons/ai";
 
 export const getAllPosts = async () => {
   try {
@@ -35,7 +34,7 @@ export const getFollowingUsersPosts = async () => {
 
     return res.json();
   } catch (err: any) {
-    throw new Error(err?.message);
+    return err?.response?.data;
   }
 };
 
@@ -47,8 +46,7 @@ export const createPost = async (payload: FormData) => {
 
     return res?.data;
   } catch (err: any) {
-    return err?.response?.data
-    
+    return err?.response?.data;
   }
 };
 
@@ -77,7 +75,7 @@ export const getLoggedInUserPosts = async () => {
 
     return res.json();
   } catch (err: any) {
-    throw new Error(err?.message);
+    return err;
   }
 };
 
@@ -119,6 +117,34 @@ export const getLoggedInUserBlogs = async () => {
     const res = await axiosInstance.get(`/posts/my-posts`);
 
     return res?.data;
+  } catch (err: any) {
+    return err?.response?.data;
+  }
+};
+
+// comment on post
+export const commentOnPost = async (postId: string, payload: FormData) => {
+  try {
+    const res = await axiosInstance.post(`/posts/${postId}/comments`, payload);
+
+    revalidateTag("comments");
+
+    return await res?.data;
+  } catch (err: any) {
+    return err?.response?.data;
+  }
+};
+
+// get all comments by post id
+export const getCommentsByPostId = async (postId: string) => {
+  try {
+    const res = await fetch(`${envConfig.baseApi}/posts/${postId}/comments`, {
+      next: {
+        tags: ["comments"],
+      },
+    });
+
+    return res?.json();
   } catch (err: any) {
     return err?.response?.data;
   }

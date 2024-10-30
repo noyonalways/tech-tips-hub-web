@@ -4,27 +4,35 @@ import { IPayment } from "@/types";
 import { Card, CardBody, CardFooter, CardHeader } from "@nextui-org/card";
 import { Divider } from "@nextui-org/divider";
 import { button as buttonStyles } from "@nextui-org/theme";
+import { format } from "date-fns";
+import { toZonedTime } from "date-fns-tz";
+import { Metadata } from "next";
 import Link from "next/link";
 import { BsArrowLeft, BsXOctagon } from "react-icons/bs";
 import { FaShoppingCart } from "react-icons/fa";
+
+export const metadata: Metadata = {
+  title: "Payment Cancelled",
+  description:
+    "Your payment process was cancelled. Return to checkout or explore other options on Tech Tips Hub.",
+  keywords:
+    "Payment Cancelled, Tech Tips Hub, transaction cancelled, checkout, payment error",
+};
 
 interface IProps {
   searchParams: {
     transactionId: string;
   };
 }
-const PaymentCancelPage =  async({searchParams}: IProps) => {
-
+const PaymentCancelPage = async ({ searchParams }: IProps) => {
   const paymentData = await getPaymentInfoByTransactionId(
     searchParams.transactionId
   );
 
-  const {
-    amount,
-    transactionId,
-    subscription,
-    currency,
-  } = (paymentData?.data as IPayment) ?? {};
+  const { amount, transactionId, subscription, currency } =
+    (paymentData?.data as IPayment) ?? {};
+
+  const cancelledAt = format(toZonedTime(new Date(), "Asia/Dhaka"), "M/d/yyyy, h:mm:ss a")
 
   return (
     <section className="py-10 lg:py-20">
@@ -67,9 +75,7 @@ const PaymentCancelPage =  async({searchParams}: IProps) => {
                     <p className="text-sm font-medium text-gray-500">
                       Cancelled At
                     </p>
-                    <p className="text-base">
-                      {new Date().toLocaleString()}
-                    </p>
+                    <p className="text-base">{cancelledAt}</p>
                   </div>
                   <div>
                     <p className="text-sm font-medium text-gray-500">

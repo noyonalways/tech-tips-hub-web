@@ -1,3 +1,5 @@
+import CommentCard from "@/components/comment-card";
+import CommentForm from "@/components/modules/post/comment-form";
 import ShowHTMLFormat from "@/components/modules/post/show-html-format";
 import BlogShareDropdown from "@/components/ui/blog-share-dropdown";
 import Container from "@/components/ui/container";
@@ -6,11 +8,13 @@ import FollowUnFollowButton from "@/components/ui/follow-unfollow-button";
 import PrintBlogButton from "@/components/ui/print-blog-button";
 import UpVoteButton from "@/components/ui/upvote-button";
 import { poppins } from "@/config/fonts";
-import { getPostBySlug } from "@/services/post";
+import { getCommentsByPostId, getPostBySlug } from "@/services/post";
 import { IPost } from "@/types";
+import { IComment } from "@/types/comment.type";
 import { Avatar } from "@nextui-org/avatar";
 import { Button } from "@nextui-org/button";
 import { Image } from "@nextui-org/image";
+import { Textarea } from "@nextui-org/input";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { AiOutlineComment } from "react-icons/ai";
@@ -38,17 +42,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       url: blogUrl,
       images: [{ url: coverImage }],
       siteName: "Tech Tips Hub",
-      type: "article", 
+      type: "article",
     },
     twitter: {
       card: "summary_large_image",
       title: title,
       description: description,
       images: [coverImage],
-    }
+    },
   };
 }
-
 
 const DynamicBlogPage = async ({ params }: { params: { slug: string } }) => {
   const data = await getPostBySlug(params?.slug);
@@ -66,6 +69,12 @@ const DynamicBlogPage = async ({ params }: { params: { slug: string } }) => {
     upVotes,
     downVotes,
   } = (data?.data as IPost) ?? {};
+
+  let comments;
+  if (data?.success) {
+    const res = await getCommentsByPostId(_id);
+    comments = res?.data as IComment[];
+  }
 
   return (
     <section className="pb-10">
@@ -269,6 +278,19 @@ const DynamicBlogPage = async ({ params }: { params: { slug: string } }) => {
                         {tag}
                       </Button>
                     ))}
+                  </div>
+                </div>
+
+                {/* comments */}
+                <div>
+                  <h2 className="text-2xl font-semibold mb-4">Comments</h2>
+                  <CommentForm postId={_id} />
+
+                  <div className="mt-8 space-y-4">
+                    {comments &&
+                      comments?.map((comment) => (
+                        <CommentCard key={comment._id} {...comment} />
+                      ))}
                   </div>
                 </div>
               </div>
