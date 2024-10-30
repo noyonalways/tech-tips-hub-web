@@ -1,4 +1,10 @@
-import { createPost, getPostBySlug, voteOnPost } from "@/services/post";
+import {
+  commentOnPost,
+  createPost,
+  getCommentsByPostId,
+  getPostBySlug,
+  voteOnPost,
+} from "@/services/post";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { toast } from "sonner";
 
@@ -19,7 +25,6 @@ export const useCreatePost = () => {
         });
       }
     },
-    
   });
 };
 
@@ -47,3 +52,32 @@ export const useVoteOnPost = () => {
     },
   });
 };
+
+// comment on post
+export const useCommentOnPost = () => {
+  return useMutation<any, Error, { postId: string; payload: FormData }>({
+    mutationKey: ["COMMENT_ON_POST"],
+    mutationFn: async ({ postId, payload }) =>
+      await commentOnPost(postId, payload),
+    onSuccess: (data) => {
+      if (!data?.success) {
+        toast.success(data?.message, {
+          id: "comment-on-post",
+        });
+      }
+      if (data.success) {
+        toast.success(data?.message, {
+          id: "comment-on-post",
+        });
+      }
+    },
+  });
+};
+
+// get comments by post id
+// export const useGetCommentsByPostId = (postId: string) => {
+//   return useQuery({
+//     queryKey: ["GET_ALL_COMMENTS_BY_POST_ID", postId],
+//     queryFn: async () => await getCommentsByPostId(postId),
+//   });
+// };

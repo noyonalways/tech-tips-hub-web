@@ -65,9 +65,9 @@ export const getProfileInfo = async () => {
       },
     });
 
-    return res.json();
+    return res?.json();
   } catch (err: any) {
-    return err?.response?.data;
+    return err
   }
 };
 
