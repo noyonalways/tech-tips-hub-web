@@ -13,6 +13,7 @@ interface IProps {
   radius?: "none" | "sm" | "md" | "lg" | "full";
   id?: string;
   placeholder?: string;
+  isRequired?: boolean;
 }
 
 const THSelect: React.FC<IProps> = ({
@@ -24,6 +25,7 @@ const THSelect: React.FC<IProps> = ({
   id,
   placeholder,
   options,
+  isRequired,
   ...props
 }) => {
   const {
@@ -43,6 +45,7 @@ const THSelect: React.FC<IProps> = ({
       size={size}
       radius={radius}
       id={id}
+      isRequired={isRequired}
       placeholder={placeholder}
       {...props}
     >

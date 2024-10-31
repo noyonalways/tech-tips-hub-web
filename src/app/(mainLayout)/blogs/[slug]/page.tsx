@@ -68,6 +68,8 @@ const DynamicBlogPage = async ({ params }: { params: { slug: string } }) => {
     totalViews,
     upVotes,
     downVotes,
+    totalComments,
+    slug,
   } = (data?.data as IPost) ?? {};
 
   let comments;
@@ -182,26 +184,30 @@ const DynamicBlogPage = async ({ params }: { params: { slug: string } }) => {
                     </div>
 
                     <div className="flex items-center space-x-2 print:hidden">
-                      {
-                        <Button
-                          size="md"
-                          variant="light"
-                          radius="full"
-                          startContent={<BiDownvote />}
-                        >
-                          {downVotes} votes
-                        </Button>
-                      }
-                      {
-                        <Button
-                          size="md"
-                          variant="light"
-                          radius="full"
-                          startContent={<BiUpvote />}
-                        >
-                          {upVotes} votes
-                        </Button>
-                      }
+                      <Button
+                        size="md"
+                        variant="light"
+                        radius="full"
+                        startContent={<BiDownvote />}
+                      >
+                        {downVotes} votes
+                      </Button>
+                      <Button
+                        size="md"
+                        variant="light"
+                        radius="full"
+                        startContent={<BiUpvote />}
+                      >
+                        {upVotes} votes
+                      </Button>
+                      <Button
+                        size="md"
+                        variant="light"
+                        radius="full"
+                        startContent={<AiOutlineComment />}
+                      >
+                        {totalComments} comments
+                      </Button>
                     </div>
                   </div>
                 </div>
@@ -224,6 +230,7 @@ const DynamicBlogPage = async ({ params }: { params: { slug: string } }) => {
                         radius="full"
                         variant="light"
                         isIconOnly
+                        slug={slug}
                       >
                         <BiDownvote className="text-lg" />
                       </DownVoteButton>
@@ -236,6 +243,7 @@ const DynamicBlogPage = async ({ params }: { params: { slug: string } }) => {
                         radius="full"
                         variant="light"
                         isIconOnly
+                        slug={slug}
                       >
                         <BiUpvote className="text-lg" />
                       </UpVoteButton>
@@ -284,7 +292,7 @@ const DynamicBlogPage = async ({ params }: { params: { slug: string } }) => {
                 {/* comments */}
                 <div>
                   <h2 className="text-2xl font-semibold mb-4">Comments</h2>
-                  <CommentForm postId={_id} />
+                  <CommentForm postId={_id} slug={slug} />
 
                   <div className="mt-8 space-y-4">
                     {comments &&

@@ -5,35 +5,32 @@ import { useVoteOnPost } from "@/hooks/post.hook";
 import { Button, ButtonProps } from "@nextui-org/button";
 import { useRouter } from "next/navigation";
 import { ReactNode } from "react";
+import { AuthenticationModal } from "../modals";
 
 interface IProps extends ButtonProps {
   children: ReactNode;
   postId: string;
+  slug?: string;
 }
 
-const UpVoteButton = ({ children, postId, ...props }: IProps) => {
-  const router = useRouter();
+const UpVoteButton = ({ children, postId, slug, ...props }: IProps) => {
   const { user } = useUser();
   const { mutate: upVote, isPending } = useVoteOnPost();
-
   const handleUpvote = () => {
-    if (!user) {
-      // Redirect to login page if user is not logged in
-      router.push("/login");
-      return;
-    }
 
     upVote({ postId: postId, voteType: "upvote" });
   };
 
   return (
-    <Button
-      isLoading={isPending}
-      onClick={handleUpvote}
-      {...props}
-    >
-      {children}
-    </Button>
+    <>
+      {user ? (
+        <Button isLoading={isPending} onClick={handleUpvote} {...props}>
+          {children}
+        </Button>
+      ) : (
+        <AuthenticationModal buttonContent={children} redirect={`blogs/${slug}`} {...props} />
+      )}
+    </>
   );
 };
 

@@ -76,14 +76,15 @@ const SignUpForm: React.FC<IProps> = () => {
             type="file"
             accept="image/jpeg, image/png, image/jpg"
           />
-          <THInput radius="sm" name="fullName" placeholder="Full Name" />
-          <THInput radius="sm" name="email" placeholder="Email Address" />
-          <THInput radius="sm" name="username" placeholder="Username" />
+          <THInput radius="sm" name="fullName" label="Full Name" isRequired />
+          <THInput radius="sm" name="email" label="Email Address" isRequired />
+          <THInput radius="sm" name="username" label="Username" isRequired />
           <div className="relative">
             <THInput
               radius="sm"
               name="password"
-              placeholder="Password"
+              label="Password"
+              isRequired
               type={isPassword ? "password" : "text"}
             />
             <button
@@ -101,8 +102,9 @@ const SignUpForm: React.FC<IProps> = () => {
             variant="flat"
             name="gender"
             options={options}
+            isRequired
           />
-          <THDatePicker name="dateOfBirth" label="Date of Birth" />
+          <THDatePicker name="dateOfBirth" label="Date of Birth" isRequired />
           <Button
             type="submit"
             color="primary"

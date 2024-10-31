@@ -36,7 +36,7 @@ const PasswordResetForm = () => {
         resolver={zodResolver(passwordResetValidationSchema)}
       >
         <div className="space-y-2 pb-4">
-          <THInput radius="sm" name="email" placeholder="Email Address" />
+          <THInput radius="sm" name="email" label="Email Address" isRequired />
 
           <Button
             type="submit"

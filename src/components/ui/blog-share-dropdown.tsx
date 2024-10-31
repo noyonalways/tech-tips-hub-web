@@ -13,6 +13,7 @@ import { BsTwitterX } from "react-icons/bs";
 import { FaFacebook, FaLinkedin } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import copy from "clipboard-copy";
+import { toast } from "sonner";
 
 const BlogShareDropdown = () => {
   const [permalink, setPermalink] = useState("");
@@ -29,6 +30,10 @@ const BlogShareDropdown = () => {
       await copy(permalink);
       setIsCopied(true);
       setTimeout(() => setIsCopied(false), 4000); // Reset after 4 seconds
+      toast.success("Link Copied!", {
+        id: "blog-link-copied",
+        closeButton: true,
+      });
     } catch (error) {
       console.error("Failed to copy text to clipboard", error);
     }

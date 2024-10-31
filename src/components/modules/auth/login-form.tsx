@@ -41,7 +41,6 @@ const LoginForm = ({}: IProps) => {
     }
   }
 
-
   return (
     <>
       {isPending && <Loading />}
@@ -50,12 +49,20 @@ const LoginForm = ({}: IProps) => {
         resolver={zodResolver(signInValidationSchema)}
       >
         <div className="space-y-2">
-          <THInput radius="sm" name="email" placeholder="Email Address" />
+          <THInput
+            label="Email"
+            isRequired
+            radius="sm"
+            name="email"
+            placeholder="Email Address"
+          />
           <div className="relative">
             <THInput
+              label="Password"
+              isRequired
               radius="sm"
               name="password"
-              placeholder="Password"
+              placeholder="Your Password"
               type={isPassword ? "password" : "text"}
             />
             <button

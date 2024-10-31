@@ -1,12 +1,13 @@
 "use client";
+
 import { useUser } from "@/context/user.provider";
 import { useSubscribePremiumMonthly } from "@/hooks/subscription.hook";
 import { getProfileInfo } from "@/services/auth";
 import { IUser } from "@/types";
 import { Button, ButtonProps } from "@nextui-org/button";
-import { useRouter } from "next/navigation";
 import { ReactNode, useEffect, useState } from "react";
 import Loading from "../loading";
+import { AuthenticationModal } from "../modals";
 
 interface IProps extends ButtonProps {
   children: ReactNode;
@@ -15,7 +16,6 @@ interface IProps extends ButtonProps {
 const SubscribeButton = ({ children, ...props }: IProps) => {
   const [isPremium, setIsPremium] = useState(false);
   const { user } = useUser();
-  const router = useRouter();
 
   const getUser = async () => {
     const profileData = await getProfileInfo();
@@ -37,11 +37,6 @@ const SubscribeButton = ({ children, ...props }: IProps) => {
   } = useSubscribePremiumMonthly();
 
   const handleSubscribe = () => {
-    if (!user) {
-      router.push("/login?redirect=subscriptions");
-      return;
-    }
-
     subscribe({
       price: 20,
       currency: "USD",
@@ -59,9 +54,17 @@ const SubscribeButton = ({ children, ...props }: IProps) => {
   return (
     <>
       {isPending && <Loading />}
-      <Button isDisabled={isPremium} onClick={handleSubscribe} {...props}>
-        {children}
-      </Button>
+      {user ? (
+        <Button isDisabled={isPremium} onClick={handleSubscribe} {...props}>
+          {children}
+        </Button>
+      ) : (
+        <AuthenticationModal
+          redirect="subscriptions"
+          buttonContent={children}
+          {...props}
+        />
+      )}
     </>
   );
 };
