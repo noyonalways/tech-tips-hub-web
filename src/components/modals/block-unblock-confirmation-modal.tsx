@@ -18,7 +18,7 @@ interface IProps {
   handleAction: (userId: string) => void; // Function to handle the action (block or unblock)
 }
 
-const ConfirmActionModal = ({
+const BlockUnblockConfirmActionModal = ({
   actionType, // "block" or "unblock"
   user,
   isPending,
@@ -74,4 +74,4 @@ const ConfirmActionModal = ({
   );
 };
 
-export default ConfirmActionModal;
+export default BlockUnblockConfirmActionModal;

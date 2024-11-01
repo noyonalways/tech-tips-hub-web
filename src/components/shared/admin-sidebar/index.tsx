@@ -5,11 +5,9 @@ import { Button } from "@nextui-org/button";
 import { Image } from "@nextui-org/image";
 import Link from "next/link";
 import { useState } from "react";
-import { HiBars2, HiOutlineCreditCard, HiOutlineHome, HiXMark } from "react-icons/hi2";
-import { MdOutlineDashboard } from "react-icons/md";
-import { PiUsers } from "react-icons/pi";
-import { TbUserStar } from "react-icons/tb";
-import { IoShareOutline } from 'react-icons/io5';
+import { HiBars2, HiXMark } from "react-icons/hi2";
+
+import { adminLinks } from "./admin-links";
 
 interface IProps {}
 
@@ -28,7 +26,7 @@ const AdminSidebar = ({}: IProps) => {
         </Link>
         <div className="flex space-x-4 items-center">
           <ThemeSwitch />
-          <Button 
+          <Button
             isIconOnly
             variant="flat"
             className="lg:hidden active:scale-95 transition duration-150"
@@ -45,66 +43,20 @@ const AdminSidebar = ({}: IProps) => {
         } absolute lg:static top-18  w-full bg-background/30 lg:bg-transparent h-screen lg:h-auto backdrop-blur-lg`}
       >
         <ul className="space-y-2">
-          <li>
-            <Button
-              radius="sm"
-              variant="flat"
-              className="w-full justify-start"
-              as={Link}
-              href="/"
-              startContent={<HiOutlineHome size={18} />}
-            >
-              Home
-            </Button>
-          </li>
-          <li>
-            <Button
-              radius="sm"
-              variant="flat"
-              className="w-full justify-start"
-              as={Link}
-              href="/admin/dashboard"
-              startContent={<MdOutlineDashboard size={18} />}
-            >
-              Dashboard
-            </Button>
-          </li>
-          <li>
-            <Button
-              radius="sm"
-              variant="flat"
-              className="w-full justify-start"
-              as={Link}
-              href="/admin/manage-users"
-              startContent={<PiUsers size={18} />}
-            >
-              Manage Users
-            </Button>
-          </li>
-          <li>
-            <Button
-              radius="sm"
-              variant="flat"
-              className="w-full justify-start"
-              as={Link}
-              href="/admin/subscribers"
-              startContent={<TbUserStar size={18} />}
-            >
-              Subscribers
-            </Button>
-          </li>
-          <li>
-            <Button
-              radius="sm"
-              variant="flat"
-              className="w-full justify-start"
-              as={Link}
-              href="/admin/payments"
-              startContent={<HiOutlineCreditCard size={18} />}
-            >
-              Payments
-            </Button>
-          </li>
+          {adminLinks.map((link) => (
+            <li key={link.id}>
+              <Button
+                radius="sm"
+                variant="flat"
+                className="w-full justify-start"
+                as={Link}
+                href={link.href}
+                startContent={link.icon}
+              >
+                {link.label}
+              </Button>
+            </li>
+          ))}
         </ul>
       </nav>
     </div>
