@@ -1,6 +1,7 @@
 import Container from "@/components/ui/container";
 import SubscribeButton from "@/components/ui/subscribe-button";
 import { poppins } from "@/config/fonts";
+import { Button } from "@nextui-org/button";
 import { button as buttonStyles } from "@nextui-org/theme";
 import { Metadata } from "next";
 import Link from "next/link";
@@ -94,17 +95,16 @@ const SubscriptionPage: React.FC<IProps> = () => {
                       <span className="text-3xl font-bold">Free</span>
                     </div>
 
-                    <Link
-                      className={`w-full ${buttonStyles({
-                        radius: "sm",
-                        color: "primary",
-                        variant: "flat",
-                        ...buttonStyles,
-                      })}`}
-                      href={`/`}
+                    <Button
+                    radius="sm"
+                      color="primary"
+                      variant="flat"
+                      as={Link}
+                      href="/"
+                      className="w-full"
                     >
                       Get Started
-                    </Link>
+                    </Button>
                   </div>
                 </div>
               </>

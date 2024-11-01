@@ -16,7 +16,7 @@ interface IProps {}
 const AdminSidebar = ({}: IProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   return (
-    <div className="lg:basis-[20%] border-b lg:border-r border-default/50 lg:h-screen fixed top-0 lg:sticky w-full z-10 bg-background">
+    <div className="lg:basis-[20%] border-b lg:border-r border-default/50 lg:h-screen fixed top-0 lg:sticky w-full z-20 bg-background">
       <div className="flex items-center justify-between p-4">
         <Link className="flex items-center space-x-2" href="/">
           <Image

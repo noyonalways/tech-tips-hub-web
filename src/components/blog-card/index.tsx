@@ -98,6 +98,7 @@ const BlogCard = ({
                 radius="full"
                 variant="light"
                 postId={_id}
+                slug={slug}
               >
                 <BiDownvote size={14} />
               </DownVoteButton>
@@ -111,6 +112,7 @@ const BlogCard = ({
                 radius="full"
                 variant="light"
                 postId={_id}
+                slug={slug}
               >
                 <BiUpvote size={14} />
               </UpVoteButton>

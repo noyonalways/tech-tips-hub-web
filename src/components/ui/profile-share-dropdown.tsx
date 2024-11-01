@@ -13,6 +13,7 @@ import { FaFacebook, FaLinkedin } from "react-icons/fa";
 import { IoShareOutline } from "react-icons/io5";
 import { PiLink } from "react-icons/pi";
 import copy from "clipboard-copy";
+import { toast } from "sonner";
 
 interface IProps {}
 
@@ -33,6 +34,10 @@ const ProfileShareDropdown = ({}: IProps) => {
       await copy(profileLink);
       setIsCopied(true);
       setTimeout(() => setIsCopied(false), 4000); // Reset after 4 seconds
+      toast.success("Link Copied!", {
+        id: "profile-link-copied",
+        closeButton: true,
+      });
     } catch (error) {
       console.error("Failed to copy link", error);
     }
