@@ -80,275 +80,394 @@ export default function AdminDashboard() {
 
   const { data: metricsData, isLoading } = useDashboardMetrics();
 
-
   return (
     <>
       {isLoading ? (
         <DashboardContentSkeleton />
       ) : (
         <div className="flex flex-col">
-          <div className="flex-grow">
-            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-              <Card shadow="sm" radius="sm">
-                <CardBody>
-                  <div className="flex items-center gap-2">
-                    <RiUser3Line className="text-2xl text-primary" />
-                    <div>
-                      <p className="text-small text-default-500">Total Users</p>
-                      <p className="text-2xl font-bold">
-                        {metricsData?.data?.users?.currentMonth}
-                      </p>
+          <div className="flex-grow space-y-4">
+            <div className="space-y-2">
+              <h2 className="text-lg font-medium">Current Month</h2>
+              <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                <Card shadow="sm" radius="sm">
+                  <CardBody>
+                    <div className="flex items-center gap-2">
+                      <RiUser3Line className="text-2xl text-primary" />
+                      <div>
+                        <p className="text-small text-default-500">
+                          Total Users
+                        </p>
+                        <p className="text-2xl font-bold">
+                          {metricsData?.data?.users?.currentMonth}
+                        </p>
+                      </div>
                     </div>
-                  </div>
-                  <div className="flex items-center gap-1 mt-2">
-                    {(metricsData?.data?.users?.type === "increase" && (
-                      <RiArrowUpLine className="text-success" />
-                    )) ||
-                      (metricsData?.data?.users.type === "decrease" && (
-                        <RiArrowDownLine className="text-danger" />
-                      ))}
-                    <p
-                      className={`text-small ${
-                        (metricsData?.data?.users?.type === "increase" &&
-                          "text-success") ||
-                        (metricsData?.data?.users?.type === "decrease" &&
-                          "text-danger") ||
-                        (metricsData?.data?.users?.type === "no change" &&
-                          "text-primary")
-                      }`}
-                    >
-                      {metricsData?.data?.users?.lastMonthDiff}
-                    </p>
-                    <p className="text-small text-default-500">
-                      from last month
-                    </p>
-                  </div>
-                </CardBody>
-              </Card>
-              <Card shadow="sm" radius="sm">
-                <CardBody>
-                  <div className="flex items-center gap-2">
-                    <RiEyeLine className="text-2xl text-primary" />
-                    <div>
-                      <p className="text-small text-default-500">Total Views</p>
-                      <p className="text-2xl font-bold">
-                        {metricsData?.data?.views?.currentMonth}
+                    <div className="flex items-center gap-1 mt-2">
+                      {(metricsData?.data?.users?.type === "increase" && (
+                        <RiArrowUpLine className="text-success" />
+                      )) ||
+                        (metricsData?.data?.users.type === "decrease" && (
+                          <RiArrowDownLine className="text-danger" />
+                        ))}
+                      <p
+                        className={`text-small ${
+                          (metricsData?.data?.users?.type === "increase" &&
+                            "text-success") ||
+                          (metricsData?.data?.users?.type === "decrease" &&
+                            "text-danger") ||
+                          (metricsData?.data?.users?.type === "no change" &&
+                            "text-primary")
+                        }`}
+                      >
+                        {metricsData?.data?.users?.lastMonthDiff}
                       </p>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-1 mt-2">
-                    {(metricsData?.data?.views?.type === "increase" && (
-                      <RiArrowUpLine className="text-success" />
-                    )) ||
-                      (metricsData?.data?.views.type === "decrease" && (
-                        <RiArrowDownLine className="text-danger" />
-                      ))}
-                    <p
-                      className={`text-small ${
-                        (metricsData?.data?.views?.type === "increase" &&
-                          "text-success") ||
-                        (metricsData?.data?.views?.type === "decrease" &&
-                          "text-danger") ||
-                        (metricsData?.data?.views?.type === "no change" &&
-                          "text-primary")
-                      }`}
-                    >
-                      {metricsData?.data?.views?.lastMonthDiff}
-                    </p>
-                    <p className="text-small text-default-500">
-                      from last month
-                    </p>
-                  </div>
-                </CardBody>
-              </Card>
-              <Card shadow="sm" radius="sm">
-                <CardBody>
-                  <div className="flex items-center gap-2">
-                    <RiThumbUpLine className="text-2xl text-primary" />
-                    <div>
                       <p className="text-small text-default-500">
-                        Total Upvotes
-                      </p>
-                      <p className="text-2xl font-bold">
-                        {metricsData?.data?.upvotes?.currentMonth}
+                        from last month
                       </p>
                     </div>
-                  </div>
-                  <div className="flex items-center gap-1 mt-2">
-                    {(metricsData?.data?.upvotes?.type === "increase" && (
-                      <RiArrowUpLine className="text-success" />
-                    )) ||
-                      (metricsData?.data?.upvotes.type === "decrease" && (
-                        <RiArrowDownLine className="text-danger" />
-                      ))}
-                    <p
-                      className={`text-small ${
-                        (metricsData?.data?.upvotes?.type === "increase" &&
-                          "text-success") ||
-                        (metricsData?.data?.upvotes?.type === "decrease" &&
-                          "text-danger") ||
-                        (metricsData?.data?.upvotes?.type === "no change" &&
-                          "text-primary")
-                      }`}
-                    >
-                      {metricsData?.data?.upvotes?.lastMonthDiff}
-                    </p>
-                    <p className="text-small text-default-500">
-                      from last month
-                    </p>
-                  </div>
-                </CardBody>
-              </Card>
-              <Card shadow="sm" radius="sm">
-                <CardBody>
-                  <div className="flex items-center gap-2">
-                    <RiThumbDownLine className="text-2xl text-primary" />
-                    <div>
+                  </CardBody>
+                </Card>
+                <Card shadow="sm" radius="sm">
+                  <CardBody>
+                    <div className="flex items-center gap-2">
+                      <RiEyeLine className="text-2xl text-primary" />
+                      <div>
+                        <p className="text-small text-default-500">
+                          Total Views
+                        </p>
+                        <p className="text-2xl font-bold">
+                          {metricsData?.data?.views?.currentMonth}
+                        </p>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-1 mt-2">
+                      {(metricsData?.data?.views?.type === "increase" && (
+                        <RiArrowUpLine className="text-success" />
+                      )) ||
+                        (metricsData?.data?.views.type === "decrease" && (
+                          <RiArrowDownLine className="text-danger" />
+                        ))}
+                      <p
+                        className={`text-small ${
+                          (metricsData?.data?.views?.type === "increase" &&
+                            "text-success") ||
+                          (metricsData?.data?.views?.type === "decrease" &&
+                            "text-danger") ||
+                          (metricsData?.data?.views?.type === "no change" &&
+                            "text-primary")
+                        }`}
+                      >
+                        {metricsData?.data?.views?.lastMonthDiff}
+                      </p>
                       <p className="text-small text-default-500">
-                        Total Downvotes
-                      </p>
-                      <p className="text-2xl font-bold">
-                        {metricsData?.data?.downvotes?.currentMonth}
+                        from last month
                       </p>
                     </div>
-                  </div>
-                  <div className="flex items-center gap-1 mt-2">
-                    {(metricsData?.data?.downvotes?.type === "increase" && (
-                      <RiArrowUpLine className="text-success" />
-                    )) ||
-                      (metricsData?.data?.downvotes?.type === "decrease" && (
-                        <RiArrowDownLine className="text-danger" />
-                      ))}
-                    <p
-                      className={`text-small ${
-                        (metricsData?.data?.downvotes?.type === "increase" &&
-                          "text-success") ||
-                        (metricsData?.data?.downvotes?.type === "decrease" &&
-                          "text-danger") ||
-                        (metricsData?.data?.downvotes?.type === "no change" &&
-                          "text-primary")
-                      }`}
-                    >
-                      {metricsData?.data?.downvotes?.lastMonthDiff}
-                    </p>
-                    <p className="text-small text-default-500">
-                      from last month
-                    </p>
-                  </div>
-                </CardBody>
-              </Card>
-              <Card shadow="sm" radius="sm">
-                <CardBody>
-                  <div className="flex items-center gap-2">
-                    <RiChat1Line className="text-2xl text-primary" />
-                    <div>
+                  </CardBody>
+                </Card>
+                <Card shadow="sm" radius="sm">
+                  <CardBody>
+                    <div className="flex items-center gap-2">
+                      <RiThumbUpLine className="text-2xl text-primary" />
+                      <div>
+                        <p className="text-small text-default-500">
+                          Total Upvotes
+                        </p>
+                        <p className="text-2xl font-bold">
+                          {metricsData?.data?.upvotes?.currentMonth}
+                        </p>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-1 mt-2">
+                      {(metricsData?.data?.upvotes?.type === "increase" && (
+                        <RiArrowUpLine className="text-success" />
+                      )) ||
+                        (metricsData?.data?.upvotes.type === "decrease" && (
+                          <RiArrowDownLine className="text-danger" />
+                        ))}
+                      <p
+                        className={`text-small ${
+                          (metricsData?.data?.upvotes?.type === "increase" &&
+                            "text-success") ||
+                          (metricsData?.data?.upvotes?.type === "decrease" &&
+                            "text-danger") ||
+                          (metricsData?.data?.upvotes?.type === "no change" &&
+                            "text-primary")
+                        }`}
+                      >
+                        {metricsData?.data?.upvotes?.lastMonthDiff}
+                      </p>
                       <p className="text-small text-default-500">
-                        Total Comments
-                      </p>
-                      <p className="text-2xl font-bold">
-                        {metricsData?.data?.comments?.currentMonth}
+                        from last month
                       </p>
                     </div>
-                  </div>
-                  <div className="flex items-center gap-1 mt-2">
-                    {(metricsData?.data?.comments?.type === "increase" && (
-                      <RiArrowUpLine className="text-success" />
-                    )) ||
-                      (metricsData?.data?.comments?.type === "decrease" && (
-                        <RiArrowDownLine className="text-danger" />
-                      ))}
-                    <p
-                      className={`text-small ${
-                        (metricsData?.data?.comments?.type === "increase" &&
-                          "text-success") ||
-                        (metricsData?.data?.comments?.type === "decrease" &&
-                          "text-danger") ||
-                        (metricsData?.data?.comments?.type === "no change" &&
-                          "text-primary")
-                      }`}
-                    >
-                      {metricsData?.data?.comments?.lastMonthDiff}
-                    </p>
-                    <p className="text-small text-default-500">
-                      from last month
-                    </p>
-                  </div>
-                </CardBody>
-              </Card>
-              <Card shadow="sm" radius="sm">
-                <CardBody>
-                  <div className="flex items-center gap-2">
-                    <RiFileList3Line className="text-2xl text-primary" />
-                    <div>
-                      <p className="text-small text-default-500">Total Blogs</p>
-                      <p className="text-2xl font-bold">
-                        {metricsData?.data?.posts?.currentMonth}
-                      </p>
+                  </CardBody>
+                </Card>
+                <Card shadow="sm" radius="sm">
+                  <CardBody>
+                    <div className="flex items-center gap-2">
+                      <RiThumbDownLine className="text-2xl text-primary" />
+                      <div>
+                        <p className="text-small text-default-500">
+                          Total Downvotes
+                        </p>
+                        <p className="text-2xl font-bold">
+                          {metricsData?.data?.downvotes?.currentMonth}
+                        </p>
+                      </div>
                     </div>
-                  </div>
-                  <div className="flex items-center gap-1 mt-2">
-                    {(metricsData?.data?.posts?.type === "increase" && (
-                      <RiArrowUpLine className="text-success" />
-                    )) ||
-                      (metricsData?.data?.posts?.type === "decrease" && (
-                        <RiArrowDownLine className="text-danger" />
-                      ))}
-                    <p
-                      className={`text-small ${
-                        (metricsData?.data?.posts?.type === "increase" &&
-                          "text-success") ||
-                        (metricsData?.data?.posts?.type === "decrease" &&
-                          "text-danger") ||
-                        (metricsData?.data?.posts?.type === "no change" &&
-                          "text-primary")
-                      }`}
-                    >
-                      {metricsData?.data?.posts?.lastMonthDiff}
-                    </p>
-                    <p className="text-small text-default-500">
-                      from last month
-                    </p>
-                  </div>
-                </CardBody>
-              </Card>
-              <Card shadow="sm" radius="sm">
-                <CardBody>
-                  <div className="flex items-center gap-2">
-                    <RiMoneyDollarCircleLine className="text-2xl text-primary" />
-                    <div>
+                    <div className="flex items-center gap-1 mt-2">
+                      {(metricsData?.data?.downvotes?.type === "increase" && (
+                        <RiArrowUpLine className="text-success" />
+                      )) ||
+                        (metricsData?.data?.downvotes?.type === "decrease" && (
+                          <RiArrowDownLine className="text-danger" />
+                        ))}
+                      <p
+                        className={`text-small ${
+                          (metricsData?.data?.downvotes?.type === "increase" &&
+                            "text-success") ||
+                          (metricsData?.data?.downvotes?.type === "decrease" &&
+                            "text-danger") ||
+                          (metricsData?.data?.downvotes?.type === "no change" &&
+                            "text-primary")
+                        }`}
+                      >
+                        {metricsData?.data?.downvotes?.lastMonthDiff}
+                      </p>
                       <p className="text-small text-default-500">
-                        Total Revenue
-                      </p>
-                      <p className="text-2xl font-bold">
-                        {metricsData?.data?.revenue?.currentMonth}
+                        from last month
                       </p>
                     </div>
-                  </div>
-                  <div className="flex items-center gap-1 mt-2">
-                    {(metricsData?.data?.revenue?.type === "increase" && (
-                      <RiArrowUpLine className="text-success" />
-                    )) ||
-                      (metricsData?.data?.revenue?.type === "decrease" && (
-                        <RiArrowDownLine className="text-danger" />
-                      ))}
-                    <p
-                      className={`text-small ${
-                        (metricsData?.data?.revenue?.type === "increase" &&
-                          "text-success") ||
-                        (metricsData?.data?.revenue?.type === "decrease" &&
-                          "text-danger") ||
-                        (metricsData?.data?.revenue?.type === "no change" &&
-                          "text-primary")
-                      }`}
-                    >
-                      {metricsData?.data?.revenue?.lastMonthDiff}
-                    </p>
-                    <p className="text-small text-default-500">
-                      from last month
-                    </p>
-                  </div>
-                </CardBody>
-              </Card>
+                  </CardBody>
+                </Card>
+                <Card shadow="sm" radius="sm">
+                  <CardBody>
+                    <div className="flex items-center gap-2">
+                      <RiChat1Line className="text-2xl text-primary" />
+                      <div>
+                        <p className="text-small text-default-500">
+                          Total Comments
+                        </p>
+                        <p className="text-2xl font-bold">
+                          {metricsData?.data?.comments?.currentMonth}
+                        </p>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-1 mt-2">
+                      {(metricsData?.data?.comments?.type === "increase" && (
+                        <RiArrowUpLine className="text-success" />
+                      )) ||
+                        (metricsData?.data?.comments?.type === "decrease" && (
+                          <RiArrowDownLine className="text-danger" />
+                        ))}
+                      <p
+                        className={`text-small ${
+                          (metricsData?.data?.comments?.type === "increase" &&
+                            "text-success") ||
+                          (metricsData?.data?.comments?.type === "decrease" &&
+                            "text-danger") ||
+                          (metricsData?.data?.comments?.type === "no change" &&
+                            "text-primary")
+                        }`}
+                      >
+                        {metricsData?.data?.comments?.lastMonthDiff}
+                      </p>
+                      <p className="text-small text-default-500">
+                        from last month
+                      </p>
+                    </div>
+                  </CardBody>
+                </Card>
+                <Card shadow="sm" radius="sm">
+                  <CardBody>
+                    <div className="flex items-center gap-2">
+                      <RiFileList3Line className="text-2xl text-primary" />
+                      <div>
+                        <p className="text-small text-default-500">
+                          Total Blogs
+                        </p>
+                        <p className="text-2xl font-bold">
+                          {metricsData?.data?.posts?.currentMonth}
+                        </p>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-1 mt-2">
+                      {(metricsData?.data?.posts?.type === "increase" && (
+                        <RiArrowUpLine className="text-success" />
+                      )) ||
+                        (metricsData?.data?.posts?.type === "decrease" && (
+                          <RiArrowDownLine className="text-danger" />
+                        ))}
+                      <p
+                        className={`text-small ${
+                          (metricsData?.data?.posts?.type === "increase" &&
+                            "text-success") ||
+                          (metricsData?.data?.posts?.type === "decrease" &&
+                            "text-danger") ||
+                          (metricsData?.data?.posts?.type === "no change" &&
+                            "text-primary")
+                        }`}
+                      >
+                        {metricsData?.data?.posts?.lastMonthDiff}
+                      </p>
+                      <p className="text-small text-default-500">
+                        from last month
+                      </p>
+                    </div>
+                  </CardBody>
+                </Card>
+                <Card shadow="sm" radius="sm">
+                  <CardBody>
+                    <div className="flex items-center gap-2">
+                      <RiMoneyDollarCircleLine className="text-2xl text-primary" />
+                      <div>
+                        <p className="text-small text-default-500">
+                          Total Revenue
+                        </p>
+                        <p className="text-2xl font-bold">
+                          {metricsData?.data?.revenue?.currentMonth}
+                        </p>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-1 mt-2">
+                      {(metricsData?.data?.revenue?.type === "increase" && (
+                        <RiArrowUpLine className="text-success" />
+                      )) ||
+                        (metricsData?.data?.revenue?.type === "decrease" && (
+                          <RiArrowDownLine className="text-danger" />
+                        ))}
+                      <p
+                        className={`text-small ${
+                          (metricsData?.data?.revenue?.type === "increase" &&
+                            "text-success") ||
+                          (metricsData?.data?.revenue?.type === "decrease" &&
+                            "text-danger") ||
+                          (metricsData?.data?.revenue?.type === "no change" &&
+                            "text-primary")
+                        }`}
+                      >
+                        {metricsData?.data?.revenue?.lastMonthDiff}
+                      </p>
+                      <p className="text-small text-default-500">
+                        from last month
+                      </p>
+                    </div>
+                  </CardBody>
+                </Card>
+              </div>
+            </div>
+
+            <div className="space-y-2">
+              <h2 className="text-lg font-medium">All Time</h2>
+              <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                <Card shadow="sm" radius="sm">
+                  <CardBody>
+                    <div className="flex items-center gap-2">
+                      <RiUser3Line className="text-2xl text-primary" />
+                      <div>
+                        <p className="text-small text-default-500">
+                          Total Users
+                        </p>
+                        <p className="text-2xl font-bold">
+                          {metricsData?.data?.users?.total}
+                        </p>
+                      </div>
+                    </div>
+                  </CardBody>
+                </Card>
+                <Card shadow="sm" radius="sm">
+                  <CardBody>
+                    <div className="flex items-center gap-2">
+                      <RiEyeLine className="text-2xl text-primary" />
+                      <div>
+                        <p className="text-small text-default-500">
+                          Total Views
+                        </p>
+                        <p className="text-2xl font-bold">
+                          {metricsData?.data?.views?.total}
+                        </p>
+                      </div>
+                    </div>
+                  </CardBody>
+                </Card>
+                <Card shadow="sm" radius="sm">
+                  <CardBody>
+                    <div className="flex items-center gap-2">
+                      <RiThumbUpLine className="text-2xl text-primary" />
+                      <div>
+                        <p className="text-small text-default-500">
+                          Total Upvotes
+                        </p>
+                        <p className="text-2xl font-bold">
+                          {metricsData?.data?.upvotes?.total}
+                        </p>
+                      </div>
+                    </div>
+                  </CardBody>
+                </Card>
+                <Card shadow="sm" radius="sm">
+                  <CardBody>
+                    <div className="flex items-center gap-2">
+                      <RiThumbDownLine className="text-2xl text-primary" />
+                      <div>
+                        <p className="text-small text-default-500">
+                          Total Downvotes
+                        </p>
+                        <p className="text-2xl font-bold">
+                          {metricsData?.data?.downvotes?.total}
+                        </p>
+                      </div>
+                    </div>
+                  </CardBody>
+                </Card>
+                <Card shadow="sm" radius="sm">
+                  <CardBody>
+                    <div className="flex items-center gap-2">
+                      <RiChat1Line className="text-2xl text-primary" />
+                      <div>
+                        <p className="text-small text-default-500">
+                          Total Comments
+                        </p>
+                        <p className="text-2xl font-bold">
+                          {metricsData?.data?.comments?.total}
+                        </p>
+                      </div>
+                    </div>
+                  </CardBody>
+                </Card>
+                <Card shadow="sm" radius="sm">
+                  <CardBody>
+                    <div className="flex items-center gap-2">
+                      <RiFileList3Line className="text-2xl text-primary" />
+                      <div>
+                        <p className="text-small text-default-500">
+                          Total Blogs
+                        </p>
+                        <p className="text-2xl font-bold">
+                          {metricsData?.data?.posts?.total}
+                        </p>
+                      </div>
+                    </div>
+                  </CardBody>
+                </Card>
+                <Card shadow="sm" radius="sm">
+                  <CardBody>
+                    <div className="flex items-center gap-2">
+                      <RiMoneyDollarCircleLine className="text-2xl text-primary" />
+                      <div>
+                        <p className="text-small text-default-500">
+                          Total Revenue
+                        </p>
+                        <p className="text-2xl font-bold">
+                          {metricsData?.data?.revenue?.total}
+                        </p>
+                      </div>
+                    </div>
+                  </CardBody>
+                </Card>
+              </div>
             </div>
             <div className="grid gap-4 mt-4 md:grid-cols-2">
               <Card
@@ -387,11 +506,7 @@ export default function AdminDashboard() {
                         dataKey="revenue"
                         stroke="#ff58f1"
                       />
-                      <Line
-                        type="monotone"
-                        dataKey="users"
-                        stroke="#589bff"
-                      />
+                      <Line type="monotone" dataKey="users" stroke="#589bff" />
                       <Line type="monotone" dataKey="posts" stroke="#92c700" />
                     </LineChart>
                   </ResponsiveContainer>
