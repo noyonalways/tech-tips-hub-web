@@ -8,6 +8,7 @@ import {
 } from "@/services/post";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { toast } from "sonner";
+import { deleteBlogByAdminUsingId } from "./../services/post/index";
 
 export const useCreatePost = () => {
   return useMutation<any, Error, FormData>({
@@ -80,5 +81,26 @@ export const useGetAllPosts = () => {
   return useQuery({
     queryKey: ["GET_ALL_POSTS"],
     queryFn: async () => await getAllPosts(),
+  });
+};
+
+// delete a post by admin using id with reason
+export const useDeletePostByAdminUsingId = () => {
+  return useMutation<any, Error, { postId: string; reason: string }>({
+    mutationKey: ["DELETE_POST_BY_ADMIN"],
+    mutationFn: async ({ postId, reason }) =>
+      await deleteBlogByAdminUsingId(postId, reason),
+    onSuccess: (data) => {
+      if (!data?.success) {
+        toast.error(data?.message, {
+          id: "delete-post-by-admin",
+        });
+      }
+      if (data.success) {
+        toast.success(data?.message, {
+          id: "delete-post-by-admin",
+        });
+      }
+    },
   });
 };

@@ -149,3 +149,19 @@ export const getCommentsByPostId = async (postId: string) => {
     return err?.response?.data;
   }
 };
+
+
+// delete a blog by admin using id with reason
+export const deleteBlogByAdminUsingId = async (blogId: string, reason: string) => {
+  try {
+    const res = await axiosInstance.delete(`/posts/${blogId}/by-admin`, {
+      data: { reason },
+    });
+
+    revalidateTag("posts");
+
+    return res.data;
+  } catch (err: any) {
+    return err?.response?.data;
+  }
+};

@@ -116,6 +116,22 @@ const DynamicBlogPage = async ({ params }: { params: { slug: string } }) => {
                   </Button>
                 </div>
               )}
+              {data?.statusCode === 404 && (
+                <div className="text center space-y-4 w-full flex flex-col items-center justify-center h-[calc(100vh-410px)]">
+                  <p className="text-center text-default-600">
+                    Blog not found
+                  </p>
+                  <Button
+                    as={Link}
+                    href={`/`}
+                    radius="full"
+                    variant="solid"
+                    color="primary"
+                  >
+                    Back to Feed
+                  </Button>
+                </div>
+              )}
             </>
           ) : (
             <div className="space-y-4">

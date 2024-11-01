@@ -16,19 +16,12 @@ import { format } from "date-fns";
 import { toZonedTime } from "date-fns-tz";
 import Link from "next/link";
 import { CgSpinner } from "react-icons/cg";
+import { AdminDeleteBlogModal } from "../modals";
 
 interface IProps {}
 
 const BlogsTable = ({}: IProps) => {
-  const { data: res, isLoading } = useGetAllPosts();
-
-  console.log("posts", res);
-
-  // Placeholder for delete action
-  const handleDeleteBlog = (id: string) => {
-    console.log(`Deleting blog with id: ${id}`);
-    // Add actual delete logic here if needed
-  };
+  const { data: res, isLoading, refetch: refetchPosts } = useGetAllPosts();
 
   return (
     <Table radius="sm" aria-label="Blogs table with dummy data">
@@ -57,7 +50,11 @@ const BlogsTable = ({}: IProps) => {
                   href={`/users/@${blog.author.username}`}
                   className="w-full flex space-x-2 items-center"
                 >
-                  <Avatar src={blog.author.profilePicture} size="sm" />
+                  <Avatar
+                    src={blog.author.profilePicture}
+                    size="sm"
+                    className="object-cover"
+                  />
                   <div className="space-y-1">
                     <h3 className="font-medium">{blog.author.fullName}</h3>
                     <span className="text-xs text-default-500">
@@ -89,15 +86,7 @@ const BlogsTable = ({}: IProps) => {
             <TableCell>{blog.totalComments}</TableCell>
             <TableCell>{blog.totalViews}</TableCell>
             <TableCell className="flex items-center space-x-2">
-              <Button
-                color="danger"
-                size="sm"
-                radius="sm"
-                variant="flat"
-                onPress={() => handleDeleteBlog(blog._id)}
-              >
-                Delete
-              </Button>
+              <AdminDeleteBlogModal id={blog._id} refetchPosts={refetchPosts} />
               <Button
                 as={Link}
                 href={`/blogs/${blog.slug}`}
