@@ -1,6 +1,7 @@
 import {
   commentOnPost,
   createPost,
+  getAllPosts,
   getCommentsByPostId,
   getPostBySlug,
   voteOnPost,
@@ -61,7 +62,7 @@ export const useCommentOnPost = () => {
       await commentOnPost(postId, payload),
     onSuccess: (data) => {
       if (!data?.success) {
-        toast.success(data?.message, {
+        toast.error(data?.message, {
           id: "comment-on-post",
         });
       }
@@ -74,10 +75,10 @@ export const useCommentOnPost = () => {
   });
 };
 
-// get comments by post id
-// export const useGetCommentsByPostId = (postId: string) => {
-//   return useQuery({
-//     queryKey: ["GET_ALL_COMMENTS_BY_POST_ID", postId],
-//     queryFn: async () => await getCommentsByPostId(postId),
-//   });
-// };
+// get all blogs (for admin only)
+export const useGetAllPosts = () => {
+  return useQuery({
+    queryKey: ["GET_ALL_POSTS"],
+    queryFn: async () => await getAllPosts(),
+  });
+};

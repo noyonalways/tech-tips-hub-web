@@ -16,7 +16,7 @@ export const getAllPosts = async () => {
 
     return res.json();
   } catch (err: any) {
-    return err?.response?.data;
+    return err;
   }
 };
 

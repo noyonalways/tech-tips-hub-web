@@ -18,7 +18,7 @@ import {
 } from "@nextui-org/table";
 import Link from "next/link";
 import { CgSpinner } from "react-icons/cg";
-import ConfirmActionModal from "../ui/confirmation-modal";
+import { BlockUnblockConfirmActionModal } from "../modals";
 
 interface IProps {}
 
@@ -96,14 +96,14 @@ const UsersTable = ({}: IProps) => {
             </TableCell>
             <TableCell className="flex items-center space-x-2">
               {user.status === "Active" ? (
-                <ConfirmActionModal
+                <BlockUnblockConfirmActionModal
                   actionType="block"
                   isPending={isBlockUserPending}
                   handleAction={handleBlockUser}
                   user={{ _id: user._id, role: user.role }}
                 />
               ) : (
-                <ConfirmActionModal
+                <BlockUnblockConfirmActionModal
                   actionType="unblock"
                   isPending={isUnBlockUserPending}
                   handleAction={handleUnblockUser}
