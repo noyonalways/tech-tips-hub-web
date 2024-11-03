@@ -11,7 +11,7 @@ import THTextarea from "../form/th-textarea";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { useDeletePostByAdminUsingId } from "@/hooks/post.hook";
+import { useDeletePostByAdminUsingId, useDeletePostByUserUsingId } from "@/hooks/post.hook";
 
 interface IProps {
   id: string;

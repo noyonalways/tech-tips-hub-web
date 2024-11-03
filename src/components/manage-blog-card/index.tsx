@@ -24,7 +24,7 @@ const ManageBlogCard = ({
   const parsedContent = parseHtmlContent(content);
 
   return (
-    <div className="border border-gray-200 shadow-sm p-6 rounded-xl w-full hover:shadow-md transition-shadow space-y-4">
+    <div className="border border-default/50 shadow-sm p-6 rounded-xl w-full hover:shadow-md transition-shadow space-y-4">
       {/* Author Details and Premium Badge */}
       <div className="flex justify-between items-end">
         <Link
@@ -44,13 +44,13 @@ const ManageBlogCard = ({
               {author?.isPremiumUser && (
                 <span
                   title="Premium User"
-                  className="ml-1 inline-block bg-slate-200 px-2 rounded-md text-sm dark:text-white dark:bg-primary/60"
+                  className="ml-1 inline-block  px-2 rounded-md text-sm dark:text-white dark:bg-primary/60"
                 >
                   Pro
                 </span>
               )}
             </h3>
-            <span className="text-xs text-gray-500">
+            <span className="text-xs">
               @{author.username} - {new Date(createdAt)?.toDateString()}
             </span>
           </div>
@@ -68,8 +68,8 @@ const ManageBlogCard = ({
         className="flex flex-col-reverse lg:flex-row lg:items-start lg:space-x-4"
       >
         <div className="lg:flex-1 space-y-2">
-          <h1 className="text-2xl font-bold text-gray-800">{title}</h1>
-          <p className="text-gray-600">
+          <h1 className="text-2xl font-bold">{title}</h1>
+          <p className="text-default-500">
             {parsedContent.length > 120
               ? parsedContent.substring(0, 120) + "..."
               : parsedContent}
@@ -88,7 +88,7 @@ const ManageBlogCard = ({
       <div className="flex justify-between items-center">
         <Button size="sm" radius="full" variant="flat">{category.name}</Button>
         <div className="flex items-center justify-end space-x-2">
-        <UserDeleteBlogModal />
+        <UserDeleteBlogModal id={_id} />
         <Button
           size="sm"
           variant="light"

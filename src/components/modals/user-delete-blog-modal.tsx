@@ -1,5 +1,6 @@
-"use client"
+"use client";
 
+import { useDeletePostByUserUsingId } from "@/hooks/post.hook";
 import { Button } from "@nextui-org/button";
 import {
   Modal,
@@ -11,20 +12,30 @@ import {
 } from "@nextui-org/modal";
 import { FiTrash2 } from "react-icons/fi";
 
-interface IProps {}
+interface IProps {
+  id: string;
+}
 
-const UserDeleteBlogModal = ({}: IProps) => {
+const UserDeleteBlogModal = ({ id }: IProps) => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
+  const { mutate: deletePost, isPending } = useDeletePostByUserUsingId();
+
+  const handleDelete = () => {
+    deletePost(id);
+    onOpenChange();
+  };
+
   return (
     <>
       <Button
+        isLoading={isPending}
         onPress={onOpen}
         size="sm"
         variant="light"
         color="danger"
         startContent={<FiTrash2 className="text-lg text-red-500" />}
       >
-        Delete
+        {isPending ? "Deleting..." : "Delete"}
       </Button>
 
       <Modal size="md" isOpen={isOpen} onOpenChange={onOpenChange}>
@@ -39,7 +50,7 @@ const UserDeleteBlogModal = ({}: IProps) => {
               </ModalBody>
               <ModalFooter>
                 <div className="flex justify-end">
-                  <Button color="danger" radius="sm">
+                  <Button onClick={handleDelete} color="danger" radius="sm">
                     Confirm
                   </Button>
                 </div>
