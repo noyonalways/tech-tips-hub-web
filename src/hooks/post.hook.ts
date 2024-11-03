@@ -42,7 +42,7 @@ export const useVoteOnPost = () => {
       await voteOnPost(postId, voteType),
     onSuccess: (data) => {
       if (!data?.success) {
-        toast.success(data?.message, {
+        toast.error(data?.message, {
           id: "vote-on-post",
         });
       }

@@ -64,6 +64,7 @@ const CommentForm = ({ postId, slug }: IProps) => {
       <div className="space-y-4">
         <div className="relative">
           <THTextarea
+          id="comment-field"
             name="content"
             placeholder="Write comment here..."
             size="lg"

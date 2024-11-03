@@ -22,7 +22,7 @@ import { getAllCategories } from "@/services/category";
 import { ICategory, IUser } from "@/types";
 import { getProfileInfo } from "@/services/auth";
 import { useCreatePost } from "@/hooks/post.hook";
-import { revalidateTag } from "next/cache";
+import Loading from "../loading";
 
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false }) as any;
 
@@ -30,17 +30,22 @@ const QuillEditor = () => {
   const {
     handleSubmit,
     control,
-    setValue,
+    reset,
     watch,
     formState: { errors },
-  } = useForm(); // Destructure errors
+  } = useForm();
 
   const [coverImageFile, setCoverImageFile] = useState<File | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [categories, setCategories] = useState<ICategory[]>([]);
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const [currentUser, setCurrentUser] = useState<IUser>();
-  const { mutate: handleCreatePost, isPending, isSuccess, error } = useCreatePost();
+  const {
+    mutate: handleCreatePost,
+    isPending,
+    isSuccess,
+    error,
+  } = useCreatePost();
 
   console.log(error);
 
@@ -101,14 +106,15 @@ const QuillEditor = () => {
     formData.append("data", JSON.stringify(postData));
 
     handleCreatePost(formData);
-    
+    reset();
+    setCoverImageFile(null)
 
     // console.log(postData)
-  }
-
+  };
 
   return (
     <>
+      {isPending && <Loading />}
       {/* Preview Modal */}
       <Modal
         scrollBehavior="inside"
@@ -237,9 +243,10 @@ const QuillEditor = () => {
                 <Input
                   {...field}
                   radius="sm"
-                  placeholder="Blog Title"
                   size="lg"
                   variant="flat"
+                  isRequired
+                  label="Blog Title"
                 />
                 {errors.title?.message && (
                   <p className="text-red-500 text-sm mt-2">
@@ -261,6 +268,7 @@ const QuillEditor = () => {
               <>
                 <ReactQuill
                   {...field}
+                  required
                   className="s"
                   placeholder="Write your blog here..."
                   modules={{
@@ -304,8 +312,8 @@ const QuillEditor = () => {
             rules={{ required: "Category is required" }}
             render={({ field }) => (
               <>
-                <Select {...field} label="Category">
-                  {categories.map((category) => (
+                <Select {...field} label="Category" isRequired>
+                  {categories?.map((category) => (
                     <SelectItem key={category._id} value={category._id}>
                       {category.name}
                     </SelectItem>
@@ -332,7 +340,8 @@ const QuillEditor = () => {
                 <Input
                   {...field}
                   radius="sm"
-                  placeholder="Enter tags (comma separated)"
+                  label="Enter tags (comma separated)"
+                  isRequired
                 />
                 {errors.tags && (
                   <p className="text-red-500 text-sm mt-2">

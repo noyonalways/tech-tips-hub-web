@@ -29,14 +29,14 @@ const deleteBlogValidationSchema = z.object({
 
 const AdminDeleteBlogModal = ({ id, refetchPosts }: IProps) => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
-  const { mutate: deleteBlog, isPending, data } = useDeletePostByAdminUsingId();
+  const { mutate: deleteBlog, isPending } = useDeletePostByAdminUsingId();
 
   const onSubmit: SubmitHandler<FieldValues> = (values) => {
     deleteBlog(
       { postId: id, reason: values.reason },
       {
         onSuccess() {
-            refetchPosts();
+          refetchPosts();
         },
       }
     );
