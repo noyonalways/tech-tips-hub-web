@@ -1,6 +1,7 @@
 import {
   commentOnPost,
   createPost,
+  deleteBlogByUserUsingId,
   getAllPosts,
   getCommentsByPostId,
   getPostBySlug,
@@ -42,7 +43,7 @@ export const useVoteOnPost = () => {
       await voteOnPost(postId, voteType),
     onSuccess: (data) => {
       if (!data?.success) {
-        toast.success(data?.message, {
+        toast.error(data?.message, {
           id: "vote-on-post",
         });
       }
@@ -99,6 +100,25 @@ export const useDeletePostByAdminUsingId = () => {
       if (data.success) {
         toast.success(data?.message, {
           id: "delete-post-by-admin",
+        });
+      }
+    },
+  });
+};
+
+export const useDeletePostByUserUsingId = () => {
+  return useMutation<any, Error, string>({
+    mutationKey: ["DELETE_POST_BY_USER"],
+    mutationFn: async (postId) => await deleteBlogByUserUsingId(postId),
+    onSuccess: (data) => {
+      if (!data?.success) {
+        toast.error(data?.message, {
+          id: "delete-post-by-user",
+        });
+      }
+      if (data.success) {
+        toast.success(data?.message, {
+          id: "delete-post-by-user",
         });
       }
     },

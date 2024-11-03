@@ -9,4 +9,5 @@ export const protectedRoutes = [
   "/forget-password",
   "/settings",
   "/settings/manage-blogs",
+  "/admin/manage-blogs"
 ];

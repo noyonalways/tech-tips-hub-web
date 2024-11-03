@@ -19,7 +19,7 @@ const roleBasedRoutes = {
     "/admin/manage-users",
     "/admin/all-payments",
     "/settings",
-    "/settings/manage-blogs",
+    "/admin/manage-blogs",
   ],
 };
 

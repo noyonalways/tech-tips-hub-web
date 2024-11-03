@@ -9,7 +9,6 @@ import { HiOutlineEye } from "react-icons/hi2";
 import { parseHtmlContent } from "@/utils";
 import UpVoteButton from "../ui/upvote-button";
 import DownVoteButton from "../ui/downvote-button";
-import { RiCloseLargeFill } from 'react-icons/ri';
 
 interface IProps extends IPost {}
 

@@ -1,4 +1,4 @@
-import BlogCard from "@/components/blog-card";
+import ManageBlogCard from "@/components/manage-blog-card";
 import PageTitle from "@/components/modules/settings/page-title";
 import { getLoggedInUserBlogs } from "@/services/post";
 import { IPost } from "@/types";
@@ -16,7 +16,7 @@ const ManageBlogs = async ({}: IProps) => {
 
         <div className="space-y-4">
           {blogs && blogs?.map((blog) => (
-            <BlogCard key={blog._id} {...blog} />
+            <ManageBlogCard key={blog._id} {...blog} />
           ))}
         </div>
       </div>

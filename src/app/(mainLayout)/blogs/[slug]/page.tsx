@@ -1,6 +1,7 @@
 import CommentCard from "@/components/comment-card";
 import CommentForm from "@/components/modules/post/comment-form";
 import ShowHTMLFormat from "@/components/modules/post/show-html-format";
+import BlogCommentButton from "@/components/ui/blog-comment-button";
 import BlogShareDropdown from "@/components/ui/blog-share-dropdown";
 import Container from "@/components/ui/container";
 import DownVoteButton from "@/components/ui/downvote-button";
@@ -118,9 +119,7 @@ const DynamicBlogPage = async ({ params }: { params: { slug: string } }) => {
               )}
               {data?.statusCode === 404 && (
                 <div className="text center space-y-4 w-full flex flex-col items-center justify-center h-[calc(100vh-410px)]">
-                  <p className="text-center text-default-600">
-                    Blog not found
-                  </p>
+                  <p className="text-center text-default-600">Blog not found</p>
                   <Button
                     as={Link}
                     href={`/`}
@@ -266,14 +265,7 @@ const DynamicBlogPage = async ({ params }: { params: { slug: string } }) => {
                     </div>
 
                     <div className="border-r border-default/30 ">
-                      <Button
-                        className="text-2xl mx-2"
-                        variant="light"
-                        isIconOnly
-                        radius="full"
-                      >
-                        <AiOutlineComment />
-                      </Button>
+                      <BlogCommentButton />
                     </div>
 
                     <div className="border-r border-default/30">

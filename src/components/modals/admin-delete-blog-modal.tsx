@@ -11,7 +11,7 @@ import THTextarea from "../form/th-textarea";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { useDeletePostByAdminUsingId } from "@/hooks/post.hook";
+import { useDeletePostByAdminUsingId, useDeletePostByUserUsingId } from "@/hooks/post.hook";
 
 interface IProps {
   id: string;
@@ -29,14 +29,14 @@ const deleteBlogValidationSchema = z.object({
 
 const AdminDeleteBlogModal = ({ id, refetchPosts }: IProps) => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
-  const { mutate: deleteBlog, isPending, data } = useDeletePostByAdminUsingId();
+  const { mutate: deleteBlog, isPending } = useDeletePostByAdminUsingId();
 
   const onSubmit: SubmitHandler<FieldValues> = (values) => {
     deleteBlog(
       { postId: id, reason: values.reason },
       {
         onSuccess() {
-            refetchPosts();
+          refetchPosts();
         },
       }
     );
