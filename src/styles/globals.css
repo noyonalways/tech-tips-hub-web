@@ -3,6 +3,25 @@
 @tailwind utilities;
 
 
+/* For Chrome, Safari, and Opera */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-background;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-gradient-to-b from-primary to-secondary rounded-xl;
+}
+
+/* ::-webkit-scrollbar-thumb:hover {
+  @apply bg-primary;
+  
+} */
+
+
 .ql-container {
   @apply bg-default-50 dark:bg-default-100 rounded p-2;
 }

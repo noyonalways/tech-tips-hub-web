@@ -1,7 +1,7 @@
 import BlogCard from "@/components/blog-card";
+import FeedPosts from "@/components/modules/feed";
 import { getAllPosts } from "@/services/post";
-import {  IPost } from "@/types";
-import { delay } from "@/utils";
+import { IPost } from "@/types";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -24,19 +24,19 @@ interface IProps {
   };
 }
 
+const INITIAL_NUMBERS_OF_POSTS = "5";
+
 export default async function Home({ searchParams }: IProps) {
   const params = searchParams
-    ? { searchTerm: searchParams.search, category: searchParams.category }
+    ? {
+        searchTerm: searchParams.search,
+        category: searchParams.category,
+        limit: INITIAL_NUMBERS_OF_POSTS,
+      }
     : undefined;
 
   const data = await getAllPosts(params);
   const posts = data?.data as IPost[];
 
-  return (
-    <div className="space-y-6 flex-1 w-full">
-      {posts?.map((post) => (
-        <BlogCard key={post?._id} {...post} />
-      ))}
-    </div>
-  );
+  return <FeedPosts initialPosts={posts} />;
 }

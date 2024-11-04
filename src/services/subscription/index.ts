@@ -14,9 +14,9 @@ export const subscribePremiumMonthly = async (payload: TSubscriptionPayload) => 
   try {
     const res = await axiosInstance.post("/subscriptions/subscribe", payload);
 
-    return res.data;
+    return res?.data;
   } catch (err: any) {
-    throw new Error(err.message);
+    return err?.response?.data;
   }
 };
 

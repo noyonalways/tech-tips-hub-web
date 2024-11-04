@@ -27,13 +27,11 @@ export const useUserLogin = () => {
     mutationFn: async (payload) => await loginUser(payload),
     onSuccess: (data) => {
       if (!data?.success) {
-        console.log("hit");
         toast.error(data?.message, {
           id: "user-login",
         });
       }
       if (data.success) {
-        console.log("hit");
         toast.success(data?.message, {
           id: "user-login",
         });

@@ -90,33 +90,20 @@ const BlogCard = ({
       <div className="flex flex-col items-end lg:flex-row lg:items-center justify-between space-y-2 lg:space-y-0">
         <div className="flex items-center space-x-1 lg:space-x-4">
           <div className={`flex space-x-2 items-center`}>
-            <div className="flex items-center space-x-1">
-              <DownVoteButton
-                isIconOnly
+              <Button
                 size="sm"
                 radius="full"
                 variant="light"
-                postId={_id}
-                slug={slug}
-              >
-                <BiDownvote size={14} />
-              </DownVoteButton>
-              <span className="text-sm">{downVotes}</span>
-            </div>
-
-            <div className="flex items-center space-x-1">
-              <UpVoteButton
-                isIconOnly
+                startContent={<BiDownvote size={14} />}
+              >{downVotes}
+              </Button>
+              <Button
                 size="sm"
                 radius="full"
                 variant="light"
-                postId={_id}
-                slug={slug}
-              >
-                <BiUpvote size={14} />
-              </UpVoteButton>
-              <span className="text-sm">{upVotes}</span>
-            </div>
+                startContent={<BiUpvote size={14} />}
+              >{upVotes}
+              </Button>
           </div>
 
           <Button
