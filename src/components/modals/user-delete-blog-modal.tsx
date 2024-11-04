@@ -1,6 +1,6 @@
 "use client";
 
-import { useDeletePostByUserUsingId } from "@/hooks/post.hook";
+import { useDeletePostByUserUsingId, useUpdatePostByUserUsingId } from "@/hooks/post.hook";
 import { Button } from "@nextui-org/button";
 import {
   Modal,

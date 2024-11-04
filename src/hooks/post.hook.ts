@@ -1,11 +1,10 @@
 import {
   commentOnPost,
   createPost,
-  deleteBlogByUserUsingId,
+  updateBlogByUserUsingId,
   getAllPosts,
-  getCommentsByPostId,
-  getPostBySlug,
   voteOnPost,
+  deleteBlogByUserUsingId,
 } from "@/services/post";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { toast } from "sonner";
@@ -119,6 +118,26 @@ export const useDeletePostByUserUsingId = () => {
       if (data.success) {
         toast.success(data?.message, {
           id: "delete-post-by-user",
+        });
+      }
+    },
+  });
+};
+
+export const useUpdatePostByUserUsingId = () => {
+  return useMutation<any, Error, { postId: string; payload: FormData }>({
+    mutationKey: ["UPDATE_POST_BY_USER"],
+    mutationFn: async ({ postId, payload }) =>
+      await updateBlogByUserUsingId(postId, payload),
+    onSuccess: (data) => {
+      if (!data?.success) {
+        toast.error(data?.message, {
+          id: "update-post-by-user",
+        });
+      }
+      if (data.success) {
+        toast.success(data?.message, {
+          id: "update-post-by-user",
         });
       }
     },

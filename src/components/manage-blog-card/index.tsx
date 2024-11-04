@@ -3,24 +3,27 @@ import { Avatar } from "@nextui-org/avatar";
 import { Button } from "@nextui-org/button";
 import { Image } from "@nextui-org/image";
 import Link from "next/link";
-import { FiEdit} from "react-icons/fi";
+import { FiEdit } from "react-icons/fi";
 import { parseHtmlContent } from "@/utils";
 import { UserDeleteBlogModal } from "../modals";
 
+interface IProps {
+  post: IPost;
+}
 
-interface IProps extends IPost {}
+const ManageBlogCard = ({ post }: IProps) => {
+  const {
+    author,
+    title,
+    content,
+    coverImage,
+    createdAt,
+    isPremium,
+    category,
+    slug,
+    _id,
+  } = post ?? {};
 
-const ManageBlogCard = ({
-  author,
-  title,
-  content,
-  coverImage,
-  createdAt,
-  isPremium,
-  category,
-  slug,
-  _id,
-}: IProps) => {
   const parsedContent = parseHtmlContent(content);
 
   return (
@@ -86,17 +89,21 @@ const ManageBlogCard = ({
 
       {/* Update and Delete Buttons */}
       <div className="flex justify-between items-center">
-        <Button size="sm" radius="full" variant="flat">{category.name}</Button>
-        <div className="flex items-center justify-end space-x-2">
-        <UserDeleteBlogModal id={_id} />
-        <Button
-          size="sm"
-          variant="light"
-          startContent={<FiEdit className="text-lg text-gray-600" />}
-        >
-          Update
+        <Button size="sm" radius="full" variant="flat">
+          {category.name}
         </Button>
-      </div>
+        <div className="flex items-center justify-end space-x-2">
+          <UserDeleteBlogModal id={_id} />
+          <Button
+            href={`/settings/update/${slug}`}
+            as={Link}
+            size="sm"
+            variant="light"
+            startContent={<FiEdit className="text-lg text-gray-600" />}
+          >
+            Update
+          </Button>
+        </div>
       </div>
     </div>
   );
