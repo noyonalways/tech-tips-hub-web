@@ -1,6 +1,6 @@
 "use client";
 
-import { useUpdatePostByUserUsingId } from "@/hooks/post.hook";
+import { useDeletePostByUserUsingId, useUpdatePostByUserUsingId } from "@/hooks/post.hook";
 import { Button } from "@nextui-org/button";
 import {
   Modal,
@@ -18,7 +18,7 @@ interface IProps {
 
 const UserDeleteBlogModal = ({ id }: IProps) => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
-  const { mutate: deletePost, isPending } = useUpdatePostByUserUsingId();
+  const { mutate: deletePost, isPending } = useDeletePostByUserUsingId();
 
   const handleDelete = () => {
     deletePost(id);
