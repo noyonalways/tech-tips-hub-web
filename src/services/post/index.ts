@@ -5,9 +5,23 @@ import axiosInstance from "@/lib/AxiosInstance";
 import { revalidateTag } from "next/cache";
 import { cookies } from "next/headers";
 
-export const getAllPosts = async () => {
+export const getAllPosts = async (
+  params?: Record<string, string | undefined>
+) => {
   try {
-    const res = await fetch(`${envConfig.baseApi}/posts?limit=20`, {
+    const url = new URL(`${envConfig.baseApi}/posts`);
+
+    // Append only defined parameters
+    if (params) {
+      Object.keys(params).forEach((key) => {
+        const value = params[key];
+        if (value !== undefined) {
+          url.searchParams.append(key, value);
+        }
+      });
+    }
+
+    const res = await fetch(url.toString(), {
       cache: "no-cache",
       next: {
         tags: ["posts"],
@@ -20,23 +34,46 @@ export const getAllPosts = async () => {
   }
 };
 
+
+
 // get following users posts
-export const getFollowingUsersPosts = async () => {
+export const getFollowingUsersPosts = async (
+  params?: Record<string, string | undefined>
+) => {
   const cookieStore = cookies();
   const accessToken = cookieStore.get("tth-access-token")?.value;
+
   try {
-    const res = await fetch(`${envConfig.baseApi}/posts/following-users`, {
-      cache: "no-cache",
+    // Create a URL with the base endpoint
+    const url = new URL(`${envConfig.baseApi}/posts/following-users`);
+
+    // Append only defined parameters
+    if (params) {
+      Object.keys(params).forEach((key) => {
+        const value = params[key];
+        if (value !== undefined) {
+          url.searchParams.append(key, value);
+        }
+      });
+    }
+
+    const res = await fetch(url.toString(), {
+      cache: "no-cache", // Consistent with getAllPosts
       headers: {
         Authorization: `Bearer ${accessToken}`,
+      },
+      next: {
+        tags: ["posts"], // Add this if you want to enable cache invalidation
       },
     });
 
     return res.json();
   } catch (err: any) {
-    return err?.response?.data;
+    return err; // Handle the error as you see fit
   }
 };
+
+
 
 export const createPost = async (payload: FormData) => {
   try {

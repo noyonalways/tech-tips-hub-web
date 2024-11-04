@@ -1,13 +1,7 @@
 import BlogCard from "@/components/blog-card";
-import MiniFooter from "@/components/shared/mini-footer";
-import Container from "@/components/ui/container";
-import { getAllCategories } from "@/services/category";
-import { getAllPosts, getFollowingUsersPosts } from "@/services/post";
-import { ICategory, IPost } from "@/types";
-import { Button } from "@nextui-org/button";
+import { getFollowingUsersPosts } from "@/services/post";
+import { IPost } from "@/types";
 import { Metadata } from "next";
-import Link from "next/link";
-import { PiMagicWandLight, PiUsers } from "react-icons/pi";
 
 export const metadata: Metadata = {
   title: "Following Feed",
@@ -22,65 +16,26 @@ export const metadata: Metadata = {
   },
 };
 
-export default async function FollowingUsersPosts() {
-  const data = await getFollowingUsersPosts();
+interface IProps {
+  searchParams: {
+    search: string;
+    category: string;
+  };
+}
+
+export default async function FollowingUsersPosts({ searchParams }: IProps) {
+  const params = searchParams
+    ? { searchTerm: searchParams.search, category: searchParams.category }
+    : undefined;
+
+  const data = await getFollowingUsersPosts(params);
   const posts = data?.data as IPost[];
 
-  const categoryData = await getAllCategories();
-  const categories = categoryData?.data as ICategory[];
-
   return (
-    <section className="py-8">
-      <Container>
-        <div className="flex items-center space-x-4">
-          <Button
-            as={Link}
-            href={`/`}
-            variant="flat"
-            color="primary"
-            radius="full"
-            startContent={<PiMagicWandLight className="text-lg" />}
-          >
-            Personalized
-          </Button>
-          <Button
-            as={Link}
-            href={`/following`}
-            variant="light"
-            radius="full"
-            startContent={<PiUsers className="text-lg" />}
-          >
-            Following
-          </Button>
-        </div>
-        <div className="flex flex-col lg:flex-row lg:justify-between lg:space-x-6 items-start mt-8 w-full">
-          <div className="space-y-6 flex-1 w-full">
-            {posts?.map((post) => (
-              <BlogCard key={post?._id} {...post} />
-            ))}
-          </div>
-
-          <div className="hidden lg:inline-block basis-[25%] space-y-6  sticky top-20">
-            <div className="border border-default/50 p-6 rounded-xl space-y-2">
-              <h2 className="font-semibold text-lg">Categories</h2>
-              <div className="gap-2 flex flex-wrap">
-                {categories?.map((category) => (
-                  <Button
-                    key={category._id}
-                    variant="flat"
-                    radius="full"
-                    size="sm"
-                  >
-                    {category.name}
-                  </Button>
-                ))}
-              </div>
-            </div>
-
-            <MiniFooter />
-          </div>
-        </div>
-      </Container>
-    </section>
+    <div className="space-y-6 flex-1 w-full">
+      {posts?.map((post) => (
+        <BlogCard key={post?._id} {...post} />
+      ))}
+    </div>
   );
 }

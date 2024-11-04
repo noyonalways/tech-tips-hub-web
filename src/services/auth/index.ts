@@ -23,8 +23,12 @@ export const loginUser = async (payload: TLogin) => {
     const res = await axiosInstance.post("/auth/login", payload);
 
     if (res?.data.success) {
-      cookies().set("tth-access-token", res?.data?.data?.accessToken);
-      cookies().set("tth-refresh-token", res?.data?.data?.refreshToken);
+      cookies().set("tth-access-token", res?.data?.data?.accessToken, {
+        maxAge: 1000 * 60 * 60 * 24 * 60 * 365,
+      });
+      cookies().set("tth-refresh-token", res?.data?.data?.refreshToken, {
+        maxAge: 1000 * 60 * 60 * 24 * 60 * 365,
+      });
     }
 
     return res.data;
