@@ -10,7 +10,7 @@ interface IProps {
   children: React.ReactNode;
 }
 
-const FeedLayout: React.FC<IProps> =  async({ children }) => {
+const FeedLayout = async({ children }: IProps) => {
 
   const categoryData = await getAllCategories();
   const categories = categoryData?.data as ICategory[];
