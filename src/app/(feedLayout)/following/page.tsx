@@ -1,4 +1,5 @@
 import BlogCard from "@/components/blog-card";
+import FollowingFeedPosts from "@/components/modules/following-feed";
 import { getFollowingUsersPosts } from "@/services/post";
 import { IPost } from "@/types";
 import { Metadata } from "next";
@@ -31,11 +32,5 @@ export default async function FollowingUsersPosts({ searchParams }: IProps) {
   const data = await getFollowingUsersPosts(params);
   const posts = data?.data as IPost[];
 
-  return (
-    <div className="space-y-6 flex-1 w-full">
-      {posts?.map((post) => (
-        <BlogCard key={post?._id} {...post} />
-      ))}
-    </div>
-  );
+  return <FollowingFeedPosts initialPosts={posts} />;
 }

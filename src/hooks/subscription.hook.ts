@@ -7,15 +7,18 @@ export const useSubscribePremiumMonthly = () => {
     mutationKey: ["SUBSCRIPTION_PLAN"],
     mutationFn: async (payload) => await subscribePremiumMonthly(payload),
     onSuccess: (data) => {
-      toast.success("Subscription initiate successfully", {
-        id: "subscription-monthly",
-      });
+      if (!data?.success) {
+        toast.error(data?.message, {
+          id: "subscription-monthly",
+        });
+      }
+      if (data.success) {
+        toast.success("Subscription initiate successfully", {
+          id: "subscription-monthly",
+        });
+      }
     },
-    onError: (error) => {
-      toast.error(error?.message || "Something went wrong!", {
-        id: "subscription-monthly-error",
-      });
-    },
+    
   });
 };
 

@@ -25,11 +25,11 @@ const CommentCard = ({ user, content, createdAt, images }: IProps) => {
         <Avatar
           className="size-12 object-cover"
           radius="full"
-          src={user.profilePicture}
-          name={user.fullName}
+          src={user?.profilePicture}
+          name={user?.fullName}
         />
         <div className="flex flex-col items-start">
-          <h3 className="font-medium">{user.fullName}</h3>
+          <h3 className="font-medium">{user?.fullName}</h3>
           <span className="text-default-500 text-xs">{timeAgo}</span>
         </div>
       </Link>
@@ -37,11 +37,11 @@ const CommentCard = ({ user, content, createdAt, images }: IProps) => {
       <p className="text-default-500 text-base">{content}</p>
       {images && images.length > 0 && (
         <div className={`grid gap-4 max-w-lg ${gridCols}`}>
-          {images.map((image, index) => (
+          {images?.map((image, index) => (
             <Image
               key={index}
               className={`${
-                images.length === 1 ? "col-span-full" : ""
+                images?.length === 1 ? "col-span-full" : ""
               } object-cover rounded-lg`}
               src={image}
               alt={`Comment image ${index + 1}`}
