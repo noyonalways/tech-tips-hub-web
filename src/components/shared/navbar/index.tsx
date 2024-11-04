@@ -18,29 +18,30 @@ import {
 import { link as linkStyles } from "@nextui-org/theme";
 import clsx from "clsx";
 import NextLink from "next/link";
+import NavbarSearchInput from "./navbar-search-input";
 
 export const Navbar = () => {
-  const searchInput = (
-    <Input
-      radius="full"
-      variant="bordered"
-      aria-label="Search"
-      classNames={{
-        input: "text-sm ",
-      }}
-      endContent={
-        <Kbd className="hidden lg:inline-block" keys={["command"]}>
-          K
-        </Kbd>
-      }
-      labelPlacement="outside"
-      placeholder="Search..."
-      startContent={
-        <SearchIcon className="text-base text-default-400 pointer-events-none flex-shrink-0" />
-      }
-      type="search"
-    />
-  );
+  // const NavbarSearchInput = (
+  //   <Input
+  //     radius="full"
+  //     variant="bordered"
+  //     aria-label="Search"
+  //     classNames={{
+  //       input: "text-sm ",
+  //     }}
+  //     endContent={
+  //       <Kbd className="hidden lg:inline-block" keys={["command"]}>
+  //         K
+  //       </Kbd>
+  //     }
+  //     labelPlacement="outside"
+  //     placeholder="Search..."
+  //     startContent={
+  //       <SearchIcon className="text-base text-default-400 pointer-events-none flex-shrink-0" />
+  //     }
+  //     type="search"
+  //   />
+  // );
 
   return (
     <NextUINavbar
@@ -51,7 +52,11 @@ export const Navbar = () => {
       <NavbarContent className="basis-1/5 sm:basis-full" justify="start">
         <NavbarBrand as="li" className="gap-3 max-w-fit">
           <NextLink href="/">
-            <Image className="size-10" src="/tech-tips-hub-logo.png" alt="tech-tips-hub-logo" />
+            <Image
+              className="size-10"
+              src="/tech-tips-hub-logo.png"
+              alt="tech-tips-hub-logo"
+            />
           </NextLink>
           <div className="size-10 flex justify-center lg:hidden">
             <NavbarMenuToggle />
@@ -79,7 +84,9 @@ export const Navbar = () => {
         className="hidden sm:flex basis-1/5 sm:basis-full"
         justify="end"
       >
-        <NavbarItem className="hidden lg:flex">{searchInput}</NavbarItem>
+        <NavbarItem className="hidden lg:flex">
+          {<NavbarSearchInput />}
+        </NavbarItem>
 
         <NavbarItem className="hidden sm:flex gap-2">
           <ThemeSwitch className="hidden lg:inline-block" />
@@ -99,14 +106,19 @@ export const Navbar = () => {
       </NavbarContent>
 
       <NavbarMenu className="z-50">
-        {searchInput}
+        <NavbarSearchInput />
         <div className="mx-4 mt-2 flex flex-col gap-2">
           {siteConfig.navMenuItems.map((item, index) => (
             <NavbarMenuItem key={`${item}-${index}`}>
-              <NextLink  className={clsx(
+              <NextLink
+                className={clsx(
                   linkStyles({ color: "foreground" }),
                   "data-[active=true]:text-primary data-[active=true]:font-medium"
-                )} href={item.href}>{item.label}</NextLink>
+                )}
+                href={item.href}
+              >
+                {item.label}
+              </NextLink>
             </NavbarMenuItem>
           ))}
         </div>
