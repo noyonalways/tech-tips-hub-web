@@ -44,6 +44,10 @@ const NavarDropdown: React.FC<IProps> = () => {
     {
       label: "Settings",
       href: "/settings",
+    },
+    {
+      label: "Manage Blogs",
+      href: "/settings/manage-blogs",
     }
   ];
 

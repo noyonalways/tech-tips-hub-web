@@ -217,3 +217,17 @@ export const deleteBlogByUserUsingId = async (blogId: string) => {
     return err?.response?.data;
   }
 };
+
+
+// update a blog by user using id
+export const updateBlogByUserUsingId = async (blogId: string, payload: FormData) => {
+  try {
+    const res = await axiosInstance.put(`/posts/${blogId}`, payload);
+
+    revalidateTag("posts");
+
+    return res.data;
+  } catch (err: any) {
+    return err?.response?.data;
+  }
+};

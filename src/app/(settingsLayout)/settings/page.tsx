@@ -2,8 +2,13 @@ import PageTitle from "@/components/modules/settings/page-title";
 import UpdateProfileDetailsForm from "@/components/modules/settings/update-profile-details-form";
 import UpdateSocialLinks from "@/components/modules/settings/update-social-links";
 import { getProfileInfo } from "@/services/auth";
+import { Metadata } from "next";
 
-
+export const metadata: Metadata = {
+  title: "Profile Settings",
+  description: "Manage your Tech Tips Hub profile settings.",
+  keywords: "Profile, Settings, Tech Tips Hub",
+};
 
 interface IProps {}
 

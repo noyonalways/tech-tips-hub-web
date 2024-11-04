@@ -23,6 +23,7 @@ import { ICategory, IUser } from "@/types";
 import { getProfileInfo } from "@/services/auth";
 import { useCreatePost } from "@/hooks/post.hook";
 import Loading from "../loading";
+import { Image } from "@nextui-org/image";
 
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false }) as any;
 
@@ -135,10 +136,10 @@ const QuillEditor = () => {
               </ModalHeader>
               <ModalBody className="w-full">
                 {coverImageFile && (
-                  <img
+                  <Image
                     src={URL.createObjectURL(coverImageFile)}
                     alt="Cover Preview"
-                    className="w-full mb-4 object-cover"
+                    className="w-full mb-4 object-cover rounded"
                   />
                 )}
                 <h3 className="text-xl font-bold mb-2">
