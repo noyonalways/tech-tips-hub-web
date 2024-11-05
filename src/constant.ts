@@ -9,5 +9,9 @@ export const protectedRoutes = [
   "/forget-password",
   "/settings",
   "/settings/manage-blogs",
-  "/admin/manage-blogs"
+  "/admin/manage-blogs",
+  "/admin/manage-users",
+  "/admin/dashboard",
+  "/admin/manage-users",
+  "/admin/all-payments",
 ];

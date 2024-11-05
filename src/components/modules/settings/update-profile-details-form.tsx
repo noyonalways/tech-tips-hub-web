@@ -64,7 +64,7 @@ const UpdateProfileDetailsForm = ({
                 className="w-28 h-28 lg:size-28 object-cover text-3xl font-bold"
                 radius="full"
                 src={previewImage}
-                name={fullName}
+                color="primary"
               />
               <div className="flex flex-col space-y-2 items-center">
                 <Button
