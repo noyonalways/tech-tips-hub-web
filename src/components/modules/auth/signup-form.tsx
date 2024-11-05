@@ -10,7 +10,7 @@ import { signUpValidationSchema } from "@/schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@nextui-org/button";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { FieldValues, SubmitHandler } from "react-hook-form";
 import { PiEyeLight, PiEyeSlashLight } from "react-icons/pi";
 
@@ -64,7 +64,7 @@ const SignUpForm: React.FC<IProps> = () => {
   }, [isPending, data, router]);
 
   return (
-    <>
+    <Suspense>
       <THForm
         onSubmit={onSubmit}
         resolver={zodResolver(signUpValidationSchema)}
@@ -122,7 +122,7 @@ const SignUpForm: React.FC<IProps> = () => {
           </Button>
         </div>
       </THForm>
-    </>
+    </Suspense>
   );
 };
 

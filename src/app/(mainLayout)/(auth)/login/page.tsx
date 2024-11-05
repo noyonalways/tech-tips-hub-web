@@ -1,4 +1,4 @@
-import LoginForm from "@/components/modules/auth/login-form";
+import SuspendedLoginForm from "@/components/modules/auth/login-form";
 import Container from "@/components/ui/container";
 import { Divider } from "@nextui-org/divider";
 import { Image } from "@nextui-org/image";
@@ -37,7 +37,7 @@ const LoginPage: React.FC<IProps> = () => {
             </div>
           </div>
 
-          <LoginForm />
+          <SuspendedLoginForm />
           <div className="text-center mt-2 pb-4">
             <Link
               href="/forget-password"

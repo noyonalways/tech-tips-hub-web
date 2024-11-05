@@ -7,7 +7,7 @@ import { passwordResetValidationSchema } from "@/schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@nextui-org/button";
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
+import { Suspense, useEffect } from "react";
 import { FieldValues, SubmitHandler } from "react-hook-form";
 
 const PasswordResetForm = () => {
@@ -30,7 +30,7 @@ const PasswordResetForm = () => {
   }, [isPending, data, router]);
 
   return (
-    <>
+    <Suspense>
       <THForm
         onSubmit={onSubmit}
         resolver={zodResolver(passwordResetValidationSchema)}
@@ -50,7 +50,7 @@ const PasswordResetForm = () => {
           </Button>
         </div>
       </THForm>
-    </>
+    </Suspense>
   );
 };
 

@@ -10,7 +10,7 @@ import { TLogin } from "@/types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@nextui-org/button";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { FieldValues, SubmitHandler } from "react-hook-form";
 import { PiEyeLight, PiEyeSlashLight } from "react-icons/pi";
 
@@ -43,7 +43,7 @@ const LoginForm = ({}: IProps) => {
   }, [isPending, data, redirect, router, setUserLoading]);
 
   return (
-    <>
+    <Suspense>
       <THForm
         onSubmit={onSubmit}
         resolver={zodResolver(signInValidationSchema)}
@@ -90,9 +90,15 @@ const LoginForm = ({}: IProps) => {
           </Button>
         </div>
       </THForm>
-    </>
+    </Suspense>
   );
 };
 
 
-export default LoginForm;
+const SuspendedLoginForm = () => (
+  <Suspense fallback={<Loading />}>
+    <LoginForm />
+  </Suspense>
+);
+
+export default SuspendedLoginForm;
