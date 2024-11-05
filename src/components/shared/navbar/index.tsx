@@ -1,11 +1,10 @@
-import { SearchIcon } from "@/components/icons";
+"use client"
+
 import LoginLogoutSwitch from "@/components/ui/login-logout-switch";
 import { ThemeSwitch } from "@/components/ui/theme-switch";
 import WritePostButton from "@/components/ui/write-post-button";
 import { siteConfig } from "@/config/site";
 import { Image } from "@nextui-org/image";
-import { Input } from "@nextui-org/input";
-import { Kbd } from "@nextui-org/kbd";
 import {
   NavbarBrand,
   NavbarContent,
@@ -19,29 +18,10 @@ import { link as linkStyles } from "@nextui-org/theme";
 import clsx from "clsx";
 import NextLink from "next/link";
 import NavbarSearchInput from "./navbar-search-input";
+import { usePathname } from "next/navigation";
 
 export const Navbar = () => {
-  // const NavbarSearchInput = (
-  //   <Input
-  //     radius="full"
-  //     variant="bordered"
-  //     aria-label="Search"
-  //     classNames={{
-  //       input: "text-sm ",
-  //     }}
-  //     endContent={
-  //       <Kbd className="hidden lg:inline-block" keys={["command"]}>
-  //         K
-  //       </Kbd>
-  //     }
-  //     labelPlacement="outside"
-  //     placeholder="Search..."
-  //     startContent={
-  //       <SearchIcon className="text-base text-default-400 pointer-events-none flex-shrink-0" />
-  //     }
-  //     type="search"
-  //   />
-  // );
+  const pathName = usePathname()
 
   return (
     <NextUINavbar
@@ -68,7 +48,8 @@ export const Navbar = () => {
               <NextLink
                 className={clsx(
                   linkStyles({ color: "foreground" }),
-                  "data-[active=true]:text-primary data-[active=true]:font-medium"
+                  "data-[active=true]:text-primary data-[active=true]:font-medium",
+                  pathName === item.href ? "text-primary" : ""
                 )}
                 color="foreground"
                 href={item.href}

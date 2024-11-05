@@ -6,13 +6,16 @@ import { Image } from "@nextui-org/image";
 import Link from "next/link";
 import { useState } from "react";
 import { HiBars2, HiXMark } from "react-icons/hi2";
-
 import { adminLinks } from "./admin-links";
+import { usePathname } from "next/navigation";
 
 interface IProps {}
 
 const AdminSidebar = ({}: IProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const pathName = usePathname();
+
+
   return (
     <div className="lg:basis-[20%] border-b lg:border-r border-default/50 lg:h-screen fixed top-0 lg:sticky w-full z-20 bg-background">
       <div className="flex items-center justify-between p-4">
@@ -22,7 +25,9 @@ const AdminSidebar = ({}: IProps) => {
             src="/tech-tips-hub-logo.png"
             alt="tech-tips-hub-logo"
           />
-          <span className="text-lg font-semibold hidden lg:inline-block">Tech Tips Hub</span>
+          <span className="text-lg font-semibold hidden lg:inline-block">
+            Tech Tips Hub
+          </span>
         </Link>
         <div className="flex space-x-4 items-center">
           <ThemeSwitch />
@@ -47,8 +52,9 @@ const AdminSidebar = ({}: IProps) => {
             <li key={link.id}>
               <Button
                 radius="sm"
-                variant="flat"
-                className="w-full justify-start"
+                color={pathName === link.href ? "primary": "default"}
+                variant={pathName === link.href ? "flat": "light"}
+                className={`w-full justify-start`}
                 as={Link}
                 href={link.href}
                 startContent={link.icon}

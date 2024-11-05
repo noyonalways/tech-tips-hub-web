@@ -67,6 +67,10 @@ export const config = {
     "/signup",
     "/forget-password",
     "/settings",
-    "/settings/manage-blogs"
+    "/settings/manage-blogs",
+    "/admin/manage-users",
+    "/admin/dashboard",
+    "/admin/manage-users",
+    "/admin/all-payments",
   ],
 };

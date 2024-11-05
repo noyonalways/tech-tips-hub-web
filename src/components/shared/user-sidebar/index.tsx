@@ -3,13 +3,19 @@
 import { Button } from "@nextui-org/button";
 import Link from "next/link";
 import { useState } from "react";
-import { HiBars3, HiOutlineArrowLeft, HiOutlineUserCircle, HiXMark } from "react-icons/hi2";
-import { MdOutlineArticle } from "react-icons/md";
+import {
+  HiBars3,
+  HiOutlineArrowLeft,
+  HiXMark,
+} from "react-icons/hi2";
+import { usePathname } from "next/navigation";
+import { userLinks } from "./user-links";
 
 interface IProps {}
 
 const UserSidebar = ({}: IProps) => {
   const [open, setOpen] = useState(false);
+  const pathName = usePathname();
 
   return (
     <div className={`relative basis-full lg:basis-[16%] bg-background z-40`}>
@@ -44,30 +50,21 @@ const UserSidebar = ({}: IProps) => {
             )}
 
             <ul className="px-4 flex flex-col w-full space-y-2">
-              <li>
-                <Button
-                  className="w-full justify-start"
-                  startContent={<HiOutlineUserCircle size={18} />}
-                  radius="sm"
-                  variant="flat"
-                  as={Link}
-                  href="/settings"
-                >
-                  Profile
-                </Button>
-              </li>
-              <li>
-                <Button
-                  className="w-full justify-start"
-                  startContent={<MdOutlineArticle size={18} />}
-                  radius="sm"
-                  variant="flat"
-                  as={Link}
-                  href="/settings/manage-blogs"
-                >
-                  Manage Blogs
-                </Button>
-              </li>
+              {userLinks.map((link) => (
+                <li>
+                  <Button
+                    className="w-full justify-start"
+                    startContent={link.icon}
+                    radius="sm"
+                    color={pathName === link.href ? "primary" : "default"}
+                    variant={pathName === link.href ? "flat" : "light"}
+                    as={Link}
+                    href={link.href}
+                  >
+                    {link.label}
+                  </Button>
+                </li>
+              ))}
             </ul>
           </div>
 
