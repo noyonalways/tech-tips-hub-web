@@ -37,8 +37,10 @@ const FollowingFeedPosts = ({ initialPosts }: IProps) => {
     const data = await getFollowingUsersPosts(params);
     const newPosts = data?.data || [];
 
-    setPosts((prevPosts) => [...prevPosts, ...newPosts]);
-    setPage((prevPage) => prevPage + 1);
+    if(data.success && newPosts.length > 0) {
+      setPosts((prevPosts) => [...prevPosts, ...newPosts]);
+      setPage((prevPage) => prevPage + 1);
+    }
 
     // Stop further fetching if fewer posts than the limit are returned
     if (newPosts.length < 5) {

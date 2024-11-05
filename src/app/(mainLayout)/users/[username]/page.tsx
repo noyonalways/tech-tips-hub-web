@@ -88,7 +88,6 @@ const GetUserByIdPage = async ({
                 className="w-28 h-28 lg:size-40 object-cover"
                 radius="full"
                 src={profilePicture}
-                name={fullName}
                 isBordered
               />
               <div className="space-y-4">

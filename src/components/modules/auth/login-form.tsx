@@ -10,10 +10,9 @@ import { TLogin } from "@/types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@nextui-org/button";
 import { useRouter, useSearchParams } from "next/navigation";
-import { Suspense, useState } from "react";
+import { useEffect, useState } from "react";
 import { FieldValues, SubmitHandler } from "react-hook-form";
 import { PiEyeLight, PiEyeSlashLight } from "react-icons/pi";
-import { toast } from "sonner";
 
 interface IProps {}
 
@@ -32,18 +31,19 @@ const LoginForm = ({}: IProps) => {
 
   const redirect = searchParams.get("redirect");
 
-  if (!isPending && data?.success) {
-    setUserLoading(false);
-    if (redirect) {
-      router.push(redirect);
-    } else {
-      router.push("/");
+  useEffect(() => {
+    if (!isPending && data?.success) {
+      setUserLoading(false);
+      if (redirect) {
+        router.push(redirect);
+      } else {
+        router.push("/");
+      }
     }
-  }
+  }, [isPending, data, redirect, router, setUserLoading]);
 
   return (
     <>
-      {isPending && <Loading />}
       <THForm
         onSubmit={onSubmit}
         resolver={zodResolver(signInValidationSchema)}
@@ -65,23 +65,28 @@ const LoginForm = ({}: IProps) => {
               placeholder="Your Password"
               type={isPassword ? "password" : "text"}
             />
-            <button
+            <Button
+              variant="light"
+              size="sm"
+              radius="full"
+              isIconOnly
               onClick={() => setIsPassword(!isPassword)}
               type="button"
               className="absolute top-3 right-2 text-lg"
             >
               {isPassword ? <PiEyeLight /> : <PiEyeSlashLight />}
-            </button>
+            </Button>
           </div>
 
           <Button
+            isLoading={isPending}
             type="submit"
             color="primary"
             variant="solid"
             radius="sm"
             className="w-full block"
           >
-            Log In
+            {isPending ? "Logging...": "Login"}
           </Button>
         </div>
       </THForm>
@@ -89,10 +94,5 @@ const LoginForm = ({}: IProps) => {
   );
 };
 
-const SuspendedLoginForm: React.FC = () => (
-  <Suspense fallback={<Loading />}>
-    <LoginForm />
-  </Suspense>
-);
 
-export default SuspendedLoginForm;
+export default LoginForm;

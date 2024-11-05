@@ -10,6 +10,7 @@ import { Input } from "@nextui-org/input";
 import { Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, useDisclosure } from "@nextui-org/modal";
 import { Select, SelectItem } from "@nextui-org/select";
 import dynamic from "next/dynamic";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import "react-quill/dist/quill.snow.css";
 
@@ -20,9 +21,9 @@ interface IProps {
 }
 
 const UpdateBlog = ({ post }: IProps) => {
-  const [title, setTitle] = useState(post.title);
-  const [content, setContent] = useState(post.content);
-  const [category, setCategory] = useState(post.category._id);
+  const [title, setTitle] = useState(post?.title);
+  const [content, setContent] = useState(post?.content);
+  const [category, setCategory] = useState(post.category?._id);
   const [tags, setTags] = useState(post.tags?.join(", ") || "");
   const [categories, setCategories] = useState<
     { key: string; label: string }[]
@@ -31,8 +32,9 @@ const UpdateBlog = ({ post }: IProps) => {
   const [coverImagePreview, setCoverImagePreview] = useState(post.coverImage); // Preview image
   const [isOpen, setIsOpen] = useState(false);
 
-  const { mutate: updatePost, isPending,  } = useUpdatePostByUserUsingId();
+  const { mutate: updatePost, isPending, data } = useUpdatePostByUserUsingId();
   const { isOpen: modalIsOpen, onOpen, onOpenChange } = useDisclosure();
+  const router = useRouter()
 
 
   useEffect(() => {
@@ -72,21 +74,27 @@ const UpdateBlog = ({ post }: IProps) => {
       .filter((tag) => tag !== "");
 
     const formData = new FormData();
-    const data = {
+    const values = {
       title,
       content,
       category,
       tags: tagsArray,
     };
 
-    formData.append("data", JSON.stringify(data));
+    formData.append("data", JSON.stringify(values));
 
     if (coverImage) {
       formData.append("image", coverImage); // Append the image file
     }
+    
 
     updatePost({ postId: post._id, payload: formData });
+
   };
+
+  if(!isPending && data?.success){
+    router.push(`/settings/update/${data?.data?.slug}`);
+  }
 
   return (
     <>
@@ -153,8 +161,8 @@ const UpdateBlog = ({ post }: IProps) => {
         </ModalContent>
       </Modal>
 
-      <div className="space-y-4">
-        <div className="relative">
+      <div className="">
+        <div className="relative mb-4">
           <Image className="w-full" src={coverImagePreview} />
           <Button
             variant="faded"
@@ -176,6 +184,8 @@ const UpdateBlog = ({ post }: IProps) => {
         </div>
 
         <Input
+
+          className="mb-4"
           size="lg"
           radius="sm"
           variant="bordered"
@@ -186,6 +196,7 @@ const UpdateBlog = ({ post }: IProps) => {
 
         {post.contentType === "html" && (
           <ReactQuill
+            className="mb-4"
             value={content}
             onChange={setContent}
             required
@@ -215,20 +226,23 @@ const UpdateBlog = ({ post }: IProps) => {
           />
         )}
 
-        <Select
-          aria-label="category-select"
-          onChange={(e) => setCategory(e.target.value)}
-          size="lg"
-          radius="sm"
-          variant="bordered"
-          isOpen={isOpen}
-          defaultSelectedKeys={[category]}
-          onOpenChange={(open) => open !== isOpen && setIsOpen(open)}
-        >
-          {categories.map((cate) => (
-            <SelectItem key={cate.key}>{cate.label}</SelectItem>
-          ))}
-        </Select>
+        <div className="mb-4">
+          <Select
+            aria-label="category-select"
+            onChange={(e) => setCategory(e.target.value)}
+            size="lg"
+            radius="sm"
+            variant="bordered"
+            isOpen={isOpen}
+            defaultSelectedKeys={[category]}
+            onOpenChange={(open) => open !== isOpen && setIsOpen(open)}
+      
+          >
+            {categories.map((cate) => (
+              <SelectItem key={cate.key}>{cate.label}</SelectItem>
+            ))}
+          </Select>
+        </div>
 
         <Input
           size="lg"
@@ -239,7 +253,7 @@ const UpdateBlog = ({ post }: IProps) => {
           placeholder="Tags (comma-separated)"
         />
 
-        <div className="space-x-2 absolute top-0 right-0">
+        <div className="space-x-2 absolute top-0 right-2 lg:right-0">
           <Button radius="full" variant="bordered" onClick={onOpen}>
             Preview
           </Button>

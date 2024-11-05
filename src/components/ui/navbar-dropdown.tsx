@@ -54,25 +54,14 @@ const NavarDropdown: React.FC<IProps> = () => {
   return (
     <Dropdown placement="bottom-end">
       <DropdownTrigger>
-        {user?.profilePicture ? (
           <Avatar
             color="primary"
             size="sm"
             isBordered
             as="button"
             className="transition-transform object-cover"
-            src={user.profilePicture}
+            src={user?.profilePicture}
           />
-        ) : (
-          <Avatar
-            color="primary"
-            name={user?.name}
-            size="sm"
-            isBordered
-            as="button"
-            className="transition-transform"
-          />
-        )}
       </DropdownTrigger>
       <DropdownMenu aria-label="Profile Actions" variant="flat">
         <DropdownItem key="user-email" className="h-14 gap-2">
