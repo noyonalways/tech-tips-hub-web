@@ -40,26 +40,71 @@
 - **Subscription Management:** Admins can manage user subscriptions, view active and expired subscriptions, and handle billing issues.
 - **Analytics & Reporting:** Track platform engagement metrics like total views, user growth, upvotes/downvotes, and content performance.
 
----
-
-Here’s the updated list with TanStack Query (formerly React Query):
-
 ### Tools and Packages
 
-<div align="center">
+| Icon                                                                                                                                      | Technology Name |
+| ----------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| ![Next.js](https://img.shields.io/static/v1?label=&message=Next.js&color=black&logo=next.js&logoColor=white)                              | Next.js         |
+| ![React](https://img.shields.io/static/v1?label=&message=React&color=61DAFB&logo=react&logoColor=black)                                   | React           |
+| ![TypeScript](https://img.shields.io/static/v1?label=&message=TypeScript&color=007ACC&logo=typescript&logoColor=white)                    | TypeScript      |
+| ![Axios](https://img.shields.io/static/v1?label=&message=Axios&color=5A29E3&logo=axios&logoColor=white)                                   | Axios           |
+| ![React Hook Form](https://img.shields.io/static/v1?label=&message=React%20Hook%20Form&color=E3342F&logo=react-hook-form&logoColor=white) | React Hook Form |
+| ![Zod](https://img.shields.io/static/v1?label=&message=Zod&color=3068b7&logo=zod&logoColor=white)                                         | Zod             |
+| ![Framer Motion](https://img.shields.io/static/v1?label=&message=Framer%20Motion&color=00B3FF&logo=framer&logoColor=white)                | Framer Motion   |
+| ![Tailwind CSS](https://img.shields.io/static/v1?label=&message=Tailwind%20CSS&color=06B6D4&logo=tailwind-css&logoColor=white)            | Tailwind CSS    |
+| ![TanStack Query](https://img.shields.io/static/v1?label=&message=TanStack%20Query&color=FF4154&logo=react-query&logoColor=white)         | TanStack Query  |
+| ![NextUI](https://img.shields.io/static/v1?label=&message=NextUI&color=000000&logo=nextui&logoColor=white)                                | NextUI          |
 
-![Next.js](https://img.shields.io/static/v1?label=&message=Next.js&color=black&logo=next.js&logoColor=white)
-![React](https://img.shields.io/static/v1?label=&message=React&color=61DAFB&logo=react&logoColor=black)
-![TypeScript](https://img.shields.io/static/v1?label=&message=TypeScript&color=007ACC&logo=typescript&logoColor=white)
-![Axios](https://img.shields.io/static/v1?label=&message=Axios&color=5A29E3&logo=axios&logoColor=white)
-![React Hook Form](https://img.shields.io/static/v1?label=&message=React%20Hook%20Form&color=E3342F&logo=react-hook-form&logoColor=white)
-![Zod](https://img.shields.io/static/v1?label=&message=Zod&color=F27E03&logo=typescript&logoColor=black)
-![Framer Motion](https://img.shields.io/static/v1?label=&message=Framer%20Motion&color=00B3FF&logo=framer&logoColor=white)
-![Tailwind CSS](https://img.shields.io/static/v1?label=&message=Tailwind%20CSS&color=06B6D4&logo=tailwind-css&logoColor=white)
-![TanStack Query](https://img.shields.io/static/v1?label=&message=TanStack%20Query&color=FF4154&logo=react-query&logoColor=white)
-![NextUI](https://img.shields.io/static/v1?label=&message=NextUI&color=000000&logo=nextui&logoColor=white)
+s
 
-</div>
+## 💻 Running locally:
+
+To run the this project locally, follow these steps:
+
+### 1. Clone the repository from GitHub:
+
+```sh
+git clone https://github.com/noyonalways/tech-tips-hub-web.git
+```
+
+### 2. Navigate into the project directory:
+
+```sh
+cd tech-tips-hub-web
+```
+
+### 3. Install Dependencies (npm or yarn):
+
+```sh
+npm install
+```
+
+or
+
+```sh
+yarn
+```
+
+### 4. Set up environment variables:
+
+- Create a `.env` file in the root directory.
+- Define necessary environment variables such as database connection URL, PORT, etc. Refer to any provided `.env.example` file or documentation for required variables.
+
+```sh
+BASE_API=http://192.168.0.116:5000/api/v1
+```
+
+### 4. Run the Application:
+
+```sh
+npm run dev
+```
+
+or
+
+```sh
+yarn dev
+```
 
 Let me know if you need any further modifications!
 
@@ -76,7 +121,6 @@ Let me know if you need any further modifications!
 [linkedin-url]: https://linkedin.com/in/noyonalways
 [vscode-shield]: https://img.shields.io/badge/-VS%20Code%20Theme-black.svg?style=round-square&logo=visualstudiocode&colorB=555
 [vscode-theme-url]: https://marketplace.visualstudio.com/items?itemName=noyonalways.codevibe-themes
-
 
 ## Contact
 
