@@ -38,7 +38,7 @@ const ManageBlogCard = ({ post }: IProps) => {
             className="size-12 object-cover"
             radius="full"
             src={author?.profilePicture}
-            name={author.fullName}
+            color="primary"
             isBordered
           />
           <div>
@@ -80,7 +80,7 @@ const ManageBlogCard = ({ post }: IProps) => {
         </div>
         <div className="w-full lg:w-1/3 mb-3 lg:mb-0 rounded-xl overflow-hidden">
           <Image
-            className="w-full"
+            className="w-full h-full lg:max-h-32 object-cover"
             src={coverImage}
             alt={`${title}-cover-image`}
           />

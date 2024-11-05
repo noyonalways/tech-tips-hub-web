@@ -79,10 +79,9 @@ const DynamicProfilePage = async () => {
             <div className="flex flex-col space-y-4 lg:space-y-0 lg:flex-row items-start lg:space-x-6">
               <Avatar
                 color="primary"
-                className="w-28 h-28 lg:size-40 object-cover"
+                className="w-28 h-28 lg:size-40 object-cover text-3xl font-bold"
                 radius="full"
                 src={profilePicture}
-                name={fullName}
                 isBordered
               />
               <div className="space-y-4">

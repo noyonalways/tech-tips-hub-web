@@ -10,7 +10,7 @@ import { signUpValidationSchema } from "@/schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@nextui-org/button";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { FieldValues, SubmitHandler } from "react-hook-form";
 import { PiEyeLight, PiEyeSlashLight } from "react-icons/pi";
 
@@ -34,7 +34,7 @@ interface IProps {}
 const SignUpForm: React.FC<IProps> = () => {
   const [isPassword, setIsPassword] = useState(true);
   const router = useRouter();
-  const { mutate: registerUser, isPending, data} = useUserRegister();
+  const { mutate: registerUser, isPending, data } = useUserRegister();
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     const formData = new FormData();
@@ -57,13 +57,14 @@ const SignUpForm: React.FC<IProps> = () => {
     registerUser(formData);
   };
 
-  if (!isPending && data?.success) {
-    router.push("/login");
-  }
+  useEffect(() => {
+    if (!isPending && data?.success) {
+      router.push("/login");
+    }
+  }, [isPending, data, router]);
 
   return (
-    <>
-      {isPending && <Loading />}
+    <Suspense>
       <THForm
         onSubmit={onSubmit}
         resolver={zodResolver(signUpValidationSchema)}
@@ -87,13 +88,17 @@ const SignUpForm: React.FC<IProps> = () => {
               isRequired
               type={isPassword ? "password" : "text"}
             />
-            <button
+            <Button
+              variant="light"
+              size="sm"
+              radius="full"
+              isIconOnly
               onClick={() => setIsPassword(!isPassword)}
               type="button"
               className="absolute top-3 right-2 text-lg"
             >
               {isPassword ? <PiEyeLight /> : <PiEyeSlashLight />}
-            </button>
+            </Button>
           </div>
           <THSelect
             label="Select Gender"
@@ -106,17 +111,18 @@ const SignUpForm: React.FC<IProps> = () => {
           />
           <THDatePicker name="dateOfBirth" label="Date of Birth" isRequired />
           <Button
+            isLoading={isPending}
             type="submit"
             color="primary"
             variant="solid"
             radius="sm"
             className="w-full"
           >
-            Sign Up
+            {isPending ? "Signing UP..." : "Sign Up"}
           </Button>
         </div>
       </THForm>
-    </>
+    </Suspense>
   );
 };
 

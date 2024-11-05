@@ -2,13 +2,12 @@
 
 import THForm from "@/components/form/th-from";
 import THInput from "@/components/form/th-input";
-import Loading from "@/components/loading";
 import { useForgetPassword } from "@/hooks/auth.hook";
 import { passwordResetValidationSchema } from "@/schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@nextui-org/button";
 import { useRouter } from "next/navigation";
-import { Suspense } from "react";
+import { Suspense, useEffect } from "react";
 import { FieldValues, SubmitHandler } from "react-hook-form";
 
 const PasswordResetForm = () => {
@@ -24,13 +23,14 @@ const PasswordResetForm = () => {
     handleForgetPassword({ email: payload.email });
   };
 
-  if (!isPending && data?.success) {
-    router.push("/login");
-  }
+  useEffect(() => {
+    if (!isPending && data?.success) {
+      router.push("/login");
+    }
+  }, [isPending, data, router]);
 
   return (
-    <>
-      {isPending && <Loading />}
+    <Suspense>
       <THForm
         onSubmit={onSubmit}
         resolver={zodResolver(passwordResetValidationSchema)}
@@ -39,24 +39,21 @@ const PasswordResetForm = () => {
           <THInput radius="sm" name="email" label="Email Address" isRequired />
 
           <Button
+            isLoading={isPending}
             type="submit"
             color="primary"
             variant="solid"
             radius="sm"
             className="w-full"
           >
-            Send Email
+            {isPending ? "Sending Email...": "Send Email"}
           </Button>
         </div>
       </THForm>
-    </>
+    </Suspense>
   );
 };
 
-const SuspendedPasswordResetForm: React.FC = () => (
-  <Suspense fallback={<Loading />}>
-    <PasswordResetForm />
-  </Suspense>
-);
 
-export default SuspendedPasswordResetForm;
+
+export default PasswordResetForm;

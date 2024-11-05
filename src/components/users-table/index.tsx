@@ -69,7 +69,7 @@ const UsersTable = ({}: IProps) => {
                 href={`/users/@${user.username}`}
                 className="inline-flex space-x-2"
               >
-                <Avatar src={user.profilePicture} size="sm" />
+                <Avatar src={user.profilePicture} size="sm" color="primary" />
                 <div>
                   <h3 className="font-medium">{user.fullName}</h3>
                   <span className="text-xs">{user.email}</span>

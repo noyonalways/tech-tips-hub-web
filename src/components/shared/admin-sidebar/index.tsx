@@ -22,7 +22,7 @@ const AdminSidebar = ({}: IProps) => {
             src="/tech-tips-hub-logo.png"
             alt="tech-tips-hub-logo"
           />
-          <span className="text-lg font-semibold">Tech Tips Hub</span>
+          <span className="text-lg font-semibold hidden lg:inline-block">Tech Tips Hub</span>
         </Link>
         <div className="flex space-x-4 items-center">
           <ThemeSwitch />

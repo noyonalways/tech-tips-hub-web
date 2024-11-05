@@ -41,7 +41,7 @@ const BlogCard = ({
             className="size-12 object-cover"
             radius="full"
             src={author?.profilePicture}
-            name={author.fullName}
+            color="primary"
             isBordered
           />
           <div>
@@ -81,29 +81,28 @@ const BlogCard = ({
         </div>
         <div className="basis-full lg:basis-[28%] mb-3 lg:mb-0 rounded-xl">
           <Image
-            className="w-full"
+            className="w-full h-full lg:max-h-32 object-cover"
             src={coverImage}
             alt={`${title}-cover-image`}
           />
         </div>
       </Link>
       <div className="flex flex-col items-end lg:flex-row lg:items-center justify-between space-y-2 lg:space-y-0">
-        <div className="flex items-center space-x-1 lg:space-x-4">
+        <div className="flex items-center space-x-2 lg:space-x-4">
           <div className={`flex space-x-2 items-center`}>
-              <Button
-                size="sm"
-                radius="full"
-                variant="light"
-                startContent={<BiDownvote size={14} />}
-              >{downVotes}
+            <div className="flex items-center space-x-1">
+              <Button isIconOnly size="sm" radius="full" variant="light">
+                <BiDownvote size={14} />
               </Button>
-              <Button
-                size="sm"
-                radius="full"
-                variant="light"
-                startContent={<BiUpvote size={14} />}
-              >{upVotes}
+              <span className="text-sm">{downVotes}</span>
+            </div>
+
+            <div className="flex items-center space-x-1">
+              <Button isIconOnly size="sm" radius="full" variant="light">
+                <BiUpvote size={14} />
               </Button>
+              <span className="text-sm">{upVotes}</span>
+            </div>
           </div>
 
           <Button
