@@ -14,6 +14,7 @@ export const metadata: Metadata = {
     title: "Feed",
     description:
       "Discover the latest tech tips, tutorials, and trends on the Tech Tips Hub feed. Stay informed with expert insights and curated content.",
+    url: "https://techtipshub.noyonrahman.xyz",
     images: [
       {
         url: "https://i.ibb.co.com/TtgyZCV/Copy-of-Add-a-heading.png",
