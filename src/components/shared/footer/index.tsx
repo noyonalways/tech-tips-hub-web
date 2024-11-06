@@ -23,7 +23,7 @@ const Footer: React.FC<IProps> = () => {
               </h2>
             </Link>
             <p className="text-default-500">
-              Hassle-free blogging platform that developers and teams love.
+              Blogging made simple, loved by developers and teams.
             </p>
           </div>
 
