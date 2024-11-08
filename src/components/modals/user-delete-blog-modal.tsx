@@ -10,6 +10,8 @@ import {
   ModalHeader,
   useDisclosure,
 } from "@nextui-org/modal";
+import { useRouter } from "next/navigation";
+
 import { FiTrash2 } from "react-icons/fi";
 
 interface IProps {
@@ -19,10 +21,12 @@ interface IProps {
 const UserDeleteBlogModal = ({ id }: IProps) => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const { mutate: deletePost, isPending } = useDeletePostByUserUsingId();
+  const router = useRouter()
 
   const handleDelete = () => {
     deletePost(id);
     onOpenChange();
+    router.push(`/settings/manage-blogs?id=${id}`);
   };
 
   return (

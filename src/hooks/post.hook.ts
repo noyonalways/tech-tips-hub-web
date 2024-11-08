@@ -76,10 +76,10 @@ export const useCommentOnPost = () => {
 };
 
 // get all blogs (for admin only)
-export const useGetAllPosts = () => {
+export const useGetAllPosts = (params?: Record<string, string>) => {
   return useQuery({
     queryKey: ["GET_ALL_POSTS"],
-    queryFn: async () => await getAllPosts(),
+    queryFn: async () => await getAllPosts(params),
   });
 };
 

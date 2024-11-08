@@ -1,7 +1,7 @@
 "use client";
 
-import BlogCard from "@/components/blog-card";
-import { getFollowingUsersPosts } from "@/services/post";
+import ManageBlogCard from "@/components/manage-blog-card";
+import { getLoggedInUserPosts } from "@/services/post";
 import { IPost } from "@/types";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -11,11 +11,11 @@ interface IProps {
   initialPosts: IPost[];
 }
 
-const FollowingFeedPosts = ({ initialPosts }: IProps) => {
+const MyPosts = ({ initialPosts }: IProps) => {
   const searchParams = useSearchParams();
 
   const [page, setPage] = useState(2);
-  const [posts, setPosts] = useState<IPost[]>(initialPosts);
+  const [blogs, setBlogs] = useState<IPost[]>(initialPosts);
   const [hasMore, setHasMore] = useState(true);
   const { ref, inView } = useInView();
 
@@ -34,23 +34,21 @@ const FollowingFeedPosts = ({ initialPosts }: IProps) => {
     if (searchTerm) params.searchTerm = searchTerm;
     if (category) params.category = category;
 
-    const data = await getFollowingUsersPosts(params);
-    const newPosts = data?.data || [];
+    const data = await getLoggedInUserPosts(params);
+    const newBlogs = data?.data || [];
 
-    if(data.success && newPosts.length > 0) {
-      setPosts((prevPosts) => [...prevPosts, ...newPosts]);
-      setPage((prevPage) => prevPage + 1);
-    }
+    setBlogs((prevBlogs) => [...prevBlogs, ...newBlogs]);
+    setPage((prevPage) => prevPage + 1);
 
     // Stop further fetching if fewer posts than the limit are returned
-    if (newPosts.length < 5) {
+    if (newBlogs.length < 5) {
       setHasMore(false);
     }
   };
 
   // Watch for changes in searchParams to reset posts and refetch
   useEffect(() => {
-    setPosts(initialPosts);
+    setBlogs(initialPosts);
     setPage(2);
     setHasMore(true);
   }, [searchParams]);
@@ -62,15 +60,17 @@ const FollowingFeedPosts = ({ initialPosts }: IProps) => {
   }, [inView, hasMore]);
 
   return (
-    <div className="space-y-6 flex-1 w-full">
-      {posts?.map((post) => (
-        <BlogCard key={post?._id} {...post} />
-      ))}
-      <div className="text-center" ref={ref}>
-        {hasMore ? "Loading..." : "No more posts available."}
+    <>
+      <div className="space-y-4">
+        {blogs &&
+          blogs?.map((blog) => <ManageBlogCard key={blog._id} post={blog} />)
+        }
+        <div className="text-center" ref={ref}>
+          {hasMore ? "Loading..." : "No more posts available."}
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
-export default FollowingFeedPosts;
+export default MyPosts;
