@@ -141,8 +141,8 @@ export const updateSocialLinks = async (payload: {
 
     revalidateTag("loggedInUserProfile")
 
-    return res.data;
+    return res?.data;
   } catch (err: any) {
-    return err.response.data;
+    return err?.response?.data;
   }
 };
