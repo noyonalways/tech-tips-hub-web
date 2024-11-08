@@ -2,7 +2,7 @@
 
 import envConfig from "@/config/env.config";
 import axiosInstance from "@/lib/AxiosInstance";
-import { revalidateTag } from "next/cache";
+import { revalidatePath, revalidateTag } from "next/cache";
 import { cookies } from "next/headers";
 
 export const getAllPosts = async (
@@ -22,9 +22,9 @@ export const getAllPosts = async (
     }
 
     const res = await fetch(url.toString(), {
-      cache: "no-cache",
+    cache: "no-cache",
       next: {
-        tags: ["posts"],
+        tags: ["allPosts"],
       },
     });
 
@@ -63,7 +63,7 @@ export const getFollowingUsersPosts = async (
         Authorization: `Bearer ${accessToken}`,
       },
       next: {
-        tags: ["posts"], // Add this if you want to enable cache invalidation
+        tags: ["allPosts"], // Add this if you want to enable cache invalidation
       },
     });
 
@@ -79,7 +79,8 @@ export const createPost = async (payload: FormData) => {
   try {
     const res = await axiosInstance.post("/posts", payload);
 
-    revalidateTag("posts");
+    revalidateTag("allPosts");
+    revalidatePath("/")
 
     return res?.data;
   } catch (err: any) {
@@ -97,13 +98,27 @@ export const getPostBySlug = async (slug: string) => {
   }
 };
 
-export const getLoggedInUserPosts = async () => {
+export const getLoggedInUserPosts = async (
+  params?: Record<string, string | undefined>
+) => {
   const cookieStore = cookies();
   const accessToken = cookieStore.get("tth-access-token")?.value;
   try {
-    const res = await fetch(`${envConfig.baseApi}/posts/my-posts`, {
+    const url = new URL(`${envConfig.baseApi}/posts/my-posts`);
+
+    // Append only defined parameters
+    if (params) {
+      Object.keys(params).forEach((key) => {
+        const value = params[key];
+        if (value !== undefined) {
+          url.searchParams.append(key, value);
+        }
+      });
+    }
+
+    const res = await fetch(url.toString(), {
       next: {
-        tags: ["posts"],
+        tags: ["myPosts"],
       },
       headers: {
         Authorization: `Bearer ${accessToken}`,
@@ -120,7 +135,7 @@ export const getPostsByUserId = async (userId: string) => {
   try {
     const res = await fetch(`${envConfig.baseApi}/posts/users/${userId}`, {
       next: {
-        tags: ["posts"],
+        tags: ["allPosts"],
       },
     });
 
@@ -148,16 +163,6 @@ export const voteOnPost = async (
   }
 };
 
-// get logged in user blogs
-export const getLoggedInUserBlogs = async () => {
-  try {
-    const res = await axiosInstance.get(`/posts/my-posts`);
-
-    return res?.data;
-  } catch (err: any) {
-    return err?.response?.data;
-  }
-};
 
 // comment on post
 export const commentOnPost = async (postId: string, payload: FormData) => {
@@ -197,7 +202,7 @@ export const deleteBlogByAdminUsingId = async (
       data: { reason },
     });
 
-    revalidateTag("posts");
+    revalidateTag("allPosts");
 
     return res.data;
   } catch (err: any) {
@@ -210,7 +215,7 @@ export const deleteBlogByUserUsingId = async (blogId: string) => {
   try {
     const res = await axiosInstance.delete(`/posts/${blogId}`);
 
-    revalidateTag("posts");
+    revalidateTag("myPosts");
 
     return res.data;
   } catch (err: any) {
@@ -224,7 +229,7 @@ export const updateBlogByUserUsingId = async (blogId: string, payload: FormData)
   try {
     const res = await axiosInstance.put(`/posts/${blogId}`, payload);
 
-    revalidateTag("posts");
+    revalidateTag("myPosts");
 
     return res.data;
   } catch (err: any) {

@@ -51,7 +51,7 @@ const UserSidebar = ({}: IProps) => {
 
             <ul className="px-4 flex flex-col w-full space-y-2">
               {userLinks.map((link) => (
-                <li>
+                <li key={link.id}>
                   <Button
                     className="w-full justify-start"
                     startContent={link.icon}

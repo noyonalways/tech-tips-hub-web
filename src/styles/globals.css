@@ -13,7 +13,7 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-gradient-to-b from-primary to-secondary rounded-xl;
+  @apply bg-gradient-to-b from-primary to-secondary rounded-full;
 }
 
 /* ::-webkit-scrollbar-thumb:hover {
@@ -23,7 +23,7 @@
 
 
 .ql-container {
-  @apply bg-default-50 dark:bg-default-100 rounded p-2;
+  @apply bg-default-50 dark:bg-default-100 rounded p-1 lg:p-2;
 }
 
 .ql-snow {

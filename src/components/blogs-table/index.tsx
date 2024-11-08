@@ -21,7 +21,11 @@ import { AdminDeleteBlogModal } from "../modals";
 interface IProps {}
 
 const BlogsTable = ({}: IProps) => {
-  const { data: res, isLoading, refetch: refetchPosts } = useGetAllPosts();
+  const {
+    data: res,
+    isLoading,
+    refetch: refetchPosts,
+  } = useGetAllPosts({ limit: "20" });
 
   return (
     <Table radius="sm" aria-label="Blogs table with dummy data">

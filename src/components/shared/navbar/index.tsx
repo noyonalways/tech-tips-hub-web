@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import LoginLogoutSwitch from "@/components/ui/login-logout-switch";
 import { ThemeSwitch } from "@/components/ui/theme-switch";
@@ -21,7 +21,7 @@ import NavbarSearchInput from "./navbar-search-input";
 import { usePathname } from "next/navigation";
 
 export const Navbar = () => {
-  const pathName = usePathname()
+  const pathName = usePathname();
 
   return (
     <NextUINavbar
@@ -73,16 +73,18 @@ export const Navbar = () => {
           <ThemeSwitch className="hidden lg:inline-block" />
         </NavbarItem>
 
-        <WritePostButton />
+        <NavbarItem>
+          <WritePostButton />
+        </NavbarItem>
 
         <LoginLogoutSwitch />
       </NavbarContent>
 
-      <NavbarContent className="lg:hidden basis-1 pl-4" justify="end">
+      <NavbarContent className="md:hidden basis-1 pl-4" justify="end">
         <ThemeSwitch />
-        <>
+        <NavbarItem>
           <WritePostButton />
-        </>
+        </NavbarItem>
         <LoginLogoutSwitch />
       </NavbarContent>
 
@@ -94,7 +96,8 @@ export const Navbar = () => {
               <NextLink
                 className={clsx(
                   linkStyles({ color: "foreground" }),
-                  "data-[active=true]:text-primary data-[active=true]:font-medium"
+                  "data-[active=true]:text-primary data-[active=true]:font-medium",
+                  pathName === item.href ? "text-primary" : ""
                 )}
                 href={item.href}
               >

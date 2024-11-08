@@ -148,10 +148,10 @@ const DynamicBlogPage = async ({ params }: { params: { slug: string } }) => {
                   >
                     {title}
                   </h1>
-                  <div className="flex justify-center items-center space-x-2 lg:space-x-4 mx-auto w-full max-w-xl">
+                  <div className="flex justify-between lg:justify-center items-center lg:space-x-4 mx-auto w-full max-w-xl">
                     <Link
                       href={`/users/@${author?.username}`}
-                      className="flex items-center space-x-4"
+                      className="flex items-center space-x-2 lg:space-x-4"
                     >
                       <Avatar
                         className="size-12 object-cover"

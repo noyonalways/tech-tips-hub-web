@@ -12,6 +12,7 @@ interface IProps {
 const ShowHTMLFormat = ({ content }: IProps) => {
   return (
     <ReactQuill
+      readOnly
       className="mb-4"
       value={content}
       required
