@@ -113,6 +113,12 @@ export const useUpdateSocialLinks = () => {
     mutationKey: ["UPDATE_SOCIAL_LINKS"],
     mutationFn: async (payload) => await updateSocialLinks(payload),
     onSuccess: (data) => {
+      if (!data?.success) {
+        toast.error(data?.message, {
+          id: "user-social-links-updated",
+        });
+      }
+
       if (data?.success) {
         toast.success(data?.message, {
           id: "user-social-links-updated",

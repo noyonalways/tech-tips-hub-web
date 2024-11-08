@@ -21,7 +21,7 @@ const allowedSocialLinks = [
   },
   {
     name: "github",
-    platform: "GitHub",
+    platform: "Github",
     placeholder: "https://github.com/username",
   },
   {
@@ -41,7 +41,7 @@ const allowedSocialLinks = [
   },
   {
     name: "youtube",
-    platform: "YouTube",
+    platform: "Youtube",
     placeholder: "https://youtube.com/channel/@username",
   },
 ];
@@ -52,13 +52,13 @@ const UpdateSocialLinks = ({ socialLinks }: IProps) => {
   const defaultValues = {
     linkedin:
       socialLinks.find((link) => link.platform === "Linkedin")?.url || "",
-    github: socialLinks.find((link) => link.platform === "GitHub")?.url || "",
+    github: socialLinks.find((link) => link.platform === "Github")?.url || "",
     instagram:
       socialLinks.find((link) => link.platform === "Instagram")?.url || "",
     twitter: socialLinks.find((link) => link.platform === "Twitter")?.url || "",
     facebook:
       socialLinks.find((link) => link.platform === "Facebook")?.url || "",
-    youtube: socialLinks.find((link) => link.platform === "YouTube")?.url || "",
+    youtube: socialLinks.find((link) => link.platform === "Youtube")?.url || "",
   };
 
   const onSubmit: SubmitHandler<FieldValues> = (values) => {
