@@ -154,10 +154,10 @@ const DynamicProfilePage = async () => {
                     >
                       {(social.platform === "Linkedin" && <FaLinkedin />) ||
                         (social.platform === "Twitter" && <BsTwitterX />) ||
-                        (social.platform === "GitHub" && <FaGithub />) ||
+                        (social.platform === "Github" && <FaGithub />) ||
                         (social.platform === "Facebook" && <FaFacebook />) ||
                         (social.platform === "Instagram" && <FaInstagram />) ||
-                        (social.platform === "YouTube" && <FaYoutube />)}
+                        (social.platform === "Youtube" && <FaYoutube />)}
                     </a>
                   </li>
                 ))}
