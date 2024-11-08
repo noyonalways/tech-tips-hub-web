@@ -18,8 +18,8 @@ export type TSocialPlatform =
   | "Instagram"
   | "Linkedin"
   | "Twitter"
-  | "GitHub"
-  | "YouTube";
+  | "Github"
+  | "Youtube";
 
 export type TSocialLink = {
   platform: TSocialPlatform;
