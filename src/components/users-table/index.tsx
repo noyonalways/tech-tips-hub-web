@@ -18,7 +18,11 @@ import {
 } from "@nextui-org/table";
 import Link from "next/link";
 import { CgSpinner } from "react-icons/cg";
-import { BlockUnblockConfirmActionModal } from "../modals";
+import {
+  BlockUnblockConfirmActionModal,
+  MakeAdminConfirmationModal,
+  DeleteUserAccountConfirmationModal,
+} from "../modals";
 
 interface IProps {}
 
@@ -95,6 +99,12 @@ const UsersTable = ({}: IProps) => {
               )}
             </TableCell>
             <TableCell className="flex items-center space-x-2">
+              <DeleteUserAccountConfirmationModal
+                id={user._id}
+                role={user.role}
+                reFetchUsers={refetch}
+              />
+
               {user.status === "Active" ? (
                 <BlockUnblockConfirmActionModal
                   actionType="block"
@@ -110,14 +120,13 @@ const UsersTable = ({}: IProps) => {
                   user={{ _id: user._id, role: user.role }}
                 />
               )}
-              <Button
-                isDisabled={user.role === "Admin"}
-                size="sm"
-                radius="sm"
-                variant="flat"
-              >
-                Make Admin
-              </Button>
+
+              <MakeAdminConfirmationModal
+                id={user._id}
+                role={user.role}
+                status={user.status}
+                reFetchUsers={refetch}
+              />
             </TableCell>
           </TableRow>
         ))}

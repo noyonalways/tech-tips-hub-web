@@ -146,3 +146,25 @@ export const updateSocialLinks = async (payload: {
     return err?.response?.data;
   }
 };
+
+// make user to admin (admin only)
+export const makeAdmin = async (id: string) => {
+  try {
+    const res = await axiosInstance.patch(`/users/${id}/make-admin`);
+
+    return res?.data;
+  } catch (err: any) {
+    return err?.response?.data;
+  }
+}
+
+// delete an user account (amin only)
+export const deleteUserAccount = async (id: string) => {
+  try {
+    const res = await axiosInstance.delete(`/users/${id}`);
+
+    return res?.data;
+  } catch (err: any) {
+    return err?.response?.data;
+  }
+};

@@ -54,7 +54,6 @@ const Followers = async ({ params }: IProps) => {
               className="w-8 h-8 object-cover"
               radius="full"
               src={current.follower.profilePicture}
-              name={current.follower.fullName}
             />
 
             <div>
