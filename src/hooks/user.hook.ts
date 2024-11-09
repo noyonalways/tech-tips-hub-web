@@ -1,7 +1,9 @@
 import {
   blockUser,
+  deleteUserAccount,
   followUser,
   getAllUsers,
+  makeAdmin,
   unblockUser,
   unfollowUser,
   updateProfile,
@@ -87,6 +89,49 @@ export const useUnblockUser = () => {
       toast.error(error?.message || "Something went wrong!", {
         id: "user-unblocked-error",
       });
+    },
+  });
+};
+
+// make user to admin (admin only)
+export const useMakeAdmin = () => {
+  return useMutation<any, Error, string>({
+    mutationKey: ["USER_MAKE_ADMIN"],
+    mutationFn: async (userId) => await makeAdmin(userId),
+    onSuccess: (data) => {
+      if (!data?.success) {
+        toast.error(data?.message, {
+          id: "user-make-admin",
+        });
+      }
+
+      if (data?.success) {
+        toast.success(data?.message, {
+          id: "user-make-admin",
+        });
+      }
+    },
+  });
+};
+
+// delete an user account (admin only)
+
+export const useDeleteUserAccount = () => {
+  return useMutation<any, Error, string>({
+    mutationKey: ["DELETE_USER_ACCOUNT"],
+    mutationFn: async (userId) => await deleteUserAccount(userId),
+    onSuccess: (data) => {
+      if (!data?.success) {
+        toast.error(data?.message, {
+          id: "delete-user-account",
+        });
+      }
+
+      if (data?.success) {
+        toast.success(data?.message, {
+          id: "delete-user-account",
+        });
+      }
     },
   });
 };

@@ -32,7 +32,6 @@ const FollowersFollowingLayout = async ({params, children}: IProps) => {
                   className="w-20 h-20 lg:size-24 object-cover"
                   radius="full"
                   src={profilePicture}
-                  name={fullName}
                   isBordered
                 />
                 <div className="space-y-2">
