@@ -7,19 +7,18 @@ const authRoutes = ["/login", "/signup", "/forget-password"];
 const roleBasedRoutes = {
   User: [
     "/profile",
-    "/blogs/write-blog",
     "/settings",
     "/settings/manage-blogs",
   ],
   Admin: [
     "/admin",
     "/profile",
-    "/blogs/write-blog",
     "/admin/dashboard",
     "/admin/manage-users",
     "/admin/all-payments",
-    "/settings",
     "/admin/manage-blogs",
+    "/settings",
+    "/settings/manage-blogs",
   ],
 };
 
@@ -58,7 +57,6 @@ export async function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
-    "/blogs/write-blog",
     "/profile",
     "/profile/:path*",
     "/profile/:page*",
@@ -68,7 +66,7 @@ export const config = {
     "/forget-password",
     "/settings",
     "/settings/manage-blogs",
-    "/admin/manage-users",
+    "/admin/manage-blogs",
     "/admin/dashboard",
     "/admin/manage-users",
     "/admin/all-payments",

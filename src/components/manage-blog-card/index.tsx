@@ -47,7 +47,7 @@ const ManageBlogCard = ({ post }: IProps) => {
               {author?.isPremiumUser && (
                 <span
                   title="Premium User"
-                  className="ml-1 inline-block  px-2 rounded-md text-sm dark:text-white dark:bg-primary/60"
+                  className="ml-1 inline-block px-2 rounded-md text-sm bg-slate-200 dark:text-white dark:bg-primary/60"
                 >
                   Pro
                 </span>

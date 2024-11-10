@@ -236,3 +236,16 @@ export const updateBlogByUserUsingId = async (blogId: string, payload: FormData)
     return err?.response?.data;
   }
 };
+
+// update blog by admin
+export const updateBlogByAdmin = async (blogId: string, payload: FormData) => {
+  try {
+    const res = await axiosInstance.put(`/posts/${blogId}/by-admin`, payload);
+
+    revalidateTag("allPosts");
+
+    return res.data;
+  } catch (err: any) {
+    return err?.response?.data;
+  }
+};

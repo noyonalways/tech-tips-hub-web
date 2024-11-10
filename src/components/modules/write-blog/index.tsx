@@ -213,7 +213,7 @@ const WriteBlog = ({onClose} : IProps ) => {
               {!coverImageFile ? (
                 <Button
                   radius="sm"
-                  variant="light"
+                  variant="flat"
                   size="lg"
                   startContent={<GoImage size={24} />}
                   onClick={handleAddCoverClick}
