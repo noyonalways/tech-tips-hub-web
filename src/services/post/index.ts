@@ -92,9 +92,9 @@ export const getPostBySlug = async (slug: string) => {
   try {
     const res = await axiosInstance.get(`/posts/${slug}`);
 
-    return res.data;
+    return res?.data;
   } catch (err: any) {
-    return err.response.data;
+    return err?.response?.data;
   }
 };
 
@@ -180,7 +180,7 @@ export const commentOnPost = async (postId: string, payload: FormData) => {
 // get all comments by post id
 export const getCommentsByPostId = async (postId: string) => {
   try {
-    const res = await fetch(`${envConfig.baseApi}/posts/${postId}/comments`, {
+    const res = await fetch(`${envConfig.baseApi}/posts/${postId}/comments?limit=20`, {
       next: {
         tags: ["comments"],
       },
@@ -249,3 +249,29 @@ export const updateBlogByAdmin = async (blogId: string, payload: FormData) => {
     return err?.response?.data;
   }
 };
+
+// delete comment by logged in user
+export const deleteCommentByUser = async (commentId: string) => {
+  try {
+    const res = await axiosInstance.delete(`/comments/${commentId}`);
+
+    revalidateTag("comments");
+
+    return res.data;
+  } catch (err: any) {
+    return err?.response?.data;
+  }
+}
+
+// update comment by logged in user
+export const updateCommentByUser = async (commentId: string, payload: FormData) => {
+  try {
+    const res = await axiosInstance.put(`/comments/${commentId}`, payload);
+
+    revalidateTag("comments");
+
+    return res.data;
+  } catch (err: any) {
+    return err?.response?.data;
+  }
+}

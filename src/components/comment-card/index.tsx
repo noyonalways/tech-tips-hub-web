@@ -1,12 +1,15 @@
 import { IComment } from "@/types/comment.type";
 import { Avatar } from "@nextui-org/avatar";
+import { Button } from "@nextui-org/button";
 import { Image } from "@nextui-org/image";
 import { formatDistanceToNow } from "date-fns";
 import Link from "next/link";
+import { MdModeEdit, MdDelete } from "react-icons/md";
+import UpdateDeleteComment from "../modules/post/update-delete-comment";
 
 interface IProps extends IComment {}
 
-const CommentCard = ({ user, content, createdAt, images }: IProps) => {
+const CommentCard = ({ user, content, createdAt, images, _id }: IProps) => {
   const timeAgo = formatDistanceToNow(new Date(createdAt), { addSuffix: true });
 
   // Dynamic grid class based on the number of images
@@ -20,8 +23,16 @@ const CommentCard = ({ user, content, createdAt, images }: IProps) => {
       : "grid-cols-4";
 
   return (
-    <div className="space-y-4 border border-default/50 p-4 rounded-lg">
-      <Link href={`/users/@${user?.username}`} className="flex space-x-4">
+    <div className="border border-default/50 p-4 rounded-lg relative">
+      <UpdateDeleteComment
+        commentUserEmail={user?.email}
+        commentId={_id}
+        content={content}
+      />
+      <Link
+        href={`/users/@${user?.username}`}
+        className="inline-flex space-x-4"
+      >
         <Avatar
           className="size-12 object-cover"
           radius="full"
@@ -34,7 +45,7 @@ const CommentCard = ({ user, content, createdAt, images }: IProps) => {
         </div>
       </Link>
 
-      <p className="text-default-500 text-base">{content}</p>
+      <p className="text-default-500 text-base my-4">{content}</p>
       {images && images.length > 0 && (
         <div className={`grid gap-4 max-w-lg ${gridCols}`}>
           {images?.map((image, index) => (
@@ -49,7 +60,6 @@ const CommentCard = ({ user, content, createdAt, images }: IProps) => {
           ))}
         </div>
       )}
-
     </div>
   );
 };
