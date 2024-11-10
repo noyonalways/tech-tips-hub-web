@@ -6,6 +6,8 @@ import {
   voteOnPost,
   deleteBlogByUserUsingId,
   updateBlogByAdmin,
+  deleteCommentByUser,
+  updateCommentByUser,
 } from "@/services/post";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { toast } from "sonner";
@@ -17,7 +19,7 @@ export const useCreatePost = () => {
     mutationFn: async (payload) => await createPost(payload),
     onSuccess: (data) => {
       if (!data?.success) {
-        toast.error(data?.errorSources?.[0]?.message || data?.message , {
+        toast.error(data?.errorSources?.[0]?.message || data?.message, {
           id: "create-post",
         });
       }
@@ -144,7 +146,7 @@ export const useUpdatePostByUserUsingId = () => {
   });
 };
 
-
+// update blog by admin
 export const useUpdateBlogByAdmin = () => {
   return useMutation<any, Error, { postId: string; payload: FormData }>({
     mutationKey: ["UPDATE_POST_BY_ADMIN"],
@@ -159,6 +161,47 @@ export const useUpdateBlogByAdmin = () => {
       if (data.success) {
         toast.success(data?.message, {
           id: "update-post-by-admin",
+        });
+      }
+    },
+  });
+};
+
+// delete comment by user
+export const useDeleteCommentByUser = () => {
+  return useMutation<any, Error, string>({
+    mutationKey: ["DELETE_COMMENT_BY_USER"],
+    mutationFn: async (commentId) => await deleteCommentByUser(commentId),
+    onSuccess: (data) => {
+      if (!data?.success) {
+        toast.error(data?.message, {
+          id: "delete-comment-by-user",
+        });
+      }
+      if (data.success) {
+        toast.success(data?.message, {
+          id: "delete-comment-by-user",
+        });
+      }
+    },
+  });
+};
+
+// update comment by user
+export const useUpdateCommentByUser = () => {
+  return useMutation<any, Error, { commentId: string; payload: FormData }>({
+    mutationKey: ["UPDATE_COMMENT_BY_USER"],
+    mutationFn: async ({ commentId, payload }) =>
+      await updateCommentByUser(commentId, payload),
+    onSuccess: (data) => {
+      if (!data?.success) {
+        toast.error(data?.message, {
+          id: "update-comment-by-user",
+        });
+      }
+      if (data.success) {
+        toast.success(data?.message, {
+          id: "update-comment-by-user",
         });
       }
     },
