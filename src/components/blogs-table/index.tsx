@@ -17,6 +17,7 @@ import { toZonedTime } from "date-fns-tz";
 import Link from "next/link";
 import { CgSpinner } from "react-icons/cg";
 import { AdminDeleteBlogModal } from "../modals";
+import UpdateBlogModal from "../modals/update-blog-modal";
 
 interface IProps {}
 
@@ -91,6 +92,9 @@ const BlogsTable = ({}: IProps) => {
             <TableCell>{blog.totalViews}</TableCell>
             <TableCell className="flex items-center space-x-2">
               <AdminDeleteBlogModal id={blog._id} refetchPosts={refetchPosts} />
+
+              <UpdateBlogModal post={blog} refetchPosts={refetchPosts} />
+
               <Button
                 as={Link}
                 href={`/blogs/${blog.slug}`}

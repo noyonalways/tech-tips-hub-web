@@ -5,6 +5,7 @@ import {
   getAllPosts,
   voteOnPost,
   deleteBlogByUserUsingId,
+  updateBlogByAdmin,
 } from "@/services/post";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { toast } from "sonner";
@@ -137,6 +138,27 @@ export const useUpdatePostByUserUsingId = () => {
       if (data.success) {
         toast.success(data?.message, {
           id: "update-post-by-user",
+        });
+      }
+    },
+  });
+};
+
+
+export const useUpdateBlogByAdmin = () => {
+  return useMutation<any, Error, { postId: string; payload: FormData }>({
+    mutationKey: ["UPDATE_POST_BY_ADMIN"],
+    mutationFn: async ({ postId, payload }) =>
+      await updateBlogByAdmin(postId, payload),
+    onSuccess: (data) => {
+      if (!data?.success) {
+        toast.error(data?.message, {
+          id: "update-post-by-admin",
+        });
+      }
+      if (data.success) {
+        toast.success(data?.message, {
+          id: "update-post-by-admin",
         });
       }
     },
