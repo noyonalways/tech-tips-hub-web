@@ -91,21 +91,34 @@ const BlogCard = ({
         <div className="flex items-center space-x-2 lg:space-x-4">
           <div className={`flex space-x-2 items-center`}>
             <div className="flex items-center space-x-1">
-              <Button isIconOnly size="sm" radius="full" variant="light">
+              <Button
+                isIconOnly
+                size="sm"
+                radius="full"
+                variant="light"
+                isDisabled
+              >
                 <BiDownvote size={14} />
               </Button>
-              <span className="text-sm">{downVotes}</span>
+              <span className="text-sm text-gray-500">{downVotes}</span>
             </div>
 
             <div className="flex items-center space-x-1">
-              <Button isIconOnly size="sm" radius="full" variant="light">
+              <Button
+                isIconOnly
+                size="sm"
+                radius="full"
+                variant="light"
+                isDisabled
+              >
                 <BiUpvote size={14} />
               </Button>
-              <span className="text-sm">{upVotes}</span>
+              <span className="text-sm text-gray-500">{upVotes}</span>
             </div>
           </div>
 
           <Button
+            isDisabled
             size="sm"
             variant="light"
             startContent={<AiOutlineComment className="text-lg" />}
@@ -113,6 +126,7 @@ const BlogCard = ({
             {totalComments} Comments
           </Button>
           <Button
+            isDisabled
             size="sm"
             variant="light"
             startContent={<HiOutlineEye className="text-lg" />}
