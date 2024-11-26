@@ -96,7 +96,7 @@ const AboutUs: React.FC<IProps> = () => {
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-snug">
               Empowering Tech Enthusiasts Worldwide
             </h1>
-            <p className="text-xl mb-8">
+            <p className="text-xl mb-8 text-white dark:text-white">
               Tech Tips Hub: Where Innovation Meets Community
             </p>
             <Button
@@ -232,7 +232,7 @@ const AboutUs: React.FC<IProps> = () => {
         <Container>
           <div className="text-center mb-20 bg-gradient-to-r from-blue-500 to-indigo-600 py-16 px-4 rounded-2xl text-white">
             <h2 className="text-3xl font-bold mb-6">Join Our Tech Community</h2>
-            <p className="text-lg lg:text-xl mb-8 max-w-2xl mx-auto">
+            <p className="text-lg lg:text-xl mb-8 max-w-2xl mx-auto text-white dark:text-white">
               Be part of a thriving ecosystem of tech enthusiasts. Share your
               knowledge, learn from experts, and stay at the forefront of
               technological advancements.
