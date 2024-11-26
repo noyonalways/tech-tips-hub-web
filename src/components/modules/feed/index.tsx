@@ -1,6 +1,7 @@
 "use client";
 
 import BlogCard from "@/components/blog-card";
+import BlogCardSkeleton from "@/components/blog-card/skeleton";
 import { getAllPosts } from "@/services/post";
 import { IPost } from "@/types";
 import { useSearchParams } from "next/navigation";
@@ -65,7 +66,10 @@ const FeedPosts = ({ initialPosts }: IProps) => {
         <BlogCard key={post?._id} {...post} />
       ))}
       <div className="text-center" ref={ref}>
-        {hasMore ? "Loading..." : "No more posts available."}
+        {hasMore ? <div className="space-y-6">
+          <BlogCardSkeleton />
+          <BlogCardSkeleton />
+        </div> : "No more posts available."}
       </div>
     </div>
   );

@@ -28,7 +28,7 @@ export const getAllPosts = async (
       },
     });
 
-    return res.json();
+    return res?.json();
   } catch (err: any) {
     return err;
   }
