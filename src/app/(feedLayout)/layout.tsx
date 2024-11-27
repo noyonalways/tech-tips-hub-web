@@ -20,7 +20,7 @@ const FeedLayout = ({ children }: IProps) => {
           <LeftSideBar />
 
           {/* Main content */}
-          <div className="basis-[40%] py-4">
+          <div className="lg:basis-[46%] 2xl:basis-[40%] py-4">
             <div className="flex items-center space-x-4 mb-4 lg:hidden">
               <FeedButtonsForSmallDevice />
             </div>
