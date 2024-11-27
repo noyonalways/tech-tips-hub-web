@@ -27,17 +27,20 @@ const RightSideBar = () => {
   }, []);
 
   return (
-    <div className="hidden lg:inline-block basis-[18%] space-y-6 sticky top-16 lg:p-4 lg:pt-4">
+    <div className="hidden lg:inline-block xl:basis-[22%] 2xl:basis-[18%] space-y-6 sticky top-16 lg:pt-4 2xl:pr-2 lg:pl-0 h-[calc(100vh-85px)] lg:overflow-y-scroll">
       {isLoading ? (
         <div className="border border-default/50 p-6 rounded-xl space-y-2">
           <h2 className="font-semibold text-lg">Categories</h2>
           <div className="gap-2 flex flex-wrap">
             <Skeleton className="h-8 w-20 rounded-full" />
             <Skeleton className="h-8 w-24 rounded-full" />
-            <Skeleton className="h-8 w-16 rounded-full" />
-            <Skeleton className="h-8 w-16 rounded-full" />
-            <Skeleton className="h-8 w-16 rounded-full" />
             <Skeleton className="h-8 w-20 rounded-full" />
+            <Skeleton className="h-8 w-24 rounded-full" />
+            <Skeleton className="h-8 w-20 rounded-full" />
+            <Skeleton className="h-8 w-20 rounded-full" />
+            <Skeleton className="h-8 w-20 rounded-full" />
+            <Skeleton className="h-8 w-20 rounded-full" />
+            <Skeleton className="h-8 w-24 rounded-full" />
           </div>
         </div>
       ) : (
