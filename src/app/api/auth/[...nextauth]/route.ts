@@ -1,7 +1,7 @@
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import FacebookProvider from "next-auth/providers/facebook";
-import { userAgent } from "next/server";
+import GithubProvider from "next-auth/providers/github"
 
 const handler = NextAuth({
   providers: [
@@ -13,6 +13,10 @@ const handler = NextAuth({
       clientId: process.env.FACEBOOK_CLIENT_ID as string,
       clientSecret: process.env.FACEBOOK_CLIENT_SECRET as string,
     }),
+    GithubProvider({
+      clientId: process.env.GITHUB_CLIENT_ID as string,
+      clientSecret: process.env.GITHUB_CLIENT_SECRET as string,
+    })
   ],
 
   callbacks: {
@@ -32,6 +36,15 @@ const handler = NextAuth({
         console.log(reqBody);
       }
       if (account.provider === "facebook") {
+        const reqBody = {
+          fullName: user.name,
+          username: user.name?.toLowerCase().split(" ").join(""),
+          email: user.email,
+          profilePicture: user.image,
+        };
+        console.log(reqBody);
+      }
+      if(account.provider === "github"){
         const reqBody = {
           fullName: user.name,
           username: user.name?.toLowerCase().split(" ").join(""),

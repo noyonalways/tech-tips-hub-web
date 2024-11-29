@@ -26,6 +26,15 @@ const SocialLogin = ({}: IProps) => {
       >
         <h4>Continue With Facebook</h4>
       </Button>
+      <Button
+        onClick={() => {
+          signIn("github", {
+            callbackUrl: "/",
+          });
+        }}
+      >
+        <h4>Continue With Github</h4>
+      </Button>
     </div>
   );
 };
