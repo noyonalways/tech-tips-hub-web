@@ -1,4 +1,5 @@
 import SuspendedLoginForm from "@/components/modules/auth/login-form";
+import SocialLogin from "@/components/modules/auth/social-login";
 import Container from "@/components/ui/container";
 import { Divider } from "@nextui-org/divider";
 import { Image } from "@nextui-org/image";
@@ -46,6 +47,11 @@ const LoginPage: React.FC<IProps> = () => {
               Forgotten Password?
             </Link>
           </div>
+
+
+          <SocialLogin />
+
+
           <Divider className="bg-default/50" />
           <div className="flex items-center justify-center mt-4 text-sm space-x-1 text-center">
             <span>Don't have an account?</span>
