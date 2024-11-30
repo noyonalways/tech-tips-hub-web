@@ -37,6 +37,27 @@ export const loginUser = async (payload: TLogin) => {
   }
 };
 
+
+// social login
+export const socialLogin = async (payload: {email: string, fullName: string, profilePicture?: string}) => {
+  try {
+    const res = await axiosInstance.post("/auth/social-login", payload);
+
+    if (res?.data.success) {
+      cookies().set("tth-access-token", res?.data?.data?.accessToken, {
+        maxAge: 1000 * 60 * 60 * 24 * 60 * 365,
+      });
+      cookies().set("tth-refresh-token", res?.data?.data?.refreshToken, {
+        maxAge: 1000 * 60 * 60 * 24 * 60 * 365,
+      });
+    }
+
+    return res?.data ;
+  } catch (err: any) {
+    return err?.response?.data;
+  }
+}
+
 // logout user
 export const logOutUser = () => {
   cookies().delete("tth-access-token");
