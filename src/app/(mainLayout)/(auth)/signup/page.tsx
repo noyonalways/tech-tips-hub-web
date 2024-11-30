@@ -1,9 +1,10 @@
 import Container from "@/components/ui/container";
 import { Image } from "@nextui-org/image";
 import Link from "next/link";
-
+import { Divider } from "@nextui-org/divider";
 import SignUpForm from "@/components/modules/auth/signup-form";
 import { Metadata } from "next";
+import SocialLogin from "@/components/modules/auth/social-login";
 
 export const metadata: Metadata = {
   title: "Sign Up",
@@ -38,6 +39,10 @@ const SignUpPage = () => {
           </div>
 
           <SignUpForm />
+
+          <SocialLogin />
+
+          <Divider className="bg-default/50" />
           <div className="flex items-center justify-center mt-2 text-sm space-x-1 text-center">
             <span>Already have an account?</span>
             <Link className="text-primary hover:underline" href="/login">

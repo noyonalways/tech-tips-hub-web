@@ -216,7 +216,7 @@ const DynamicProfilePage = async () => {
                       className="flex space-x-2 lg:space-x-10 mt-2"
                     >
                       <div className="flex flex-col items-center space-y-1 basis-[25%] lg:basis-auto">
-                        <span className="text-sm text-center lg:text-base lg:text-start">
+                        <span className="text-xs text-center lg:text-sm lg:text-start">
                           {new Date(post.createdAt).toDateString()}
                         </span>
                         <AiOutlineSmallDash className="rotate-90 text-primary text-lg" />
@@ -238,7 +238,7 @@ const DynamicProfilePage = async () => {
                             </Button>
                           )}
                         </div>
-                        <h3 className="text-lg font-semibold ">{post.title}</h3>
+                        <h3 className="text-base md:text-lg font-semibold ">{post.title}</h3>
                       </div>
                     </Link>
                   ))}

@@ -1,23 +1,31 @@
 "use client"
 
 import { Button } from "@nextui-org/button";
+import { Divider } from "@nextui-org/divider";
 import { signIn } from "next-auth/react";
+import { FaGithub } from "react-icons/fa";
+import { FcGoogle } from "react-icons/fc";
 
 interface IProps {}
 
 const SocialLogin = ({}: IProps) => {
   return (
-    <div className="flex justify-center mb-4 space-x-2">
-      <Button
-        onClick={() => {
-          signIn("google", {
-            callbackUrl: "/",
-          });
-        }}
-      >
-        <h4>Continue With Google</h4>
-      </Button>
-      <Button
+    <div className="mb-4">
+      <p className="text-center mb-2">or</p>
+      <div className="flex justify-center space-x-2">
+        <Button
+          radius="sm"
+          variant="flat"
+          isIconOnly
+          onClick={() => {
+            signIn("google", {
+              callbackUrl: "/",
+            });
+          }}
+        >
+          <FcGoogle size={24} />
+        </Button>
+        {/* <Button
         onClick={() => {
           signIn("facebook", {
             callbackUrl: "/",
@@ -25,16 +33,20 @@ const SocialLogin = ({}: IProps) => {
         }}
       >
         <h4>Continue With Facebook</h4>
-      </Button>
-      <Button
-        onClick={() => {
-          signIn("github", {
-            callbackUrl: "/",
-          });
-        }}
-      >
-        <h4>Continue With Github</h4>
-      </Button>
+      </Button> */}
+        <Button
+          radius="sm"
+          variant="flat"
+          isIconOnly
+          onClick={() => {
+            signIn("github", {
+              callbackUrl: "/",
+            });
+          }}
+        >
+          <FaGithub size={24} />
+        </Button>
+      </div>
     </div>
   );
 };
