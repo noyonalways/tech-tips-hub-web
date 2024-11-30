@@ -1,7 +1,8 @@
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import FacebookProvider from "next-auth/providers/facebook";
-import GithubProvider from "next-auth/providers/github"
+import GithubProvider from "next-auth/providers/github";
+import { socialLogin } from "@/services/auth";
 
 const handler = NextAuth({
   providers: [
@@ -16,42 +17,42 @@ const handler = NextAuth({
     GithubProvider({
       clientId: process.env.GITHUB_CLIENT_ID as string,
       clientSecret: process.env.GITHUB_CLIENT_SECRET as string,
-    })
+    }),
   ],
 
   callbacks: {
-    signIn: ({ profile, account, user }) => {
-      console.log({ profile, account, user });
+    signIn: async ({ profile, account, user }) => {
+      // console.log({ profile, account, user });
 
       if (!profile || !account) {
         return false;
       }
       if (account.provider === "google") {
-        const reqBody = {
-          fullName: user.name,
-          username: user.name?.toLowerCase().split(" ").join(""),
-          email: user.email,
-          profilePicture: user.image,
-        };
-        console.log(reqBody);
+        if (user) {
+          const reqBody = {
+            fullName: user.name!,
+            email: user.email!,
+            profilePicture: user.image!,
+          };
+
+          await socialLogin(reqBody);
+        }
       }
       if (account.provider === "facebook") {
         const reqBody = {
-          fullName: user.name,
-          username: user.name?.toLowerCase().split(" ").join(""),
-          email: user.email,
-          profilePicture: user.image,
+          fullName: user.name!,
+          email: user.email!,
+          profilePicture: user.image!,
         };
-        console.log(reqBody);
+        await socialLogin(reqBody);
       }
-      if(account.provider === "github"){
+      if (account.provider === "github") {
         const reqBody = {
-          fullName: user.name,
-          username: user.name?.toLowerCase().split(" ").join(""),
-          email: user.email,
-          profilePicture: user.image,
+          fullName: user.name!,
+          email: user.email!,
+          profilePicture: user.image!,
         };
-        console.log(reqBody);
+        await socialLogin(reqBody);
       }
 
       return true;
