@@ -69,7 +69,7 @@ const SignUpForm: React.FC<IProps> = () => {
         onSubmit={onSubmit}
         resolver={zodResolver(signUpValidationSchema)}
       >
-        <div className="space-y-2">
+        <div className="space-y-2 mb-6">
           <THInput
             radius="sm"
             name="image"
