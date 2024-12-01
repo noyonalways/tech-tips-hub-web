@@ -37,5 +37,6 @@ export default async function Home({ searchParams }: IProps) {
   const data = await getAllPosts(params);
   const posts = data?.data as IPost[];
 
+
   return <FeedPosts initialPosts={posts} />;
 }

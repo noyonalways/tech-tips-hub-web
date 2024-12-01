@@ -14,13 +14,13 @@ const FeedLayout = ({ children }: IProps) => {
   return (
     <>
       <Navbar />
-      <section>
-        <div className="flex flex-col lg:flex-row lg:justify-between items-start space-x-4 w-full">
+      <section className="w-full">
+        <div className="flex flex-col lg:flex-row lg:justify-between items-start w-full">
           {/* Left side bar */}
           <LeftSideBar />
 
           {/* Main content */}
-          <div className="lg:basis-[46%] 2xl:basis-[40%] py-4">
+          <div className="basis-full w-full lg:w-auto lg:basis-[46%] 2xl:basis-[40%] py-4 px-2 lg:px-0">
             <div className="flex items-center space-x-4 mb-4 lg:hidden">
               <FeedButtonsForSmallDevice />
             </div>
