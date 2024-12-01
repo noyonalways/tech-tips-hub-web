@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { useUser } from "@/context/user.provider";
 import { getProfileInfo } from "@/services/auth";
@@ -7,29 +7,36 @@ import { Button } from "@nextui-org/button";
 import { Skeleton } from "@nextui-org/skeleton";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import {  HiUser } from "react-icons/hi2";
+import { HiUser } from "react-icons/hi2";
 import { IoDiamondOutline } from "react-icons/io5";
+import { usePathname } from "next/navigation";
 
 interface IProps {}
 
 const SubscriptionsStatus = ({}: IProps) => {
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
   const [isPremium, setIsPremium] = useState(false);
   const { user } = useUser();
+  const pathname = usePathname(); // Detects the current route
 
   const getUser = async () => {
     setLoading(true);
-    const profileData = await getProfileInfo();
-    const currentUser = (profileData.data as IUser) ?? {};
-    setIsPremium(currentUser?.isPremiumUser);
-    setLoading(false);
+    try {
+      const profileData = await getProfileInfo();
+      const currentUser = (profileData.data as IUser) ?? {};
+      setIsPremium(currentUser?.isPremiumUser);
+    } catch (error) {
+      console.error("Failed to fetch profile info:", error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   useEffect(() => {
     if (user) {
       getUser();
     }
-  }, []);
+  }, [pathname, user]); // Runs whenever `pathname` or `user` changes
 
   return (
     <>
