@@ -6,7 +6,7 @@ import axiosInstance from "@/lib/AxiosInstance";
 export type TSubscriptionPayload = {
     type: "Monthly",
     price: number,
-    currency: "USD",
+    currency: "USD" | "BDT",
     paymentMethod: "Aamarpay"
 }
 
@@ -24,7 +24,7 @@ export const subscribePremiumMonthly = async (payload: TSubscriptionPayload) => 
 // get all subscriptions
 export const getAllSubscriptions = async () => {
   try {
-    const res = await axiosInstance.get("/subscriptions")
+    const res = await axiosInstance.get("/subscriptions?limit=20")
 
     return res.data;
   } catch (err: any) {

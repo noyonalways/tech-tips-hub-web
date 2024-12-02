@@ -19,7 +19,7 @@ export const getPaymentInfoByTransactionId = async (transactionId: string) => {
 // get all payments
 export const getAllPayments = async () => {
   try {
-    const res = await axiosInstance.get("/payments")
+    const res = await axiosInstance.get("/payments?limit=20")
 
     return res.data;
   } catch (err: any) {

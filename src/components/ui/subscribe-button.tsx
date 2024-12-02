@@ -38,8 +38,8 @@ const SubscribeButton = ({ children, ...props }: IProps) => {
 
   const handleSubscribe = () => {
     subscribe({
-      price: 20,
-      currency: "USD",
+      price: 499,
+      currency: "BDT",
       type: "Monthly",
       paymentMethod: "Aamarpay",
     });
@@ -47,7 +47,7 @@ const SubscribeButton = ({ children, ...props }: IProps) => {
 
   if (!isPending && isSuccess) {
     if (data.success) {
-      window.location.href = data.data.payment_url;
+      window.location.href = data?.data?.payment_url;
     }
   }
 
