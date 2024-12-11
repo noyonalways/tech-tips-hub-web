@@ -41,7 +41,7 @@ export const getFollowingUsersPosts = async (
   params?: Record<string, string | undefined>
 ) => {
   const cookieStore = cookies();
-  const accessToken = cookieStore.get("tth-access-token")?.value;
+  const accessToken = cookieStore.get("tth_access_token")?.value;
 
   try {
     // Create a URL with the base endpoint
@@ -102,7 +102,7 @@ export const getLoggedInUserPosts = async (
   params?: Record<string, string | undefined>
 ) => {
   const cookieStore = cookies();
-  const accessToken = cookieStore.get("tth-access-token")?.value;
+  const accessToken = cookieStore.get("tth_access_token")?.value;
   try {
     const url = new URL(`${envConfig.baseApi}/posts/my-posts`);
 
