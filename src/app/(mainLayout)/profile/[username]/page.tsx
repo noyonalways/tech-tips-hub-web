@@ -72,7 +72,7 @@ const DynamicProfilePage = async () => {
   } = (profileData?.data as IUser) ?? {};
 
   let postsData;
-  if (role !== "Admin" && profileData?.success){
+  if (profileData?.success){
     postsData = await getLoggedInUserPosts();
   } 
 
