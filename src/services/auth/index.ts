@@ -23,50 +23,63 @@ export const loginUser = async (payload: TLogin) => {
     const res = await axiosInstance.post("/auth/login", payload);
 
     if (res?.data.success) {
-      cookies().set("tth-access-token", res?.data?.data?.accessToken, {
+      cookies().set("tth_access_token", res?.data?.data?.accessToken, {
+        secure: envConfig.NODE_ENV === "production",
+        httpOnly: true,
         maxAge: 1000 * 60 * 60 * 24 * 60 * 365,
       });
-      cookies().set("tth-refresh-token", res?.data?.data?.refreshToken, {
+
+      cookies().set("tth_refresh_token", res?.data?.data?.refreshToken, {
+        secure: envConfig.NODE_ENV === "production",
+        httpOnly: true,
         maxAge: 1000 * 60 * 60 * 24 * 60 * 365,
       });
     }
 
-    return res.data;
+    return res?.data;
   } catch (err: any) {
     return err?.response?.data;
   }
 };
 
-
 // social login
-export const socialLogin = async (payload: {email: string, fullName: string, profilePicture?: string}) => {
+export const socialLogin = async (payload: {
+  email: string;
+  fullName: string;
+  profilePicture?: string;
+}) => {
   try {
     const res = await axiosInstance.post("/auth/social-login", payload);
 
     if (res?.data.success) {
-      cookies().set("tth-access-token", res?.data?.data?.accessToken, {
+      cookies().set("tth_access_token", res?.data?.data?.accessToken, {
+        secure: envConfig.NODE_ENV === "production",
+        httpOnly: true,
         maxAge: 1000 * 60 * 60 * 24 * 60 * 365,
       });
-      cookies().set("tth-refresh-token", res?.data?.data?.refreshToken, {
+
+      cookies().set("tth_refresh_token", res?.data?.data?.refreshToken, {
+        secure: envConfig.NODE_ENV === "production",
+        httpOnly: true,
         maxAge: 1000 * 60 * 60 * 24 * 60 * 365,
       });
     }
 
-    return res?.data ;
+    return res?.data;
   } catch (err: any) {
     return err?.response?.data;
   }
-}
+};
 
 // logout user
 export const logOutUser = () => {
-  cookies().delete("tth-access-token");
-  cookies().delete("tth-refresh-token");
+  cookies().delete("tth_access_token");
+  cookies().delete("tth_refresh_token");
 };
 
 // get current logged in user details
 export const getCurrentUser = async () => {
-  const accessToken = cookies().get("tth-access-token")?.value;
+  const accessToken = cookies().get("tth_access_token")?.value;
   let decodedToken = null;
 
   if (accessToken) {
@@ -78,9 +91,9 @@ export const getCurrentUser = async () => {
 
 // get user profile info
 export const getProfileInfo = async () => {
-  const cookieStore = cookies();
-  const accessToken = cookieStore.get("tth-access-token")?.value;
+  const accessToken = cookies().get("tth_access_token")?.value;
   try {
+
     const res = await fetch(`${envConfig.baseApi}/auth/me`, {
       next: {
         tags: ["loggedInUserProfile"],
@@ -89,10 +102,9 @@ export const getProfileInfo = async () => {
         Authorization: `Bearer ${accessToken}`,
       },
     });
-
-    return res?.json();
+    return res.json();
   } catch (err: any) {
-    return err
+    return err;
   }
 };
 
@@ -102,6 +114,24 @@ export const forgetPassword = async (payload: { email: string }) => {
     const res = await axiosInstance.post("/auth/forget-password", payload);
 
     return res.data;
+  } catch (err: any) {
+    return err?.response?.data;
+  }
+};
+
+export const getNewAccessToken = async () => {
+  try {
+    const refreshToken = cookies().get("tth_refresh_token")?.value;
+
+    const res = await axiosInstance({
+      url: "/auth/refresh-token",
+      method: "POST",
+      withCredentials: true,
+      headers: {
+        cookie: `refreshToken=${refreshToken}`,
+      },
+    });
+    return res?.data;
   } catch (err: any) {
     return err?.response?.data;
   }
