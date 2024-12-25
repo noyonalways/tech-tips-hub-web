@@ -12,17 +12,35 @@ import { Button } from "@nextui-org/button";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Suspense, useEffect, useState } from "react";
 import { FieldValues, SubmitHandler } from "react-hook-form";
+import { FcCancel } from "react-icons/fc";
 import { PiEyeLight, PiEyeSlashLight } from "react-icons/pi";
 
-interface IProps {}
-
-const LoginForm = ({}: IProps) => {
+const LoginForm = () => {
   const searchParams = useSearchParams();
   const router = useRouter();
   const [isPassword, setIsPassword] = useState(true);
+  const [defaultValues, setDefaultValues] = useState({ email: "", password: "" });
 
   const { setIsLoading: setUserLoading } = useUser();
   const { mutate: handleLogin, isPending, data } = useUserLogin();
+
+  const setAdminCredentials = () => {
+    setDefaultValues({
+      email: "admin@techtipshub.com",
+      password: "techtipsadmin",
+    });
+  };
+
+  const setUserCredentials = () => {
+    setDefaultValues({
+      email: "noyonrahman.dev@gmail.com",
+      password: "123456",
+    });
+  };
+
+  const handleClear = () => {
+    setDefaultValues({ email: "", password: "" });
+  }
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     handleLogin(data as TLogin);
@@ -47,7 +65,41 @@ const LoginForm = ({}: IProps) => {
       <THForm
         onSubmit={onSubmit}
         resolver={zodResolver(signInValidationSchema)}
+        defaultValues={defaultValues}
+        key={JSON.stringify(defaultValues)} // Force re-render when defaultValues change
       >
+        <div className="flex items-center justify-center space-x-2 mb-4">
+          <Button
+            onClick={setAdminCredentials}
+            type="button"
+            variant="bordered"
+            size="sm"
+            color="primary"
+            radius="full"
+          >
+            Admin
+          </Button>
+          <Button
+            onClick={setUserCredentials}
+            type="button"
+            variant="bordered"
+            size="sm"
+            color="primary"
+            radius="full"
+          >
+            User
+          </Button>
+          <Button
+            onClick={handleClear}
+            type="button"
+            variant="bordered"
+            size="sm"
+            color="danger"
+            radius="full"
+          >
+            Clear
+          </Button>
+        </div>
         <div className="space-y-2">
           <THInput
             label="Email"
@@ -84,16 +136,15 @@ const LoginForm = ({}: IProps) => {
             color="primary"
             variant="solid"
             radius="sm"
-            className="w-full block"
+            className="w-full"
           >
-            {isPending ? "Logging...": "Login"}
+            {isPending ? "Logging..." : "Login"}
           </Button>
         </div>
       </THForm>
     </Suspense>
   );
 };
-
 
 const SuspendedLoginForm = () => (
   <Suspense fallback={<Loading />}>

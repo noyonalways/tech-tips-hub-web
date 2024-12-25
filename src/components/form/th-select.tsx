@@ -50,7 +50,7 @@ const THSelect: React.FC<IProps> = ({
       {...props}
     >
       {options?.map((option) => (
-        <SelectItem key={option.key}>{option.label}</SelectItem>
+        <SelectItem  key={option.key}>{option.label}</SelectItem>
       ))}
     </Select>
   );

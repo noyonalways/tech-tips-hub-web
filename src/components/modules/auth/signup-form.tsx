@@ -68,6 +68,7 @@ const SignUpForm: React.FC<IProps> = () => {
       <THForm
         onSubmit={onSubmit}
         resolver={zodResolver(signUpValidationSchema)}
+        key={JSON.stringify("default_key")}
       >
         <div className="space-y-2 mb-6">
           <THInput
