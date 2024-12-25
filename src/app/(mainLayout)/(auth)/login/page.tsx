@@ -48,7 +48,6 @@ const LoginPage: React.FC<IProps> = () => {
             </Link>
           </div>
 
-
           <SocialLogin />
 
 
