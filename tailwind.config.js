@@ -20,5 +20,6 @@ module.exports = {
     nextui({
       themes: {},
     }),
+    require("@tailwindcss/typography"),
   ],
 };

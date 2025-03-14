@@ -227,14 +227,18 @@ const DynamicBlogPage = async ({ params }: { params: { slug: string } }) => {
                   </div>
                 </div>
 
-                {(contentType === "html" && (
+                <div className="prose dark:prose-invert max-w-full">
+                  <div dangerouslySetInnerHTML={{ __html: content }} />
+                </div>
+
+                {/* {(contentType === "html" && (
                   <ShowHTMLFormat content={content} />
                 )) ||
                   (contentType === "text" && (
                     <p className="text-default-600 text-base lg:text-lg whitespace-pre-line">
                       {content}
                     </p>
-                  ))}
+                  ))} */}
 
                 <div className="space-y-10">
                   <div className="border border-default/50 py-2 px-2 rounded-full w-full max-w-fit mx-auto flex justify-center items-center print:hidden">

@@ -10,7 +10,6 @@ import {
   View,
 } from "@react-pdf/renderer";
 import { IPost } from "@/types";
-import { parseHtmlContent } from "@/utils";
 import { format } from "date-fns";
 
 interface IProps {
@@ -113,6 +112,46 @@ const fetchImageAsBase64 = async (url: string) => {
   });
 };
 
+// Function to convert HTML string to PDF components
+const renderHtmlToPdf = (html: string) => {
+  const parser = new DOMParser();
+  const doc = parser.parseFromString(html, 'text/html');
+  const elements = Array.from(doc.body.childNodes);
+
+  return elements.map((element, index) => {
+    if (element.nodeName === 'H1') {
+      return <Text key={index} style={{ fontSize: 24, fontWeight: 'bold' }}>{element.textContent}</Text>;
+    } else if (element.nodeName === 'H2') {
+      return <Text key={index} style={{ fontSize: 20, fontWeight: 'bold' }}>{element.textContent}</Text>;
+    } else if (element.nodeName === 'P') {
+      return <Text key={index} style={{ marginBottom: 10 }}>{element.textContent}</Text>;
+    } else if (element.nodeName === 'UL') {
+      return (
+        <View key={index}>
+          {Array.from(element.children).map((li, liIndex) => (
+            <Text key={liIndex} style={{ marginBottom: 5 }}>• {li.textContent}</Text>
+          ))}
+        </View>
+      );
+    } else if (element.nodeName === 'OL') {
+      return (
+        <View key={index}>
+          {Array.from(element.children).map((li, liIndex) => (
+            <Text key={liIndex} style={{ marginBottom: 5 }}>{liIndex + 1}. {li.textContent}</Text>
+          ))}
+        </View>
+      );
+    } else if (element.nodeName === 'CODE') {
+      return (
+        <Text key={index} style={{ fontFamily: 'Courier', backgroundColor: '#f0f0f0', padding: 5 }}>
+          {element.textContent}
+        </Text>
+      );
+    }
+    return null; // Handle other cases as needed
+  });
+};
+
 const BlogDocument = ({ blog }: IProps) => {
   const [imageData, setImageData] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -202,11 +241,9 @@ const BlogDocument = ({ blog }: IProps) => {
           </View>
 
           {/* Content */}
-          <Text style={styles.content}>
-            {blog?.contentType === "html"
-              ? parseHtmlContent(blog?.content || "")
-              : blog?.content || "No content available."}
-          </Text>
+          <View style={styles.content}>
+            {renderHtmlToPdf(blog?.content || "No content available.")}
+          </View>
 
           {/* Tags */}
           <View style={styles.tagsContainer}>
