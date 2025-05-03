@@ -39,9 +39,13 @@ export default function RootLayout({
     <html suppressHydrationWarning lang="en">
       <head>
         <AdSense pubId="ca-pub-6721594154492556" />
+        <meta
+          name="google-site-verification"
+          content="jJtpLqOAtKxVMyWZ3fZTjPVLW8xexGIU7rV1Enr4cRI"
+        />
       </head>
       <GoogleTagManager gtmId="G-M37M4689E8" />
-      <GoogleAnalytics gaId="G-M37M4689E8"  />
+      <GoogleAnalytics gaId="G-M37M4689E8" />
       <body className={clsx(`bg-background antialiased ${inter.className}`)}>
         <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
           {children}
