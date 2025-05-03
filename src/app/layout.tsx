@@ -5,6 +5,7 @@ import { Inter } from "next/font/google";
 import { Providers } from "../providers";
 import { siteConfig } from "@/config/site";
 import AdSense from "@/components/adsense";
+import { GoogleTagManager, GoogleAnalytics } from "@next/third-parties/google";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -39,6 +40,8 @@ export default function RootLayout({
       <head>
         <AdSense pubId="ca-pub-6721594154492556" />
       </head>
+      <GoogleTagManager gtmId="G-M37M4689E8" />
+      <GoogleAnalytics gaId="G-M37M4689E8"  />
       <body className={clsx(`bg-background antialiased ${inter.className}`)}>
         <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
           {children}
