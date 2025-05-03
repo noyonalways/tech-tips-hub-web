@@ -1,3 +1,4 @@
+import AdBanner from "@/components/adsense/ad-banner";
 import Container from "@/components/ui/container";
 import EditProfileDropdown from "@/components/ui/edit-profile-dropdown";
 import ProfileShareDropdown from "@/components/ui/profile-share-dropdown";
@@ -88,7 +89,13 @@ const DynamicProfilePage = async () => {
               <h1 className="text-center font-semibold text-danger">
                 {profileData?.message}
               </h1>
-              <Button radius="full" color="primary" startContent={<BiSupport />}>Contact Support</Button>
+              <Button
+                radius="full"
+                color="primary"
+                startContent={<BiSupport />}
+              >
+                Contact Support
+              </Button>
             </div>
           </div>
         ) : (
@@ -238,7 +245,9 @@ const DynamicProfilePage = async () => {
                             </Button>
                           )}
                         </div>
-                        <h3 className="text-base md:text-lg font-semibold ">{post.title}</h3>
+                        <h3 className="text-base md:text-lg font-semibold ">
+                          {post.title}
+                        </h3>
                       </div>
                     </Link>
                   ))}
@@ -246,6 +255,13 @@ const DynamicProfilePage = async () => {
             </div>
           </div>
         )}
+        <div>
+            <AdBanner
+              dataAdFormat="auto"
+              dataAdSlot="9749465109"
+              dataFullWidthResponsive={true}
+            />
+          </div>
       </Container>
     </section>
   );
