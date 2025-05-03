@@ -1,3 +1,4 @@
+import AdBanner from "@/components/adsense/ad-banner";
 import CommentCard from "@/components/comment-card";
 import CommentForm from "@/components/modules/post/comment-form";
 import ShowHTMLFormat from "@/components/modules/post/show-html-format";
@@ -299,6 +300,14 @@ const DynamicBlogPage = async ({ params }: { params: { slug: string } }) => {
                       </Button>
                     ))}
                   </div>
+                </div>
+
+                <div>
+                  <AdBanner
+                    dataAdFormat="auto"
+                    dataAdSlot="9749465109"
+                    dataFullWidthResponsive={true}
+                  />
                 </div>
 
                 {/* comments */}

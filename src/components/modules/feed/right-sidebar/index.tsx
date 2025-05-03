@@ -6,6 +6,7 @@ import { Skeleton } from "@nextui-org/skeleton";
 import Categories from "./categories";
 import { getAllCategories } from "@/services/category";
 import { ICategory } from "@/types";
+import AdBanner from "@/components/adsense/ad-banner";
 
 const RightSideBar = () => {
   const [categories, setCategories] = useState<ICategory[] | null>(null);
@@ -46,7 +47,15 @@ const RightSideBar = () => {
       ) : (
         <Categories categories={categories || []} />
       )}
-      <MiniFooter />
+      <div className="space-y-4">
+        <MiniFooter />
+        {/* ad banner */}
+        <AdBanner
+          dataAdFormat="auto"
+          dataAdSlot="9749465109"
+          dataFullWidthResponsive={true}
+        />
+      </div>
     </div>
   );
 };

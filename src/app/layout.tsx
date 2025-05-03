@@ -2,10 +2,9 @@ import "@/styles/globals.css";
 import clsx from "clsx";
 import { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
-
 import { Providers } from "../providers";
-
 import { siteConfig } from "@/config/site";
+import AdSense from "@/components/adsense";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -37,7 +36,9 @@ export default function RootLayout({
 }) {
   return (
     <html suppressHydrationWarning lang="en">
-      <head />
+      <head>
+        <AdSense pubId="ca-pub-6721594154492556" />
+      </head>
       <body className={clsx(`bg-background antialiased ${inter.className}`)}>
         <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
           {children}

@@ -1,3 +1,4 @@
+import AdBanner from "@/components/adsense/ad-banner";
 import { FeedButtonsForSideBar } from "../feed-buttons";
 import SubscriptionsStatus from "../subscriptions-status";
 
@@ -15,6 +16,13 @@ const LeftSideBar = ({}: IProps) => {
         </div>
 
         <SubscriptionsStatus />
+        {/* <div>
+            <AdBanner
+              dataAdFormat="auto"
+              dataAdSlot="9749465109"
+              dataFullWidthResponsive={true}
+            />
+          </div> */}
       </div>
     </div>
   );
