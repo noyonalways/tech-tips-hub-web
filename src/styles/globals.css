@@ -3,23 +3,11 @@
 @tailwind utilities;
 
 
-/* For Chrome, Safari, and Opera */
-::-webkit-scrollbar {
-  @apply w-1 lg:w-[5px];
-}
 
-::-webkit-scrollbar-track {
-  @apply bg-background;
-}
 
-::-webkit-scrollbar-thumb {
-  @apply bg-gradient-to-b from-primary to-secondary rounded-full;
+* {
+  scrollbar-width: thin;
 }
-
-/* ::-webkit-scrollbar-thumb:hover {
-  @apply bg-primary;
-  
-} */
 
 p {
   @apply text-gray-500 dark:text-gray-400
