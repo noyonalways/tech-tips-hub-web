@@ -23,6 +23,7 @@ import { MdVerified } from "react-icons/md";
 import { PiCalendarDotsLight } from "react-icons/pi";
 import { TbArrowBadgeDown } from "react-icons/tb";
 import ProfileShareDropdown from "@/components/ui/profile-share-dropdown";
+import AdBanner from "@/components/adsense/ad-banner";
 
 type Props = {
   params: { username: string };
@@ -31,10 +32,7 @@ type Props = {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const actualUsername = params.username.split("40")[1];
   const data = await getUserByUsername(actualUsername);
-  const {
-    fullName,
-    profilePicture,
-  } = (data.data as IUser) ?? {};
+  const { fullName, profilePicture } = (data.data as IUser) ?? {};
 
   return {
     title: `${fullName}'s Profile`,
@@ -48,7 +46,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     },
   };
 }
-
 
 const GetUserByIdPage = async ({
   params,
@@ -71,7 +68,7 @@ const GetUserByIdPage = async ({
     designation,
     createdAt,
     totalPosts,
-    socialLinks
+    socialLinks,
   } = (data.data as IUser) ?? {};
 
   const postsData = await getPostsByUserId(_id);
@@ -223,12 +220,22 @@ const GetUserByIdPage = async ({
                           </Button>
                         )}
                       </div>
-                      <h3 className="text-base md:text-lg font-semibold ">{post.title}</h3>
+                      <h3 className="text-base md:text-lg font-semibold ">
+                        {post.title}
+                      </h3>
                     </div>
                   </Link>
                 ))}
             </div>
           </div>
+        </div>
+
+        <div className="mt-8">
+          <AdBanner
+            dataAdFormat="auto"
+            dataAdSlot="9749465109"
+            dataFullWidthResponsive={true}
+          />
         </div>
       </Container>
     </section>
