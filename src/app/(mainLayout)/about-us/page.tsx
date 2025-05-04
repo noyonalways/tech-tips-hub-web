@@ -1,3 +1,4 @@
+import AdBanner from "@/components/adsense/ad-banner";
 import Container from "@/components/ui/container";
 import { Avatar } from "@nextui-org/avatar";
 import { Button } from "@nextui-org/button";
@@ -230,7 +231,7 @@ const AboutUs: React.FC<IProps> = () => {
         </Container>
 
         <Container>
-          <div className="text-center mb-20 bg-gradient-to-r from-blue-500 to-indigo-600 py-16 px-4 rounded-2xl text-white">
+          <div className="text-center mb-10 bg-gradient-to-r from-blue-500 to-indigo-600 py-16 px-4 rounded-2xl text-white">
             <h2 className="text-3xl font-bold mb-6">Join Our Tech Community</h2>
             <p className="text-lg lg:text-xl mb-8 max-w-2xl mx-auto text-white dark:text-white">
               Be part of a thriving ecosystem of tech enthusiasts. Share your
@@ -259,6 +260,16 @@ const AboutUs: React.FC<IProps> = () => {
                 Contact Us
               </Button>
             </div>
+          </div>
+        </Container>
+
+        <Container>
+          <div className="mb-10 mt-6">
+            <AdBanner
+              dataAdFormat="auto"
+              dataAdSlot="9749465109"
+              dataFullWidthResponsive={true}
+            />
           </div>
         </Container>
       </>
