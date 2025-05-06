@@ -17,8 +17,8 @@ const AdminSidebar = ({}: IProps) => {
 
 
   return (
-    <div className="lg:basis-[20%] border-b lg:border-r border-default/50 lg:h-screen fixed top-0 lg:sticky w-full z-20 bg-background">
-      <div className="flex items-center justify-between p-4">
+    <div className="lg:basis-[15%] border-b lg:border-r border-default/50 lg:h-screen fixed top-0 lg:sticky w-full z-[60] bg-background">
+      <div className="flex items-center justify-between p-4 border-b border-default/50">
         <Link className="flex items-center space-x-2" href="/">
           <Image
             className="size-10"
@@ -26,7 +26,7 @@ const AdminSidebar = ({}: IProps) => {
             alt="tech-tips-hub-logo"
           />
           <span className="text-lg font-semibold hidden lg:inline-block">
-            Tech Tips Hub
+            Admin Panel
           </span>
         </Link>
         <div className="flex space-x-4 items-center">
