@@ -72,17 +72,37 @@ const SignUpForm: React.FC<IProps> = () => {
       >
         <div className="space-y-2 mb-6">
           <THInput
+            variant="faded"
             radius="sm"
             name="image"
             label="Profile Image"
             type="file"
             accept="image/jpeg, image/png, image/jpg"
           />
-          <THInput radius="sm" name="fullName" label="Full Name" isRequired />
-          <THInput radius="sm" name="email" label="Email Address" isRequired />
-          <THInput radius="sm" name="username" label="Username" isRequired />
+          <THInput
+            variant="faded"
+            radius="sm"
+            name="fullName"
+            label="Full Name"
+            isRequired
+          />
+          <THInput
+            variant="faded"
+            radius="sm"
+            name="email"
+            label="Email Address"
+            isRequired
+          />
+          <THInput
+            variant="faded"
+            radius="sm"
+            name="username"
+            label="Username"
+            isRequired
+          />
           <div className="relative">
             <THInput
+              variant="faded"
               radius="sm"
               name="password"
               label="Password"
@@ -105,12 +125,17 @@ const SignUpForm: React.FC<IProps> = () => {
             label="Select Gender"
             radius="sm"
             size="md"
-            variant="flat"
+            variant="faded"
             name="gender"
             options={options}
             isRequired
           />
-          <THDatePicker name="dateOfBirth" label="Date of Birth" isRequired />
+          <THDatePicker
+            variant="faded"
+            name="dateOfBirth"
+            label="Date of Birth"
+            isRequired
+          />
           <Button
             isLoading={isPending}
             type="submit"

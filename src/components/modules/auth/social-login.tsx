@@ -10,7 +10,7 @@ interface IProps {}
 
 const SocialLogin = ({}: IProps) => {
   return (
-    <div className="mb-4">
+    <div className="mb-6">
       <p className="text-center mb-2">or</p>
       <div className="flex justify-center space-x-2">
         <Button

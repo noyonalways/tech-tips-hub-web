@@ -19,7 +19,10 @@ const LoginForm = () => {
   const searchParams = useSearchParams();
   const router = useRouter();
   const [isPassword, setIsPassword] = useState(true);
-  const [defaultValues, setDefaultValues] = useState({ email: "", password: "" });
+  const [defaultValues, setDefaultValues] = useState({
+    email: "",
+    password: "",
+  });
 
   const { setIsLoading: setUserLoading } = useUser();
   const { mutate: handleLogin, isPending, data } = useUserLogin();
@@ -40,7 +43,7 @@ const LoginForm = () => {
 
   const handleClear = () => {
     setDefaultValues({ email: "", password: "" });
-  }
+  };
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     handleLogin(data as TLogin);
@@ -68,7 +71,7 @@ const LoginForm = () => {
         defaultValues={defaultValues}
         key={JSON.stringify(defaultValues)} // Force re-render when defaultValues change
       >
-        <div className="flex items-center justify-center space-x-2 mb-4">
+        {/* <div className="flex items-center justify-center space-x-2 mb-4">
           <Button
             onClick={setAdminCredentials}
             type="button"
@@ -99,9 +102,10 @@ const LoginForm = () => {
           >
             Clear
           </Button>
-        </div>
+        </div> */}
         <div className="space-y-2">
           <THInput
+            variant="faded"
             label="Email"
             isRequired
             radius="sm"
@@ -110,6 +114,7 @@ const LoginForm = () => {
           />
           <div className="relative">
             <THInput
+              variant="faded"
               label="Password"
               isRequired
               radius="sm"
