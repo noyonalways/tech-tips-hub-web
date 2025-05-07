@@ -57,7 +57,7 @@ const BlogCard = ({
               )}{" "}
             </h3>
             <span className="text-xs">
-              @{author.username} - {new Date(createdAt)?.toDateString()}
+              @{author?.username} - {new Date(createdAt)?.toDateString()}
             </span>
           </div>
         </Link>
