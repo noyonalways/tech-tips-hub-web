@@ -1,13 +1,15 @@
 {
-  "name": "next-app-template",
-  "version": "0.0.1",
+  "name": "techtipshub",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "postbuild": "next-sitemap",
+    "postbuild": "npm run sitemap && npm run sitemap:blogs",
     "start": "next start",
-    "lint": "eslint . --ext .ts,.tsx -c .eslintrc.json --fix"
+    "lint": "eslint . --ext .ts,.tsx -c .eslintrc.json --fix",
+    "sitemap": "next-sitemap",
+    "sitemap:blogs": "next-sitemap --config next-sitemap.blog.config.js"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",

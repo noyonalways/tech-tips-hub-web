@@ -1,105 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://techtipshub.vercel.app/blogs/🚀-আজ-আমি-শিখলাম-object-oriented-programming-oop-এর-৪টি-মূল-ভিত্তি✅-mdshakilahmed</loc>
-    <lastmod>2025-05-06T12:56:30.865Z</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://techtipshub.vercel.app/blogs/react-js-আধুনিক-ওয়েব-ডেভেলপমেন্টের-অন্যতম-হাতিয়ার-noyonrahman</loc>
-    <lastmod>2025-05-05T17:49:01.423Z</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://techtipshub.vercel.app/blogs/অ্যালগরিদম-algorithm-কী-noyonrahman</loc>
-    <lastmod>2025-05-02T17:53:48.139Z</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://techtipshub.vercel.app/blogs/enhancing-authentication-security-with-cookies-in-nextjs-and-expressjs-noyonrahman-1</loc>
-    <lastmod>2025-05-04T07:36:48.689Z</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://techtipshub.vercel.app/blogs/what-is-transcript-and-why-should-you-care-noyonrahman</loc>
-    <lastmod>2025-01-25T11:37:34.412Z</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://techtipshub.vercel.app/blogs/next-js-parallel-routes-xxx</loc>
-    <lastmod>2024-11-18T10:20:10.976Z</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://techtipshub.vercel.app/blogs/the-10-best-blogs-to-follow-for-react-js-development-xxx</loc>
-    <lastmod>2024-11-26T15:40:59.833Z</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://techtipshub.vercel.app/blogs/introduction-of-yaml-admin</loc>
-    <lastmod>2025-03-14T17:52:56.370Z</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://techtipshub.vercel.app/blogs/another-new-title-by-admin-noyonalways</loc>
-    <lastmod>2024-11-10T16:39:37.840Z</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://techtipshub.vercel.app/blogs/another-test-blog-noyonalways</loc>
-    <lastmod>2024-11-08T17:41:48.173Z</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://techtipshub.vercel.app/blogs/understanding-the-single-responsibility-principle-srp-for-beginners-noyonalways</loc>
-    <lastmod>2024-12-02T20:01:39.572Z</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://techtipshub.vercel.app/blogs/introduction-to-postgresql-database-a-beginners-guide-noyonalways</loc>
-    <lastmod>2024-11-09T16:56:04.715Z</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://techtipshub.vercel.app/blogs/mongodb-nosql-database-nadimhasan</loc>
-    <lastmod>2024-11-11T06:30:56.903Z</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://techtipshub.vercel.app/blogs/the-enduring-legacy-of-c-programming-in-2024-shakilahmed</loc>
-    <lastmod>2024-11-10T19:25:14.057Z</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://techtipshub.vercel.app/blogs/python-the-language-of-versatility-in-2024-codernoyon</loc>
-    <lastmod>2024-11-25T13:13:55.031Z</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://techtipshub.vercel.app/blogs/the-evolution-of-php-in-2024-codernoyon</loc>
-    <lastmod>2024-11-08T10:08:29.545Z</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://techtipshub.vercel.app/blogs/the-future-of-nodejs-in-2024-codernoyon</loc>
-    <lastmod>2024-11-11T06:29:54.179Z</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.7</priority>
-  </url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+<url><loc>https://techtipshub.vercel.app/blogs/ডোমেইন-domain-কী-or-ডোমেইন-নিয়ে-বিস্তারিত-গাইড-বাংলায়-noyonrahman</loc><lastmod>2025-05-07T11:48:17.911Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://techtipshub.vercel.app/blogs/nodejs-আধুনিক-ওয়েব-ডেভেলপমেন্টের-এক-শক্তিশালী-হাতিয়ার🚀-mdshakilahmed</loc><lastmod>2025-05-07T11:27:04.970Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://techtipshub.vercel.app/blogs/🚀-আজ-আমি-শিখলাম-object-oriented-programming-oop-এর-৪টি-মূল-ভিত্তি✅-mdshakilahmed</loc><lastmod>2025-05-06T12:56:30.865Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://techtipshub.vercel.app/blogs/react-js-আধুনিক-ওয়েব-ডেভেলপমেন্টের-অন্যতম-হাতিয়ার-noyonrahman</loc><lastmod>2025-05-05T17:49:01.423Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://techtipshub.vercel.app/blogs/অ্যালগরিদম-algorithm-কী-noyonrahman</loc><lastmod>2025-05-02T17:53:48.139Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://techtipshub.vercel.app/blogs/enhancing-authentication-security-with-cookies-in-nextjs-and-expressjs-noyonrahman-1</loc><lastmod>2025-05-04T07:36:48.689Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://techtipshub.vercel.app/blogs/what-is-transcript-and-why-should-you-care-noyonrahman</loc><lastmod>2025-01-25T11:37:34.412Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://techtipshub.vercel.app/blogs/next-js-parallel-routes-xxx</loc><lastmod>2024-11-18T10:20:10.976Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://techtipshub.vercel.app/blogs/the-10-best-blogs-to-follow-for-react-js-development-xxx</loc><lastmod>2024-11-26T15:40:59.833Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://techtipshub.vercel.app/blogs/introduction-of-yaml-admin</loc><lastmod>2025-03-14T17:52:56.370Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://techtipshub.vercel.app/blogs/understanding-the-single-responsibility-principle-srp-for-beginners-noyonalways</loc><lastmod>2024-12-02T20:01:39.572Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
 </urlset>
