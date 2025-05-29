@@ -28,11 +28,7 @@ import { Spinner } from "@nextui-org/spinner";
 
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false }) as any;
 
-interface IProps {
-  onClose: () => void;
-}
-
-const WriteBlog = ({onClose} : IProps ) => {
+const WriteBlog = () => {
   const {
     handleSubmit,
     control,
@@ -105,6 +101,7 @@ const WriteBlog = ({onClose} : IProps ) => {
       ...data,
       contentType: "html",
       tags: data.tags.split(",").map((tag: string) => tag.trim()),
+      isPremium: false,
     };
 
     formData.append("data", JSON.stringify(postData));
@@ -112,7 +109,7 @@ const WriteBlog = ({onClose} : IProps ) => {
     handleCreatePost(formData, {
       onSuccess: () => {
         // close the modal
-        onClose();
+        
         router.push(`/?new=${data?.title}`)
       }
     });
@@ -127,7 +124,7 @@ const WriteBlog = ({onClose} : IProps ) => {
       {/* Preview Modal */}
       <Modal
         scrollBehavior="inside"
-        size="5xl"
+        size="full"
         backdrop="opaque"
         isOpen={isOpen}
         onOpenChange={onOpenChange}
@@ -140,7 +137,7 @@ const WriteBlog = ({onClose} : IProps ) => {
           {(onClose) => (
             <>
               <ModalHeader>Blog Preview</ModalHeader>
-              <ModalBody>
+              <ModalBody className="mx-auto max-w-5xl">
                 {coverImageFile && (
                   <Image
                     src={URL.createObjectURL(coverImageFile)}
@@ -151,12 +148,15 @@ const WriteBlog = ({onClose} : IProps ) => {
                 <h3 className="text-xl font-bold mb-2">
                   {watch("title") || "Untitled"}
                 </h3>
-                <ReactQuill
+                <div className="prose dark:prose-invert max-w-full">
+                  <div dangerouslySetInnerHTML={{ __html: watch("content") }} />
+                </div>
+                {/* <ReactQuill
                   readOnly
                   modules={{ toolbar: false }}
                   theme="snow"
                   value={watch("content")}
-                />
+                /> */}
                 <div className="flex gap-2 flex-wrap">
                   {watch("tags")
                     ?.split(",")
@@ -169,9 +169,6 @@ const WriteBlog = ({onClose} : IProps ) => {
                       </span>
                     ))}
                 </div>
-                {watch("isPremium") && (
-                  <p className="premium-label">Premium post.</p>
-                )}
               </ModalBody>
               <ModalFooter>
                 <Button color="danger" variant="light" onPress={onClose}>
@@ -185,13 +182,12 @@ const WriteBlog = ({onClose} : IProps ) => {
 
       <>
         {isPending ? (
-            <div className="flex justify-center py-16">
-              <Spinner size="lg" />
-            </div>
-          
+          <div className="flex justify-center py-16 min-h-[500px]">
+            <Spinner size="lg" />
+          </div>
         ) : (
           <>
-            <div className="flex items-center justify-end space-x-2">
+            <div className="flex items-center justify-end space-x-2 mb-4">
               <Button
                 type="button"
                 radius="sm"
@@ -211,21 +207,20 @@ const WriteBlog = ({onClose} : IProps ) => {
             </div>
             <div className="flex justify-start mb-4 relative">
               {!coverImageFile ? (
-                <Button
-                  radius="sm"
-                  variant="flat"
-                  size="lg"
-                  startContent={<GoImage size={24} />}
+                <div
+                  className="w-full h-48 border-2 border-dashed border-default-300 rounded-lg flex flex-col items-center justify-center cursor-pointer hover:border-primary transition-colors"
                   onClick={handleAddCoverClick}
                 >
-                  Add Cover
-                </Button>
+                  <GoImage className="text-4xl text-default-400" />
+                  <p className="text-default-500 mt-2">Click to add cover image</p>
+                  <p className="text-xs text-default-400 mt-1">Drag and drop your image here</p>
+                </div>
               ) : (
                 <>
                   <img
                     src={URL.createObjectURL(coverImageFile)}
                     alt="Cover Preview"
-                    className="w-full object-cover"
+                    className="w-full object-cover rounded"
                   />
                   <Button
                     isIconOnly
@@ -368,24 +363,6 @@ const WriteBlog = ({onClose} : IProps ) => {
                   )}
                 />
               </div>
-
-              <Controller
-                name="isPremium"
-                control={control}
-                defaultValue={false}
-                render={({ field }) => (
-                  <Checkbox
-                    isDisabled={!currentUser?.isPremiumUser}
-                    {...field}
-                    isSelected={field.value}
-                  >
-                    Premium{" "}
-                    {currentUser && !currentUser?.isPremiumUser && (
-                      <span>(you are not a premium member)</span>
-                    )}
-                  </Checkbox>
-                )}
-              />
             </form>
           </>
         )}
