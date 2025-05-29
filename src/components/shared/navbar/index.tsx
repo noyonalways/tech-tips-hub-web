@@ -19,9 +19,13 @@ import clsx from "clsx";
 import NextLink from "next/link";
 import NavbarSearchInput from "./navbar-search-input";
 import { usePathname } from "next/navigation";
+import { Button } from "@nextui-org/button";
+import { GoPencil } from "react-icons/go";
+import { useUser } from "@/context/user.provider";
 
 export const Navbar = () => {
   const pathName = usePathname();
+  const { user } = useUser();
 
   return (
     <NextUINavbar
@@ -73,18 +77,42 @@ export const Navbar = () => {
           <ThemeSwitch className="hidden lg:inline-block" />
         </NavbarItem>
 
-        <NavbarItem>
-          <WritePostButton />
-        </NavbarItem>
+        {user && (
+          <NavbarItem>
+            <Button
+              as={NextLink}
+              size="sm"
+              radius="full"
+              variant="solid"
+              color="primary"
+              startContent={<GoPencil className="text-lg" />}
+              href="/write-blog"
+            >
+              Write Blog
+            </Button>
+          </NavbarItem>
+        )}
 
         <LoginLogoutSwitch />
       </NavbarContent>
 
       <NavbarContent className="md:hidden basis-1 pl-4" justify="end">
         <ThemeSwitch />
-        <NavbarItem>
-          <WritePostButton />
-        </NavbarItem>
+        {user && (
+          <NavbarItem>
+            <Button
+              as={NextLink}
+              size="sm"
+              radius="full"
+              variant="solid"
+              color="primary"
+              startContent={<GoPencil className="text-lg" />}
+              href="/write-blog"
+            >
+              Write Blog
+            </Button>
+          </NavbarItem>
+        )}
         <LoginLogoutSwitch />
       </NavbarContent>
 

@@ -21,7 +21,6 @@ const PaymentsTable = ({}: IProps) => {
   const { data, isLoading } = useGetAllPayments();
   const payments = data?.data as IPayment[];
 
-
   return (
     <Table radius="sm" aria-label="Example table with custom cells">
       <TableHeader>
@@ -41,25 +40,25 @@ const PaymentsTable = ({}: IProps) => {
         emptyContent={"Empty table"}
       >
         {payments?.map((payment) => (
-          <TableRow key={payment._id}>
+          <TableRow key={payment?._id}>
             <TableCell>
               <div className="inline-flex space-x-2">
-                <Avatar src={payment.user.profilePicture} size="sm" />
+                <Avatar src={payment?.user?.profilePicture} size="sm" />
                 <div>
-                  <h3 className="font-medium">{payment.user.fullName}</h3>
-                  <span className="text-xs">{payment.user.email}</span>
+                  <h3 className="font-medium">{payment?.user?.fullName}</h3>
+                  <span className="text-xs">{payment?.user?.email}</span>
                 </div>
               </div>
             </TableCell>
             <TableCell>
-              <div className="lg:w-auto w-40">{payment.transactionId}</div>
+              <div className="lg:w-auto w-40">{payment?.transactionId}</div>
               </TableCell>
             <TableCell>
               <div className="lg:w-auto w-20"> 
-                {payment.amount} {payment.currency}
+                {payment?.amount} {payment?.currency}
               </div>
             </TableCell>
-            <TableCell>{payment.subscription.type}</TableCell>
+            <TableCell>{payment?.subscription?.type}</TableCell>
             <TableCell>
               {(payment.status === "Pending" && (
                 <span className="px-3 py-1 bg-blue-500 text-white rounded-full text-xs">
@@ -84,16 +83,16 @@ const PaymentsTable = ({}: IProps) => {
             </TableCell>
             <TableCell>
               <div className="lg:w-auto w-44">
-                {payment.paidAt
+                {payment?.paidAt
                   ? format(
-                    toZonedTime(new Date(payment.paidAt), "Asia/Dhaka"),
+                    toZonedTime(new Date(payment?.paidAt), "Asia/Dhaka"),
                     "dd-MM-yyyy hh:mm:ss a"
                   )
                   : "N/A"}
                 </div>
             </TableCell>
 
-            <TableCell>{payment.paymentMethod}</TableCell>
+            <TableCell>{payment?.paymentMethod}</TableCell>
           </TableRow>
         ))}
       </TableBody>

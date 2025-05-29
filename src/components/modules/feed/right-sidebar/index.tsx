@@ -28,7 +28,7 @@ const RightSideBar = () => {
   }, []);
 
   return (
-    <div className="hidden lg:inline-block xl:basis-[22%] 2xl:basis-[18%] space-y-6 sticky top-16 lg:pt-4 2xl:pr-2 lg:pl-0 h-[calc(100vh-85px)] lg:overflow-y-scroll">
+    <div className="hidden lg:inline-block xl:basis-[22%] 2xl:basis-[18%] space-y-6 sticky top-16 lg:pt-4 2xl:pr-2 lg:pl-0 h-[calc(100vh-85px)] lg:overflow-y-hidden">
       {isLoading ? (
         <div className="border border-default/50 p-6 rounded-xl space-y-2">
           <h2 className="font-semibold text-lg">Categories</h2>

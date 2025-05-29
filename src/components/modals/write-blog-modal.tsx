@@ -34,7 +34,7 @@ const WriteBlogModal = ({}: IProps) => {
                 Create Blog Post
               </ModalHeader>
               <ModalBody>
-                <WriteBlog onClose={onOpenChange} />
+                {/* <WriteBlog onClose={onOpenChange} /> */}
               </ModalBody>
             </>
           )}

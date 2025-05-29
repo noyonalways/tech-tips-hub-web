@@ -43,27 +43,27 @@ const SubscribersTable = ({}: IProps) => {
           <TableRow key={subscription._id}>
             <TableCell>
               <div className="inline-flex space-x-2">
-                <Avatar src={subscription.user.profilePicture} size="sm" />
+                <Avatar src={subscription?.user?.profilePicture} size="sm" />
                 <div>
-                  <h3 className="font-medium">{subscription.user.fullName}</h3>
-                  <span className="text-xs">{subscription.user.email}</span>
+                  <h3 className="font-medium">{subscription?.user?.fullName}</h3>
+                  <span className="text-xs">{subscription?.user?.email}</span>
                 </div>
               </div>
             </TableCell>
             <TableCell>
-              <div className="lg:w-auto w-40">{subscription.transactionId}</div>
+              <div className="lg:w-auto w-40">{subscription?.transactionId}</div>
             </TableCell>
             <TableCell>
               <div className="lg:w-auto w-20"> 
-                {subscription.price} {subscription.currency}
+                {subscription?.price} {subscription?.currency}
               </div>
             </TableCell>
-            <TableCell>{subscription.type}</TableCell>
+            <TableCell>{subscription?.type}</TableCell>
             <TableCell>
               <div className="lg:w-auto w-44">
                 {subscription.startDate
                   ? format(
-                    toZonedTime(new Date(subscription.startDate), "Asia/Dhaka"),
+                    toZonedTime(new Date(subscription?.startDate), "Asia/Dhaka"),
                     "dd-MM-yyyy hh:mm:ss a"
                   )
                   : "N/A"}
@@ -71,31 +71,31 @@ const SubscribersTable = ({}: IProps) => {
             </TableCell>
             <TableCell>
               <div className="lg:w-auto w-44">
-                {subscription.endDate
+                {subscription?.endDate
                   ? format(
-                    toZonedTime(new Date(subscription.endDate), "Asia/Dhaka"),
+                    toZonedTime(new Date(subscription?.endDate), "Asia/Dhaka"),
                     "dd-MM-yyyy hh:mm:ss a"
                   )
                   : "N/A"}
               </div>
             </TableCell>
             <TableCell>
-              {(subscription.status === "Pending" && (
+              {(subscription?.status === "Pending" && (
                 <span className="px-3 py-1 bg-blue-500 text-white rounded-full text-xs">
                   Pending
                 </span>
               )) ||
-                (subscription.status === "Active" && (
+                (subscription?.status === "Active" && (
                   <span className="px-3 py-1 bg-green-500 text-white rounded-full text-xs">
                     Active
                   </span>
                 )) ||
-                (subscription.status === "Expired" && (
+                (subscription?.status === "Expired" && (
                   <span className="px-3 py-1 bg-red-500 text-white rounded-full text-xs">
                     Expired
                   </span>
                 )) ||
-                (subscription.status === "Canceled" && (
+                (subscription?.status === "Canceled" && (
                   <span className="px-3 py-1 bg-orange-500 text-white rounded-full text-xs">
                     Canceled
                   </span>
