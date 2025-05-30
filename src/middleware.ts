@@ -9,6 +9,7 @@ const roleBasedRoutes = {
     "/profile",
     "/settings",
     "/settings/manage-blogs",
+    "/write-blog",
   ],
   Admin: [
     "/admin",
@@ -19,6 +20,7 @@ const roleBasedRoutes = {
     "/admin/manage-blogs",
     "/settings",
     "/settings/manage-blogs",
+    "/write-blog",
   ],
 };
 
@@ -58,7 +60,7 @@ export async function middleware(request: NextRequest) {
 export const config = {
   matcher: [
     "/profile",
-    "/profile/:path*",
+    "/profile/:path*", 
     "/profile/:page*",
     "/admin/:page*",
     "/login",
@@ -70,5 +72,6 @@ export const config = {
     "/admin/dashboard",
     "/admin/manage-users",
     "/admin/all-payments",
+    "/write-blog",
   ],
 };
