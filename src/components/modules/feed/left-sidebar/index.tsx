@@ -7,19 +7,16 @@ interface IProps {}
 const LeftSideBar = ({}: IProps) => {
   return (
     <div className="hidden lg:flex xl:basis-[22%] 2xl:basis-[18%] space-y-6 sticky top-16 lg:p-4 border-r border-default/50">
-      <div className="flex flex-col h-[calc(100vh-90px)] w-full">
+      <div className="flex flex-col h-full min-h-[calc(100vh-90px)] w-full items-stretch relative" >
         {/* Feed buttons at top */}
-        <div className="space-y-2 lg:flex-1">
+        <div className="space-y-2">
           <div className="flex flex-col space-y-2">
             <FeedButtonsForSideBar />
           </div>
         </div>
 
-        {/* Empty space in middle */}
-        {/* <div className="flex-1"></div> */}
-
         {/* Ad banner at bottom */}
-        <div className="mt-4">
+        <div className="mt-4 absolute bottom-0 left-0 right-0">
           <AdBanner
             dataAdFormat="auto"
             dataAdSlot="9749465109"
@@ -27,7 +24,7 @@ const LeftSideBar = ({}: IProps) => {
           />
         </div>
       </div>
-    </div>
+    </div>  
   );
 };
 

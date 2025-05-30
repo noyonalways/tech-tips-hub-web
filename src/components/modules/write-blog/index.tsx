@@ -28,14 +28,29 @@ import { Spinner } from "@nextui-org/spinner";
 
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false }) as any;
 
+interface BlogFormData {
+  title: string;
+  content: string;
+  category: string;
+  tags: string[];
+}
+
 const WriteBlog = () => {
   const {
     handleSubmit,
     control,
     reset,
     watch,
+    setValue,
     formState: { errors },
-  } = useForm();
+  } = useForm<BlogFormData>({
+    defaultValues: {
+      title: '',
+      content: '',
+      category: '',
+      tags: [],
+    }
+  });
 
   const router = useRouter()
 
@@ -48,6 +63,8 @@ const WriteBlog = () => {
     mutate: handleCreatePost,
     isPending,
   } = useCreatePost();
+
+  const [tagInput, setTagInput] = useState("");
 
   const getUser = async () => {
     const profileData = await getProfileInfo();
@@ -66,7 +83,7 @@ const WriteBlog = () => {
         const data = categoryData?.data as ICategory[];
         setCategories(data);
       } catch (error) {
-        console.error("Error fetching categories:", error);
+        console.log("Error fetching categories:", error);
       }
     };
 
@@ -91,7 +108,7 @@ const WriteBlog = () => {
     setCoverImageFile(null);
   };
 
-  const onSubmit =  (data: FieldValues) => {
+  const onSubmit = (data: FieldValues) => {
     const formData = new FormData();
     if (coverImageFile) {
       formData.append("image", coverImageFile);
@@ -100,7 +117,7 @@ const WriteBlog = () => {
     const postData = {
       ...data,
       contentType: "html",
-      tags: data.tags.split(",").map((tag: string) => tag.trim()),
+      tags: data.tags, // tags are already an array now
       isPremium: false,
     };
 
@@ -108,15 +125,27 @@ const WriteBlog = () => {
 
     handleCreatePost(formData, {
       onSuccess: () => {
-        // close the modal
-        
         router.push(`/?new=${data?.title}`)
       }
     });
     reset();
     setCoverImageFile(null);
+  };
 
-    // console.log(postData)
+  const handleAddTag = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter' && tagInput.trim()) {
+      e.preventDefault();
+      const currentTags = watch('tags');
+      if (!currentTags.includes(tagInput.trim())) {
+        setValue('tags', [...currentTags, tagInput.trim()]);
+      }
+      setTagInput('');
+    }
+  };
+
+  const handleRemoveTag = (tagToRemove: string) => {
+    const currentTags = watch('tags');
+    setValue('tags', currentTags.filter(tag => tag !== tagToRemove));
   };
 
   return (
@@ -158,16 +187,14 @@ const WriteBlog = () => {
                   value={watch("content")}
                 /> */}
                 <div className="flex gap-2 flex-wrap">
-                  {watch("tags")
-                    ?.split(",")
-                    .map((tag: string) => (
-                      <span
-                        key={tag}
-                        className="bg-default-200 rounded-sm text-xs px-2 py-1"
-                      >
-                        #{tag}
-                      </span>
-                    ))}
+                  {watch("tags")?.map((tag: string) => (
+                    <span
+                      key={tag}
+                      className="bg-default-200 rounded text-xs px-2 py-1"
+                    >
+                      {tag}
+                    </span>
+                  ))}
                 </div>
               </ModalBody>
               <ModalFooter>
@@ -247,7 +274,6 @@ const WriteBlog = () => {
                 <Controller
                   name="title"
                   control={control}
-                  defaultValue=""
                   rules={{ required: "Title is required" }}
                   render={({ field }) => (
                     <>
@@ -261,7 +287,7 @@ const WriteBlog = () => {
                       />
                       {errors.title?.message && (
                         <p className="text-red-500 text-sm mt-2">
-                          {String(errors?.title?.message)}
+                          {String(errors.title.message)}
                         </p>
                       )}
                     </>
@@ -273,7 +299,6 @@ const WriteBlog = () => {
                 <Controller
                   name="content"
                   control={control}
-                  defaultValue=""
                   rules={{ required: "Content is required" }}
                   render={({ field }) => (
                     <>
@@ -305,9 +330,9 @@ const WriteBlog = () => {
                         }}
                         theme="snow"
                       />
-                      {errors.content && (
+                      {errors.content?.message && (
                         <p className="text-red-500 text-sm mt-2">
-                          {String(errors?.content?.message)}
+                          {String(errors.content.message)}
                         </p>
                       )}
                     </>
@@ -319,7 +344,6 @@ const WriteBlog = () => {
                 <Controller
                   name="category"
                   control={control}
-                  defaultValue=""
                   rules={{ required: "Category is required" }}
                   render={({ field }) => (
                     <>
@@ -330,9 +354,9 @@ const WriteBlog = () => {
                           </SelectItem>
                         ))}
                       </Select>
-                      {errors.category && (
+                      {errors.category?.message && (
                         <p className="text-red-500 text-sm mt-2">
-                          {String(errors?.category?.message)}
+                          {String(errors.category.message)}
                         </p>
                       )}
                     </>
@@ -344,22 +368,43 @@ const WriteBlog = () => {
                 <Controller
                   name="tags"
                   control={control}
-                  defaultValue=""
                   rules={{ required: "At least one tag is required" }}
-                  render={({ field }) => (
-                    <>
+                  render={({ field: { value } }) => (
+                    <div className="space-y-2">
                       <Input
-                        {...field}
+                        value={tagInput}
+                        onChange={(e) => setTagInput(e.target.value)}
+                        onKeyDown={handleAddTag}
                         radius="sm"
-                        label="Enter tags (comma separated)"
+                        label="Enter tags (press Enter to add)"
+                        placeholder="Type and press Enter"
                         isRequired
                       />
+                      <div className="flex flex-wrap gap-2 mt-2">
+                        {value?.map((tag: string) => (
+                          <Button
+                            key={tag}
+                            size="sm"
+                            radius="sm"
+                            variant="flat"
+                            color="primary"
+                            endContent={
+                              <RiCloseLargeFill
+                                className="cursor-pointer"
+                                onClick={() => handleRemoveTag(tag)}
+                              />
+                            }
+                          >
+                            {tag}
+                          </Button>
+                        ))}
+                      </div>
                       {errors.tags && (
-                        <p className="text-red-500 text-sm mt-2">
-                          {String(errors?.tags?.message)}
+                        <p className="text-red-500 text-sm">
+                          {String(errors.tags.message)}
                         </p>
                       )}
-                    </>
+                    </div>
                   )}
                 />
               </div>

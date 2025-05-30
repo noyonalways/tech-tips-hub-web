@@ -13,4 +13,5 @@ export const protectedRoutes = [
   "/admin/dashboard",
   "/admin/manage-users",
   "/admin/all-payments",
+  "/write-blog",
 ];
