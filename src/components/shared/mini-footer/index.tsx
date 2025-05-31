@@ -89,7 +89,7 @@ const MiniFooter: React.FC<IProps> = () => {
           </Link>
         </div>
         <p className="text-xs">
-          &copy; {new Date().getFullYear()} Tech Tips Hub
+          &copy; {new Date().getFullYear()} TechTipsHub
         </p>
       </div>
     </div>

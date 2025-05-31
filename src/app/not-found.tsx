@@ -7,11 +7,11 @@ export const metadata: Metadata = {
   title: "Page Not Found",
   description:
     "The page you're looking for doesn't exist. Please check the URL or return to the homepage for more content.",
-  keywords: "404, not found, Tech Tips Hub, missing page, error page",
+  keywords: "404, not found, TechTipsHub, missing page, error page",
   openGraph: {
     title: "Page Not Found",
     description:
-      "Oops! The page you're looking for can't be found. Explore more content at Tech Tips Hub.",
+      "Oops! The page you're looking for can't be found. Explore more content at TechTipsHub.",
   },
 };
 

@@ -5,9 +5,9 @@ import { IPost } from "@/types";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Update Blog - Tech Tips Hub",
-  description: "Edit and update your blog content on Tech Tips Hub.",
-  keywords: "Update Blog, Edit Blog, Tech Tips Hub, Blogging",
+  title: "Update Blog - TechTipsHub",
+  description: "Edit and update your blog content on TechTipsHub.",
+  keywords: "Update Blog, Edit Blog, TechTipsHub, Blogging",
 };
 
 interface IProps {
