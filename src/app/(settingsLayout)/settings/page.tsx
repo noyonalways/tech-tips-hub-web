@@ -6,8 +6,8 @@ import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Profile Settings",
-  description: "Manage your Tech Tips Hub profile settings.",
-  keywords: "Profile, Settings, Tech Tips Hub",
+  description: "Manage your TechTipsHub profile settings.",
+  keywords: "Profile, Settings, TechTipsHub",
 };
 
 interface IProps {}
@@ -20,7 +20,7 @@ const profileData = await getProfileInfo();
       <div className="max-w-3xl mx-auto px-2 lg:px-0">
         <PageTitle
           title="Profile"
-          description="Manage your Tech Tips Hub profile"
+          description="Manage your TechTipsHub profile"
         />
 
         <>

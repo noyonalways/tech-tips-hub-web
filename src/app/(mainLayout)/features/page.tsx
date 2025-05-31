@@ -6,13 +6,13 @@ import Link from "next/link";
 import { FaCheckCircle, FaLightbulb, FaRocket, FaUsers, FaPen } from "react-icons/fa";
 
 export const metadata: Metadata = {
-  title: "Join Tech Tips Hub Community",
+  title: "Features Page",
   description:
-    "Join our thriving tech community at Tech Tips Hub. Share your knowledge, learn from experts, and become part of a growing network of tech enthusiasts.",
+    "Join our thriving tech community at TechTipsHub. Share your knowledge, learn from experts, and become part of a growing network of tech enthusiasts.",
   keywords:
-    "Tech Tips Hub, tech community, tech writing, knowledge sharing, tech tutorials, learning platform",
+    "TechTipsHub, tech community, tech writing, knowledge sharing, tech tutorials, learning platform",
   openGraph: {
-    title: "Join Tech Tips Hub Community",
+    title: "Join TechTipsHub Community",
     description:
       "Share your tech knowledge, learn from experts, and become part of our growing community. Start your tech writing journey today!",
     url: "https://techtipshub.noyonrahman.xyz/join-community",
@@ -34,13 +34,15 @@ const CommunityPage: React.FC<IProps> = () => {
             >
               Share Your Tech Knowledge with{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#e097ff] to-secondary dark:bg-clip-text dark:bg-gradient-to-r dark:from-primary dark:to-secondary dark:text-transparent">
-                Tech Tips Hub
+                TechTipsHub
               </span>
             </h1>
             <p className="w-full max-w-2xl mx-auto text-xl leading-snug">
-              "Join our community of tech enthusiasts where you can share your expertise, learn from others, and build your tech writing portfolio!"
+              "Join our community of tech enthusiasts where you can share your
+              expertise, learn from others, and build your tech writing
+              portfolio!"
             </p>
-            <div className="flex gap-4 justify-center">
+            <div className="flex flex-col md:flex-row gap-3 md:gap-4 justify-center">
               <Button
                 radius="full"
                 color="secondary"
@@ -67,9 +69,12 @@ const CommunityPage: React.FC<IProps> = () => {
 
           <div>
             <div className="text-center mb-10">
-              <h2 className="text-3xl font-bold mb-4">Why Join Our Community?</h2>
+              <h2 className="text-3xl font-bold mb-4">
+                Why Join Our Community?
+              </h2>
               <p className="text-default-500">
-                Share knowledge, build your portfolio, and connect with fellow tech enthusiasts
+                Share knowledge, build your portfolio, and connect with fellow
+                tech enthusiasts
               </p>
             </div>
 
@@ -155,13 +160,16 @@ const CommunityPage: React.FC<IProps> = () => {
             </div>
 
             <div className="text-center mt-16 space-y-6">
-              <h3 className="text-2xl font-bold">Ready to Share Your Knowledge?</h3>
+              <h3 className="text-2xl font-bold">
+                Ready to Share Your Knowledge?
+              </h3>
               <p className="text-default-500 max-w-2xl mx-auto">
-                Join our community today and start sharing your tech insights with thousands of readers. Your expertise matters!
+                Join our community today and start sharing your tech insights
+                with thousands of readers. Your expertise matters!
               </p>
               <Button
                 as={Link}
-                href="/register"
+                href="/signup"
                 color="secondary"
                 size="lg"
                 className="text-lg px-8"

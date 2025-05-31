@@ -1,7 +1,7 @@
 export type SiteConfig = typeof siteConfig;
 
 export const siteConfig = {
-  name: "Tech Tips Hub",
+  name: "TechTipsHub",
   description: "Make beautiful websites regardless of your design experience.",
   navItems: [
     {

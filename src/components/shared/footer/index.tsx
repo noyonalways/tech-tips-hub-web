@@ -1,3 +1,4 @@
+import Container from "@/components/ui/container";
 import { poppins } from "@/config/fonts";
 import { Image } from "@nextui-org/image";
 import Link from "next/link";
@@ -9,8 +10,8 @@ interface IProps {}
 const Footer: React.FC<IProps> = () => {
   return (
     <footer className="pt-10 border-t border-default/50 print:hidden">
-      <div className="w-full max-w-[1440px] mx-auto px-2 lg:px-6 2xl:px-0 pb-10">
-        <div className="grid gird-cols-1 lg:grid-cols-4 gap-4">
+      <Container>
+        <div className="grid gird-cols-1 lg:grid-cols-4 gap-4 pb-8">
           <div className="space-y-4">
             <Link className="flex space-x-4 items-center" href={`/`}>
               <Image
@@ -19,7 +20,7 @@ const Footer: React.FC<IProps> = () => {
                 alt="tech-tips-hub-logo"
               />
               <h2 className={`${poppins.className} text-lg font-bold`}>
-                Tech Tips Hub
+                TechTipsHub
               </h2>
             </Link>
             <p className="text-default-500">
@@ -120,9 +121,9 @@ const Footer: React.FC<IProps> = () => {
             </ul>
           </div>
         </div>
-      </div>
+      </Container>
       <div className="border-t border-default/50 py-5 bg-default-50">
-        <div className="w-full max-w-[1440px] mx-auto px-2 lg:px-6 2xl:px-0">
+        <Container>
           <div className="flex items-center justify-between ">
             <div className="flex space-x-2 text-xs">
               <Link className="hover:underline" href="/">
@@ -133,10 +134,10 @@ const Footer: React.FC<IProps> = () => {
               </Link>
             </div>
             <p className="text-xs">
-              &copy; {new Date().getFullYear()} Tech Tips Hub
+              &copy; {new Date().getFullYear()} TechTipsHub
             </p>
           </div>
-        </div>
+        </Container>
       </div>
     </footer>
   );

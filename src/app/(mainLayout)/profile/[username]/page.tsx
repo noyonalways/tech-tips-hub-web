@@ -43,11 +43,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   return {
     title: `${fullName}'s Profile`,
-    description: `Explore ${fullName}'s profile on Tech Tips Hub. Discover their shared insights, tutorials, and contributions to the tech community.`,
-    keywords: `${fullName}, Tech Tips Hub, user profile, tech community, articles, tutorials`,
+    description: `Explore ${fullName}'s profile on TechTipsHub. Discover their shared insights, tutorials, and contributions to the tech community.`,
+    keywords: `${fullName}, TechTipsHub, user profile, tech community, articles, tutorials`,
     openGraph: {
       title: `${fullName}'s Profile`,
-      description: `Check out ${fullName}'s profile on Tech Tips Hub. See their latest articles, contributions, and interests in the tech world.`,
+      description: `Check out ${fullName}'s profile on TechTipsHub. See their latest articles, contributions, and interests in the tech world.`,
       url: `https://techtipshub.noyonrahman.xyz/profile/@${actualUsername}`,
     },
   };
