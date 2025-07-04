@@ -13,6 +13,8 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://techtipshub.vercel.app"), // <-- set your actual site domain here
+
   title: {
     default: siteConfig.name,
     template: `%s - ${siteConfig.name}`,
@@ -22,6 +24,15 @@ export const metadata: Metadata = {
     icon: "/favicon.ico",
   },
   openGraph: {
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+      },
+    ],
+  },
+  twitter: {
     images: [
       {
         url: "/og-image.png",
