@@ -10,13 +10,13 @@ import { FiMessageCircle } from "react-icons/fi";
 export const metadata: Metadata = {
   title: "Contact Us",
   description:
-    "Get in touch with the TechTipsHub team for any inquiries, feedback, or support. We’re here to assist you with all your tech-related queries.",
+    "Get in touch with the TechTips Hub team for any inquiries, feedback, or support. We’re here to assist you with all your tech-related queries.",
   keywords:
-    "TechTipsHub, contact us, tech support, inquiries, feedback, tech questions, help",
+    "TechTips Hub, contact us, tech support, inquiries, feedback, tech questions, help",
   openGraph: {
     title: "Contact Us",
     description:
-      "Have questions or need support? Contact the TechTipsHub team and let us help you with your tech-related inquiries.",
+      "Have questions or need support? Contact the TechTips Hub team and let us help you with your tech-related inquiries.",
     url: "https://techtipshub.noyonrahman.xyz/contact-us"
   },
 };

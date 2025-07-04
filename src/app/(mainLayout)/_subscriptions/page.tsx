@@ -13,13 +13,13 @@ import { MdRocketLaunch } from "react-icons/md";
 export const metadata: Metadata = {
   title: "Subscription Plans",
   description:
-    "Explore our subscription plans at TechTipsHub. Choose between free and premium options to unlock advanced features, analytics, and premium content for an enhanced tech reading experience.",
+    "Explore our subscription plans at TechTips Hub. Choose between free and premium options to unlock advanced features, analytics, and premium content for an enhanced tech reading experience.",
   keywords:
-    "TechTipsHub, subscription plans, premium, free plan, blog subscription, analytics, advanced features, premium content",
+    "TechTips Hub, subscription plans, premium, free plan, blog subscription, analytics, advanced features, premium content",
   openGraph: {
     title: "Subscription Plans",
     description:
-      "Unlock premium features, detailed analytics, and exclusive content with our subscription plans. Explore both free and premium options at TechTipsHub.",
+      "Unlock premium features, detailed analytics, and exclusive content with our subscription plans. Explore both free and premium options at TechTips Hub.",
     url: "https://techtipshub.noyonrahman.xyz/subscription",
   },
 };
@@ -39,7 +39,7 @@ const SubscriptionPage: React.FC<IProps> = () => {
             >
               Enhance Your Content Creation with{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#e097ff] to-secondary dark:bg-clip-text dark:bg-gradient-to-r dark:from-primary dark:to-secondary dark:text-transparent">
-                TechTipsHub Pro
+                TechTips Hub Pro
               </span>
             </h1>
             <p className="w-full max-w-2xl mx-auto text-xl leading-snug">

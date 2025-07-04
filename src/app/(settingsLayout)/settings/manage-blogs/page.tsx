@@ -7,8 +7,8 @@ import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: 'Manage Blogs',
-  description: 'Manage all your blogs in one place with TechTipsHub.',
-  keywords: 'Manage Blogs, TechTipsHub, Blogging',
+  description: 'Manage all your blogs in one place with TechTips Hub.',
+  keywords: 'Manage Blogs, TechTips Hub, Blogging',
 };
 
 interface IProps {

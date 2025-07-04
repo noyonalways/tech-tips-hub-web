@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     url: "https://techtipshub.noyonrahman.xyz/forget-password",
     title: "Login",
     description:
-      "Access your TechTipsHub account for personalized content and latest updates.",
+      "Access your TechTips Hub account for personalized content and latest updates.",
   },
 };
 

@@ -20,13 +20,13 @@ import { FiZap } from "react-icons/fi";
 export const metadata: Metadata = {
   title: "About Us",
   description:
-    "Learn more about TechTipsHub, your go-to source for the latest tech tips, tutorials, and expert insights. Discover our mission and meet the team behind the content.",
+    "Learn more about TechTips Hub, your go-to source for the latest tech tips, tutorials, and expert insights. Discover our mission and meet the team behind the content.",
   keywords:
-    "TechTipsHub, about us, tech blog, tutorials, expert insights, technology, mission, team",
+    "TechTips Hub, about us, tech blog, tutorials, expert insights, technology, mission, team",
   openGraph: {
     title: "About Us",
     description:
-      "Get to know TechTipsHub and our mission to provide valuable tech tips and insights. Meet the team that helps you stay updated with the latest in technology.",
+      "Get to know TechTips Hub and our mission to provide valuable tech tips and insights. Meet the team that helps you stay updated with the latest in technology.",
     url: "https://techtipshub.noyonrahman.xyz/about-us",
   }
 };
@@ -79,13 +79,13 @@ const AboutUs: React.FC<IProps> = () => {
       name: "Alex Chen",
       role: "Software Engineer",
       content:
-        "TechTipsHub has become my go-to platform for staying updated with the latest in tech. The quality of content and community engagement is unparalleled.",
+        "TechTips Hub has become my go-to platform for staying updated with the latest in tech. The quality of content and community engagement is unparalleled.",
     },
     {
       name: "Sarah Johnson",
       role: "UX Designer",
       content:
-        "As a contributor, I love how TechTipsHub allows me to share my knowledge and connect with other professionals. It's more than just a blogging platform; it's a vibrant tech ecosystem.",
+        "As a contributor, I love how TechTips Hub allows me to share my knowledge and connect with other professionals. It's more than just a blogging platform; it's a vibrant tech ecosystem.",
     },
   ];
 
@@ -98,7 +98,7 @@ const AboutUs: React.FC<IProps> = () => {
               Empowering Tech Enthusiasts Worldwide
             </h1>
             <p className="text-xl mb-8 text-white dark:text-white">
-              TechTipsHub: Where Innovation Meets Community
+              TechTips Hub: Where Innovation Meets Community
             </p>
             <Button
               href="/login"
@@ -120,7 +120,7 @@ const AboutUs: React.FC<IProps> = () => {
           <div className="mb-20">
             <h2 className="text-3xl font-bold mb-6 text-center">Who We Are</h2>
             <p className="text-base lg:text-lg text-default-500 mb-12 leading-relaxed max-w-4xl mx-auto text-center">
-              TechTipsHub is the premier destination for tech enthusiasts to
+              TechTips Hub is the premier destination for tech enthusiasts to
               explore, learn, and contribute to the ever-evolving world of
               technology. Our platform combines cutting-edge blogging
               capabilities with robust community features, creating a unique
