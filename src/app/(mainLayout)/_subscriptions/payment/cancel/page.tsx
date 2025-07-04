@@ -14,9 +14,9 @@ import { FaShoppingCart } from "react-icons/fa";
 export const metadata: Metadata = {
   title: "Payment Cancelled",
   description:
-    "Your payment process was cancelled. Return to checkout or explore other options on TechTipsHub.",
+    "Your payment process was cancelled. Return to checkout or explore other options on TechTips Hub.",
   keywords:
-    "Payment Cancelled, TechTipsHub, transaction cancelled, checkout, payment error",
+    "Payment Cancelled, TechTips Hub, transaction cancelled, checkout, payment error",
 };
 
 interface IProps {

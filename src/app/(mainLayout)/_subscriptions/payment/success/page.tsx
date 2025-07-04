@@ -15,9 +15,9 @@ import { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Payment Successful",
   description:
-    "Thank you for your purchase! Your payment has been processed successfully. View transaction details and subscription information on TechTipsHub.",
+    "Thank you for your purchase! Your payment has been processed successfully. View transaction details and subscription information on TechTips Hub.",
   keywords:
-    "Payment Success, TechTipsHub, successful transaction, subscription details, payment processed",
+    "Payment Success, TechTips Hub, successful transaction, subscription details, payment processed",
 };
 
 

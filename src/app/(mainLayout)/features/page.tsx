@@ -8,11 +8,11 @@ import { FaCheckCircle, FaLightbulb, FaRocket, FaUsers, FaPen } from "react-icon
 export const metadata: Metadata = {
   title: "Features Page",
   description:
-    "Join our thriving tech community at TechTipsHub. Share your knowledge, learn from experts, and become part of a growing network of tech enthusiasts.",
+    "Join our thriving tech community at TechTips Hub. Share your knowledge, learn from experts, and become part of a growing network of tech enthusiasts.",
   keywords:
-    "TechTipsHub, tech community, tech writing, knowledge sharing, tech tutorials, learning platform",
+    "TechTips Hub, tech community, tech writing, knowledge sharing, tech tutorials, learning platform",
   openGraph: {
-    title: "Join TechTipsHub Community",
+    title: "Join TechTips Hub Community",
     description:
       "Share your tech knowledge, learn from experts, and become part of our growing community. Start your tech writing journey today!",
     url: "https://techtipshub.noyonrahman.xyz/join-community",
@@ -30,11 +30,11 @@ const CommunityPage: React.FC<IProps> = () => {
         <div className="space-y-10">
           <div className="text-center space-y-6">
             <h1
-              className={`${poppins.className} text-3xl lg:text-6xl text-center font-bold w-full max-w-5xl mx-auto lg:leading-snug`}
+              className={`${poppins.className} text-3xl lg:text-6xl text-center font-bold w-full max-w-4xl mx-auto lg:leading-snug`}
             >
               Share Your Tech Knowledge with{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#e097ff] to-secondary dark:bg-clip-text dark:bg-gradient-to-r dark:from-primary dark:to-secondary dark:text-transparent">
-                TechTipsHub
+                TechTips Hub
               </span>
             </h1>
             <p className="w-full max-w-2xl mx-auto text-xl leading-snug">

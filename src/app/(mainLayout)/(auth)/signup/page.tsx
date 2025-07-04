@@ -9,13 +9,13 @@ import SocialLogin from "@/components/modules/auth/social-login";
 export const metadata: Metadata = {
   title: "Sign Up",
   description:
-    "Join TechTipsHub to access the latest tips, insights, and tutorials. Sign up now to explore both free and premium content, stay updated with cutting-edge tech knowledge, and personalize your reading experience.",
+    "Join TechTips Hub to access the latest tips, insights, and tutorials. Sign up now to explore both free and premium content, stay updated with cutting-edge tech knowledge, and personalize your reading experience.",
   keywords:
-    "TechTipsHub, sign up, register, create account, tech tips, tutorials, premium content, tech insights, tech community",
+    "TechTips Hub, sign up, register, create account, tech tips, tutorials, premium content, tech insights, tech community",
   openGraph: {
     title: "Sign Up",
     description:
-      "Create an account at TechTipsHub to access exclusive tech tips, tutorials, and personalized content. Sign up for free or choose our premium plan for an enhanced experience.",
+      "Create an account at TechTips Hub to access exclusive tech tips, tutorials, and personalized content. Sign up for free or choose our premium plan for an enhanced experience.",
     url: "https://techtipshub.noyonrahman.xyz/signup",
   },
 };

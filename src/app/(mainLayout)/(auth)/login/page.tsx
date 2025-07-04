@@ -9,12 +9,12 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "Login",
   description:
-    "Log in to TechTipsHub to access personalized content and manage your account. Stay updated with the latest tech insights.",
+    "Log in to TechTips Hub to access personalized content and manage your account. Stay updated with the latest tech insights.",
   openGraph: {
     url: "https://techtipshub.noyonrahman.xyz/login",
     title: "Login",
     description:
-      "Access your TechTipsHub account for personalized content and latest updates.",
+      "Access your TechTips Hub account for personalized content and latest updates.",
   },
 };
 

@@ -20,7 +20,7 @@ const Footer: React.FC<IProps> = () => {
                 alt="tech-tips-hub-logo"
               />
               <h2 className={`${poppins.className} text-lg font-bold`}>
-                TechTipsHub
+                TechTips Hub
               </h2>
             </Link>
             <p className="text-default-500">
@@ -134,7 +134,7 @@ const Footer: React.FC<IProps> = () => {
               </Link>
             </div>
             <p className="text-xs">
-              &copy; {new Date().getFullYear()} TechTipsHub
+              &copy; {new Date().getFullYear()} TechTips Hub
             </p>
           </div>
         </Container>

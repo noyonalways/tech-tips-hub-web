@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   description:
     "Unfortunately, we couldn't process your payment. Review your transaction details or contact support to resolve this issue.",
   keywords:
-    "Payment Failed, TechTipsHub, transaction error, payment issue, payment declined, try again, contact support",
+    "Payment Failed, TechTips Hub, transaction error, payment issue, payment declined, try again, contact support",
 };
 
 interface IProps {
