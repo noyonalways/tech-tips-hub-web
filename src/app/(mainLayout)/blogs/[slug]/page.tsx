@@ -15,13 +15,14 @@ import { IPost } from "@/types";
 import { IComment } from "@/types/comment.type";
 import { Avatar } from "@nextui-org/avatar";
 import { Button } from "@nextui-org/button";
-import { Image } from "@nextui-org/image";
+import { Image as NextImage } from "@nextui-org/image";
 import { Textarea } from "@nextui-org/input";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { AiOutlineComment } from "react-icons/ai";
 import { BiBookmark, BiDownvote, BiUpvote } from "react-icons/bi";
 import { IoDiamondOutline } from "react-icons/io5";
+import Image from "next/image";
 
 type Props = {
   params: { slug: string };
@@ -135,11 +136,13 @@ const DynamicBlogPage = async ({ params }: { params: { slug: string } }) => {
             </>
           ) : (
             <div className="space-y-4">
-              <div className="flex justify-center mt-4 w-full print:max-w-xl print:mx-auto">
+              <div className="flex justify-center mt-4 w-full print:max-w-xl print:mx-auto rounded-md overflow-hideen">
                 <Image
-                  className="w-full"
+                  className="w-full h-full"
                   src={coverImage}
                   alt={`${title}-cover-image`}
+                  width={800}
+                  height={400}
                 />
               </div>
               <div className="space-y-14 print:space-y-8">

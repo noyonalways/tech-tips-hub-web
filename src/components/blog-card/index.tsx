@@ -1,7 +1,7 @@
 import { IPost } from "@/types";
 import { Avatar } from "@nextui-org/avatar";
 import { Button } from "@nextui-org/button";
-import { Image } from "@nextui-org/image";
+import { Image as NextImage } from "@nextui-org/image";
 import Link from "next/link";
 import { AiOutlineComment } from "react-icons/ai";
 import { BiDownvote, BiUpvote } from "react-icons/bi";
@@ -9,6 +9,7 @@ import { HiOutlineEye } from "react-icons/hi2";
 import { parseHtmlContent } from "@/utils";
 import UpVoteButton from "../ui/upvote-button";
 import DownVoteButton from "../ui/downvote-button";
+import Image from "next/image";
 
 interface IProps extends IPost {}
 
@@ -25,10 +26,9 @@ const BlogCard = ({
   upVotes,
   category,
   slug,
-  _id
+  _id,
 }: IProps) => {
-
-  const parsedContent = parseHtmlContent(content)
+  const parsedContent = parseHtmlContent(content);
 
   return (
     <div className="border border-default/50 p-6 rounded-xl space-y-4 w-full">
@@ -79,11 +79,13 @@ const BlogCard = ({
               : parsedContent}
           </p>
         </div>
-        <div className="basis-full lg:basis-[28%] mb-3 lg:mb-0 rounded-xl">
+        <div className="basis-full lg:basis-[28%] mb-3 lg:mb-0 rounded-md overflow-hidden">
           <Image
-            className="w-full h-full lg:max-h-32 object-cover"
+            className="w-full h-full object-cover"
             src={coverImage}
             alt={`${title}-cover-image`}
+            width={320}
+            height={320}
           />
         </div>
       </Link>
