@@ -5,6 +5,8 @@
 [![LinkedIn][linkedin-shield]][linkedin-url]
 [![VS Code Theme][vscode-shield]][vscode-theme-url]
 
+![Alt](https://repobeats.axiom.co/api/embed/f3e8a7143151704cf85a91717175a0abef2f84c7.svg "Repobeats analytics image")
+
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
