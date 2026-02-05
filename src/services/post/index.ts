@@ -34,8 +34,6 @@ export const getAllPosts = async (
   }
 };
 
-
-
 // get following users posts
 export const getFollowingUsersPosts = async (
   params?: Record<string, string | undefined>
@@ -72,8 +70,6 @@ export const getFollowingUsersPosts = async (
     return err; // Handle the error as you see fit
   }
 };
-
-
 
 export const createPost = async (payload: FormData) => {
   try {

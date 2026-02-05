@@ -10,7 +10,7 @@ import FollowUnFollowButton from "@/components/ui/follow-unfollow-button";
 import PrintBlogButton from "@/components/ui/print-blog-button";
 import UpVoteButton from "@/components/ui/upvote-button";
 import { poppins } from "@/config/fonts";
-import { getCommentsByPostId, getPostBySlug } from "@/services/post";
+import { getAllPosts, getCommentsByPostId, getPostBySlug } from "@/services/post";
 import { IPost } from "@/types";
 import { IComment } from "@/types/comment.type";
 import { Avatar } from "@nextui-org/avatar";
@@ -28,12 +28,14 @@ type Props = {
   params: { slug: string };
 };
 
+export const revalidate = 43200; // Revalidate every 12 hours (43200 seconds)
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const data = await getPostBySlug(params?.slug);
   const { title, content, coverImage } = (data?.data as IPost) ?? {};
 
   const description = content?.substring(0, 150) + "...";
-  const blogUrl = `https://techtipshub.noyonrahman.xyz/blogs/${params?.slug}`;
+  const blogUrl = `https://techtipshub.vercel.app/blogs/${params?.slug}`;
 
   return {
     title: title,
@@ -54,6 +56,24 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       images: [coverImage],
     },
   };
+}
+
+export async function generateStaticParams() {
+  try {
+    const response = await getAllPosts({ limit: "100" });
+    const posts = response?.data as IPost[];
+    
+    if (!posts || !Array.isArray(posts)) {
+      return [];
+    }
+
+    return posts.map((post) => ({
+      slug: post.slug,
+    }));
+  } catch (error) {
+    console.error("Error generating static params for blogs:", error);
+    return [];
+  }
 }
 
 const DynamicBlogPage = async ({ params }: { params: { slug: string } }) => {
