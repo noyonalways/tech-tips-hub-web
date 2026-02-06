@@ -12,7 +12,7 @@
 <p align="center">
     <img src="https://i.ibb.co.com/8dwgWQk/tech-tips-hub-logo.png" alt="Logo" width="80" height="80" />
     <h3 align="center">
-        <a href="https://techtipshub.noyonrahman.xyz" target="_blank" >
+        <a href="https://techtipshub.vercel.app" target="_blank" >
             TechTips Hub Web
         </a>
     </h3>

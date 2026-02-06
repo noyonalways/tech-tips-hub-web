@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     title: "About Us",
     description:
       "Get to know TechTips Hub and our mission to provide valuable tech tips and insights. Meet the team that helps you stay updated with the latest in technology.",
-    url: "https://techtipshub.noyonrahman.xyz/about-us",
+    url: "https://techtipshub.vercel.app/about-us",
   }
 };
 

@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   title: "Forget Password",
   description: "Recover your password",
   openGraph: {
-    url: "https://techtipshub.noyonrahman.xyz/forget-password",
+    url: "https://techtipshub.vercel.app/forget-password",
     title: "Login",
     description:
       "Access your TechTips Hub account for personalized content and latest updates.",

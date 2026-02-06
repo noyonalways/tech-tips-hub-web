@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     title: "Join TechTips Hub Community",
     description:
       "Share your tech knowledge, learn from experts, and become part of our growing community. Start your tech writing journey today!",
-    url: "https://techtipshub.noyonrahman.xyz/join-community",
+    url: "https://techtipshub.vercel.app/join-community",
   },
 };
 

@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     title: "Sign Up",
     description:
       "Create an account at TechTips Hub to access exclusive tech tips, tutorials, and personalized content. Sign up for free or choose our premium plan for an enhanced experience.",
-    url: "https://techtipshub.noyonrahman.xyz/signup",
+    url: "https://techtipshub.vercel.app/signup",
   },
 };
 

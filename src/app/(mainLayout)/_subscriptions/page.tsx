@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     title: "Subscription Plans",
     description:
       "Unlock premium features, detailed analytics, and exclusive content with our subscription plans. Explore both free and premium options at TechTips Hub.",
-    url: "https://techtipshub.noyonrahman.xyz/subscription",
+    url: "https://techtipshub.vercel.app/subscription",
   },
 };
 

@@ -9,13 +9,13 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Write Blog | TechTips Hub",
     description: "Write a blog post on TechTips Hub",
-    url: "https://techtipshub.noyonrahman.xyz/write-blog",
+    url: "https://techtipshub.vercel.app/write-blog",
   },  
   twitter: {
     card: "summary_large_image",
     title: "Write Blog | TechTips Hub",
     description: "Write a blog post on TechTips Hub",
-    images: "https://techtipshub.noyonrahman.xyz/og-image.png",
+    images: "https://techtipshub.vercel.app/og-image.png",
   },
 };
 

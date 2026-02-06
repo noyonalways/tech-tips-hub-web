@@ -41,7 +41,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     openGraph: {
       title: `${fullName}'s Profile`,
       description: `Check out ${fullName}'s profile on TechTips Hub. See their latest articles, contributions, and interests in the tech world.`,
-      url: `https://techtipshub.noyonrahman.xyz/users/@${actualUsername}`,
+      url: `https://techtipshub.vercel.app/users/@${actualUsername}`,
       images: profilePicture ? [{ url: profilePicture }] : [],
     },
   };

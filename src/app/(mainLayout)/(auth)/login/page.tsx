@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   description:
     "Log in to TechTips Hub to access personalized content and manage your account. Stay updated with the latest tech insights.",
   openGraph: {
-    url: "https://techtipshub.noyonrahman.xyz/login",
+    url: "https://techtipshub.vercel.app/login",
     title: "Login",
     description:
       "Access your TechTips Hub account for personalized content and latest updates.",

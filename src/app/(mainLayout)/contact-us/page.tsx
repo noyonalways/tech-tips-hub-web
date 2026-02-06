@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     title: "Contact Us",
     description:
       "Have questions or need support? Contact the TechTips Hub team and let us help you with your tech-related inquiries.",
-    url: "https://techtipshub.noyonrahman.xyz/contact-us"
+    url: "https://techtipshub.vercel.app/contact-us"
   },
 };
 
